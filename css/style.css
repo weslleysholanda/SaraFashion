@@ -1,0 +1,704 @@
+/* Fontes do projeto */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat Italic';
+    src: url('../fonts/Montserrat/Montserrat-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Quentin';
+    src: url(../fonts/Quentin/Quentin.otf) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Great Vibes';
+    src: url('../fonts/Great_Vibes/GreatVibes-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Dancing Script';
+    src: url(../fonts/Dancing_Script/DancingScript-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Parisienne';
+    src: url(../fonts/Parisienne/Parisienne-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Quattrocento';
+    src: url(../fonts/Quattrocento/Quattrocento-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url(../fonts/Playfair_Display/PlayfairDisplay-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+/* Variáveis */
+
+:root {
+
+    /* Cores */
+    --cor1: #000000;
+    --corLetras: #FFFFFF;
+    --cor3: #DAA520;
+    --cor4: #6A3D16;
+    --corPrincipal: #C59D5F;
+    --cor6: #EA1613;
+
+    /* Fontes */
+    --fonteMontserrat: 'Montserrat';
+    --fontGreatVibes: 'Great Vibes';
+    --fonteQuentin: 'Quentin';
+    --fonteDancingScript: 'Dancing Script';
+    --fonteParisienne: 'Parisienne';
+    --fonteQuattrocento: 'Quattrocento';
+    --fontePlayfairDisplay: 'Playfair Display';
+}
+
+
+/* Estilos Iniciais*/
+h1 {
+    font-family: var(--fontGreatVibes);
+    font-weight: normal;
+    font-size: 125px;
+    color: var(--corLetras);
+    margin-top: 17px;
+}
+
+h2 {
+    font-family: var(--fonteQuentin);
+    font-size: 66px;
+}
+
+h3 {
+    font-family: var(--fonteMontserrat);
+    font-weight: normal;
+    font-size: 16px;
+    color: var(--corLetras);
+    margin-top: 20px;
+}
+
+p {
+    font-family: var(--fonteMontserrat);
+    font-weight: normal;
+    font-size: 20px;
+}
+
+img {
+    border: 0;
+    height: auto;
+}
+
+
+.of-height-10 {
+    height: 10px;
+}
+
+.of-height-15 {
+    height: 15px;
+}
+
+.of-height-20 {
+    height: 20px;
+}
+
+.of-height-25 {
+    height: 25px;
+}
+
+.of-height-35 {
+    height: 35px;
+}
+
+.of-height-40 {
+    height: 40px;
+}
+
+.of-height-45 {
+    height: 45px;
+}
+
+.of-height-70 {
+    height: 70px;
+}
+
+.of-height-80 {
+    height: 80px;
+}
+
+.of-height-85 {
+    height: 85px;
+}
+
+.of-height-100 {
+    height: 100px;
+}
+
+.of-height-125 {
+    height: 125px;
+}
+
+.of-height-130 {
+    height: 130px;
+}
+
+.of-height-200 {
+    height: 200px;
+}
+
+html,
+body {
+    color: var(--cor1);
+    font-family: var(--fonteMontserrat);
+    font-size: 20px;
+    font-weight: 500;
+
+}
+
+
+.site {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* fim Estilos Iniciais */
+
+/* navBar */
+.topo {
+    z-index: 999;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 10%;
+
+    >div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            min-width: 72px;
+            height: 50px;
+            background: #ffff;
+        }
+
+    }
+
+    .menu {
+        ul {
+            display: flex;
+            justify-content: space-around;
+            gap: 18px;
+
+            li {
+                height: 100%;
+
+                a {
+                    text-decoration: none;
+                    color: var(--corLetras);
+                    font-family: var(--fonteMontserrat);
+                    font-weight: 500;
+                    font-size: 20px;
+                }
+            }
+        }
+
+    }
+
+    .user {
+        display: flex;
+        align-items: center;
+
+        .sacolaCompra {
+            padding: 0 20px;
+
+            a {
+                text-decoration: none;
+                color: var(--cor2);
+
+                svg {
+                    fill: #ffff;
+                    vertical-align: middle;
+                    font-family: var(--fonteMontserrat);
+                    width: 22px;
+                    height: 29px;
+                    transition: all .2s ease;
+                }
+
+                :hover {
+                    fill: #C59D5F;
+                }
+
+
+                .cartNumber {
+                    font-family: var(--fonteMontserrat);
+                    color: var(--corLetras);
+                    font-weight: 500;
+                    font-size: 12px;
+                }
+
+            }
+
+        }
+
+        .separator {
+            border-style: solid;
+            width: 1px;
+            border-bottom-width: 26px;
+            color: #ffff;
+        }
+
+        .userIcon {
+            padding: 0 20px;
+
+            a {
+                .user {
+                    svg {
+                        width: 20px;
+                        height: 24px;
+
+                        transition: all .2s ease;
+                    }
+
+                    :hover {
+                        fill: #C59D5F;
+                    }
+                }
+            }
+        }
+
+
+    }
+}
+
+
+/* Banner */
+.banner {
+    position: relative;
+    width: 100%;
+    left: 0;
+    top: 0;
+
+    .slick-prev,
+    .slick-next {
+        display: none !important;
+    }
+
+    .slide-banner {
+        .banner-item {
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .banner-titulo {
+                position: absolute;
+                top: 25%;
+                margin-left: 530px;
+
+                >div {
+                    text-align: center;
+                }
+
+                h2 {
+                    color: var(--corPrincipal);
+                }
+
+                div:nth-child(3) {
+                    display: flex;
+                    justify-content: center;
+                }
+
+
+                img {
+                    margin-top: 57px;
+                    width: 273px;
+                }
+
+            }
+        }
+    }
+}
+
+/* horarioFuncionamento */
+.horarioFuncionamento {
+    .horarioServico {
+        display: flex;
+        align-items: center;
+
+        .titulo {
+            position: relative;
+            width: 50%;
+
+            h2 {
+                font-family: var(--fonteMontserrat);
+                font-weight: normal;
+                font-size: 2.5rem;
+                position: relative;
+                z-index: 10;
+            }
+
+            .textoFundo {
+                z-index: 9;
+                opacity: 50%;
+                position: absolute;
+                bottom: -28%;
+                font-family: var(--fonteQuentin);
+                color: #C59D5F;
+                font-size: 180px;
+                letter-spacing: 20px;
+            }
+
+
+        }
+
+        .tabelaHorario {
+            width: 50%;
+
+            >div {
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+                border-bottom: 2px solid var(--cor4);
+                margin: 36px 0;
+            }
+
+            h3 {
+                font-family: var(--fonteMontserrat);
+                font-weight: normal;
+                color: var(--cor1);
+                margin-bottom: 12px;
+            }
+
+            .separacaoTab {
+                width: 100%;
+                height: 1px;
+                background-color: #000;
+                margin-top: 5px;
+            }
+        }
+    }
+}
+
+
+/* quem Somos */
+.quemSomos {
+    .titulo {
+        text-align: center;
+        margin-bottom: 30px;
+
+        h2 {
+            font-family: var(--fonteMontserrat);
+            font-weight: normal;
+            font-size: 48px;
+            margin-bottom: 17px;
+        }
+
+        .tituloFooter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+
+            .linha {
+                border-top: 2px dotted var(--cor3);
+                width: 200px;
+                height: auto;
+            }
+        }
+
+        .paragrafo {
+            display: flex;
+            justify-content: center;
+
+            p {
+                max-width: 550px;
+                word-wrap: break-word;
+                line-height: 1.5;
+            }
+        }
+    }
+
+    .sobre {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #6A3D16;
+
+        .sobreImg {
+            max-width: 300px !important;
+            margin-bottom: 0;
+        }
+
+        .sobreConteudo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 56px;
+
+            .buttonIcon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                border: 2px solid var(--corPrincipal);
+                transition: all 0.3s ease;
+
+                svg {
+                    width: 28px;
+                    height: 37px;
+                }
+            }
+
+            .conteudoInfo {
+                h2 {
+                    font-family: var(--fonteMontserrat);
+                    font-weight: normal;
+                    font-size: 20px;
+                    margin-bottom: 10px;
+                }
+
+                .linha {
+                    display: grid;
+                    border-top: 2px dotted var(--cor3);
+                    width: 30%;
+                    margin-bottom: 10px;
+                }
+
+                p {
+                    font-size: 14px;
+                    line-height: 1.6;
+                    max-width: 450px;
+                }
+
+
+            }
+
+            span:hover {
+                background: var(--corPrincipal);
+            }
+
+            span:hover svg path {
+                fill: #ffffff;
+            }
+
+            span:hover #quality-seal path:nth-child(5),
+            span:hover #quality-seal path:nth-child(6) {
+                fill: var(--corPrincipal);
+            }
+        }
+    }
+}
+
+/* satisfação */
+.satisfacao {
+    .site {
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .container-Info {
+                text-align: center;
+
+                h3 {
+                    font-family: var(--fonteMontserrat);
+                    font-weight: normal;
+                    align-items: center;
+                    font-size: 48px;
+                    color: var(--cor1);
+                }
+
+
+                p {
+                    font-family: var(--fonteMontserrat);
+                    font-weight: normal;
+                    font-size: 18px;
+
+                }
+            }
+
+            .iconImg {
+                display: flex;
+                align-items: center;
+
+            }
+
+            .linha {
+                display: grid;
+                border-top: 2px dotted var(--cor3);
+                width: 140px;
+                height: auto;
+            }
+        }
+
+    }
+
+}
+
+/* Nosso trabalho */
+.nosso-Trabalho {
+    background: url(/img/parallax.png) 70% no-repeat;
+    background-position: 50% 40px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .site {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 80px;
+        .conteudo-Trabalho {
+            .conteudo-titulo {
+                position: relative;
+
+                h2:nth-child(1) {
+                    position: relative;
+                    font-family: var(--fonteMontserrat);
+                    font-weight: normal;
+                    font-size: 20px;
+                    color: #ffff;
+                    z-index: 10;
+                }
+
+                .textoFundo {
+                    z-index: 9;
+                    opacity: 26%;
+                    position: absolute;
+                    bottom: 5%;
+                    font-family: var(--fonteQuentin);
+                    color: #C59D5F;
+                    font-size: 180px;
+                }
+
+                h2 {
+                    position: relative;
+                    font-family: var(--fonteMontserrat);
+                    font-weight: normal;
+                    font-size: 60px;
+                    color: var(--corLetras);
+                    z-index: 10;
+                }
+            }
+        }
+    }
+}
+
+
+/* marcas confiaveis */
+
+.marcas-confiaveis {
+    .titulo {
+        text-align: center;
+        margin-bottom: 30px;
+
+        h2 {
+            font-family: var(--fonteMontserrat);
+            font-weight: normal;
+            font-size: 48px;
+            margin-bottom: 17px;
+        }
+
+        .tituloFooter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+
+            .linha {
+                border-top: 2px dotted var(--cor3);
+                width: 200px;
+                height: auto;
+            }
+        }
+
+        .paragrafo {
+            display: flex;
+            justify-content: center;
+
+            p {
+                max-width: 550px;
+                word-wrap: break-word;
+                line-height: 1.5;
+            }
+        }
+    }
+
+    .site {
+        .marcas-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: auto;
+                max-width: 150px;
+                max-height: 66px;
+                object-fit: contain;
+                margin: 0 10px;
+            }
+
+            .slick-slide {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .slick-list {
+                overflow: hidden;
+            }
+
+            .slick-track {
+                display: flex;
+                gap: 10px;
+            }
+
+
+        }
+
+    }
+}
