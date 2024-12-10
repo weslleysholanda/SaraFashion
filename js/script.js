@@ -9,7 +9,7 @@ $('.slide-banner').slick({
 
 
 $('.marcas-logo').slick({
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     dots: false,

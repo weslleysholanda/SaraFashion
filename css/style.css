@@ -138,6 +138,7 @@ img {
 .of-height-30 {
     height: 30px;
 }
+
 .of-height-35 {
     height: 35px;
 }
@@ -585,17 +586,21 @@ body {
 .nosso-Trabalho {
     background: url(/img/parallax.jpg) no-repeat;
     background-position: 50% 40px;
+    background-color: transparent;
     background-attachment: fixed;
-    min-height: 100vh; /* Mantém o layout flexível */
+    overflow: hidden;
+    padding: 0;
+    position: static;
+    height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
+
 
     .container-trabalho {
         display: flex;
         align-items: center;
         gap: 30px;
-        flex-wrap: wrap; /* Permite que os itens se ajustem em telas menores */
 
         .primary-info {
             display: flex;
@@ -606,6 +611,7 @@ body {
             .titulo {
                 position: relative;
                 margin-bottom: 10px;
+
 
                 h2:first-of-type {
                     font-family: var(--fonteMontserrat);
@@ -629,7 +635,7 @@ body {
                     opacity: 26%;
                     position: absolute;
                     bottom: 5%;
-                    left: 50%; /* Ajustado para centralizar */
+                    left: 53%;
                     transform: translateX(-50%);
                     font-family: var(--fonteQuentin);
                     color: #C59D5F;
@@ -641,6 +647,7 @@ body {
             .paragrafo-info {
                 margin-top: 10px;
                 margin-bottom: 25px;
+
                 p {
                     font-family: var(--fonteMontserrat);
                     font-size: 16px;
@@ -661,7 +668,7 @@ body {
                     span {
                         border: 1px solid;
                         padding: 10px 50px;
-                        transition: 0.3s all ease;
+                        transition: .3s all ease;
                     }
 
                     :hover {
@@ -675,43 +682,175 @@ body {
 
         .secundary-info {
             display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             height: auto;
 
             .secundary-left {
                 position: absolute;
-                bottom: 10%; /* Ajustado para evitar corte */
-                left: 5%; /* Ajustado para manter espaçamento */
+                bottom: 25%;
+                z-index: 9;
                 z-index: 2;
 
                 img {
                     border-radius: 20px 20px 0 20px;
-                    max-width: 100%; /* Evita ultrapassagem */
+
                 }
             }
 
             .secundary-right {
-                position: absolute; /* Usar absoluto para controle */
-                top: 20%; /* Ajustado para melhor posicionamento */
-                right: 5%; /* Alinha à direita */
-                z-index: 3;
+                position: relative;
+                z-index: 10;
+                left: 42%;
+                top: 211px;
+                flex: 1;
 
                 img {
                     border-radius: 0 20px 20px 20px;
-                    max-width: 100%; /* Evita ultrapassagem */
+                }
+            }
+
+        }
+    }
+}
+
+
+.servicos {
+    background: url(/img/servicos-bg.png) no-repeat scroll center bottom;
+    .titulo {
+        text-align: center;
+        margin-bottom: 30px;
+
+        h2 {
+            font-family: var(--fonteMontserrat);
+            font-weight: normal;
+            font-size: 48px;
+            margin-bottom: 17px;
+        }
+
+        .tituloFooter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+
+            .linha {
+                border-top: 2px dotted var(--cor3);
+                width: 200px;
+                height: auto;
+            }
+
+        }
+    }
+    .middle-service{
+        display: flex;
+        align-items: center;
+    }
+    .container-servicos {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        .container-Left {
+            .container-left-conteudo {
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                margin-bottom: 30px;
+                .container-left-info {
+                    h2 {
+                        font-family: var(--fonteMontserrat);
+                        font-weight: normal;
+                        color: var(--cor1);
+                        font-size: 25px;
+                        text-align: end;
+                    }
+
+                    p {
+                        font-family: var(--fonteMontserrat);
+                        font-weight: normal;
+                        color: #7F7F7F;
+                    }
+                }
+                .buttonIcon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    width: 60px;
+                    height: 60px;
+                    border: 2px solid var(--corPrincipal);
+                    transition: all 0.3s ease;
+
+
+                    svg {
+                        width: 40px;
+                        height: 45px;
+
+                        fill: var(--corPrincipal);
+                    }
+                }
+            }
+        }
+        .middle-service{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+             flex: 1; /* flex: permite que se ajuste automaticamente disponível, sem forçar deslocamento nos outros elementos.*/
+            text-align: center;
+            img{
+                max-width: 100%;
+                height: auto;
+            }    
+        }
+
+        .container-Right{
+            .container-Right-Conteudo{
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                margin-bottom: 30px;
+                .container-Right-Info{
+                    h2 {
+                        font-family: var(--fonteMontserrat);
+                        font-weight: normal;
+                        color: var(--cor1);
+                        font-size: 25px;
+                    }
+
+                    p {
+                        font-family: var(--fonteMontserrat);
+                        font-weight: normal;
+                        color: #7F7F7F;
+                    }
+                }
+                .buttonIcon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    width: 60px;
+                    height: 60px;
+                    border: 2px solid var(--corPrincipal);
+                    transition: all 0.3s ease;
+
+
+                    svg {
+                        width: 40px;
+                        height: 45px;
+
+                        fill: var(--corPrincipal);
+                    }
                 }
             }
         }
     }
 }
 
-
-.servicos{
-
-}
-
 /* marcas confiaveis */
-/* .marcas-confiaveis {
+.marcas-confiaveis {
     .titulo {
         text-align: center;
         margin-bottom: 30px;
@@ -758,9 +897,7 @@ body {
             img {
                 width: auto;
                 max-width: 150px;
-                max-height: 66px;
-                object-fit: contain;
-                margin: 0 10px;
+                max-height: 66px
             }
 
             .slick-slide {
@@ -782,4 +919,103 @@ body {
         }
 
     }
-} */
+}
+
+
+/* loja */
+.loja {
+    .container-loja {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 20px;
+
+        .container-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+        .container-loja-conteudo {
+            flex: 1;
+            padding: 0 20px;
+
+            .titulo-loja {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+
+                h2:first-of-type {
+                    font-family: var(--fonteMontserrat);
+                    font-weight: normal;
+                    font-size: 20px;
+                    color: #7F7F7F;
+                    position: relative;
+                    z-index: 10;
+                }
+
+                h2:last-of-type {
+                    font-family: var(--fonteMontserrat);
+                    font-weight: normal;
+                    font-size: 60px;
+                    color: #000;
+                    position: relative;
+                    z-index: 10;
+                }
+
+                .textoFundo {
+                    z-index: 9;
+                    opacity: 50%;
+                    position: absolute;
+                    font-family: var(--fonteQuentin);
+                    color: #C59D5F;
+                    font-size: 180px;
+                    text-transform: uppercase;
+                    transform: translateY(-33%);
+                }
+            }
+
+            .paragrafo-loja {
+                text-align: center;
+                margin: 66px 0;
+
+                p {
+                    font-size: 18px;
+                    color: #7F7F7F;
+                    line-height: 1.5;
+                }
+            }
+
+            .button-loja {
+                display: flex;
+                justify-content: center;
+
+                a {
+                    text-decoration: none;
+                    font-family: var(--fonteMontserrat);
+                    color: var(--cor1);
+                    font-weight: bold;
+
+                    span {
+                        border: 1px solid var(--cor1);
+                        padding: 10px 50px;
+                        transition: 0.3s all ease;
+                    }
+
+                    span:hover {
+                        background: var(--corPrincipal);
+                        color: var(--corLetras);
+                        border: 1px solid var(--corPrincipal);
+                    }
+                }
+            }
+        }
+    }
+}
