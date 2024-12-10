@@ -583,75 +583,135 @@ body {
 
 /* Nosso trabalho */
 .nosso-Trabalho {
-    background: url(/img/parallax.png) 70% no-repeat;
+    background: url(/img/parallax.jpg) no-repeat;
     background-position: 50% 40px;
+    background-attachment: fixed;
+    min-height: 100vh; /* Mantém o layout flexível */
     width: 100%;
-    height: 100vh;
     display: flex;
     align-items: center;
+
+    .container-trabalho {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap; /* Permite que os itens se ajustem em telas menores */
+
+        .primary-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            .titulo {
+                position: relative;
+                margin-bottom: 10px;
+
+                h2:first-of-type {
+                    font-family: var(--fonteMontserrat);
+                    font-weight: normal;
+                    font-size: 20px;
+                    color: var(--corLetras);
+                    text-transform: uppercase;
+                    margin-bottom: 10px;
+                }
+
+                h2:last-of-type {
+                    font-family: var(--fonteMontserrat);
+                    font-weight: normal;
+                    font-size: 60px;
+                    color: var(--corLetras);
+                    z-index: 10;
+                }
+
+                .textoFundo {
+                    z-index: 0;
+                    opacity: 26%;
+                    position: absolute;
+                    bottom: 5%;
+                    left: 50%; /* Ajustado para centralizar */
+                    transform: translateX(-50%);
+                    font-family: var(--fonteQuentin);
+                    color: #C59D5F;
+                    font-size: 160px;
+                    letter-spacing: 3px;
+                }
+            }
+
+            .paragrafo-info {
+                margin-top: 10px;
+                margin-bottom: 25px;
+                p {
+                    font-family: var(--fonteMontserrat);
+                    font-size: 16px;
+                    line-height: 1.5;
+                    color: var(--corLetras);
+                    max-width: 600px;
+                    text-align: center;
+                }
+            }
+
+            .button-info {
+                margin-top: 10px;
+
+                a {
+                    text-decoration: none;
+                    color: #fff;
+
+                    span {
+                        border: 1px solid;
+                        padding: 10px 50px;
+                        transition: 0.3s all ease;
+                    }
+
+                    :hover {
+                        background: var(--corPrincipal);
+                        color: var(--corLetras);
+                        border: 1px solid var(--corPrincipal);
+                    }
+                }
+            }
+        }
+
+        .secundary-info {
+            display: flex;
+            position: relative;
+            height: auto;
+
+            .secundary-left {
+                position: absolute;
+                bottom: 10%; /* Ajustado para evitar corte */
+                left: 5%; /* Ajustado para manter espaçamento */
+                z-index: 2;
+
+                img {
+                    border-radius: 20px 20px 0 20px;
+                    max-width: 100%; /* Evita ultrapassagem */
+                }
+            }
+
+            .secundary-right {
+                position: absolute; /* Usar absoluto para controle */
+                top: 20%; /* Ajustado para melhor posicionamento */
+                right: 5%; /* Alinha à direita */
+                z-index: 3;
+
+                img {
+                    border-radius: 0 20px 20px 20px;
+                    max-width: 100%; /* Evita ultrapassagem */
+                }
+            }
+        }
+    }
 }
 
-.container-trabalho {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column; /* Alinha os itens na vertical */
-    gap: 30px; /* Espaçamento entre os elementos */
-}
 
-.primary-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
+.servicos{
 
-.titulo {
-    position: relative;
 }
-
-.titulo h2:first-of-type {
-    font-family: var(--fonteMontserrat);
-    font-weight: normal;
-    font-size: 20px;
-    color: var(--corLetras);
-    text-transform: uppercase;
-    margin-bottom: 10px; /* Espaçamento para evitar sobreposição */
-}
-
-.titulo h2:last-of-type {
-    font-family: var(--fonteMontserrat);
-    font-weight: normal;
-    font-size: 60px;
-    color: var(--corLetras);
-    z-index: 10;
-}
-
-.textoFundo {
-    z-index: 0;
-    opacity: 26%;
-    position: absolute;
-    bottom: -40px; /* Ajusta a posição para evitar sobreposição */
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--fonteQuentin);
-    color: #C59D5F;
-    font-size: 180px;
-}
-
-.paragrafo-info p {
-    font-family: var(--fonteMontserrat);
-    font-size: 16px;
-    line-height: 1.5;
-    color: var(--corLetras);
-    max-width: 600px;
-    margin: 0 auto; /* Centraliza o parágrafo */
-    text-align: center;
-}
-
 
 /* marcas confiaveis */
-
-.marcas-confiaveis {
+/* .marcas-confiaveis {
     .titulo {
         text-align: center;
         margin-bottom: 30px;
@@ -722,4 +782,4 @@ body {
         }
 
     }
-}
+} */
