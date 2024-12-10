@@ -133,6 +133,11 @@ img {
     height: 25px;
 }
 
+
+
+.of-height-30 {
+    height: 30px;
+}
 .of-height-35 {
     height: 35px;
 }
@@ -583,48 +588,64 @@ body {
     width: 100%;
     height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+}
 
-    .site {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        gap: 80px;
-        .conteudo-Trabalho {
-            .conteudo-titulo {
-                position: relative;
+.container-trabalho {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column; /* Alinha os itens na vertical */
+    gap: 30px; /* Espaçamento entre os elementos */
+}
 
-                h2:nth-child(1) {
-                    position: relative;
-                    font-family: var(--fonteMontserrat);
-                    font-weight: normal;
-                    font-size: 20px;
-                    color: #ffff;
-                    z-index: 10;
-                }
+.primary-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
-                .textoFundo {
-                    z-index: 9;
-                    opacity: 26%;
-                    position: absolute;
-                    bottom: 5%;
-                    font-family: var(--fonteQuentin);
-                    color: #C59D5F;
-                    font-size: 180px;
-                }
+.titulo {
+    position: relative;
+}
 
-                h2 {
-                    position: relative;
-                    font-family: var(--fonteMontserrat);
-                    font-weight: normal;
-                    font-size: 60px;
-                    color: var(--corLetras);
-                    z-index: 10;
-                }
-            }
-        }
-    }
+.titulo h2:first-of-type {
+    font-family: var(--fonteMontserrat);
+    font-weight: normal;
+    font-size: 20px;
+    color: var(--corLetras);
+    text-transform: uppercase;
+    margin-bottom: 10px; /* Espaçamento para evitar sobreposição */
+}
+
+.titulo h2:last-of-type {
+    font-family: var(--fonteMontserrat);
+    font-weight: normal;
+    font-size: 60px;
+    color: var(--corLetras);
+    z-index: 10;
+}
+
+.textoFundo {
+    z-index: 0;
+    opacity: 26%;
+    position: absolute;
+    bottom: -40px; /* Ajusta a posição para evitar sobreposição */
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--fonteQuentin);
+    color: #C59D5F;
+    font-size: 180px;
+}
+
+.paragrafo-info p {
+    font-family: var(--fonteMontserrat);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--corLetras);
+    max-width: 600px;
+    margin: 0 auto; /* Centraliza o parágrafo */
+    text-align: center;
 }
 
 
