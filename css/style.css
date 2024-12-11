@@ -586,6 +586,7 @@ body {
 .nosso-Trabalho {
     background: url(/img/parallax.jpg) no-repeat;
     background-position: 50% 40px;
+    background-size: cover;
     background-color: transparent;
     background-attachment: fixed;
     overflow: hidden;
@@ -718,6 +719,7 @@ body {
 
 .servicos {
     background: url(/img/servicos-bg.png) no-repeat scroll center bottom;
+
     .titulo {
         text-align: center;
         margin-bottom: 30px;
@@ -744,20 +746,24 @@ body {
 
         }
     }
-    .middle-service{
+
+    .middle-service {
         display: flex;
         align-items: center;
     }
+
     .container-servicos {
         display: flex;
         justify-content: space-between;
         width: 100%;
+
         .container-Left {
             .container-left-conteudo {
                 display: flex;
                 align-items: center;
                 gap: 9px;
                 margin-bottom: 30px;
+
                 .container-left-info {
                     h2 {
                         font-family: var(--fonteMontserrat);
@@ -773,6 +779,7 @@ body {
                         color: #7F7F7F;
                     }
                 }
+
                 .buttonIcon {
                     display: flex;
                     align-items: center;
@@ -793,26 +800,30 @@ body {
                 }
             }
         }
-        .middle-service{
+
+        .middle-service {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100%;
-             flex: 1; /* flex: permite que se ajuste automaticamente disponível, sem forçar deslocamento nos outros elementos.*/
+            flex: 1;
+            /* flex: permite que se ajuste automaticamente disponível, sem forçar deslocamento nos outros elementos.*/
             text-align: center;
-            img{
+
+            img {
                 max-width: 100%;
                 height: auto;
-            }    
+            }
         }
 
-        .container-Right{
-            .container-Right-Conteudo{
+        .container-Right {
+            .container-Right-Conteudo {
                 display: flex;
                 align-items: center;
                 gap: 9px;
                 margin-bottom: 30px;
-                .container-Right-Info{
+
+                .container-Right-Info {
                     h2 {
                         font-family: var(--fonteMontserrat);
                         font-weight: normal;
@@ -826,6 +837,7 @@ body {
                         color: #7F7F7F;
                     }
                 }
+
                 .buttonIcon {
                     display: flex;
                     align-items: center;
@@ -921,6 +933,90 @@ body {
     }
 }
 
+/*Depoimento*/
+.depoimento{
+    background: url(/img/parallax.jpg)no-repeat;
+    background-position: 50% 40px;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .site{
+        .container-depoimento{
+            .titulo-depoimento{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                .textoFundo {
+                    position: absolute;
+                    z-index: 9;
+                    opacity: 40%;
+                    font-family: var(--fonteQuentin);
+                    color: #C59D5F;
+                    font-size: 160px;
+                    bottom: -60%;
+                }
+                h2{
+                    font-family: var(--fonteMontserrat);
+                    font-weight: normal;
+                    font-size: 60px;
+                    position: relative;
+                    z-index: 10;
+                    color: var(--corLetras);
+                }
+                
+            }
+            .cards-depoimento{
+                margin-top: 100px;
+                .card{
+                    padding: 40px;
+                    width: 424px;
+                    background: #fff;
+                    border-radius: 50px 50px 10px 50px;
+                    .cabecalho-card{
+                        display: flex;
+                        border-radius: 50px 50px 50px 10px;
+                        gap: 11px;
+                        .cabecalho-info{
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 16px;
+                            h3{
+                                font-family: var(--fonteMontserrat);
+                                font-weight: normal;
+                                font-size: 24px;
+                                color: var(--cor1);
+                                margin-top: 0;
+                            }
+
+                            svg{
+                                width: 98px;
+                                height: 14px;
+                                fill: #F0AF4C;
+                            }
+                        }
+
+                        img{
+                            width: 74px;
+                            height: 73px;
+                            border-radius: 50px 50px 8px 50px ;
+                        }
+                    }
+                    .card-info-depoimento{
+                        margin-top: 10px;
+                        p{
+                           text-align: center;
+                           color: #7F7F7F;
+                        }
+                    }
+                }
+            }
+        }
+    }    
+}
 
 /* loja */
 .loja {
@@ -1015,6 +1111,149 @@ body {
                         border: 1px solid var(--corPrincipal);
                     }
                 }
+            }
+        }
+    }
+}
+
+
+/* blog */
+.blog {
+    .container-blog {
+        display: flex;
+        flex-flow: column;
+
+        gap: 80px;
+        position: relative;
+
+        .titulo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            h2:first-of-type {
+                font-family: var(--fonteMontserrat);
+                font-weight: normal;
+                font-size: 20px;
+                position: relative;
+                z-index: 10;
+            }
+
+            h2:last-of-type {
+                font-family: var(--fonteMontserrat);
+                font-weight: normal;
+                font-size: 60px;
+                position: relative;
+                z-index: 10;
+            }
+
+            .textoFundo {
+                position: absolute;
+                z-index: 9;
+                opacity: 50%;
+                font-family: var(--fonteQuentin);
+                color: #C59D5F;
+                font-size: 160px;
+            }
+        }
+
+        .list-post {
+            display: flex;
+            justify-content: space-evenly;
+            .post {
+                a {
+                    .blog-cabecalho-info {
+                        img {
+                            width: 328px;
+                            height: 320px;
+                        }
+
+                        &:hover::after{
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                .blog-corpo-info {
+                    a {
+                        text-decoration: none;
+                        color: var(--color1);
+
+
+                        h2,
+                        h3 {
+                            font-family: var(--fonteMontserrat);
+                            font-size: 20px;
+                            -webkit-transition: color 0.2s ease-out;
+                            transition: color .2s ease-out;
+                        }
+
+
+                        h2 {
+                            font-weight: normal;
+                            margin: 20px 0 8px;
+                        }
+
+                        h3 {
+                            font-weight: bold;
+                            color: var(--cor1);
+                            margin-bottom: 8px;
+                        }
+                    }
+
+                    p {
+                        font-family: var(--fonteMontserrat);
+                        font-size: 16px;
+                        line-height: 1.6;
+                        color: #7F7F7F;
+                        margin-bottom: 25px;
+                        width: 100%;
+                        max-width: 325px;
+                        word-wrap: break-word;
+                    }
+
+                }
+
+                .blog-rodape-info {
+                    a {
+                        position: relative;
+                        font-family: var(--fonteMontserrat);
+                        font-weight: bold;
+                        font-size: 20px;
+                        text-decoration: none;
+                        color: var(--corPrincipal);
+                        transition: color 0.2s ease-in-out;
+                
+                        span {
+                            color: var(--corPrincipal);
+                        }
+                
+                        &::before {
+                            content: ""; 
+                            position: absolute;
+                            bottom: -2px;
+                            left: 0;
+                            width: 100%;
+                            height: 1px;
+                            background-color: var(--corPrincipal);
+                            transform-origin: left;
+                            transition: transform 0.4s ease-in-out;
+                            transform: scaleX(1);
+                        }
+                
+                        &:hover::before {
+                            transform: scaleX(0);
+                        }
+                
+                        &:not(:hover)::before {
+                            transform: scaleX(1);
+                        }
+                    }
+                }
+                
+                
             }
         }
     }
