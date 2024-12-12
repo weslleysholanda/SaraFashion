@@ -16,3 +16,11 @@ $('.marcas-logo').slick({
     autoplaySpeed: 2000,
 });
 
+
+// $('.cards-depoimento').slick({
+//     slidesToShow: 2,
+//     slidesToScroll: 1,
+//     autoplay: true,
+//     dots: false,
+//     autoplaySpeed: 2000,
+// });

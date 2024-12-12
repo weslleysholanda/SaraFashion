@@ -944,6 +944,11 @@ body {
     align-items: center;
     .site{
         .container-depoimento{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        
             .titulo-depoimento{
                 display: flex;
                 align-items: center;
@@ -970,9 +975,12 @@ body {
             }
             .cards-depoimento{
                 margin-top: 100px;
+                display: flex;
+                align-items: center;
+                gap: 40px;
                 .card{
                     padding: 40px;
-                    width: 424px;
+                    width: 450px;
                     background: #fff;
                     border-radius: 50px 50px 10px 50px;
                     .cabecalho-card{
@@ -982,8 +990,10 @@ body {
                         .cabecalho-info{
                             display: flex;
                             flex-direction: column;
+                            justify-content: center;
                             align-items: center;
-                            gap: 16px;
+                            gap: 8px;
+                            margin-right: 150px;
                             h3{
                                 font-family: var(--fonteMontserrat);
                                 font-weight: normal;
@@ -995,7 +1005,9 @@ body {
                             svg{
                                 width: 98px;
                                 height: 14px;
-                                fill: #F0AF4C;
+                                path{
+                                    fill: #F0AF4C !important;
+                                }
                             }
                         }
 
@@ -1010,7 +1022,12 @@ body {
                         p{
                            text-align: center;
                            color: #7F7F7F;
+                           font-size: 17px;
                         }
+                    }
+                    .aspas{
+                        display: flex;
+                        align-items: center;
                     }
                 }
             }
