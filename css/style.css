@@ -538,49 +538,60 @@ body {
 
 /* satisfação */
 .satisfacao {
-    .site {
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .container-Info {
-                text-align: center;
-
-                h3 {
-                    font-family: var(--fonteMontserrat);
-                    font-weight: normal;
-                    align-items: center;
-                    font-size: 48px;
-                    color: var(--cor1);
-                }
-
-
-                p {
-                    font-family: var(--fonteMontserrat);
-                    font-weight: normal;
-                    font-size: 18px;
-
-                }
-            }
-
-            .iconImg {
-                display: flex;
-                align-items: center;
-
-            }
-
-            .linha {
-                display: grid;
-                border-top: 2px dotted var(--cor3);
-                width: 140px;
-                height: auto;
-            }
-        }
-
-    }
-
+    padding: 40px 20px;
 }
+
+.satisfacao .site {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.satisfacao .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+
+.satisfacao .container-info {
+    text-align: center;
+}
+
+.satisfacao h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    font-size: 48px;
+    color: var(--cor1);
+    margin-bottom: 10px;
+}
+
+.satisfacao .icon-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.satisfacao .linha {
+    display: block;
+    border-top: 2px dotted var(--cor3);
+    width: 100px;
+    height: 2px;
+}
+
+.satisfacao img {
+    width: 24px; /* Ajuste o tamanho do ícone */
+    height: auto;
+}
+
+.satisfacao p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    color: var(--cor2);
+}
+
 
 /* Nosso trabalho */
 .nosso-Trabalho {
@@ -1271,6 +1282,178 @@ body {
                 }
                 
                 
+            }
+        }
+    }
+}
+
+
+/* Footer */
+footer {
+    background-color: black;
+    height: 300px;
+
+    .site{
+        .container-footer {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            gap: 20px; /* Adicionado gap para melhorar o espaçamento entre os itens */
+        }
+    
+        .footer-texto {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+    
+            .logo-footer {
+                color: white;
+                background-color: white;
+                height: 200px;
+                width: 300px;
+                margin-top: 50px;
+            }
+    
+            .paragrafo-footer {
+                p {
+                    color: white;
+                    margin-top: 20px;
+                    font-weight: normal;
+                    font-size: 18px;
+                    max-width: 300px;
+                }
+            }
+    
+            .social-footer {
+                color: white;
+                margin-top: 20px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+
+                i{
+                    font-size: 20px;
+                }
+
+                i,
+                .divider{
+                    font-size: 24px;
+                    line-height: 1;
+                    display: flex;
+                    align-items: center;
+                }
+                .divider{
+                    font-weight: bold;
+                }
+                .bi-instagram{
+                    font-size: 20px;
+                    vertical-align: middle;
+                }
+            }
+        }
+    
+        .footer-contato {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+
+            .titulo-contato{
+                h3{
+                    font-size: 25px;
+                } 
+            }
+    
+            .contato-footer {
+                margin-top: 10px;
+                .informacao-footer {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 10px;
+        
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
+        
+                    svg {
+                        height: 30px;
+                        width: 24px;
+                        margin-right: 10px;
+                    }
+                } 
+            }
+        }
+    
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+    
+            .titulo-info {
+                h3 {
+                    font-size: 25px;
+                }
+            }
+    
+            .info-footer {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+    
+                > div {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%; /* Garante que o espaço entre os itens seja maximizado */
+    
+                    h3:first-of-type {
+                        font-family: var(--fonteMontserrat);
+                        font-weight: normal;
+                        font-size: 15px;
+                    }
+    
+                    h3:last-of-type {
+                        font-family: var(--fonteMontserrat);
+                        font-weight: bold;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    
+        .footer-map {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 21px;
+            justify-content: center;
+    
+            .titulo-localizacao {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+    
+                .textoFundo {
+                    z-index: 9;
+                    opacity: 50%;
+                    position: absolute;
+                    font-family: var(--fonteQuentin);
+                    color: #C59D5F;
+                    font-size: 50px;
+                }
+    
+                h2 {
+                    font-family: var(--fonteMontserrat);
+                    font-weight: normal;
+                    font-size: 1.5rem;
+                    position: relative;
+                    z-index: 10;
+                    color: white;
+                }
             }
         }
     }
