@@ -1,64 +1,56 @@
-<?php 
+<?php
 
-class Core{
+class Core
+{
     //Método processo de Rotas
-    public function executar(){
-
+    public function executar()
+    {
         $url = "/";
-        // var_dump($url);
 
-        if(isset($_GET['url'])){
-           
+        if (isset($_GET['url'])) {
             $url .= $_GET['url'];
-            // var_dump($url);
         }
 
-        //var_dump($url);
+        // Verifica se a URL corresponde à rota personalizada
+        if (preg_match('/\/contato\/whatsapp\/(\d+)/', $url, $matches)) {
+            $id_contato = $matches[1];
+            $controller = new ContatoController();
+            $controller->gerarLinkWhatsApp($id_contato);
+            exit; // Encerra o script para evitar processamento adicional
+        }
 
-        //Definindo array armazem de url
+        // Definição de variáveis para controlador, ação e parâmetros
         $parametro = array();
 
-        //verificando se a url não está vazia
-        if(!empty($url) && $url != '/'){
-
-            $url = explode('/',$url);
-            //var_dump($url);
-
-            array_shift($url);
-            // var_dump($url);
-
-            $controladorAtual = ucfirst($url[0]).'Controller';
-            // var_dump($controladorAtual);
-
+        if (!empty($url) && $url != '/') {
+            $url = explode('/', $url);
             array_shift($url);
 
-            if(isset($url[0]) && !empty($url[0])){
+            $controladorAtual = ucfirst($url[0]) . 'Controller';
+            array_shift($url);
+
+            if (isset($url[0]) && !empty($url[0])) {
                 $acaoAtual = $url[0];
-                var_dump($acaoAtual);
                 array_shift($url);
-            }else{
+            } else {
                 $acaoAtual = 'index';
             }
 
-
-            if(count($url) > 0){
+            if (count($url) > 0) {
                 $parametro = $url;
             }
-        }else{
-            $controladorAtual = 'HomeCOntroller';
+        } else {
+            $controladorAtual = 'HomeController';
             $acaoAtual = 'index';
         }
 
-        // Verificando se o arquivo do CONTROLLER existe e se o metodo existe
-
-        if (!file_exists('../app/controllers/' . $controladorAtual . '.php') || !method_exists($controladorAtual, $acaoAtual)){
+        // Verificação se o controlador e método existem
+        if (!file_exists('../app/controllers/' . $controladorAtual . '.php') || !method_exists($controladorAtual, $acaoAtual)) {
             $controladorAtual = 'ErroController';
             $acaoAtual = 'index';
         }
 
         $controller = new $controladorAtual();
-
-        call_user_func_array(array($controller,$acaoAtual),$parametro);
+        call_user_func_array(array($controller, $acaoAtual), $parametro);
     }
 }
-?>

@@ -106,7 +106,7 @@
                     </div>
                     <div class="maps-footer">
                         <a href="sobre.html">
-                            <img src="assets/img/footer-img-2.png" alt="">
+                            <img src="http://localhost/sarafashion/public/assets/img/footer-img-2.png" alt="">
                         </a>
                     </div>
 

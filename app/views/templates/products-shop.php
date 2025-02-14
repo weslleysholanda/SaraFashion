@@ -18,36 +18,62 @@
                 </div>
             </div>
             <div class="product-list">
-                <div class="product-item">
-                    <img src="assets/img/shop-image-13-800x987 1.png" alt="Produto 1">
+                <?php foreach ($listarProduto as $produtos): ?>
+                    <div class="product-item">
+                        <a href="<?php echo "produto/detalhe/". htmlspecialchars($produtos['link_produto'],ENT_QUOTES,'UTF-8')?>">
+                            <img src="<?php
+                                        $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $produtos['foto_galeria'];
+                                        if ($produtos['foto_galeria'] != "") {
+                                            if (file_exists($caminhoArquivo)) {
+                                                echo ("http://localhost/sarafashion/public/uploads/" . htmlspecialchars($produtos['foto_galeria'], ENT_QUOTES, 'UTF-8'));
+                                            } else {
+                                                echo ("http://localhost/sarafashion/public/uploads/produto/sem-foto-produto.png");
+                                            }
+                                        } else {
+                                            echo ("http://localhost/sarafashion/public/uploads/produto/sem-foto-produto.png");
+                                        }
+                                        ?>" alt="<?php echo htmlspecialchars($produtos['alt_foto_galeria'], ENT_QUOTES, 'UTF-8') ?>">
+                            <h4><?php echo htmlspecialchars($produtos['nome_produto'], ENT_QUOTES, 'UTF-8'); ?></h4>
+                            <p class="price"><span class="old-price">$79.00</span> <?php echo htmlspecialchars($produtos['preco_produto']) ?></p>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+                <!-- <div class="product-item">
+                <a href="http://localhost/sarafashion/public/produto">
+                <img src="assets/img/produto_ILUMINATA.png" alt="Produto 2">
                     <h4>Hair Care Balsam</h4>
                     <p class="price"><span class="old-price">$79.00</span> $59.00</p>
+                </a>
+                    
                 </div>
                 <div class="product-item">
-                    <img src="assets/img/shop-image-13-800x987 1.png" alt="Produto 2">
-                    <h4>Hair Care Balsam</h4>
-                    <p class="price"><span class="old-price">$79.00</span> $59.00</p>
+                    <a href="http://localhost/sarafashion/public/produto">
+                        <img src="assets/img/produto_joico_2.webp" alt="Produto 3">
+                        <h4>Hair Care Balsam</h4>
+                        <p class="price"><span class="old-price">$79.00</span> $59.00</p>
+                    </a>    
                 </div>
                 <div class="product-item">
-                    <img src="assets/img/shop-image-13-800x987 1.png" alt="Produto 3">
-                    <h4>Hair Care Balsam</h4>
-                    <p class="price"><span class="old-price">$79.00</span> $59.00</p>
+                    <a href="http://localhost/sarafashion/public/produto">
+                        <img src="assets/img/produto_maquiagem.webp" alt="Produto 3">
+                        <h4>Hair Care Balsam</h4>
+                        <p class="price"><span class="old-price">$79.00</span> $59.00</p>
+                    </a>    
                 </div>
                 <div class="product-item">
-                    <img src="assets/img/shop-image-13-800x987 1.png" alt="Produto 3">
-                    <h4>Hair Care Balsam</h4>
-                    <p class="price"><span class="old-price">$79.00</span> $59.00</p>
+                    <a href="http://localhost/sarafashion/public/produto">
+                        <img src="assets/img/produtos_WELLA.jpg" alt="Produto 3">
+                        <h4>Hair Care Balsam</h4>
+                        <p class="price"><span class="old-price">$79.00</span> $59.00</p>
+                    </a>    
                 </div>
                 <div class="product-item">
-                    <img src="assets/img/shop-image-13-800x987 1.png" alt="Produto 3">
-                    <h4>Hair Care Balsam</h4>
-                    <p class="price"><span class="old-price">$79.00</span> $59.00</p>
-                </div>
-                <div class="product-item">
-                    <img src="assets/img/shop-image-13-800x987 1.png" alt="Produto 3">
-                    <h4>Hair Care Balsam</h4>
-                    <p class="price"><span class="old-price">$79.00</span> $59.00</p>
-                </div>
+                    <a href="http://localhost/sarafashion/public/produto">
+                        <img src="assets/img/produto_po_compacto.webp" alt="Produto 3">
+                        <h4>Hair Care Balsam</h4>
+                        <p class="price"><span class="old-price">$79.00</span> $59.00</p>
+                    </a>    
+                </div> -->
             </div>
             <div class="paginacao">
                 <div class="site">
@@ -115,17 +141,17 @@
                         <h3>SIGA-NOS</h3>
                     </div>
                     <div class="social-icons">
-                        <a href="https://www.instagram.com" target="_blank">
+                        <a href="https://www.instagram.com/studiosarah.fashion/" target="_blank">
                             <i class="fa-brands fa-instagram"></i>
                         </a>
                         <span class="divider">|</span>
 
-                        <a href="https://www.facebook.com" target="_blank">
+                        <a href="https://www.facebook.com/sara.alvesdasilva.79" target="_blank">
                             <i class="fa-brands fa-facebook-f"></i>
                         </a>
                         <span class="divider">|</span>
 
-                        <a href="https://www.linkedin.com" target="_blank">
+                        <a href="https://www.linkedin.com/in/sara-alves-da-silva-6231b8246/" target="_blank">
                             <i class="fa-brands fa-linkedin-in"></i>
                         </a>
                         <span class="divider">|</span>

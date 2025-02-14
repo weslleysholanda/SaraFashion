@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -26,9 +26,10 @@
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="js/slick.js"></script>
-    <script src="js/slick.min.js"></script>
+    <script src="vendors/js/slick.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="https://kit.fontawesome.com/89bd08d7e0.js" crossorigin="anonymous"></script>
-    <script src="js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

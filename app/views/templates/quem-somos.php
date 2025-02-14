@@ -9,8 +9,7 @@
                 <span class="linha"></span>
             </div>
             <div class="paragrafo">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. </p>
+                <p>Somos um salão de beleza focado em realçar a autoestima e oferecer cuidados personalizados. Com profissionais qualificados e um ambiente acolhedor.  </p>
             </div>
         </div>
         <div class="sobre">
@@ -19,7 +18,7 @@
             </div>
             <div class="sobreInfo">
                 <div class="sobreConteudo">
-                    <span class="buttonIcon">
+                    <span class="buttonIcon" id="mySpan">
                         <svg viewBox="0 0 28 37" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M14.9797 13.6215C14.5753 14.5288 13.9022 14.1881 13.5905 14.0843C13.2789 13.9805 12.3346 13.6191 12.3346 13.6191C12.3346 13.6191 12.1812 13.8755 11.8291 14.5813C12.0705 15.1527 12.6593 16.7121 13.2254 17.9649C14.058 16.6791 14.8489 15.3725 14.9833 15.1332C20.0012 4.42189 21.0562 1.17382 21.3167 0.308077C21.3357 0.266561 21.2881 0.231149 21.2679 0.27755C20.402 2.0762 15.3496 12.79 14.9797 13.6203V13.6215Z"
@@ -41,11 +40,11 @@
                     <div class="conteudoInfo">
                         <h2>Mais de 27 anos de experiência</h2>
                         <span class="linha"></span>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <p>Profissional como mais de 27 anos de experiência no ramo e dedicação no trabalho.</p>
                     </div>
                 </div>
                 <div class="sobreConteudo">
-                    <span class="buttonIcon">
+                    <span class="buttonIcon" id="mySpan">
                         <svg viewBox="0 0 28 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_597_2)">
                                 <path
@@ -84,11 +83,11 @@
                     <div class="conteudoInfo">
                         <h2>Serviços profissionais</h2>
                         <span class="linha"></span>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <p>Serviços realizados com total profissionalização, experiência e cuidado.</p>
                     </div>
                 </div>
                 <div class="sobreConteudo">
-                    <span class="buttonIcon">
+                    <span class="buttonIcon" id="mySpan">
                         <svg width="28" height="37" id="quality-seal" viewBox="0 0 28 37" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -114,7 +113,7 @@
                     <div class="conteudoInfo">
                         <h2>Produtos 100% de marca</h2>
                         <span class="linha"></span>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <p>Melhores produtos do mercado, com alta qualificação e resultado.</p>
                     </div>
                 </div>
             </div>

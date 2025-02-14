@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -39,10 +39,13 @@
     <!-- Waypoints (necessária para detecção de elementos visíveis) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <!-- biblioteca CountUp -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.0.8/countUp.umd.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="vendors/js/slick.js"></script>
     <script src="vendors/js/slick.min.js"></script>
+    <!-- tippy.js -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="https://kit.fontawesome.com/89bd08d7e0.js" crossorigin="anonymous"></script>
     <script src="assets/js/script.js"></script>
 </body>

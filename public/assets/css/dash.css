@@ -1,0 +1,435 @@
+/* Fontes do projeto */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat Italic';
+    src: url('../fonts/Montserrat/Montserrat-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Quentin';
+    src: url(../fonts/Quentin/Quentin.otf) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Great Vibes';
+    src: url('../fonts/Great_Vibes/GreatVibes-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Dancing Script';
+    src: url(../fonts/Dancing_Script/DancingScript-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Parisienne';
+    src: url(../fonts/Parisienne/Parisienne-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Quattrocento';
+    src: url(../fonts/Quattrocento/Quattrocento-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url(../fonts/Playfair_Display/PlayfairDisplay-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Quando';
+    src: url(../fonts/Quando/Quando-Regular.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    /* Cores */
+    --cor1: #000000;
+    --corLetras: #FFFFFF;
+    --cor3: #DAA520;
+    --cor4: #6A3D16;
+    --corPrincipal: #C59D5F;
+    --cor6: #EA1613;
+
+    /* Fontes */
+    --fonteMontserrat: 'Montserrat';
+    --fontGreatVibes: 'Great Vibes';
+    --fonteQuentin: 'Quentin';
+    --fonteDancingScript: 'Dancing Script';
+    --fonteParisienne: 'Parisienne';
+    --fonteQuattrocento: 'Quattrocento';
+    --fontePlayfairDisplay: 'Playfair Display';
+    --fonteQuando: 'Quando';
+}
+
+
+
+
+.container-cor-warning {
+    background: #FF7F00 !important;
+
+    .info-box-icon {
+        color: #C59D5F !important;
+        ;
+    }
+
+    .info-box-content {
+        color: white;
+    }
+}
+
+h1 {
+    font-family: var(--fonteMontserrat);
+    font-weight: 700;
+    text-align: center;
+}
+
+.app-wrapper {
+    .app-sidebar {
+        overflow: hidden;
+        background: #222222 !important;
+        transition: .3s all ease;
+
+        .sidebar-wrapper {
+            padding: 0;
+        }
+
+        .sidebar-brand {
+            background: #222222;
+            height: 8rem;
+            border-bottom: none;
+            overflow: hidden;
+            font-size: 1.25rem;
+            white-space: nowrap;
+            transition: width 0.3s ease-in-out;
+
+            a {
+                img {
+                    width: 170px;
+                    max-height: 160px;
+                    background: none;
+                }
+            }
+        }
+    }
+
+    .app-header {
+        background: #222222 !important;
+
+        .container-fluid {
+            .navbar-nav {
+                .nav-item {
+                    a {
+                        color: #ffff;
+                    }
+
+                }
+
+            }
+
+            .ms-auto {
+                .user-menu {
+                    .user-header {
+                        background: #222222 !important;
+                    }
+
+                    .user-footer {
+                        a {
+                            color: #222222;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    .app-main {
+        .app-content-header {
+            .container-fluid{
+                .row {
+                    .col-sm-6 {
+                        .breadcrumb {
+                            .breadcrumb-item {
+                                a {
+                                    color: var(--corPrincipal);
+                                }
+    
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .app-content{
+            .container-fluid{
+                .row{
+                    .col-12{
+                        .info-box{
+                            .info-box-icon{
+                                background: var(--corPrincipal) !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .app-footer{
+        strong{
+            a{
+                color: var(--corPrincipal) !important;
+            }
+        }
+    }
+}
+
+
+
+/* nav tool serviços */
+.row {
+    .navTool {
+        display: flex;
+        gap: 1rem;
+        margin: 10px 0 10px;
+
+        a {
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px;
+            font-family: var(--fonteMontserrat);
+            color: var(--corLetras);
+            background: var(--cor1);
+            transform-style: preserve-3d;
+            transition: background-color 0.4s, transform 0.3s, color 0.3s;
+
+            &:hover {
+                background: var(--corPrincipal);
+            }
+        }
+    }
+}
+
+tbody {
+    tr {
+        td {
+            .btn-success {
+                width: 42px;
+                height: 38px;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .imgBanco {
+            img {
+                width: 140px;
+                height: 140px;
+            }
+
+        }
+
+        .imgMarca {
+            img {
+                width: 100px;
+                height: 60px;
+            }
+        }
+
+        #text-center {
+            text-align: center;
+        }
+
+        #btn-primary,
+        #btn-secundary {
+            cursor: pointer;
+            font-size: 25px;
+            transition: .2s all ease-in-out;
+
+            &:hover {
+                color: var(--corPrincipal);
+            }
+        }
+    }
+}
+
+
+/* formulario editar servico */
+.row {
+    .container {
+        h2 {
+            font-family: var(--fonteMontserrat);
+            font-weight: bold;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        form {
+            &#normal {
+                display: unset;
+            }
+
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+
+            .img {
+                max-width: 500px;
+
+                img {
+                    width: 300px;
+                    height: 450px;
+                }
+
+                &#normalFoto {
+                    margin: 0 auto;
+                }
+            }
+
+            .flex {
+                display: flex;
+                gap: 10px;
+            }
+
+            .mb-3 {
+                .form-control {
+                    border-radius: 0;
+
+                    &:focus {
+                        color: #212529;
+                        background-color: #ffff;
+                        border-color: #C59D5F;
+                        outline: 0;
+                        box-shadow: 0 0 0 0.25rem rgba(197, 157, 95, 0.25);
+                    }
+
+
+                }
+
+                .form-select {
+                    border-radius: 0;
+
+                    &:focus {
+                        color: #212529;
+                        background-color: #ffff;
+                        border-color: #C59D5F;
+                        outline: 0;
+                        box-shadow: 0 0 0 0.25rem rgba(197, 157, 95, 0.25);
+                    }
+                }
+
+
+            }
+
+
+
+            .btn {
+                background: #000000;
+                border: none;
+                border-radius: 0;
+                transition: background-color 0.4s, transform 0.3s, color 0.3s;
+                margin-top: 10px;
+                padding: 5px 30px;
+
+                &:hover {
+                    background: var(--corPrincipal);
+                }
+            }
+        }
+
+
+    }
+}
+
+/* Hora */
+.tempus-dominus-widget {
+    border-radius: 0 !important;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+    display: none;
+    list-style: none;
+    padding: 4px;
+    width: 19rem;
+    z-index: 9999;
+
+    .time-container {
+        .time-container-clock {
+            div:not(.no-highlight) {
+                font-family: var(--fonteMontserrat);
+                font-weight: normal;
+                font-size: 17px;
+
+                &:not(.no-highlight):hover {
+                    background: var(--corPrincipal) !important;
+                    color: #ffff;
+                }
+            }
+
+        }
+    }
+}
+
+.tempus-dominus-widget.dark {
+    background-color: white !important;
+    color: black !important;
+}
+
+/* Data */
+.tempus-dominus-widget {
+    .date-container {
+        .date-container-days {
+            .dow {
+                color: #000000 !important;
+            }
+
+            .day {
+                color: #000000 !important;
+            }
+
+            div:not(.no-highlight):hover {
+                background: var(--corPrincipal) !important;
+                color: var(--corLetras) !important;
+            }
+
+            div:not(.no-highlight).active {
+                background-color: #C59D5F !important;
+                color: var(--corLetras) !important;
+            }
+        }
+    }
+
+    .toolbar {
+        div {
+            transition: .3s all ease;
+            border: 0;
+            border-radius: 0;
+
+            &:hover {
+                background: var(--corPrincipal) !important;
+                color: var(--corLetras);
+
+            }
+        }
+    }
+}

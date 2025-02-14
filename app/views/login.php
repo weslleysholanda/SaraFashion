@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -16,6 +16,10 @@
     <!-- Login -->
     <?php require_once('templates/login.php')?>
     <script src="assets/js/login.js"></script>
+
+    <?php 
+        if(isset($msg) && $tipo_msg == 'erro-tipo_usuario'):?>
+    <?php endif; ?>
 </body>
 
 </html>

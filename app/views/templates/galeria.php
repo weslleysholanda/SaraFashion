@@ -6,7 +6,7 @@
                 <div class="textoFundo">Gallery</div>
                 <h2>Galeria</h2>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum massa.</p>
+            <p>Momentos únicos e inspirações do nosso salão. Confira nossos trabalhos e inspire-se para sua próxima transformação! </p>
             <div class="filtro-galeria">
                 <a href="#" class="ativo">Tudo</a>
                 <a href="#">Fotos</a>

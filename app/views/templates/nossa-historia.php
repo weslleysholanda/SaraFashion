@@ -11,7 +11,7 @@
                 <div class="secundary-right">
                     <div class="texto-tempo">
                         <h2>Since</h2>
-                        <h3 id="counter">1997</h3>
+                        <h3 class="counter">1997</h3>
                     </div>
                     <div class="secundary-image">
                         <img src="assets/img/sobre-img-2.jpg" class="img-filter" alt="">
@@ -27,22 +27,21 @@
                 <div class="right-info">
                     <h2>SALÃO DE LUXO QUE FAZ VOCÊ SE SENTIR ÚNICA</h2>
                     <div class="right-conteudo">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. t.</p>
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+                        <p>Desde 1997, o Salão Sara Fashion é referência em luxo e sofisticação, oferecendo serviços de beleza que destacam sua singularidade. Nosso espaço é projetado para proporcionar experiências únicas e inesquecíveis.</p>
+                        <p>Comprometidos com qualidade, inovação e atendimento personalizado.</p>
 
                         <ul>
                             <li>
                                 <span>01.</span>
-                                Lorem ipsun dolor sit amet, consectetur
+                                Serviços exclusivos para realçar sua beleza natural.
                             </li>
                             <li>
                                 <span>02.</span>
-                                Lorem ipsun dolor sit amet, consectetur
+                                Ambiente elegante e aconchegante, pensado para você.
                             </li>
                             <li>
                                 <span>03.</span>
-                                Lorem ipsun dolor sit amet, consectetur
+                                Equipe especializada para atender suas necessidades.
                             </li>
                         </ul>
                     </div>

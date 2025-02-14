@@ -9,8 +9,7 @@
                     <h2>Nosso Trabalho</h2>
                 </div>
                 <div class="paragrafo-info">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the industry's standard dummy </p>
+                    <p>Transformamos sua beleza em arte. Com paixão e técnica, criamos modas únicas que valorizam seu estilo e autoestima. Venha conhecer nosso trabalho e inspire-se!  </p>
                 </div>
                 <div class="button-info">
                     <a href="#">

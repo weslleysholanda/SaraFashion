@@ -12,8 +12,7 @@
                     <h2>Loja</h2>
                 </div>
                 <div class="paragrafo-loja">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <p>Descubra nossa linha exclusiva de produtos de beleza, desenvolvidos para realçar sua melhor versão. Desde 1997, oferecemos qualidade e inovação para atender às suas necessidades. </p>
                 </div>
                 <div class="button-loja">
                     <a href="#">
