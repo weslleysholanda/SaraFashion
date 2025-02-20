@@ -129,7 +129,7 @@ class FornecedorController extends Controller
         $this->carregarViews('dash/dashboard', $dados);
     }
 
-    public function editar()
+    public function editar($id = null)
     {
         if (!isset($_SESSION['userTipo']) || $_SESSION['userTipo'] !== 'Funcionario') {
 
@@ -137,8 +137,66 @@ class FornecedorController extends Controller
             exit;
         }
 
+        if ($id == null) {
+            header('Location: http://localhost/sarafashion/public/servico/listar');
+            exit;
+        }
+
         $dados = array();
         $dados['conteudo'] = 'dash/fornecedor/editar';
+
+        $fornecedor = $this->fornecedorModel->getFornecedorById($id);
+        $dados['fornecedor'] = $fornecedor;
+        
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $nome_fornecedor = filter_input(INPUT_POST, 'nome_fornecedor', FILTER_SANITIZE_SPECIAL_CHARS); 
+            $tipo_fornecedor = filter_input(INPUT_POST, 'tipo_fornecedor', FILTER_SANITIZE_SPECIAL_CHARS);   
+            $cpf_cnpj_fornecedor = filter_input(INPUT_POST, 'cpf_cnpj_fornecedor', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $data_cad_fornecedor = filter_input(INPUT_POST, 'data_cad_fornecedor', FILTER_SANITIZE_SPECIAL_CHARS);
+            $email_fornecedor   = filter_input(INPUT_POST, 'email_fornecedor', FILTER_SANITIZE_EMAIL);
+            $telefone_fornecedor = filter_input(INPUT_POST, 'telefone_fornecedor', FILTER_SANITIZE_SPECIAL_CHARS);
+            $endereco_fornecedor = filter_input(INPUT_POST, 'endereco_fornecedor', FILTER_SANITIZE_SPECIAL_CHARS);
+            $cidade_fornecedor  = filter_input(INPUT_POST, 'cidade_fornecedor', FILTER_SANITIZE_SPECIAL_CHARS);            
+            $status_fornecedor   = filter_input(INPUT_POST, 'status_fornecedor', FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+            // Formata a data para o formato correto (YYYY-MM-DD)
+            if (!empty($data_cad_fornecedor) && $data_cad_fornecedor !== false) {
+                $dataObj = DateTime::createFromFormat('d/m/Y', $data_cad_fornecedor);
+                if ($dataObj) {
+                    $data_cad_fornecedor = $dataObj->format('Y-m-d');
+                }
+            }
+
+
+            $dadosFornecedor = [
+                'nome_fornecedor' => $nome_fornecedor,
+                'tipo_fornecedor' => $tipo_fornecedor,
+                'cpf_cnpj_fornecedor' => $cpf_cnpj_fornecedor,
+                'data_cad_fornecedor' => $data_cad_fornecedor,
+                'email_fornecedor' => $email_fornecedor,
+                'telefone_fornecedor' => $telefone_fornecedor,
+                'endereco_fornecedor' => $endereco_fornecedor,
+                'cidade_fornecedor' => $cidade_fornecedor,
+                'status_fornecedor' => $status_fornecedor,
+
+            ];
+
+            $id_fornecedor = $this->fornecedorModel->atualizarFornecedor($id,$dadosFornecedor);
+
+            if($id_fornecedor){
+                $_SESSION['mensagem'] = "Fornecedor atualizado com sucesso!";
+                $_SESSION['tipo-msg'] = "sucesso";
+                header('Location: http://localhost/sarafashion/public/fornecedor/listar');
+                exit;
+            }else{
+                $_SESSION['mensagem'] = "Erro ao atualizar o funcionário";
+                $_SESSION['tipo-msg'] = "erro";
+                header('Location: http://localhost/sarafashion/public/fornecedor/editar/' . $id);
+                exit;
+            }
+        }
 
         //metodos da classe DashboardController
         $dados['usuario'] = $this->dashboardModel->getUsuarioLogado($_SESSION['userId']);
@@ -149,7 +207,7 @@ class FornecedorController extends Controller
         $this->carregarViews('dash/dashboard', $dados);
     }
 
-    public function desativar()
+    public function desativar($id = null)
     {
         if (!isset($_SESSION['userTipo']) || $_SESSION['userTipo'] !== 'Funcionario') {
 
@@ -157,15 +215,26 @@ class FornecedorController extends Controller
             exit;
         }
 
-        $dados = array();
-        $dados['conteudo'] = 'dash/fornecedor/desativar';
+        if ($id === null) {
+            http_response_code(400);
+            echo json_encode(["sucesso" => false, "mensagem" => "ID inválido"]);
+            exit;
+        }
 
-        //metodos da classe DashboardController
-        $dados['usuario'] = $this->dashboardModel->getUsuarioLogado($_SESSION['userId']);
-        $dados['depoimento'] = $this->dashboardModel->getDepoimento();
-        $dados['cadastro'] = $this->dashboardModel->getTotalRegistros();
-        $dados['venda'] = $this->dashboardModel->getVendas();
+        $resultado = $this->fornecedorModel->desativarFornecedor($id);
+        header('Content-Type: Application/json');
 
-        $this->carregarViews('dash/dashboard', $dados);
+        if ($resultado) {
+            $_SESSION['mensagem'] = 'Fornecedor desativado com sucesso!';
+            $_SESSION['tipo-msg'] = 'sucesso';
+
+            echo json_encode(['sucesso' => true]);
+        } else {
+
+            $_SESSION['mensagem'] = 'Falha ao desativar o fornecedor';
+            $_SESSION['tipo-msg'] = 'erro';
+
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Falha ao desativar o fornecedor']);
+        }
     }
 }

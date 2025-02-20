@@ -65,9 +65,31 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <td><?php echo $linha['preco_base_servico'] ?></td>
                 <td><?php echo $linha['tempo_estimado_servico'] ?></td>
                 <td><?php echo $linha['nome_especialidade'] ?></td>
-                <td id="text-center"><i id="btn-primary" class="bi bi-pencil"></i></td>
-                <td id="text-center"><i id="btn-secundary" class="bi bi-trash"></i></td>
+                <td><a href="http://localhost/sarafashion/public/servico/editar/<?php echo $linha['id_servico'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                <td><i id="btn-secundary" onclick="abrirModalDesativar(<?php echo $linha['id_servico']; ?>)" class="bi bi-trash"></i></td>
             </tr>
         <?php endforeach ?>
     </tbody>
 </table>
+
+<!-- Modal desativar servico -->
+<div class="modal faded" tabindex="-1" id="modalDesativar">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Desativar Serviços</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza de que deseja desativar esse serviço?</p>
+                <input type="hidden" id="idServicoDesativar" value="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnConfirmar">Desativar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

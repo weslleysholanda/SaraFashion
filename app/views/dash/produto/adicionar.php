@@ -4,22 +4,21 @@
         <!-- Contêiner das imagens -->
         <div class="product-images">
             <div class="thumbnail-container">
-                <!-- Miniaturas clicáveis -->
                 <img class="preview-img" data-index="0" src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png">
-
-
                 <img class="preview-img" data-index="1" src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png">
                 <img class="preview-img" data-index="2" src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png">
             </div>
 
-            <!-- Imagem principal -->
             <div class="main-image">
-                <img class="preview-img" data-index="3" src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png" alt="Imagem Principal">
-
+                <img class="preview-img" data-index="3" src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png">
             </div>
         </div>
 
-        <input type="file" name="foto_galeria[]" id="foto_galeria" style="display: none;" accept="image/*" multiple>
+        <!-- Input file individual para cada imagem -->
+        <input type="file" name="foto_galeria[0]" class="file-input" data-index="0" style="display: none;" accept="image/*">
+        <input type="file" name="foto_galeria[1]" class="file-input" data-index="1" style="display: none;" accept="image/*">
+        <input type="file" name="foto_galeria[2]" class="file-input" data-index="2" style="display: none;" accept="image/*">
+        <input type="file" name="foto_galeria[3]" class="file-input" data-index="3" style="display: none;" accept="image/*">
 
         <!-- Formulário de informações do produto -->
         <div class="container-form">
@@ -41,7 +40,7 @@
             <div class="flex">
                 <div class="mb-3">
                     <label for="preco_produto" class="form-label">Preço</label>
-                    <input type="number" step="anny" name="preco_produto" class="form-control" placeholder="Ex.: 100.00" required>
+                    <input type="number" step="0.01" name="preco_produto" class="form-control" placeholder="Ex.: 100.00" required>
                 </div>
 
                 <div class="mb-3">
@@ -69,63 +68,29 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const visualizarImgs = document.querySelectorAll('.preview-img');
-        const arquivo = document.getElementById('foto_galeria');
-        let imagensSelecionadas = new Array(4).fill(null); // Array para armazenar as imagens
+        const arquivoInputs = document.querySelectorAll('.file-input');
 
         visualizarImgs.forEach(img => {
             img.addEventListener('click', function(event) {
-                event.preventDefault(); // Evita que o link abra antes de trocar a imagem
-                arquivo.setAttribute('data-index', img.getAttribute('data-index'));
-                arquivo.click();
+                event.preventDefault();
+                const index = img.getAttribute('data-index');
+                arquivoInputs[index].click();
             });
         });
 
-        arquivo.addEventListener('change', function() {
-            let index = arquivo.getAttribute('data-index');
-            let file = arquivo.files[0];
+        arquivoInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                const index = input.getAttribute('data-index');
+                const file = input.files[0];
 
-            if (file && index !== null) {
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    visualizarImgs[index].src = e.target.result;
-                    visualizarImgs[index].parentElement.href = e.target.result; // Atualiza o link para o lightbox
-                    imagensSelecionadas[index] = file;
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        visualizarImgs[index].src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
                 }
-                reader.readAsDataURL(file);
-            }
+            });
         });
     });
 </script>
-
-<style>
-    .product-images {
-        display: flex;
-        gap: 15px;
-        align-items: flex-start;
-
-        .thumbnail-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-
-            img {
-                width: 80px;
-                height: 80px;
-                cursor: pointer;
-                transition: transform 0.2s ease-in-out;
-
-                &:hover {
-                    transform: scale(1.1);
-                }
-            }
-        }
-
-        .main-image {
-            img {
-                width: 450px;
-                height: 350px;
-                cursor: pointer;
-            }
-        }
-    }
-</style>

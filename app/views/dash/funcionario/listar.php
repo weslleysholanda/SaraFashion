@@ -66,15 +66,34 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <td><?php echo $linha['nome_funcionario'] ?></td>
                 <td><?php echo $linha['tipo_funcionario'] ?></td>
                 <td><?php echo $linha['cpf_cnpj_funcionario'] ?></td>
-                <td><?php echo $linha['data_adm_funcionario'] ?></td>
+                <td><?php echo date_format(date_create($linha['data_adm_funcionario']), 'd/m/Y'); ?></td>
                 <td><?php echo $linha['email_funcionario'] ?></td>
                 <td><?php echo $linha['telefone_funcionario'] ?></td>
                 <td><?php echo $linha['nome_especialidade'] ?></td>
                 <td><?php echo $linha['salario_funcionario'] ?></td>
                 <td><?php echo $linha['status_funcionario'] ?></td>
-                <td id="text-center"><i id="btn-primary" class="bi bi-pencil"></i></td>
-                <td id="text-center"><i id="btn-secundary" class="bi bi-trash"></i></td>
+                <td id="text-center"><a href="http://localhost/sarafashion/public/funcionario/editar/<?php echo $linha['id_funcionario'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                <td id="text-center"><i id="btn-secundary" onclick="abrirModalDesativarFuncionario(<?php echo $linha['id_funcionario']; ?>)"class="bi bi-trash"></i></td>
             </tr>
         <?php endforeach ?>
     </tbody>
 </table>
+
+<div class="modal faded" tabindex="-1" id="modalDesativarFuncionario">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Desativar Funcionário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza de que deseja desativar esse funcionário?</p>
+                <input type="hidden" id="idFuncionarioDesativar" value="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnConfirmar">Desativar</button>
+            </div>
+        </div>
+    </div>
+</div>

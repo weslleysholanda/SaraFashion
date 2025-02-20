@@ -31,7 +31,7 @@ class MarcasController extends Controller{
     
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $nome_marca = filter_input(INPUT_POST, 'nome_marca', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $alt_marca  = filter_input(INPUT_POST, 'alt_marca', FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
+            $alt_marca  = $nome_marca; 
             $status_marcas  = filter_input(INPUT_POST, 'status_marcas', FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
     
             // Inicializa logo_marca como NULL inicialmente
@@ -78,7 +78,7 @@ class MarcasController extends Controller{
         $this->carregarViews('dash/dashboard', $dados);
     }
     
-
+    
     private function uploadFoto($file, $nome_marca) {
         $dir = '../public/uploads/';
         if (!file_exists($dir)) {

@@ -54,9 +54,28 @@
                 <td><?php echo $linha['telefone_fornecedor'] ?></td>
                 <td><?php echo $linha['produto_fornecido'] ?></td>
                 <td><?php echo $linha['status_fornecedor'] ?></td>
-                <td><i id="btn-primary" class="bi bi-pencil"></i></td>
-                <td><i id="btn-secundary" class="bi bi-trash"></i></td>
+                <td id="text-center"><a href="http://localhost/sarafashion/public/fornecedor/editar/<?php echo $linha['id_fornecedor'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                <td><i id="btn-secundary" onclick="abrirModalDesativarFornecedor(<?php echo $linha['id_fornecedor']; ?>)" class="bi bi-trash"></i></td>
             </tr>
         <?php endforeach ?>
     </tbody>
 </table>
+
+<div class="modal faded" tabindex="-1" id="modalDesativarFornecedor">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Desativar Fornecedor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza de que deseja desativar esse fornecedor?</p>
+                <input type="hidden" id="idFornecedorDesativar" value="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnConfirmar">Desativar</button>
+            </div>
+        </div>
+    </div>
+</div>

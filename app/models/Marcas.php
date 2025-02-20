@@ -23,4 +23,40 @@ class Marcas extends Model{
 
         return $this->db->lastInsertId();
     }
+
+    public function getMarcaById($id)
+    {
+        $sql = "SELECT * FROM tbl_marcas WHERE id_marca = :id_marca;";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_marca', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function atualizarMarca($id,$dados){
+        $sql = "UPDATE tbl_marca 
+        SET nome_marca = :nome_marca,
+        alt_marca = :alt_marca,
+        status_marca = :status_marcas";
+
+        if(!empty($dados['foto_marca'])){
+            $sql .= ", foto_marca = :foto_marca";
+        }
+
+        $sql .= " WHERE id_marca = :id_marca";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':nome_marca', $dados['nome_marca']);
+        $stmt->bindValue(':alt_marca', $dados['alt_marca']);
+        $stmt->bindValue(':status_marca', $dados['status_marca']);
+
+        if (!empty($dados['foto_marca'])) {
+            $stmt->bindValue(':foto_marca', $dados['foto_marca']);
+        }
+
+        $stmt->bindValue(':id_marca', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
 }

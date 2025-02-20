@@ -1,5 +1,2 @@
-# Ignorar a pasta config inteira
-config/
-
 # Ignorar o arquivo config.php
 config.php

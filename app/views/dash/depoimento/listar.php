@@ -26,7 +26,7 @@
                                                 }
                                                 ?>" alt="<?php echo htmlspecialchars($linha['alt_foto_cliente'], ENT_QUOTES, 'UTF-8') ?>"></td>
                 <td><?php echo $linha['nome_cliente'] ?></td>
-                <td><?php echo $linha['data_avaliacao'] ?></td>
+                <td><?php echo date_format(date_create($linha['data_avaliacao']), 'd/m/Y H:i'); ?></td>
                 <td><?php echo $linha['comentario_avaliacao'] ?></td>
                 <td><?php echo $linha['status_avaliacao'] ?></td>
                 <td><i id="btn-secundary" class="bi bi-trash"></i></td>

@@ -11,7 +11,7 @@ class Core
             $url .= $_GET['url'];
         }
 
-        // Verifica se a URL corresponde à rota personalizada
+        // Verifica se a URL corresponde à rota personalizada de WhatsApp
         if (preg_match('/\/contato\/whatsapp\/(\d+)/', $url, $matches)) {
             $id_contato = $matches[1];
             $controller = new ContatoController();
@@ -54,3 +54,4 @@ class Core
         call_user_func_array(array($controller, $acaoAtual), $parametro);
     }
 }
+

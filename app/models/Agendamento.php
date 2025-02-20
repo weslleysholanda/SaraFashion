@@ -1,8 +1,9 @@
 <?php
 
-class Agendamento extends Model{
-
-    public function ListarAgendamento(){
+class Agendamento extends Model
+{
+    public function ListarAgendamento()
+    {
         $sql = "SELECT  tbl_agendamento.id_agendamento,
                 tbl_cliente.nome_cliente,
                 tbl_cliente.foto_cliente,
@@ -19,6 +20,14 @@ class Agendamento extends Model{
                 INNER JOIN 
                 tbl_servico ON tbl_agendamento.id_servico = tbl_servico.id_servico";
         $stmt = $this->db->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);  
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function cancelarAgendamento($id){
+        $sql = "UPDATE tbl_agendamento SET status_agendamento = 'Cancelado' WHERE id_agendamento= :id_agendamento";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_agendamento',$id,PDO::PARAM_INT);
+        return $stmt->execute();
     }
 }

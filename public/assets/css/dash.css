@@ -166,7 +166,7 @@ h1 {
 
     .app-main {
         .app-content-header {
-            .container-fluid{
+            .container-fluid {
                 .row {
                     .col-sm-6 {
                         .breadcrumb {
@@ -174,7 +174,7 @@ h1 {
                                 a {
                                     color: var(--corPrincipal);
                                 }
-    
+
                             }
                         }
                     }
@@ -182,12 +182,30 @@ h1 {
             }
         }
 
-        .app-content{
-            .container-fluid{
-                .row{
-                    .col-12{
-                        .info-box{
-                            .info-box-icon{
+        .app-content {
+            .container-fluid {
+                .row {
+                    .filtro {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        gap: 10px;
+                        margin-bottom: 10px;
+
+                        .form-control {
+                            width: 200px;
+
+                            &:focus {
+                                outline: none;
+                                box-shadow: none;
+                                border-color: var(--corPrincipal);
+                            }
+                        }
+                    }
+
+                    .col-12 {
+                        .info-box {
+                            .info-box-icon {
                                 background: var(--corPrincipal) !important;
                             }
                         }
@@ -196,9 +214,10 @@ h1 {
             }
         }
     }
-    .app-footer{
-        strong{
-            a{
+
+    .app-footer {
+        strong {
+            a {
                 color: var(--corPrincipal) !important;
             }
         }
@@ -232,9 +251,19 @@ h1 {
     }
 }
 
+thead {
+    tr {
+        th {
+            text-align: center;
+        }
+    }
+}
+
 tbody {
     tr {
         td {
+            text-align: center;
+
             .btn-success {
                 width: 42px;
                 height: 38px;
@@ -267,6 +296,7 @@ tbody {
             cursor: pointer;
             font-size: 25px;
             transition: .2s all ease-in-out;
+            color: #000000;
 
             &:hover {
                 color: var(--corPrincipal);
@@ -429,6 +459,92 @@ tbody {
                 background: var(--corPrincipal) !important;
                 color: var(--corLetras);
 
+            }
+        }
+    }
+}
+
+/*Adicionar Produto*/
+.product-images {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+
+    .thumbnail-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        img {
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .main-image {
+        img {
+            width: 450px;
+            height: 350px;
+            cursor: pointer;
+        }
+    }
+}
+
+
+.modal {
+    .modal-dialog {
+        .modal-content {
+            .modal-footer {
+                button {
+                    background: #000000;
+                    border: 0;
+                    border-radius: 0;
+                    transition: .3s all ease-in-out;
+
+                    &:hover {
+                        background: var(--corPrincipal);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media(max-width:1024px) {
+    .app-wrapper {
+        .app-main {
+            .app-content {
+                .container-fluid {
+                    .row {
+                        .col-md-3 {
+                            width: 50%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media(max-width:768px) {
+    .app-wrapper {
+        .app-main {
+            .app-content {
+                .container-fluid {
+                    .row {
+                        .col-md-3 {
+                            width: 50%;
+                        }
+                    }
+                }
             }
         }
     }

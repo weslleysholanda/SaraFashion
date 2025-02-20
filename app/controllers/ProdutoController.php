@@ -73,7 +73,7 @@ class ProdutoController extends Controller
         $dados['conteudo'] = 'dash/produto/adicionar';
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+            // Filtrando e sanitizando os inputs
             $nome_produto = filter_input(INPUT_POST, 'nome_produto', FILTER_SANITIZE_SPECIAL_CHARS);
             $descricao_produto = filter_input(INPUT_POST, 'descricao_produto', FILTER_SANITIZE_SPECIAL_CHARS);
             $informacao_produto = filter_input(INPUT_POST, 'informacao_produto', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -81,53 +81,166 @@ class ProdutoController extends Controller
             $quantidade_estoque_produto = filter_input(INPUT_POST, 'quantidade_estoque_produto', FILTER_SANITIZE_NUMBER_INT);
             $status_produto = filter_input(INPUT_POST, 'status_produto', FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if ($nome_produto && $descricao_produto && $preco_produto !== false) {
-
-                /** 1- Gerar link do produto */
+            // Validando campos obrigatórios
+            if (!empty($nome_produto) && !empty($descricao_produto) && $preco_produto !== false) {
+                // Gerar o link do produto
                 $link_produto = $this->gerarLinkProduto($nome_produto);
 
-                /** 2- Preparar dados */
-                $dadosProduto = array(
-                    'nome_produto'              => $nome_produto,
-                    'descricao_produto'         => $descricao_produto,
-                    'informacao_produto'        => $informacao_produto,
-                    'preco_produto'             => $preco_produto,
+                // Criando array com os dados do produto
+                $dadosProduto = [
+                    'nome_produto' => $nome_produto,
+                    'descricao_produto' => $descricao_produto,
+                    'informacao_produto' => $informacao_produto,
+                    'preco_produto' => $preco_produto,
                     'quantidade_estoque_produto' => $quantidade_estoque_produto,
-                    'status_produto'            => $status_produto,
-                    'link_produto'              => $link_produto,
-                );
+                    'status_produto' => $status_produto,
+                    'link_produto' => $link_produto
+                ];
 
-                /** 3- Inserir o produto e obter o ID */
+                // Inserindo o produto no banco e retornando o ID
                 $id_produto = $this->produtoModel->addProduto($dadosProduto);
 
                 if ($id_produto) {
-                    // Verifica se há arquivos enviados
-                    if (isset($_FILES['foto_galeria']) && count($_FILES['foto_galeria']['name']) > 0) {
-                        for ($i = 0; $i < count($_FILES['foto_galeria']['name']); $i++) {
-                            if ($_FILES['foto_galeria']['error'][$i] == 0) {
-                                // Cria um nome único para cada arquivo
-                                $arquivo = $this->uploadFoto($_FILES['foto_galeria']['name'][$i], $_FILES['foto_galeria']['tmp_name'][$i], $link_produto, $i + 1);
+                    if (isset($_FILES['foto_galeria'])) {
+                        $fotos = $_FILES['foto_galeria'];
+                        $contFoto = 1; // Contador para nomear/numerar o alt das fotos
+                        // var_dump($fotos);
 
-                                if ($arquivo) {
-                                    // Salva na tabela galeria
-                                    $this->produtoModel->addFotoGaleria($id_produto, $arquivo, $nome_produto);
+                        foreach (array_keys($fotos['name']) as $key) {
+                            // Criando um array individual para cada arquivo
+                            $arquivo = [
+                                'name'     => $fotos['name'][$key],
+                                'type'     => $fotos['type'][$key],
+                                'tmp_name' => $fotos['tmp_name'][$key],
+                                'error'    => $fotos['error'][$key],
+                                'size'     => $fotos['size'][$key]
+                            ];
+
+                            // var_dump($fotos['name']);
+                            if ($arquivo['error'] === 0) {
+                                // Upload da foto com nome sequencial
+                                $arquivoFoto = $this->uploadFoto($arquivo, $link_produto . ($contFoto == 1 ? "" : $contFoto));
+
+                                if ($arquivoFoto) {
+                                    // Inserindo a imagem na galeria do produto
+                                    $this->produtoModel->addFotoGaleria($id_produto, $arquivoFoto, $nome_produto . $contFoto);
+                                    $contFoto++;
+                                } else {
+                                    $_SESSION['mensagem'] = "Erro ao salvar uma das imagens.";
+                                    $_SESSION['tipo-msg'] = "erro-foto";
                                 }
                             }
                         }
                     }
 
-                    /** Mensagem de Sucesso */
-                    $_SESSION['mensagem'] = "Produto adicionado com Sucesso!";
+                    // Mensagem de sucesso e redirecionamento
+                    $_SESSION['mensagem'] = "Produto adicionado com sucesso!";
                     $_SESSION['tipo-msg'] = 'sucesso';
                     header('Location: http://localhost/sarafashion/public/produto/listar');
                     exit;
                 } else {
-                    $dados['mensagem'] = "Erro ao adicionar o produto";
-                    $dados['tipo-msg'] = "erro-produto";
+                    // Erro ao inserir produto no banco
+                    $_SESSION['mensagem'] = "Erro ao adicionar o produto";
+                    $_SESSION['tipo-msg'] = "erro-produto";
                 }
             } else {
-                $dados['mensagem'] = "Preencha todos os campos obrigatórios";
-                $dados['tipo-msg'] = "erro";
+                // Erro de validação dos campos obrigatórios
+                $_SESSION['mensagem'] = "Preencha todos os campos obrigatórios";
+                $_SESSION['tipo-msg'] = "erro";
+            }
+        }
+
+
+
+        // Métodos da classe DashboardController
+        $dados['usuario'] = $this->dashboardModel->getUsuarioLogado($_SESSION['userId']);
+        $dados['depoimento'] = $this->dashboardModel->getDepoimento();
+        $dados['cadastro'] = $this->dashboardModel->getTotalRegistros();
+        $dados['venda'] = $this->dashboardModel->getVendas();
+        $this->carregarViews('dash/dashboard', $dados);
+    }
+
+    public function editar($id = null)
+    {
+        if (!isset($_SESSION['userTipo']) || $_SESSION['userTipo'] !== 'Funcionario') {
+            header('Location:' . BASE_URL);
+            exit;
+        }
+
+        $dados = array();
+        $dados['conteudo'] = 'dash/produto/editar';
+
+        if ($id == null) {
+            header('Location: http://localhost/sarafashion/public/produto/listar');
+            exit;
+        }
+
+        $produto = $this->produtoModel->getProdutoById($id);
+        $dados['produto'] = $produto;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Dados do produto
+            $nome_produto = filter_input(INPUT_POST, 'nome_produto', FILTER_SANITIZE_SPECIAL_CHARS);
+            $descricao_produto = filter_input(INPUT_POST, 'descricao_produto', FILTER_SANITIZE_SPECIAL_CHARS);
+            $informacao_produto = filter_input(INPUT_POST, 'informacao_produto', FILTER_SANITIZE_SPECIAL_CHARS);
+            $preco_produto = filter_input(INPUT_POST, 'preco_produto', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $quantidade_estoque_produto = filter_input(INPUT_POST, 'quantidade_estoque_produto', FILTER_VALIDATE_INT);
+            $status_produto = filter_input(INPUT_POST, 'status_produto', FILTER_SANITIZE_SPECIAL_CHARS);
+
+            $link_produto = $this->gerarLinkProduto($nome_produto);
+
+            // Processar as imagens enviadas
+            $novosArquivos = [];
+            $altsGaleria = [];
+
+            if (!empty($_FILES['foto_galeria']['name'])) {
+                foreach ($_FILES['foto_galeria']['name'] as $index => $fileName) {
+                    if ($_FILES['foto_galeria']['error'][$index] === UPLOAD_ERR_OK) {
+                        $file = [
+                            'name' => $_FILES['foto_galeria']['name'][$index],
+                            'tmp_name' => $_FILES['foto_galeria']['tmp_name'][$index]
+                        ];
+
+                        $uploadedFilePath = $this->uploadFoto($file, $link_produto . "_img" . ($index + 1));
+
+                        if ($uploadedFilePath) {
+                            $novosArquivos[] = $uploadedFilePath;
+                            $altsGaleria[] = $nome_produto . " " . ($index + 1);
+                        }
+                    }
+                }
+
+                // Atualiza as imagens no banco
+                if (!empty($novosArquivos)) {
+                    $this->produtoModel->atualizarFotoGaleria($id, $novosArquivos, $altsGaleria);
+                }
+            }
+
+            // Atualizar os dados do produto
+            if ($nome_produto && $descricao_produto && $preco_produto !== false) {
+                $dadosProduto = array(
+                    'nome_produto' => $nome_produto,
+                    'descricao_produto' => $descricao_produto,
+                    'informacao_produto' => $informacao_produto,
+                    'preco_produto' => $preco_produto,
+                    'quantidade_estoque_produto' => $quantidade_estoque_produto,
+                    'status_produto' => $status_produto,
+                    'link_produto' => $link_produto
+                );
+
+                $resultado = $this->produtoModel->atualizarProduto($id, $dadosProduto);
+
+                if ($resultado) {
+                    $_SESSION['mensagem'] = "Produto atualizado com Sucesso!";
+                    $_SESSION['tipo-msg'] = 'sucesso';
+                    header('Location: http://localhost/sarafashion/public/produto/listar');
+                    exit;
+                } else {
+                    $_SESSION['mensagem'] = "Erro ao atualizar o produto";
+                    $_SESSION['tipo-msg'] = "erro";
+                    header('Location: http://localhost/sarafashion/public/produto/adicionar');
+                    exit;
+                }
             }
         }
 
@@ -140,8 +253,7 @@ class ProdutoController extends Controller
     }
 
 
-
-    public function editar()
+    public function desativar($id = null)
     {
         if (!isset($_SESSION['userTipo']) || $_SESSION['userTipo'] !== 'Funcionario') {
 
@@ -149,35 +261,27 @@ class ProdutoController extends Controller
             exit;
         }
 
-        $dados = array();
-        $dados['conteudo'] = 'dash/produto/editar';
-
-
-        //metodos da classe DashboardController
-        $dados['usuario'] = $this->dashboardModel->getUsuarioLogado($_SESSION['userId']);
-        $dados['depoimento'] = $this->dashboardModel->getDepoimento();
-        $dados['cadastro'] = $this->dashboardModel->getTotalRegistros();
-        $dados['venda'] = $this->dashboardModel->getVendas();
-        $this->carregarViews('dash/dashboard', $dados);
-    }
-
-    public function desativar()
-    {
-        if (!isset($_SESSION['userTipo']) || $_SESSION['userTipo'] !== 'Funcionario') {
-
-            header('Location:' . BASE_URL);
+        if ($id === null) {
+            http_response_code(400);
+            echo json_encode(["sucesso" => false, "mensagem" => "ID inválido"]);
             exit;
         }
 
-        $dados = array();
-        $dados['conteudo'] = 'dash/produto/desativar';
+        $resultado = $this->produtoModel->desativarProduto($id);
+        header('Content-Type: Application/json');
 
-        //metodos da classe DashboardController
-        $dados['usuario'] = $this->dashboardModel->getUsuarioLogado($_SESSION['userId']);
-        $dados['depoimento'] = $this->dashboardModel->getDepoimento();
-        $dados['cadastro'] = $this->dashboardModel->getTotalRegistros();
-        $dados['venda'] = $this->dashboardModel->getVendas();
-        $this->carregarViews('dash/dashboard', $dados);
+        if ($resultado) {
+            $_SESSION['mensagem'] = 'Produto desativado com sucesso!';
+            $_SESSION['tipo-msg'] = 'sucesso';
+
+            echo json_encode(['sucesso' => true]);
+        } else {
+
+            $_SESSION['mensagem'] = 'Falha ao desativar o produto';
+            $_SESSION['tipo-msg'] = 'erro';
+
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Falha ao desativar o produto']);
+        }
     }
 
 
@@ -204,20 +308,22 @@ class ProdutoController extends Controller
     }
 
 
-    private function uploadFoto($file_name, $file_tmp, $link_produto, $index)
+    private function uploadFoto($file, $link_produto)
     {
-        $dir = __DIR__ . '../public/uploads/produto/';
+        $dir = '../public/uploads/produto/';
 
         if (!file_exists($dir)) {
             mkdir($dir, 0755, true);
         }
 
-        $ext = pathinfo($file_name, PATHINFO_EXTENSION);
-        $nome_arquivo = $link_produto . '_' . $index . '.' . $ext;
+        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $nome_arquivo = $link_produto . '.' . $ext;
+        $caminho_final = $dir . $nome_arquivo;
 
-        if (move_uploaded_file($file_tmp, $dir . $nome_arquivo)) {
+        if (move_uploaded_file($file['tmp_name'], $caminho_final)) {
             return 'produto/' . $nome_arquivo;
         }
+
         return false;
     }
 }

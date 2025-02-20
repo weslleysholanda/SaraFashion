@@ -793,7 +793,7 @@ body {
 .satisfacao {
     .container {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
 
         .satiscacao-item {
             display: flex;
