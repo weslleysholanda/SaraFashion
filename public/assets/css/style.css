@@ -64,21 +64,23 @@
     font-style: normal;
 }
 
-::selection{
-    background-color:var(--corPrincipal);
+::selection {
+    background-color: var(--corPrincipal);
 }
 
 
 ::-webkit-scrollbar-thumb {
     background-color: #222222;
+    opacity: 0;
 }
 
 ::-webkit-scrollbar {
     width: 15px;
-    background:#555;
+    background: #555;
+    opacity: 0;
 }
 
-    /* Variáveis */
+/* Variáveis */
 :root {
 
     /* Cores */
@@ -211,8 +213,26 @@ body {
     font-family: var(--fonteMontserrat);
     font-size: 20px;
     font-weight: 500;
-
+    overflow: hidden;
 }
+
+/* Camada extra para controlar a transição sem afetar o body */
+.content-wrapper {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+#vlibras {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    
+}
+
+#vlibras.fade-in {
+    opacity: 1;
+}
+
 
 
 .site {
@@ -230,7 +250,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1000;
+    z-index: 10000000;
     background-color: #222222;
     display: flex;
     align-items: center;
@@ -598,14 +618,14 @@ body {
     width: 44px;
     z-index: 100;
 
-    &#backtop.inativo {
+    &.inativo {
         opacity: 0;
         visibility: hidden;
         -webkit-transition: opacity .15s ease, visibility 0s .15s;
         transition: opacity .15s ease, visibility 0s .15s;
     }
 
-    &#backtop.ativo {
+    &.ativo {
         opacity: 1;
         visibility: visible;
         -webkit-transition: all .3s ease;
@@ -4081,7 +4101,7 @@ footer {
             }
         }
 
-        
+
 
         /* PG - Error 404  */
         .banner-404 {
@@ -4822,9 +4842,9 @@ footer {
                     &:hover {
                         background: var(--corPrincipal);
                     }
-                }  
+                }
 
-               
+
 
 
             }
@@ -4846,10 +4866,10 @@ footer {
                 &:hover {
                     background: var(--corPrincipal);
                 }
-            } 
+            }
         }
 
-        
+
     }
 }
 
@@ -6415,7 +6435,7 @@ footer {
         }
     }
 
-    
+
 }
 
 /* PG - Perfil Cliente*/
@@ -6514,11 +6534,11 @@ footer {
                     }
                 }
 
-                
+
             }
 
             .btn-primary,
-            .btn-secondary{
+            .btn-secondary {
                 display: inline-block;
                 margin-top: 20px;
                 background-color: var(--cor1);
@@ -6537,32 +6557,36 @@ footer {
                 }
             }
 
-            form{
+            form {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 flex-shrink: wrap;
-                .img{
-                    img{
+
+                .img {
+                    img {
                         max-width: 100%;
-                        width:250px; 
+                        width: 250px;
                         height: 250px;
                         object-fit: cover;
-                        cursor:pointer;
+                        cursor: pointer;
                         border: 1px solid var(--corPrincipal);
                         border-radius: 50%;
                     }
                 }
-                .container-form{
-                    .flex{
+
+                .container-form {
+                    .flex {
                         display: flex;
                         gap: 20px;
                     }
-                    .mb-3{
+
+                    .mb-3 {
                         .form-control {
                             border-radius: 0;
                             width: 250px;
                             font-size: 15px;
+
                             &:focus {
                                 color: #212529;
                                 background-color: #ffff;
@@ -6570,12 +6594,13 @@ footer {
                                 outline: 0;
                                 box-shadow: 0 0 0 0.25rem rgba(197, 157, 95, 0.25);
                             }
-        
+
                         }
-        
+
                         .form-select {
                             border-radius: 0;
                             width: 250px;
+
                             &:focus {
                                 color: #212529;
                                 background-color: #ffff;
@@ -6584,46 +6609,47 @@ footer {
                                 box-shadow: 0 0 0 0.25rem rgba(197, 157, 95, 0.25);
                             }
                         }
-                        .input-group date{
+
+                        .input-group date {
                             .tempus-dominus-widget {
                                 .date-container {
                                     .date-container-days {
                                         .dow {
                                             color: #000000 !important;
                                         }
-                            
+
                                         .day {
                                             color: #000000 !important;
                                         }
-                            
+
                                         div:not(.no-highlight):hover {
                                             background: var(--corPrincipal) !important;
                                             color: var(--corLetras) !important;
                                         }
-                            
+
                                         div:not(.no-highlight).active {
                                             background-color: #C59D5F !important;
                                             color: var(--corLetras) !important;
                                         }
                                     }
                                 }
-                            
+
                                 .toolbar {
                                     div {
                                         transition: .3s all ease;
                                         border: 0;
                                         border-radius: 0;
-                            
+
                                         &:hover {
                                             background: var(--corPrincipal) !important;
                                             color: var(--corLetras);
-                            
+
                                         }
                                     }
                                 }
                             }
                         }
-                        
+
                     }
                 }
             }
@@ -8640,7 +8666,7 @@ footer {
                             .hover-anime {
                                 position: relative;
                                 overflow: hidden;
-                                
+
                             }
 
                             .hover-anime:after {
@@ -8681,15 +8707,15 @@ footer {
                         }
 
                         .secundary-image {
-                            .reveal{
-                                .hover-anime{
+                            .reveal {
+                                .hover-anime {
                                     img {
                                         width: 185px;
                                         height: 357px;
                                     }
                                 }
                             }
-                           
+
                         }
                     }
                 }
@@ -9024,18 +9050,19 @@ footer {
                         font-size: 14px;
                     }
 
-                    .info-row{
+                    .info-row {
                         flex-direction: column;
-                        .info-box{
+
+                        .info-box {
                             width: 100%;
                         }
                     }
                 }
             }
 
-            form{
-                .container-form{
-                    .flex{
+            form {
+                .container-form {
+                    .flex {
                         flex-direction: column;
                         align-items: center;
                     }

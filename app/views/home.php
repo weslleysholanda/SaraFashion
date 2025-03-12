@@ -72,7 +72,7 @@
     <script>
         window.addEventListener('scroll', function() {
             const botaoTopo = document.getElementById('backtop');
-            if (window.scrollY > 1500) {
+            if (window.scrollY > 1000) { // Ajuste esse valor conforme necessário
                 botaoTopo.classList.add('ativo');
                 botaoTopo.classList.remove('inativo');
             } else {
@@ -81,13 +81,20 @@
             }
         });
 
-        // Script para voltar ao topo ao clicar no botão
-        document.getElementById('backtop').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+        // Script para garantir que o botão inicie com a classe 'inativo'
+        document.addEventListener("DOMContentLoaded", function() {
+            const botaoTopo = document.getElementById('backtop');
+            if (botaoTopo) {
+                botaoTopo.classList.add('inativo'); // Garante que o botão comece com a classe 'inativo'
+
+                botaoTopo.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
         });
     </script>
 

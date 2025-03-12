@@ -15,13 +15,39 @@ if (!document.querySelector(".menu a.ativo") && currentPath === "/") {
 }
 // fim Pagina ativa
 
-// preloader e banner
+// preloader
 (function ($) {
     "use strict";
 
     $(window).on('load', function () {
-        // Remove o preloader e inicializa o slider simultaneamente
-        $(".preloader").delay(800).fadeOut(600);
+        // Garante que o VLibras continue escondido
+        $('.enabled').hide();
+
+        // Remove o preloader e inicializa as animações suavemente
+        $(".preloader").delay(800).fadeOut(600, function () {
+            // Primeiro, garante que o scroll está desativado
+            $('html, body').css({
+                'overflow': 'hidden',
+                'height': '100%',
+                'background-color': '#f0f0f0' // Cor de fundo alterada durante o preloader
+            });
+
+            // Aguarda um pouco antes de liberar o scroll com um fade-in
+            setTimeout(function () {
+                // Libera o scroll e faz a transição de fundo
+                $('html, body').css({
+                    'overflow': 'visible',
+                    'height': 'auto',
+                    'background-color': '#fff' // Cor final após o preloader
+                });
+
+                // Aplica o fade-in suavemente ao body (evita o "clarão")
+                $('body').fadeIn(800); 
+
+                // Faz o VLibras aparecer suavemente
+                $('.enabled').fadeIn(800);
+            }, 500); // Aguarda um pequeno tempo antes de liberar o scroll
+        });
 
         // Torna o slider visível imediatamente
         $('.slide-banner').css({ visibility: 'visible' });
@@ -60,11 +86,15 @@ if (!document.querySelector(".menu a.ativo") && currentPath === "/") {
                 const animationName = $(this).data('animation');
                 setTimeout(() => {
                     $(this).css({ opacity: 1 }).addClass(`animate__animated ${animationName}`);
-                }, index * 300); // Aumente/diminua para ajustar o intervalo entre as animações
+                }, index * 300); // Ajuste o tempo conforme necessário
             });
         });
     });
+
 })(jQuery);
+
+
+
 
 //slider - marcas
 $(function () {
@@ -134,7 +164,7 @@ $(function () {
 const menuToggle = document.querySelector(".menu-toggle");
 const menu = document.querySelector(".menu");
 
-if (menuToggle && menu) {  
+if (menuToggle && menu) {
     menuToggle.addEventListener("click", () => {
         menuToggle.classList.toggle("active");
         menu.classList.toggle("active");
@@ -145,7 +175,7 @@ window.addEventListener("scroll", function () {
     const topo = document.querySelector(".topo"); // Seleciona o elemento .topo
     const topoLoja = document.querySelector(".topo-loja"); // Seleciona o elemento .topo-loja
     const logo = document.querySelector(".topo-loja .logo img"); // Seleciona a logo dentro do .topo-loja
- 
+
     // Lógica para .topo
     if (topo && window.innerWidth <= 1024) {
         if (window.scrollY > 300) {
@@ -154,19 +184,19 @@ window.addEventListener("scroll", function () {
             topo.classList.remove("fixo");
         }
     }
- 
+
     //.topo-loja
     if (topoLoja && window.innerWidth <= 1024) {
         if (window.scrollY > 250) {
             topoLoja.classList.add("fixo");
- 
+
             // Troca a logo somente no .topo-loja
             if (logo) {
                 logo.src = "http://localhost/sarafashion/public/assets/img/logoInicial.png";
             }
         } else {
             topoLoja.classList.remove("fixo");
- 
+
             // Volta para a logo Inicial somente no .topo-loja
             if (logo) {
                 logo.src = "http://localhost/sarafashion/public/assets/img/logoDark.png";
@@ -204,7 +234,7 @@ $('.slide-card').slick({
                 slidesToScroll: 1,
             }
         }
-        
+
 
     ]
 });
