@@ -75,7 +75,7 @@
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
+    width: 12px;
     background: #555;
     opacity: 0;
 }
@@ -797,12 +797,40 @@ body {
                 border: 2px solid var(--corPrincipal);
                 transition: all 0.3s ease;
                 cursor: pointer;
-
+                position: relative;
+            
                 svg {
                     width: 28px;
                     height: 37px;
                 }
+            
+                /* Tooltip */
+                &[data-tooltip] {
+                    &::after {
+                        content: attr(data-tooltip);
+                        position: absolute;
+                        z-index: 100;
+                        bottom: 100%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: #333;
+                        color: #fff;
+                        padding: 5px;
+                        border-radius: 5px;
+                        font-size: 14px;
+                        white-space: nowrap;
+                        z-index: 1;
+                        opacity: 0;
+                        transition: opacity 0.3s;
+                    }
+            
+                    &:hover::after {
+                        opacity: 1;
+                    }
+                }
             }
+
+            
 
             .conteudoInfo {
                 h2 {

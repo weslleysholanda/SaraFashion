@@ -1,18 +1,21 @@
 // Pagina ativa
 const links = document.querySelectorAll(".menu a");
 const currentPath = window.location.pathname;
+
+// Remove a classe 'ativo' de todos os links antes de definir o correto
+links.forEach(link => link.classList.remove("ativo"));
+
 links.forEach(link => {
-    if (link.getAttribute("href").includes(currentPath)) {
-        // Adiciona a classe 'ativo' ao link correspondente
+    const linkPath = new URL(link.href).pathname; // Obtém apenas o caminho do link
+    
+    if (linkPath === currentPath) {
+        link.classList.add("ativo"); // Ativa o link correto
+    } 
+    // Se estiver em /sarafashion/public/, ativa a home
+    else if (currentPath === "/sarafashion/public/" && linkPath.endsWith("/home")) {
         link.classList.add("ativo");
     }
 });
-if (!document.querySelector(".menu a.ativo") && currentPath === "/") {
-    const homeLink = document.querySelector(".menu a[href$='home']");
-    if (homeLink) {
-        homeLink.classList.add("ativo");
-    }
-}
 // fim Pagina ativa
 
 // preloader
@@ -22,6 +25,9 @@ if (!document.querySelector(".menu a.ativo") && currentPath === "/") {
     $(window).on('load', function () {
         // Garante que o VLibras continue escondido
         $('.enabled').hide();
+        
+        // Oculta o botão "Back to Top" no início
+        $('#backtop').hide();
 
         // Remove o preloader e inicializa as animações suavemente
         $(".preloader").delay(800).fadeOut(600, function () {
@@ -42,10 +48,15 @@ if (!document.querySelector(".menu a.ativo") && currentPath === "/") {
                 });
 
                 // Aplica o fade-in suavemente ao body (evita o "clarão")
-                $('body').fadeIn(800); 
-
+                $('body').fadeIn(800);
+                
                 // Faz o VLibras aparecer suavemente
-                $('.enabled').fadeIn(800);
+                setTimeout(function () {
+                    $('.enabled').fadeIn(800);
+                }, 1000);
+
+                // Exibe o botão "Back to Top" suavemente
+                $('#backtop').fadeIn(800);
             }, 500); // Aguarda um pequeno tempo antes de liberar o scroll
         });
 
@@ -92,9 +103,6 @@ if (!document.querySelector(".menu a.ativo") && currentPath === "/") {
     });
 
 })(jQuery);
-
-
-
 
 //slider - marcas
 $(function () {
@@ -156,8 +164,6 @@ $(function () {
     // Gerencia o slider ao redimensionar a janela
     $(window).on('resize', updateSlider);
 });
-
-
 
 
 //Menu mobile + scrollbar fixo topo loja
@@ -268,89 +274,89 @@ const elements = document.querySelectorAll('.counter');
 elements.forEach((el) => IO.observe(el));
 //fim counterUp - Contador
 
-// PG - Contato  Calendario
-const calendarHeader = document.querySelector(".calendar-header");
-const prevMonthButton = document.querySelector("#prev-month-button");
-const nextMonthButton = document.querySelector("#next-month-button");
-const calendarDaysDiv = document.querySelector(".calendar-days");
-const currentMonthSpan = document.querySelector("#current-month");
+// // PG - Contato  Calendario
+// const calendarHeader = document.querySelector(".calendar-header");
+// const prevMonthButton = document.querySelector("#prev-month-button");
+// const nextMonthButton = document.querySelector("#next-month-button");
+// const calendarDaysDiv = document.querySelector(".calendar-days");
+// const currentMonthSpan = document.querySelector("#current-month");
 
-const today = new Date();
-let currentYear = today.getFullYear();
-let currentMonth = today.getMonth();
+// const today = new Date();
+// let currentYear = today.getFullYear();
+// let currentMonth = today.getMonth();
 
-const months = [
-    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
-];
+// const months = [
+//     "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+//     "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+// ];
 
-// Atualiza o calendário na tela
-function updateCalendar() {
-    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-    const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
-    const lastMonthDays = new Date(currentYear, currentMonth, 0).getDate();
+// // Atualiza o calendário na tela
+// function updateCalendar() {
+//     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+//     const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+//     const lastMonthDays = new Date(currentYear, currentMonth, 0).getDate();
 
-    let daysHTML = '';
+//     let daysHTML = '';
 
-    // Atualizar o cabeçalho com o mês e o ano atual
-    currentMonthSpan.textContent = `${months[currentMonth]} ${currentYear}`;
+//     // Atualizar o cabeçalho com o mês e o ano atual
+//     currentMonthSpan.textContent = `${months[currentMonth]} ${currentYear}`;
 
-    // Exibir ou ocultar o botão de voltar
-    prevMonthButton.style.display = (currentMonth === today.getMonth() && currentYear === today.getFullYear()) ? 'none' : 'block';
+//     // Exibir ou ocultar o botão de voltar
+//     prevMonthButton.style.display = (currentMonth === today.getMonth() && currentYear === today.getFullYear()) ? 'none' : 'block';
 
-    // Dias do mês anterior (cinza)
-    for (let i = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1; i > 0; i--) {
-        daysHTML += `<div class="prev-month">${lastMonthDays - i + 1}</div>`;
-    }
+//     // Dias do mês anterior (cinza)
+//     for (let i = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1; i > 0; i--) {
+//         daysHTML += `<div class="prev-month">${lastMonthDays - i + 1}</div>`;
+//     }
 
-    // Dias do mês atual
-    for (let i = 1; i <= daysInMonth; i++) {
-        if (currentMonth === today.getMonth() && currentYear === today.getFullYear() && i < today.getDate()) {
-            daysHTML += `<div class="past-day">${i}</div>`; // Dias passados
-        } else {
-            daysHTML += `<div>${i}</div>`;
-        }
-    }
+//     // Dias do mês atual
+//     for (let i = 1; i <= daysInMonth; i++) {
+//         if (currentMonth === today.getMonth() && currentYear === today.getFullYear() && i < today.getDate()) {
+//             daysHTML += `<div class="past-day">${i}</div>`; // Dias passados
+//         } else {
+//             daysHTML += `<div>${i}</div>`;
+//         }
+//     }
 
-    // Dias do próximo mês (cinza)
-    const nextMonthDays = 7 - (new Date(currentYear, currentMonth + 1, 0).getDay() || 7);
-    for (let i = 1; i <= nextMonthDays; i++) {
-        daysHTML += `<div class="next-month">${i}</div>`;
-    }
+//     // Dias do próximo mês (cinza)
+//     const nextMonthDays = 7 - (new Date(currentYear, currentMonth + 1, 0).getDay() || 7);
+//     for (let i = 1; i <= nextMonthDays; i++) {
+//         daysHTML += `<div class="next-month">${i}</div>`;
+//     }
 
-    // Atualizar os dias no DOM
-    calendarDaysDiv.innerHTML = `
-              <div>SEG</div>
-              <div>TER</div>
-              <div>QUA</div>
-              <div>QUI</div>
-              <div>SEX</div>
-              <div>SAB</div>
-              <div>DOM</div>
-            ` + daysHTML;
-}
+//     // Atualizar os dias no DOM
+//     calendarDaysDiv.innerHTML = `
+//               <div>SEG</div>
+//               <div>TER</div>
+//               <div>QUA</div>
+//               <div>QUI</div>
+//               <div>SEX</div>
+//               <div>SAB</div>
+//               <div>DOM</div>
+//             ` + daysHTML;
+// }
 
-// Configurar o botão de próximo mês
-nextMonthButton.addEventListener("click", () => {
-    currentMonth++;
-    if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-    }
-    updateCalendar();
-});
+// // Configurar o botão de próximo mês
+// nextMonthButton.addEventListener("click", () => {
+//     currentMonth++;
+//     if (currentMonth > 11) {
+//         currentMonth = 0;
+//         currentYear++;
+//     }
+//     updateCalendar();
+// });
 
-// Configurar o botão de mês anterior
-prevMonthButton.addEventListener("click", () => {
-    currentMonth--;
-    if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
-    }
-    updateCalendar();
-});
+// // Configurar o botão de mês anterior
+// prevMonthButton.addEventListener("click", () => {
+//     currentMonth--;
+//     if (currentMonth < 0) {
+//         currentMonth = 11;
+//         currentYear--;
+//     }
+//     updateCalendar();
+// });
 
-// Inicializar o calendário ao carregar a página
-updateCalendar();
+// // Inicializar o calendário ao carregar a página
+// updateCalendar();
 // PG fim - Contato  Calendario
 

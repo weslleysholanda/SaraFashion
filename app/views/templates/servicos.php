@@ -17,7 +17,7 @@
                         <h2>Alisamento de Cabelo</h2>
                         <p>Fios lisos e sem frizz</p>
                     </div>
-                    <span class="buttonIcon" id="mySpan">
+                    <span class="buttonIcon" data-tooltip="Texto do Tooltip">
                         <svg width="28" height="34" viewBox="0 0 28 34" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -31,7 +31,7 @@
                         <h2>Corte Visagista</h2>
                         <p>Corte ideal para seu rosto.</p>
                     </div>
-                    <span class="buttonIcon" id="mySpan">
+                    <span class="buttonIcon" data-tooltip="Texto do Tooltip">
                         <svg viewBox="0 0 28 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M3.99999 24C1.33302 24.105 1.33364 28.8955 4.00003 29C6.66697 28.895 6.66635 24.1045 3.99999 24ZM3.99999 28.1828C3.64237 28.1778 3.30078 27.9983 3.04932 27.6832C2.79787 27.3682 2.65684 26.943 2.65685 26.5C2.65685 26.0569 2.79789 25.6318 3.04935 25.3167C3.30081 25.0017 3.64241 24.8222 4.00003 24.8172C4.35782 24.8219 4.69967 25.0012 4.95134 25.3163C5.20301 25.6314 5.34417 26.0568 5.34417 26.5C5.34416 26.9433 5.20299 27.3687 4.95131 27.6837C4.69964 27.9988 4.35778 28.1781 3.99999 28.1828Z"
@@ -49,7 +49,7 @@
 
                     </span>
                 </div>
-                <div class="container-left-conteudo">
+                <div class="container-left-conteudo" data-tooltip="Texto do Tooltip">
                     <div class="container-left-info">
                         <h2>Maquiagem</h2>
                         <p>Beleza para todas as ocasiões.</p>

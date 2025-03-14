@@ -37,7 +37,7 @@
     <?php require_once('templates/satisfacao.php') ?>
 
     <!-- Back to top -->
-    <a id="backtop" href="#" class="ativo">
+    <a id="backtop" href="#" class="inativo">
         <span class="seta"></span>
     </a>
 
