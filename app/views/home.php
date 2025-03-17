@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/slick.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- animate.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/reset.css">
@@ -69,6 +71,21 @@
     <!-- footer -->
     <?php require_once('templates/footer.php') ?>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Waypoints (necessária para detecção de elementos visíveis) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <!--CounterUp -->
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js"></script>
+    <script src="https://kit.fontawesome.com/89bd08d7e0.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Slick -->
+    <script src="vendors/js/slick.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+
     <script>
         window.addEventListener('scroll', function() {
             const botaoTopo = document.getElementById('backtop');
@@ -96,22 +113,14 @@
                 });
             }
         });
+
+        // tooltip
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {
+            customClass: 'custom-tooltip',
+            animation: true,
+        }));
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <!-- Waypoints (necessária para detecção de elementos visíveis) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <!--CounterUp -->
-    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js"></script>
-    <script src="https://kit.fontawesome.com/89bd08d7e0.js" crossorigin="anonymous"></script>
-    <!-- tippy.js -->
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
-    <!-- Slick -->
-    <script src="vendors/js/slick.min.js"></script>
-    <script src="assets/js/script.js"></script>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-
 
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');

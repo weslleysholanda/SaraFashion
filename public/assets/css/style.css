@@ -226,7 +226,7 @@ body {
     display: none;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
-    
+
 }
 
 #vlibras.fade-in {
@@ -798,12 +798,12 @@ body {
                 transition: all 0.3s ease;
                 cursor: pointer;
                 position: relative;
-            
+
                 svg {
                     width: 28px;
                     height: 37px;
                 }
-            
+
                 /* Tooltip */
                 &[data-tooltip] {
                     &::after {
@@ -823,14 +823,14 @@ body {
                         opacity: 0;
                         transition: opacity 0.3s;
                     }
-            
+
                     &:hover::after {
                         opacity: 1;
                     }
                 }
             }
 
-            
+
 
             .conteudoInfo {
                 h2 {
@@ -869,6 +869,38 @@ body {
                 fill: var(--corPrincipal);
             }
         }
+    }
+}
+
+/* Tooltip */
+.custom-tooltip {
+    .tooltip-inner {
+        background-color: #333 !important;
+        transition: background-color 0.3s ease, opacity 0.3s ease !important;
+    }
+
+    .tooltip-arrow {
+        &::before {
+            border-top-color: #333 !important;
+            transition: border-top-color 0.3s ease !important;
+        }
+    }
+
+    .tooltip {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+    }
+
+    .tooltip.show {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.3s ease, visibility 0s linear 0s;
+    }
+
+    /* Estilo para a seta */
+    .tooltip.show .tooltip-arrow::before {
+        border-top-color: #333 !important;
     }
 }
 
@@ -3167,136 +3199,6 @@ footer {
 
         }
 
-        .formulario-contato {
-            .container-contato {
-                .titulo {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    position: relative;
-
-                    h2 {
-                        font-family: var(--fonteMontserrat);
-                        font-weight: normal;
-                        font-size: 64px;
-                        position: relative;
-                        z-index: 10;
-                    }
-
-                    .textoFundo {
-                        position: absolute;
-                        z-index: 9;
-                        font-family: var(--fonteQuentin);
-                        color: #C59D5F;
-                        font-size: 128px;
-                        bottom: 10%;
-                        left: 30%;
-                        transform: translateY(13%);
-                    }
-                }
-
-                .form-contato {
-                    display: flex;
-                    gap: 20px;
-                    align-items: flex-start;
-                    justify-content: center;
-                    margin-top: 50px;
-
-                    .form-inputs {
-                        flex: 1;
-
-                        .mb-3 {
-                            margin-bottom: 27px !important;
-
-                            .form-control {
-                                border-radius: 0;
-                                border: 2px solid #000000;
-                                padding: .8rem 1rem;
-                            }
-
-                            select {
-                                border-radius: 0;
-                                border: 2px solid #000000;
-                                padding: .8rem 1rem;
-                            }
-
-
-                        }
-
-                        ::placeholder {
-                            color: #000;
-                            font-family: var(--fonteMontserrat);
-                            font-size: 20px;
-                        }
-                    }
-
-                    :focus {
-                        /* box-shadow: 0 0 0 0.25rem rgba(197, 157, 95, 0.464); */
-                        box-shadow: none;
-                    }
-
-                    .btn-submit {
-                        background-color: #000000;
-                        color: #fff;
-                        border: none;
-                        padding: 0.3rem 3rem;
-                        cursor: pointer;
-                        transition: all 0.3s ease-in-out;
-
-                        &:hover {
-                            background-color: var(--cor4);
-                        }
-                    }
-
-
-
-                    .calendar-container {
-                        width: 300px;
-                        text-align: center;
-                        flex: 1;
-
-                        .calendar-header {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            background-color: #000;
-                            color: #fff;
-                            padding: 10px;
-                            font-weight: bold;
-
-                            #next-month-button,
-                            #prev-month-button {
-                                cursor: pointer;
-                                transition: all 0.3s ease-in-out;
-
-
-                            }
-
-                            &:hover {
-                                fill: var(--corPrincipal);
-                            }
-                        }
-
-                        .calendar-days {
-                            display: grid;
-                            grid-template-columns: repeat(7, 1fr);
-
-                            div {
-                                padding: 10px;
-                                text-align: center;
-                            }
-
-                            .past-day {
-                                color: gray !important;
-                            }
-                        }
-                    }
-
-                }
-            }
-
-        }
 
         /* PG - Loja */
         .topo-loja {
@@ -5533,30 +5435,28 @@ footer {
 
         .form-contato {
             display: flex;
-            gap: 20px;
+            gap: 40px;
             align-items: flex-start;
             justify-content: center;
             margin-top: 50px;
 
             .form-inputs {
-                flex: 1;
-
                 .mb-3 {
-                    margin-bottom: 27px !important;
+                    margin-bottom: 25px !important;
 
                     .form-control {
                         border-radius: 0;
                         border: 2px solid #000000;
                         padding: .8rem 1rem;
+                        width: 525px;
                     }
 
                     select {
                         border-radius: 0;
                         border: 2px solid #000000;
                         padding: .8rem 1rem;
+                        width: 525px;
                     }
-
-
                 }
 
                 ::placeholder {
@@ -5567,7 +5467,6 @@ footer {
             }
 
             :focus {
-                /* box-shadow: 0 0 0 0.25rem rgba(197, 157, 95, 0.464); */
                 box-shadow: none;
             }
 
@@ -5575,18 +5474,18 @@ footer {
                 background-color: #000000;
                 color: #fff;
                 border: none;
-                padding: 0.3rem 3rem;
+                padding: 0.5rem 3rem;
                 cursor: pointer;
                 transition: all 0.3s ease-in-out;
 
                 &:hover {
-                    background-color: var(--cor4);
+                    background-color: var(--corPrincipal);
                 }
             }
 
 
 
-            .calendar-container {
+            /* .calendar-container {
                 width: 300px;
                 text-align: center;
                 flex: 1;
@@ -5626,10 +5525,84 @@ footer {
                         color: gray !important;
                     }
                 }
-            }
+            } */
 
+            .informacao-contato {
+                .informacao-header {
+                    margin-bottom: 30px;
+
+                    h2 {
+                        font-size: 34px;
+                        font-family: var(--fonteMonteserrat);
+                        font-weight: bold;
+                    }
+                }
+
+                .subinfo {
+                    margin-bottom: 20px;
+
+                    p {
+                        font-family: var(--fonteMonteserrat);
+                        font-weight: normal;
+                        font-size: 20px;
+                        line-height: 40px;
+                    }
+                }
+
+                .informacao-conteudo {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 30px;
+
+                    .contatoDesc {
+                        display: flex;
+                        align-items: center;
+                        gap: 20px;
+
+                        .contatoIcon {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 20px;
+                            width: 35px;
+
+                            img {
+                                width: 19px;
+                                height: 26px;
+                            }
+
+
+                        }
+
+                        &:nth-child(2) img {
+                            width: 24px;
+                            height: 26px;
+                        }
+
+                        &:nth-child(3) img {
+                            width: 31px;
+                            height: 21px;
+                        }
+
+                        &:nth-child(3) p {
+                            text-transform: lowercase;
+                        }
+
+                        p{
+                            font-family: var(--fonteMonteserrat);
+                            text-transform: uppercase;
+                            font-weight: normal;
+                            font-size: 20px;
+                            line-height: 25px;
+                        }
+                    }
+
+                }
+
+            }
         }
     }
+
 
 }
 
@@ -6248,8 +6221,6 @@ footer {
         }
     }
 }
-
-
 
 /* PG - Login */
 .login {
