@@ -245,15 +245,6 @@ $('.slide-card').slick({
     ]
 });
 
-// tippy.js
-tippy('#mySpan', {
-    content: 'Este é o tooltip!',
-    placement: 'bottom',
-    arrow: true,
-    interactive: true,
-    trigger: 'focus',
-    theme: 'light',
-});
 
 // counterUp - Contador
 const counterUp = window.counterUp.default;

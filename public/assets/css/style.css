@@ -195,6 +195,10 @@ img {
     height: 130px;
 }
 
+.of-height-150 {
+    height: 150px;
+}
+
 .of-height-200 {
     height: 200px;
 }
@@ -1388,8 +1392,8 @@ body {
                     .card-slide {
                         .card {
                             padding: 40px;
-                            width: 450px;
-                            height: 200px;
+                            width: 480px;
+                            height: 281px;
                             background: #fff;
                             border-radius: 50px 50px 10px 50px;
 
@@ -1451,7 +1455,7 @@ body {
                                 display: flex;
                                 align-items: center;
                                 position: absolute;
-                                right: -1%;
+                                right: -4%
                             }
                         }
                     }
@@ -1463,6 +1467,7 @@ body {
                         display: block;
                         width: 100%;
                         padding: 0;
+                        z-index: 10;
                         margin: 0;
                         list-style: none;
                         text-align: center;
@@ -1494,8 +1499,8 @@ body {
                                     position: absolute;
                                     top: 0;
                                     left: 0;
-                                    width: 10px;
-                                    height: 10px;
+                                    width: 14px;
+                                    height: 14px;
                                     border: 1px solid #F0AF4C;
                                     border-radius: 50%;
                                     text-align: center;
@@ -7457,17 +7462,20 @@ footer {
                 .cards-depoimento {
                     .slide-card {
                         gap: 30px;
-                        overflow: hidden;
 
                         .card-slide {
                             padding: 10px;
 
                             .card {
                                 padding: 40px;
-                                width: 400px;
+                                width: 480px;
                                 background: #fff;
                                 border-radius: 50px 50px 10px 50px;
                             }
+                        }
+
+                        .slick-dots{
+                            bottom: -40%;
                         }
                     }
                 }
@@ -9339,39 +9347,7 @@ footer {
         padding: 0 10px;
     }
 
-    .depoimento {
-        .site {
-            .container-depoimento {
-                .titulo-depoimento {
-                    margin: 20px;
-
-                    .textoFundo {
-                        font-size: 140px;
-                        bottom: -72%;
-                    }
-                }
-
-                .cards-depoimento {
-                    .slide-card {
-                        gap: 30px;
-                        overflow: hidden;
-
-                        .card-slide {
-                            padding: 10px;
-
-                            .card {
-                                padding: 40px;
-                                width: 400px;
-                                background: #fff;
-                                border-radius: 50px 50px 10px 50px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-    }
+    
 
     footer {
 
