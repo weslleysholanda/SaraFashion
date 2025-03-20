@@ -12,6 +12,8 @@
 </head>
 
 <body>
+    <!-- Preloader -->
+    <?php require_once('templates/preloader.php') ?>
     <!-- Header -->
     <?php  require_once('templates/topo-loja.php')?>
 

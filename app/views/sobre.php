@@ -49,7 +49,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <!-- biblioteca CountUp -->
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js"> </script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="vendors/js/slick.js"></script>
     <script src="vendors/js/slick.min.js"></script>
     <!-- bootstrap -->

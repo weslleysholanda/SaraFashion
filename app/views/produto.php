@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    
     <!-- Topo Loja -->
     <?php require_once('templates/topo-loja.php') ?>
     <!-- Banner/header Produto -->
@@ -34,8 +35,10 @@
     <a id="backtop" href="#" class="ativo">
         <span class="seta"></span>
     </a>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://kit.fontawesome.com/89bd08d7e0.js" crossorigin="anonymous"></script>
     <script src="http://localhost/sarafashion/public/vendors/js/lightbox.min.js"></script>
+    <script src="assets/js/script.js"></script>
     <script>
         //contador
         const valorSpan = document.getElementById('valor');

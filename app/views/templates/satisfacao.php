@@ -1,7 +1,7 @@
 <div class="of-height-30"></div>
 <section class="satisfacao">
     <div class="site">
-        <div class="container">
+        <div class="container-satisfacao">
             <div class="satiscacao-item">
                 <div class="satisfacao-content  text-center">
                     <h2 class="counter">2,500</h2>

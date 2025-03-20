@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../public/assets/css/style.css">
 </head>
 <body>
+    <!-- Preloader -->
+    <?php require_once('templates/preloader.php') ?>
     <!-- topo -->
     <?php require_once('templates/topo.php') ?>
     <!-- banner - 404 -->
@@ -21,6 +23,8 @@
     <!-- footer -->
    <?php require_once('templates/footer.php') ?>
 
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
    <script src="https://kit.fontawesome.com/89bd08d7e0.js" crossorigin="anonymous"></script>
+   <script src="assets/js/script.js"></script>
 </body>
 </html>

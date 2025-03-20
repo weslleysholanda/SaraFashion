@@ -910,9 +910,15 @@ body {
 
 /* satisfação */
 .satisfacao {
-    .container {
+    .container-satisfacao {
         display: flex;
         justify-content: space-between;
+        max-width: 900px;
+        margin: 40px auto;
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
 
         .satiscacao-item {
             display: flex;
@@ -3066,78 +3072,6 @@ footer {
             }
         }
 
-        /* .newsletter {
-    .container-newsletter {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 60px;
-
-        .titulo-newsletter {
-            position: relative;
-            text-align: center;
-
-            h2 {
-                font-family: var(--fonteQuando);
-                font-weight: normal;
-                font-size: 32px;
-                color: #505050;
-                position: relative;
-                z-index: 10;
-            }
-
-            .textoFundo {
-                position: absolute;
-                top: 10%;
-                width: 100%;
-                left: -27%;
-                transform: translateY(-70%);
-                font-family: var(--fonteQuentin);
-                color: #C59D5F;
-                font-size: 128px;
-                z-index: 9;
-            }
-        }
-
-        .newsletter-email {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 500px;
-            border: 1px solid #000;
-            overflow: hidden;
-
-            input[type="email"] {
-                flex: 1;
-                padding: 10px;
-                border: none;
-                font-size: 16px;
-                color: #555;
-            }
-
-            input[type="email"]::placeholder {
-                color: #5F5F5F;
-            }
-
-            button {
-                padding: 10px 20px;
-                background: #000;
-                color: #fff;
-                border: none;
-                font-size: 16px;
-                cursor: pointer;
-                transition: background 0.3s ease;
-            }
-
-            button:hover {
-                background: var(--corPrincipal);
-            }
-        }
-    }
-} */
-
         /* PG - CONTATO */
         .leaflet-container {
             background: none !important;
@@ -5271,78 +5205,6 @@ footer {
     }
 }
 
-/* .newsletter {
-    .container-newsletter {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 60px;
-
-        .titulo-newsletter {
-            position: relative;
-            text-align: center;
-
-            h2 {
-                font-family: var(--fonteQuando);
-                font-weight: normal;
-                font-size: 32px;
-                color: #505050;
-                position: relative;
-                z-index: 10;
-            }
-
-            .textoFundo {
-                position: absolute;
-                top: 10%;
-                width: 100%;
-                left: -27%;
-                transform: translateY(-70%);
-                font-family: var(--fonteQuentin);
-                color: #C59D5F;
-                font-size: 128px;
-                z-index: 9;
-            }
-        }
-
-        .newsletter-email {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 500px;
-            border: 1px solid #000;
-            overflow: hidden;
-
-            input[type="email"] {
-                flex: 1;
-                padding: 10px;
-                border: none;
-                font-size: 16px;
-                color: #555;
-            }
-
-            input[type="email"]::placeholder {
-                color: #5F5F5F;
-            }
-
-            button {
-                padding: 10px 20px;
-                background: #000;
-                color: #fff;
-                border: none;
-                font-size: 16px;
-                cursor: pointer;
-                transition: background 0.3s ease;
-            }
-
-            button:hover {
-                background: var(--corPrincipal);
-            }
-        }
-    }
-} */
-
 /* PG - CONTATO */
 .leaflet-container {
     background: none !important;
@@ -5817,52 +5679,6 @@ footer {
 
 .topo-loja.fixo {
     display: none;
-}
-
-.banner-loja {
-    .banner-titulo {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 2px solid var(--corPrincipal);
-        padding: 5px;
-
-        h1 {
-            font-family: var(--fonteDancingScript);
-            font-weight: normal;
-            font-size: 45px;
-            color: #000;
-            margin: 0;
-        }
-
-        .tag {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            a {
-                font-family: var(--fonteMontserrat);
-                text-decoration: none;
-                color: #000000;
-                font-weight: bold;
-                font-size: 15px;
-                text-transform: uppercase;
-                transition: .2s all ease;
-
-                &:hover {
-                    color: var(--corPrincipal);
-                }
-            }
-
-            span {
-                font-family: var(--fonteMontserrat);
-                font-weight: 500;
-                color: #000000;
-                font-size: 15px;
-                text-transform: uppercase;
-            }
-        }
-    }
 }
 
 .products-shop {
@@ -7485,7 +7301,6 @@ footer {
     }
 
     footer {
-
         .site {
             .container-footer {
                 justify-content: center;
@@ -7553,6 +7368,19 @@ footer {
         }
     }
 
+    .galeria {
+        .site {
+            .container-galeria {
+                .flex-galeria {
+                    .item-galeria {
+                        flex: 1 1 calc(50% - 10px);
+                        max-width: calc(50% - 10px);
+                    }
+                }
+            }
+        }
+    }
+
     .desejados {
         padding: 10px;
 
@@ -7583,7 +7411,6 @@ footer {
             }
         }
     }
-
     /* PG - Contato */
     .formulario-contato {
         .container-contato {
@@ -7679,7 +7506,6 @@ footer {
             left: 0;
             width: 100%;
             height: 100%;
-            /*#0d131b*/
             background-color: #000000;
             flex-direction: column;
             justify-content: center;
@@ -7772,6 +7598,7 @@ footer {
 
 /* responsividade 768 */
 @media (max-width:768px) {
+    /* Home */
     .topo {
         .menu {
             position: fixed;
@@ -7779,7 +7606,6 @@ footer {
             left: 0;
             width: 100%;
             height: 100%;
-            /*#0d131b*/
             background-color: #000000;
             flex-direction: column;
             justify-content: center;
@@ -7913,7 +7739,7 @@ footer {
 
     .satisfacao {
         .site {
-            .container {
+            .container-satisfacao {
                 flex-direction: column;
                 align-items: center;
                 gap: 20px;
@@ -8078,8 +7904,7 @@ footer {
         }
 
     }
-
-    /* fim - index */
+    /* Home - Fim */
 
     /* PG - Sobre */
     .banner-sobre {
@@ -8152,6 +7977,21 @@ footer {
         }
     }
 
+    .galeria {
+        .site {
+            .container-galeria {
+                .flex-galeria {
+                    .item-galeria {
+                        flex: 1 1 calc(50% - 10px);
+
+                        max-width: calc(50% - 10px);
+                    }
+                }
+            }
+        }
+    }
+    /* Sobre - Fim */
+
     /* PG Servico */
     .banner-servico {
         .banner-titulo {
@@ -8208,6 +8048,12 @@ footer {
         }
     }
 
+    .of-height-150{
+        display: none;
+    }
+
+    /* Sobre - Fim */
+
     /* PG - Contato */
     .formulario-contato {
         .site {
@@ -8218,9 +8064,12 @@ footer {
                 align-items: center;
 
                 .form-contato {
-                    .calendar-container {
-                        .calendar-header {
-                            width: 430px;
+                    .informacao-contato {
+                        max-width: 500px;
+                        .informacao-header {
+                            h2{
+                                font-size: 33px;
+                            }
                         }
                     }
                 }
@@ -8241,12 +8090,14 @@ footer {
                     }
 
                     .btn-submit {
-                        width: 430px;
+                        width: 528px;
                     }
                 }
             }
         }
     }
+
+    /* Contato - Fim */
 
     /* PG - Login */
     .login {
@@ -8257,7 +8108,6 @@ footer {
     .info-box {
         width: 100%;
     }
-
 
     /* PG - error 404 */
     .page-not-found {
@@ -8283,7 +8133,6 @@ footer {
     }
 
     /* PG - Produto Unico */
-
     .Product {
         .site {
             .product-container {
@@ -8345,7 +8194,6 @@ footer {
             left: 0;
             width: 100%;
             height: 100%;
-            /*#0d131b*/
             background-color: #000000;
             flex-direction: column;
             justify-content: center;
@@ -8435,7 +8283,6 @@ footer {
             left: 0;
             width: 100%;
             height: 100%;
-            /*#0d131b*/
             background-color: #000000;
             flex-direction: column;
             justify-content: center;
@@ -8749,17 +8596,13 @@ footer {
         }
     }
 
-    footer {
+    .galeria {
         .site {
-            .container-footer {
-
-                .right-content-footer,
-                .left-content-footer {
-                    flex: 0 0 80%;
-                    flex-direction: column;
-
-                    .footer-map {
-                        margin-top: 20px;
+            .container-galeria {
+                .flex-galeria {
+                    .item-galeria {
+                        flex: 1 1 100%;
+                        max-width: 80%;
                     }
                 }
             }
@@ -8888,6 +8731,28 @@ footer {
                         font-size: 110px;
                     }
                 }
+
+                .form-contato{
+                    .form-inputs{
+                        .mb-3{
+                            .form-control{
+                                width: 450px;
+                            }
+                        }
+                    }
+
+                    .informacao-contato{
+                        .informacao-header{
+                            h2{
+                                font-size: 30px;
+                            }
+                        }
+                    }
+
+                    .btn-submit{
+                        width: 450px;
+                    }
+                }
             }
         }
     }
@@ -8933,7 +8798,6 @@ footer {
             left: 0;
             width: 100%;
             height: 100%;
-            /*#0d131b*/
             background-color: #000000;
             flex-direction: column;
             justify-content: center;
@@ -9072,1859 +8936,6 @@ footer {
                     .flex {
                         flex-direction: column;
                         align-items: center;
-                    }
-                }
-            }
-
-        }
-    }
-
-    /* PG - Error 404 */
-    .banner-404 {
-        .site {
-            .container {
-                .container-conteudo {
-                    .header-left {
-                        .page-header-box {
-                            h1 {
-                                font-size: 30px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .page-not-found {
-        .container {
-            .row {
-                .col-md-12 {
-                    .page-not-found-box {
-                        h3 {
-                            font-size: 40px;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /* PG - Produto Unico */
-    .banner-produto {
-        flex-direction: column;
-
-        h1 {
-            font-size: 30px;
-        }
-    }
-
-    .Product {
-        .site {
-            .product-container {
-                flex-direction: column;
-
-                .product-details {
-                    .product-details-info {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-
-                        .product-description {
-                            text-align: center;
-                        }
-
-                    }
-                }
-
-                .product-images {
-                    flex-direction: column-reverse;
-                    align-items: center;
-
-                    .thumbnail-container {
-                        flex-direction: unset;
-                        flex-wrap: wrap;
-                        justify-content: center;
-                    }
-                }
-            }
-
-
-        }
-    }
-
-    .tabs-section {
-        .site {
-            .tabs {
-                align-items: center;
-
-                .tab {
-                    padding: 15px 25.5px;
-
-                    .active {
-                        display: flex;
-                        align-items: center;
-                        font-size: 15px;
-                        font-weight: 500;
-                    }
-                }
-            }
-
-            .tabs-show {
-                padding: 5px;
-            }
-        }
-    }
-
-    .related-products {
-        .site {
-            .products {
-                flex-direction: column;
-
-                .product {
-                    max-width: 600px;
-
-                    img {
-                        width: 300px;
-                    }
-                }
-            }
-        }
-
-    }
-
-    /* PG - Carrinho */
-    .container-loja {
-        .cart-empty {
-            max-width: 365px;
-        }
-    }
-
-}
-
-
-/* Responsividade 1024 */
-@media (max-width:1024px) {
-    .topo {
-        .menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /*#0d131b*/
-            background-color: #000000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s ease-in-out;
-
-            &.active {
-                transform: translateY(0);
-                opacity: 1;
-                display: flex;
-                flex-direction: row;
-                gap: 20px;
-            }
-
-            ul {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .menu-icons {
-                display: flex;
-            }
-
-            .user {
-                display: flex;
-            }
-        }
-
-        .user {
-            display: none;
-        }
-
-        .menu-toggle {
-            display: flex;
-            margin-right: 5px;
-        }
-    }
-
-    .topo.fixo {
-        display: block;
-        position: fixed;
-        background: #000000;
-        width: 100%;
-        top: 0;
-        left: 0;
-        height: 80px;
-        transition: all 0.3s ease-in-out;
-
-        .site {
-            .logo {
-                margin-left: 5px;
-            }
-        }
-    }
-
-    .banner {
-        .slide-banner {
-            .banner-item {
-                img {
-                    width: 100%;
-                }
-
-                .banner-titulo {
-                    width: 100%;
-
-                    .titulo {
-                        margin-right: -10px;
-                    }
-
-                    h1 {
-                        font-size: 85px;
-                    }
-
-                    h2 {
-                        font-size: 50px;
-                    }
-
-                    h3 {
-                        font-size: 14px;
-                    }
-
-                    img {
-                        width: 248px;
-                        height: 40px;
-                    }
-                }
-            }
-        }
-    }
-
-    .horarioFuncionamento {
-        .horarioServico {
-            .titulo {
-                margin-right: -10px;
-            }
-        }
-    }
-
-    .nosso-Trabalho {
-        .container-trabalho {
-            flex-direction: column;
-            padding: 50px;
-
-            .primary-info {
-                padding: 10px;
-                width: 100%;
-
-                .titulo {
-                    .textoFundo {
-                        bottom: -14%;
-                        left: 53%;
-                        opacity: 40%;
-                        font-size: 150px;
-                    }
-
-                    h2:first-of-type {
-                        font-size: 14px;
-                    }
-
-                }
-            }
-
-            .secundary-info {
-                display: none;
-            }
-        }
-    }
-
-    .servicos {
-        padding: 0 10px;
-    }
-
-    
-
-    footer {
-
-        .site {
-            .container-footer {
-                justify-content: center;
-                gap: 30px;
-
-
-                .right-content-footer,
-                .left-content-footer {
-                    flex: 0 0 80%;
-                }
-            }
-        }
-
-    }
-
-    /* PG - Sobre */
-    .nossa-historia {
-        .site {
-            .container-historia-right {
-                padding: 0 10px;
-
-                .right-info {
-                    h2 {
-                        font-size: 33px;
-                    }
-
-                    .right-conteudo ul {
-                        li {
-                            font-size: 18px;
-                            font-weight: bold;
-                        }
-                    }
-                }
-            }
-
-
-        }
-
-        .container-historia-left {
-            padding: 10px;
-        }
-    }
-
-    .nosso-objetivo {
-        .site {
-            .container-objetivo {
-                padding: 10px;
-
-                .list-objetivo {
-                    .objetivo-card {
-                        .objetivo-conteudo {
-                            h3 {
-                                font-weight: bold;
-                                margin-top: 5px;
-                            }
-
-                            p {
-                                font-size: 18px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .galeria {
-        .site {
-            .container-galeria {
-                .flex-galeria {
-                    .item-galeria {
-                        flex: 1 1 calc(50% - 10px);
-                        max-width: calc(50% - 10px);
-                    }
-                }
-            }
-        }
-    }
-
-
-    .desejados {
-        padding: 10px;
-
-        .site {
-
-            .container-primary-left {
-                .titulo-desejados {
-                    .textoFundo-servico {
-                        font-size: 100px;
-                    }
-
-                    h2 {
-                        font-size: 32px;
-                    }
-                }
-            }
-        }
-    }
-
-    .vale-presente {
-        padding: 10px;
-
-        .site {
-            .conteudo-vale-right {
-                h3 {
-                    font-size: 30px;
-                }
-            }
-        }
-    }
-
-    /* PG - Contato */
-    .formulario-contato {
-        .container-contato {
-            padding: 10px;
-
-            .site {
-                .titulo {
-                    .textoFundo {
-                        font-size: 125px;
-                        bottom: 10%;
-                        left: 29%;
-                    }
-                }
-            }
-        }
-    }
-
-    /* PG - Loja */
-    .products-shop {
-        .site {
-            flex-direction: column;
-
-            .container-conteudo-loja {
-                .product-list {
-                    justify-content: center;
-                    margin-bottom: 20px;
-                }
-
-                .paginacao {
-                    margin-bottom: 80px;
-                }
-            }
-
-            .container-aside {
-                display: flex;
-                justify-content: center;
-                order: 2;
-
-                .sidebar {
-                    .search-box {
-                        max-width: none;
-                        width: 620px;
-                        margin-bottom: 30px;
-                    }
-
-                    .filter-widget {
-                        .slider-wrap {
-                            .slider {
-                                width: 620px;
-                            }
-                        }
-                    }
-                }
-
-            }
-
-
-
-        }
-    }
-
-    /* PG - LOGIN Cliente */
-    .container {
-        max-width: 100%;
-        flex-direction: column;
-
-        .sidebar {
-            width: 100%;
-            border-right: none;
-            border-bottom: 0.5px solid #909090;
-        }
-
-        .content {
-            width: 100%;
-        }
-    }
-
-    /* PG - error 404 */
-    .banner-404 {
-        .site {
-            .container {
-                .container-conteudo {
-                    justify-content: space-around;
-                }
-            }
-        }
-    }
-
-    .topo-loja {
-        .menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /*#0d131b*/
-            background-color: #000000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s ease-in-out;
-
-            &.active {
-                transform: translateY(0);
-                opacity: 1;
-                display: flex;
-            }
-
-            ul {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-
-                li {
-                    a {
-                        color: var(--corLetras);
-
-                        &.ativo {
-                            color: var(--corLetras);
-                            border-bottom: 1px solid #ffffff;
-                        }
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            left: 0;
-                            bottom: 0;
-                            width: 0;
-                            height: 1px;
-                            background-color: #ffffff;
-                            transition: width 0.3s ease-in-out;
-                        }
-
-                        &:hover::after {
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-
-            .menu-icons {
-                display: flex;
-                /* Exibe no responsivo */
-            }
-        }
-
-        /* Ícones na barra principal ficam ocultos */
-        .user {
-            display: none;
-        }
-
-        .menu-toggle {
-            display: flex;
-            margin-right: 5px;
-        }
-    }
-
-    .topo-loja.fixo {
-        display: block;
-        position: fixed;
-        background: #000000;
-        width: 100%;
-        top: 0;
-        left: 0;
-        height: 80px;
-        transition: all 0.3s ease-in-out;
-
-        .site {
-            .logo {
-                margin-left: 5px;
-
-            }
-        }
-
-        .menu-toggle {
-            span {
-                background-color: #ffffff;
-            }
-        }
-
-
-    }
-}
-
-/* responsividade 768 */
-@media (max-width:768px) {
-    .topo {
-        .menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /*#0d131b*/
-            background-color: #000000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s ease-in-out;
-
-            &.active {
-                transform: translateY(0);
-                opacity: 1;
-                display: flex;
-                flex-direction: row;
-                gap: 20px;
-            }
-
-            ul {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .menu-icons {
-                display: flex;
-            }
-
-            .user {
-                display: flex;
-            }
-        }
-
-        .user {
-            display: none;
-        }
-
-        .menu-toggle {
-            display: flex;
-            margin-right: 5px;
-        }
-    }
-
-    .topo.fixo {
-        display: block;
-        position: fixed;
-        background: #000000;
-        width: 100%;
-        top: 0;
-        left: 0;
-        height: 80px;
-        transition: all 0.3s ease-in-out;
-
-        .site {
-            .logo {
-                margin-left: 5px;
-            }
-        }
-    }
-
-    .banner {
-        .slide-banner {
-            .banner-item {
-                img {
-                    width: 100%;
-                }
-
-                .banner-titulo {
-                    width: 100%;
-
-                    .titulo {
-                        margin-right: -10px;
-                    }
-
-                    h1 {
-                        font-size: 75px;
-                    }
-
-                    h2 {
-                        font-size: 45px;
-                    }
-
-                    h3 {
-                        font-size: 13px;
-                    }
-
-                    img {
-                        width: 215px;
-                        height: 35px;
-                    }
-                }
-            }
-        }
-    }
-
-    .horarioFuncionamento {
-        .site {
-            .horarioServico {
-                flex-direction: column;
-            }
-
-            .tabelaHorario {
-                margin-top: 20px;
-            }
-        }
-    }
-
-    .quemSomos {
-        .site {
-            .titulo {
-                margin-bottom: 40px;
-            }
-
-            .sobre {
-                flex-direction: column-reverse;
-
-                .sobreImg {
-                    display: flex;
-                    justify-content: center;
-                }
-
-                .conteudoInfo {
-                    h2 {
-                        font-weight: bold;
-                    }
-
-                    p {
-                        font-size: 17px;
-                    }
-                }
-            }
-        }
-    }
-
-    .satisfacao {
-        .site {
-            .container {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-
-                .satiscacao-item {
-
-                    .satisfacao-content {
-                        .hairIcon {
-                            display: none;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .servicos {
-        .site {
-            .container-servicos {
-                flex-direction: column;
-                align-items: center;
-
-                .middle-service {
-                    order: 2;
-                }
-
-                &.container-left {
-                    margin-right: -25px;
-                }
-
-                .container-Right {
-                    order: 1;
-
-                    .container-Right-Conteudo {
-                        .buttonIcon {
-                            order: 2;
-                        }
-
-                        .container-Right-Info {
-                            text-align: end;
-                            flex: 1;
-                        }
-                    }
-                }
-
-            }
-        }
-    }
-
-    .marcas-confiaveis {
-        .site {
-            .marcas-slider {
-                img {
-                    width: 150px;
-                }
-            }
-        }
-    }
-
-    .depoimento {
-        .site {
-            .container-depoimento {
-                .titulo-depoimento {
-                    h2 {
-                        font-size: 60px;
-                    }
-
-                    .textoFundo {
-                        font-size: 110px;
-                        bottom: -56%;
-                    }
-                }
-
-                .cards-depoimento {
-                    .slide-card {
-                        gap: 20px;
-
-                        .card-slide {
-                            .card {
-                                width: 280px;
-
-                                .cabecalho-card {
-                                    position: relative;
-
-                                    img {
-                                        width: 70px;
-                                        height: 70px;
-                                    }
-
-                                    .aspas {
-                                        position: absolute;
-                                        left: 75%;
-                                        bottom: 50%;
-                                        z-index: 9;
-                                        opacity: 0.2;
-                                    }
-
-                                    .cabecalho-info {
-                                        h3 {
-                                            position: relative;
-                                            font-size: 21px;
-                                            z-index: 10;
-                                        }
-                                    }
-                                }
-
-                                .card-info-depoimento {
-                                    p {
-                                        text-align: start;
-                                        margin-top: 20px;
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-                }
-
-            }
-        }
-    }
-
-    .loja {
-        .site {
-            .container-loja {
-                flex-direction: column;
-                margin-bottom: 40px;
-
-                .container-img {
-                    margin-bottom: 40px;
-
-                    img {
-                        width: 80%;
-                    }
-                }
-            }
-        }
-    }
-
-    footer {
-        padding: 30px 10px;
-
-        .site {
-            .container-footer {
-                justify-content: center;
-                gap: 30px;
-
-                .left-content-footer {
-                    .footer-info {
-                        .titulo-info {
-                            margin-left: 40px;
-                        }
-
-                        .info-footer {
-                            >div {
-                                justify-content: space-around;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-    }
-
-    /* fim - index */
-
-    /* PG - Sobre */
-    .banner-sobre {
-        img {
-            width: 100%;
-        }
-
-        .banner-titulo {
-            top: 25%;
-            margin-left: 25%;
-
-            h2 {
-                font-size: 75px;
-            }
-
-            h1 {
-                font-size: 65px;
-            }
-        }
-    }
-
-    .nossa-historia {
-        .site {
-            .container-principal {
-                flex-direction: column;
-                justify-content: center;
-                width: 100%;
-
-                .container-historia-right {
-                    width: 90%;
-                    flex: 1;
-
-                    .titulo-historia {
-                        .textoFundo {
-                            left: -3%;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .nosso-objetivo {
-        .site {
-            .container-objetivo {
-                .list-objetivo {
-                    flex-direction: column;
-                    align-items: center;
-                }
-            }
-        }
-    }
-
-    .certificados {
-        height: 100%;
-
-        .site {
-            .container-certificado {
-                .list-certificados {
-                    flex-direction: column;
-                }
-            }
-        }
-    }
-
-    .galeria {
-        .site {
-            .container-galeria {
-                .flex-galeria {
-                    .item-galeria {
-                        flex: 1 1 calc(50% - 10px);
-
-                        max-width: calc(50% - 10px);
-                    }
-                }
-            }
-        }
-    }
-
-    /* PG Servico */
-    .banner-servico {
-        .banner-titulo {
-            .textoFundo {
-                font-size: 85px;
-            }
-
-            h1 {
-                font-size: 59px;
-            }
-        }
-    }
-
-    .desejados {
-        .site {
-            flex-direction: column;
-        }
-    }
-
-    .vale-presente {
-        .site {
-            flex-direction: column;
-
-            .conteudo-vale-right {
-                margin-top: 40px;
-                text-align: center;
-                align-items: center;
-                width: 80%;
-
-            }
-        }
-    }
-
-    .estetica {
-        .site {
-            .container-estetica {
-                .titulo-estetica {
-                    .textoFundo {
-                        white-space: nowrap;
-                        word-break: keep-all;
-                    }
-                }
-
-                .list-estetica {
-                    flex-direction: column;
-                    align-items: center;
-
-                    .card-estetica {
-                        max-width: 425px;
-                    }
-                }
-            }
-
-        }
-    }
-
-    /* PG - Contato */
-    .formulario-contato {
-        .site {
-            .container-contato {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                .form-contato {
-                    .calendar-container {
-                        .calendar-header {
-                            width: 430px;
-                        }
-                    }
-                }
-
-                .titulo {
-                    .textoFundo {
-                        left: -6%;
-                        transform: translateY(10%);
-                    }
-                }
-
-                .form-contato {
-                    flex-direction: column-reverse;
-                    justify-content: center;
-
-                    .form-inputs {
-                        width: 430px;
-                    }
-
-                    .btn-submit {
-                        width: 430px;
-                    }
-                }
-            }
-        }
-    }
-
-    /* PG - Login */
-    .login {
-        padding: 10px;
-    }
-
-    /* PG - Login - Cliente */
-    .info-box {
-        width: 100%;
-    }
-
-
-    /* PG - error 404 */
-    .page-not-found {
-
-        .container {
-            .row {
-                .col-md-12 {
-                    .page-not-found-box {
-                        .not-found-image {
-                            img {
-                                width: 95%;
-                            }
-                        }
-
-                        p {
-                            font-size: 17px;
-                        }
-                    }
-                }
-            }
-        }
-
-    }
-
-    /* PG - Produto Unico */
-
-    .Product {
-        .site {
-            .product-container {
-                flex-direction: column;
-
-                .product-details {
-                    .product-details-info {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-
-                        .product-description {
-                            text-align: center;
-                        }
-
-                    }
-                }
-            }
-
-
-        }
-    }
-
-    .tabs-section {
-        .site {
-            .tabs {
-                justify-content: center;
-            }
-
-            .tabs-show {
-                padding: 5px;
-            }
-        }
-    }
-
-    .related-products {
-        .site {
-            .products {
-                flex-wrap: wrap;
-                justify-content: flex-start;
-
-                .product {
-                    flex: 1 1 calc(50% - 20px);
-                    max-width: calc(50% - 20px);
-
-                    img {
-                        width: 285px;
-                    }
-                }
-            }
-        }
-
-    }
-
-    .topo-loja {
-        .menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /*#0d131b*/
-            background-color: #000000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s ease-in-out;
-
-            &.active {
-                transform: translateY(0);
-                opacity: 1;
-                display: flex;
-            }
-
-            ul {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-
-                li {
-                    a {
-                        &.ativo {
-                            color: var(--corLetras);
-                            border-bottom: 1px solid #ffffff;
-                        }
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            left: 0;
-                            bottom: 0;
-                            width: 0;
-                            height: 1px;
-                            background-color: #ffffff;
-                            transition: width 0.3s ease-in-out;
-                        }
-
-                        &:hover::after {
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-
-            .menu-icons {
-                display: flex;
-                /* Exibe no responsivo */
-            }
-        }
-
-        /* Ícones na barra principal ficam ocultos */
-        .user {
-            display: none;
-        }
-
-        .menu-toggle {
-            display: flex;
-            margin-right: 5px;
-        }
-    }
-
-    .topo-loja.fixo {
-        display: block;
-        position: fixed;
-        background: #000000;
-        width: 100%;
-        top: 0;
-        left: 0;
-        height: 80px;
-        transition: all 0.3s ease-in-out;
-
-        .site {
-            .logo {
-                margin-left: 5px;
-            }
-        }
-    }
-
-
-}
-
-@media(max-width:468px) {
-    .topo {
-        .menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /*#0d131b*/
-            background-color: #000000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s ease-in-out;
-
-            &.active {
-                transform: translateY(0);
-                opacity: 1;
-                display: flex;
-                flex-direction: row;
-                gap: 20px;
-            }
-
-            ul {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .menu-icons {
-                display: flex;
-            }
-
-            .user {
-                display: flex;
-            }
-        }
-
-        .user {
-            display: none;
-        }
-
-        .menu-toggle {
-            display: flex;
-            margin-right: 5px;
-        }
-    }
-
-    .topo.fixo {
-        display: block;
-        position: fixed;
-        background: #000000;
-        width: 100%;
-        top: 0;
-        left: 0;
-        height: 80px;
-        transition: all 0.3s ease-in-out;
-
-        .site {
-            .logo {
-                margin-left: 5px;
-            }
-        }
-    }
-
-    .banner {
-        .slide-banner {
-            .banner-item {
-                width: 100%;
-
-                img {
-                    width: 100%;
-                    height: 468px;
-                }
-
-                .banner-titulo {
-                    h1 {
-                        font-size: 45px;
-                    }
-
-                    h2 {
-                        font-size: 40px;
-                    }
-
-                    img {
-                        width: 186px;
-                        height: 30px;
-                    }
-                }
-            }
-        }
-    }
-
-    .horarioFuncionamento {
-        .horarioServico {
-            .titulo {
-                h2 {
-                    font-size: 2.0rem;
-                }
-
-                .textoFundo {
-                    font-size: 120px;
-                }
-            }
-        }
-    }
-
-    .quemSomos {
-        .site {
-            .titulo {
-                h2 {
-                    font-size: 40px;
-                }
-
-                .tituloFooter {
-                    .linha {
-                        width: 150px;
-                    }
-                }
-
-                .paragrafo {
-                    p {
-                        font-size: 17px;
-                    }
-
-                }
-            }
-
-            .sobre {
-                .sobreInfo {
-                    .sobreConteudo {
-                        padding: 5px;
-                    }
-                }
-            }
-        }
-    }
-
-    .satisfacao {
-        .site {
-            .container {
-                margin-left: -45px;
-            }
-        }
-    }
-
-    .nosso-Trabalho {
-        .site {
-            .container-trabalho {
-                .primary-info {
-                    .titulo {
-                        .textoFundo {
-                            font-size: 125px;
-                        }
-
-                        h2:last-of-type {
-                            font-size: 42px;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .loja {
-        .container-loja {
-            .container-loja-conteudo {
-                .titulo-loja {
-                    .textoFundo {
-                        font-size: 140px;
-                    }
-                }
-            }
-        }
-    }
-
-    .depoimento {
-        .site {
-            .container-depoimento {
-                .titulo-depoimento {
-                    .textoFundo {
-                        font-size: 80px;
-                        bottom: 10%;
-                    }
-
-                    h2 {
-                        font-size: 55px;
-                    }
-                }
-
-                .cards-depoimento {
-                    .slide-card {
-                        .card-slide {
-                            .card {
-                                width: 360px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    footer {
-        .site {
-            .container-footer {
-
-                .right-content-footer,
-                .left-content-footer {
-                    flex: 0 0 80%;
-                    flex-direction: column;
-
-                    .footer-map {
-                        margin-top: 20px;
-                    }
-                }
-            }
-        }
-    }
-
-    /* PG - Sobre */
-    .banner-sobre {
-
-        img {
-            height: 450px
-        }
-
-    }
-
-    .nossa-historia {
-        .site {
-            .container-principal {
-                .container-historia-left {
-                    .primary-left-image {
-                        width: 248px;
-
-                        .reveal {
-                            img {
-                                width: 248px;
-                                height: 358px;
-                            }
-
-
-                        }
-                    }
-
-                    .secundary-right {
-                        gap: 25px;
-
-                        .texto-tempo {
-                            padding: 0;
-
-                            h2 {
-                                font-size: 23px;
-
-                            }
-
-                            h3 {
-                                font-size: 50px;
-                            }
-                        }
-
-                        .secundary-image {
-                            img {
-                                width: 173px;
-                                height: 259px;
-                            }
-                        }
-                    }
-                }
-
-
-            }
-        }
-
-    }
-
-    .certificados {
-        .site {
-            .container-certificado {
-                .titulo-certificado {
-                    h2 {
-                        font-size: 45px;
-                    }
-
-                    .textoFundo {
-                        font-size: 65px
-                    }
-                }
-            }
-        }
-    }
-
-    .galeria {
-        .site {
-            .container-galeria {
-                .flex-galeria {
-                    .item-galeria {
-                        flex: 1 1 100%;
-                        max-width: 80%;
-                    }
-                }
-            }
-        }
-    }
-
-    footer {
-        .site {
-            .container-footer {
-
-                .right-content-footer,
-                .left-content-footer {
-                    flex: 0 0 80%;
-                    flex-direction: column;
-
-                    .footer-map {
-                        margin-top: 20px;
-                    }
-                }
-            }
-        }
-    }
-
-    /* PG - Servico */
-    .banner-servico {
-        .banner-titulo {
-            .textoFundo {
-                font-size: 65px;
-
-            }
-
-            h1 {
-                font-size: 40px;
-            }
-        }
-
-        img {
-            width: 100%;
-            height: 468px;
-
-        }
-    }
-
-    .desejados {
-        .site {
-            .container-primary-left {
-                .titulo-desejados {
-                    .textoFundo-servico {
-                        font-size: 95px;
-                    }
-                }
-            }
-
-            .container-secundary-left {
-                .img-desejados {
-                    img {
-                        width: 450px;
-                    }
-                }
-            }
-        }
-    }
-
-    .noivas {
-        .site {
-            .container-noiva {
-                .primary-info {
-                    .titulo {
-                        h2:first-of-type {
-                            font-size: 17px;
-                        }
-
-                        h2:last-of-type {
-                            font-size: 50px;
-                        }
-
-                        .textoFundo {
-                            font-size: 140px;
-                            left: 50%;
-                        }
-                    }
-                }
-
-                .paragrafo-info {
-                    p {
-                        font-size: 15px;
-                    }
-                }
-            }
-        }
-    }
-
-    .vale-presente {
-        .site {
-            .container-vale-left {
-                .list-card {
-                    .card {
-                        width: 343px;
-
-                        .textoFundo {
-                            font-size: 39px;
-                        }
-                    }
-
-                    .card:nth-child(2) {
-                        left: -0.1px;
-                    }
-                }
-            }
-        }
-    }
-
-    .estetica {
-        .site {
-            .container-estetica {
-                .titulo-estetica {
-                    h2 {
-                        font-size: 35px;
-                    }
-
-                    .textoFundo {
-                        font-size: 85px;
-                    }
-                }
-
-                .list-estetica {
-                    .card-estetica {
-                        max-width: 359px;
-                    }
-                }
-            }
-        }
-    }
-
-    /* PG - Contato */
-    .formulario-contato {
-        .site {
-            .container-contato {
-                .titulo {
-                    .textoFundo {
-                        left: -2%;
-                        transform: translateY(6%);
-                        font-size: 110px;
-                    }
-                }
-            }
-        }
-    }
-
-    /* PG - Loja */
-    .products-shop {
-        .site {
-            .container-conteudo-loja {
-                .search {
-                    .site {
-                        .search-sort {
-                            .span {
-                                text-align: center;
-                            }
-                        }
-                    }
-                }
-            }
-
-            .container-aside {
-                .sidebar {
-                    .search-box {
-                        width: 430px;
-                    }
-
-                    .filter-widget {
-                        .slider-wrap {
-                            .slider {
-                                width: 430px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /* PG - Login */
-    .topo-loja {
-        .menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /*#0d131b*/
-            background-color: #000000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s ease-in-out;
-
-            &.active {
-                transform: translateY(0);
-                opacity: 1;
-                display: flex;
-            }
-
-            ul {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-
-                li {
-                    a {
-                        &.ativo {
-                            color: var(--corLetras);
-                            border-bottom: 1px solid #ffffff;
-                        }
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            left: 0;
-                            bottom: 0;
-                            width: 0;
-                            height: 1px;
-                            background-color: #ffffff;
-                            transition: width 0.3s ease-in-out;
-                        }
-
-                        &:hover::after {
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-
-            .menu-icons {
-                display: flex;
-                /* Exibe no responsivo */
-            }
-        }
-
-        /* Ícones na barra principal ficam ocultos */
-        .user {
-            display: none;
-        }
-
-        .menu-toggle {
-            display: flex;
-            margin-right: 5px;
-        }
-    }
-
-    .topo-loja.fixo {
-        display: block;
-        position: fixed;
-        background: #000000;
-        width: 100%;
-        top: 0;
-        left: 0;
-        height: 80px;
-        transition: all 0.3s ease-in-out;
-
-        .site {
-            .logo {
-                margin-left: 5px;
-            }
-
-        }
-
-
-    }
-
-    .login {
-        .site {
-            .container {
-                .form-container {
-                    form {
-                        padding: 0 10px;
-                    }
-                }
-
-                .overlay-container {
-                    .overlay {
-                        .overlay-panel {
-                            &.overlay-right {
-                                padding: 0;
-                            }
-
-                            &.overlay-left {
-                                padding: 0;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /* PG -Login - Cliente*/
-    .container {
-        margin: 20px auto;
-        padding: 10px;
-
-        .content {
-            padding: 20px;
-
-            .tab.active {
-                .container-info-row {
-
-                    .btn-edit {
-                        width: 100%;
-                        font-size: 14px;
                     }
                 }
             }
