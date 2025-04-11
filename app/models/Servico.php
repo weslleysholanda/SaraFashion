@@ -20,6 +20,15 @@ class Servico extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getServicoByStatus($status)
+    {
+        $sql = "SELECT * FROM tbl_servico WHERE status_servico = :status";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function addServico($dados)
     {
         $sql = "INSERT INTO tbl_servico(

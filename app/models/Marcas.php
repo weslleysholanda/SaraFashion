@@ -80,4 +80,11 @@ class Marcas extends Model
         $stmt->bindValue(':id_marca', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
+
+    public function ativarMarca($id){
+        $sql = "UPDATE tbl_marcas SET status_marcas = 'Ativo' WHERE id_marca = :id_marca";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_marca', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 }

@@ -2418,6 +2418,8 @@ footer {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                background: rgba(100, 100, 100, 0.08);
+                backdrop-filter: blur(2px);
 
                 h2 {
                     font-size: 50px;
@@ -2608,302 +2610,6 @@ footer {
             }
 
         }
-
-        /* .tabs-section {
-            .site {
-                .tabs {
-                    display: flex;
-                    margin: 50px 0;
-                    border-bottom: 1px solid #ddd;
-                    font-size: 15px;
-                }
-
-                .tabs-show {
-                    #additional-info {
-                        h2 {
-                            font-family: var(--fonteMonteserrat);
-                            text-transform: uppercase;
-                            font-weight: bold;
-                            font-size: 30px;
-                            margin-bottom: 20px;
-                        }
-                    }
-                }
-
-                .tab {
-                    padding: 15px 30px;
-                    cursor: pointer;
-                    font-weight: bold;
-                    color: #333;
-                    transition: background-color 0.3s, color 0.3s;
-
-                    &.active {
-                        background-color: #000;
-                        color: #fff;
-                    }
-                }
-
-                .tab-content {
-                    display: none;
-
-                    &.active {
-                        display: block;
-                    }
-
-                    .review-form {
-                        .form-group {
-                            display: flex;
-                            flex-direction: column;
-
-                            label {
-                                margin-bottom: 10px;
-                            }
-
-                            .rating {
-                                margin-bottom: 15px;
-                            }
-
-                            textarea {
-                                margin-bottom: 15px;
-                                resize: none;
-                            }
-
-                            input {
-                                margin-bottom: 15px;
-                            }
-
-                            .form-control {
-                                border-radius: 0;
-                                border: 2px solid #000000;
-                                padding: .8rem 1rem;
-                            }
-                        }
-
-                        button {
-                            background-color: #000000;
-                            color: #fff;
-                            border: none;
-                            padding: 0.5rem 3rem;
-                            cursor: pointer;
-                            transition: all 0.3s ease-in-out;
-
-                            &:hover {
-                                background: var(--corPrincipal);
-                            }
-                        }
-                    }
-
-                    h3 {
-                        color: var(--cor1);
-                    }
-
-                    p {
-                        margin-bottom: 15px;
-                    }
-
-                    .existing-review {
-                        display: flex;
-                        gap: 10px;
-
-                        img {
-                            width: 70px;
-                            height: 70px;
-                        }
-
-                        .review-container {
-                            display: flex;
-                            flex-direction: column;
-
-                            .review-rating {
-                                margin-bottom: 5px;
-                            }
-                        }
-                    }
-                }
-
-            }
-
-        } */
-
-
-        /* .related-products {
-            margin: 50px auto;
-            padding: 20px;
-
-            .site {
-                h3 {
-                    text-align: center;
-                    margin-bottom: 30px;
-
-                }
-
-                .products {
-                    display: flex;
-                    gap: 20px;
-                    justify-content: center;
-                    flex-wrap: wrap;
-
-                    .product {
-                        text-align: center;
-                        flex: 1 1 calc(33.333% - 20px);
-                        max-width: calc(33.333% - 20px);
-                        box-sizing: border-box;
-
-                        a {
-                            text-decoration: none;
-                            color: #000000;
-                        }
-
-                        img {
-                            width: 80%;
-                        }
-
-                        h4 {
-                            font-size: 16px;
-                            margin: 10px 0;
-                        }
-
-                        .price {
-                            font-weight: bold;
-                        }
-                    }
-                }
-
-            }
-
-        } */
-
-        /* PG - Carrinho */
-        /* .banner-carrinho {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            background-color: #f4f4f4;
-            padding: 100px 20px;
-            border-bottom: 1px solid #ddd;
-
-            h1 {
-                margin: 0;
-                font-family: var(--fonteMontserrat);
-                color: #000000;
-                font-size: 45px;
-                font-weight: 700;
-                letter-spacing: .025em;
-                line-height: 1.2em;
-                text-transform: uppercase;
-            }
-
-            .breadcrumb {
-                display: flex;
-                font-size: 14px;
-                color: #000000;
-                margin-top: 10px;
-
-                li {
-                    color: #000000;
-                    font-weight: 600;
-                    padding-right: 0.5rem;
-
-                    a {
-                        text-decoration: none;
-                        color: #000000;
-
-                        &:hover {
-                            text-decoration: underline;
-                            color: var(--corPrincipal);
-                        }
-                    }
-
-                }
-
-                .breadcrum-item+.breadcrum-item::before {
-                    color: #000000;
-                    float: left;
-                    padding-right: 0.5rem;
-                    content: "/";
-                }
-
-            }
-        } */
-
-        /* .container-loja {
-            .cart-empty {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border: 1px solid #afaaa9;
-                padding: 40px;
-                margin-top: 50px;
-                background-color: #fff;
-                max-width: 600px;
-                margin-left: auto;
-                margin-right: auto;
-
-                p {
-                    font-size: 18px;
-                }
-            }
-
-            div:nth-last-of-type(2) {
-                display: flex;
-                justify-content: center;
-                margin-top: 20px;
-
-                button {
-                    margin-top: 20px;
-                    padding: 10px 50px;
-                    background: #000000;
-                    border: none;
-                    color: #fff;
-                    cursor: pointer;
-                    font-size: 16px;
-                    text-transform: uppercase;
-                    transition: background-color 0.3s ease;
-
-                    &:hover {
-                        background-color: var(--corPrincipal);
-                        border: 1px solid var(--corPrincipal);
-                    }
-                }
-
-            }
-
-
-            .cart-items {
-                display: none;
-
-                .cart-item {
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 15px;
-                    border-bottom: 1px solid #ddd;
-                    background-color: #fff;
-
-                    img {
-                        max-width: 100px;
-                    }
-
-                    .cart-item-details {
-                        flex: 1;
-                        margin-left: 20px;
-
-                        h4 {
-                            margin: 0 0 10px;
-                        }
-
-                        p {
-                            margin: 0;
-                            color: #666;
-                        }
-                    }
-
-                    .cart-item-price {
-                        font-size: 18px;
-                        font-weight: bold;
-                    }
-                }
-            }
-        } */
 
 
     }
@@ -3368,7 +3074,7 @@ footer {
                 }
             }
 
-            
+
         }
 
 
@@ -3713,7 +3419,7 @@ footer {
                             text-transform: lowercase;
                         }
 
-                        p{
+                        p {
                             font-family: var(--fonteMonteserrat);
                             text-transform: uppercase;
                             font-weight: normal;
@@ -4064,6 +3770,7 @@ footer {
                     text-align: center;
                     padding: 1rem;
                     width: 235px !important;
+                    position: relative;
 
                     a {
                         text-decoration: none;
@@ -4087,6 +3794,8 @@ footer {
                             max-width: 100%;
                         }
 
+                        
+
                         .price {
                             font-size: 0.9rem;
                             margin-top: 0.5rem;
@@ -4098,7 +3807,37 @@ footer {
                             }
                         }
                     }
+
+                    .favoriteProduct {
+                        position: absolute;
+                        right: 7%;
+                        top: 2px;
+                        width: 25px;
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: opacity 0.2s ease, visibility 0.2s ease;
+                        cursor: pointer;
+
+
+                        path {
+                            fill: none;
+                            transition: fill 0.2s ease;
+                            stroke: #EA1612;
+                        }
+
+                        &.ativo path {
+                            fill: #EA1612;
+                            transition: fill 0.2s ease;
+                        }
+                    }
+
+                    &:hover .favoriteProduct {
+                        display: block;
+                        opacity: 1;
+                        visibility: visible;
+                    }
                 }
+
             }
 
             .paginacao {
@@ -4269,7 +4008,7 @@ footer {
                                     background: var(--corPrincipal);
                                     color: var(--corLetras);
                                     border: 1px solid #fff;
-                                    
+
                                 }
                             }
 
@@ -5594,7 +5333,7 @@ footer {
                             }
                         }
 
-                        .slick-dots{
+                        .slick-dots {
                             bottom: -40%;
                         }
                     }
@@ -5715,6 +5454,7 @@ footer {
             }
         }
     }
+
     /* PG - Contato */
     .formulario-contato {
         .container-contato {
@@ -5902,6 +5642,7 @@ footer {
 
 /* responsividade 768 */
 @media (max-width:768px) {
+
     /* Home */
     .topo {
         .menu {
@@ -6208,6 +5949,7 @@ footer {
         }
 
     }
+
     /* Home - Fim */
 
     /* PG - Sobre */
@@ -6294,6 +6036,7 @@ footer {
             }
         }
     }
+
     /* Sobre - Fim */
 
     /* PG Servico */
@@ -6352,7 +6095,7 @@ footer {
         }
     }
 
-    .of-height-150{
+    .of-height-150 {
         display: none;
     }
 
@@ -6370,8 +6113,9 @@ footer {
                 .form-contato {
                     .informacao-contato {
                         max-width: 500px;
+
                         .informacao-header {
-                            h2{
+                            h2 {
                                 font-size: 33px;
                             }
                         }
@@ -7036,24 +6780,24 @@ footer {
                     }
                 }
 
-                .form-contato{
-                    .form-inputs{
-                        .mb-3{
-                            .form-control{
+                .form-contato {
+                    .form-inputs {
+                        .mb-3 {
+                            .form-control {
                                 width: 450px;
                             }
                         }
                     }
 
-                    .informacao-contato{
-                        .informacao-header{
-                            h2{
+                    .informacao-contato {
+                        .informacao-header {
+                            h2 {
                                 font-size: 30px;
                             }
                         }
                     }
 
-                    .btn-submit{
+                    .btn-submit {
                         width: 450px;
                     }
                 }

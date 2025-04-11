@@ -86,8 +86,8 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 </table>
 
 
-<!-- Modal para ativar Marca -->
-<div class="modal fade" tabindex="-1" id="modalAtivarMarca">
+<!-- Modal para desativar Marca -->
+<div class="modal fade" tabindex="-1" id="modalDesativarMarca">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">

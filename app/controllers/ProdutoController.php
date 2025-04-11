@@ -314,7 +314,7 @@ class ProdutoController extends Controller
 
     private function uploadFoto($file, $link_produto)
     {
-        $dir = '../public/uploads/';
+        $dir = '../public/uploads/produto';
 
         if (!file_exists($dir)) {
             mkdir($dir, 0755, true);

@@ -15,17 +15,17 @@
     <!-- Preloader -->
     <?php require_once('templates/preloader.php') ?>
     <!-- Header -->
-    <?php  require_once('templates/topo-loja.php')?>
+    <?php require_once('templates/topo-loja.php') ?>
 
     <!-- Banner Loja -->
-    <?php  require_once('templates/banner-loja.php')?>
+    <?php require_once('templates/banner-loja.php') ?>
 
     <!-- loja de produtos -->
-    <?php  require_once('templates/products-shop.php')?>
-    
+    <?php require_once('templates/products-shop.php') ?>
+
     <!-- footer -->
-    <?php  require_once('templates/footer.php')?>
-    
+    <?php require_once('templates/footer.php') ?>
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="vendors/js/slick.min.js"></script>
@@ -33,5 +33,14 @@
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="https://kit.fontawesome.com/89bd08d7e0.js" crossorigin="anonymous"></script>
     <script src="assets/js/script.js"></script>
+
+    <script>
+        document.querySelectorAll(".favoriteProduct").forEach((heart) => {
+            heart.addEventListener("click", () => {
+                heart.classList.toggle("ativo");
+            });
+        });
+    </script>
 </body>
+
 </html>

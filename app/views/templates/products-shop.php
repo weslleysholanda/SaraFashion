@@ -50,16 +50,20 @@
                             <img src="http://localhost/sarafashion/public/uploads/<?php echo htmlspecialchars($imagemPrincipal, ENT_QUOTES, 'UTF-8'); ?>"
                                 alt="<?php echo htmlspecialchars($produtos['alt_foto_galeria'] ?? 'Imagem do produto', ENT_QUOTES, 'UTF-8'); ?>">
 
+
+
                             <h4><?php echo htmlspecialchars($produtos['nome_produto'], ENT_QUOTES, 'UTF-8'); ?></h4>
                             <p class="price"><span class="old-price">$79.00</span> <?php echo htmlspecialchars($produtos['preco_produto'], ENT_QUOTES, 'UTF-8'); ?></p>
                         </a>
+                        <!-- Ícone de coração -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="favoriteProduct" viewBox="0 0 17.59 16.305">
+                            <path d="M9.3,3.265h0l-.9-.943a4.2,4.2,0,0,0-6.126,0,4.679,4.679,0,0,0,0,6.406l7.027,7.349,7.027-7.349a4.679,4.679,0,0,0,0-6.406,4.2,4.2,0,0,0-6.126,0l-.9.943h0Z" transform="translate(-0.5 -0.495)" stroke="#c59d5f" stroke-miterlimit="10" stroke-width="1" />
+                        </svg>
+
                     </div>
+
                 <?php endforeach; ?>
             </div>
-
-
-
-
 
             <div class="paginacao">
                 <div class="site">

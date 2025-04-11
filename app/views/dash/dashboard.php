@@ -460,7 +460,6 @@
     }
 
 
-
     function abrirModalDesativarProduto(idProduto) {
       if ($('#modalDesativarProduto').hasClass('show')) {
         return;
@@ -814,8 +813,9 @@
   </script>
 
   <script>
+    //filtro marca
     $(document).ready(function() {
-      $(".filtro-status").on("change", function() {
+      $(document).on("change", ".filtro-status", function() {
         let status = $(this).val();
 
         $.ajax({
@@ -836,12 +836,12 @@
                   `<i id="btn-primary" onclick="ativarMarca(${marca.id_marca})" class="bi bi-check-circle"></i>`;
 
                 let row = `<tr>
-                            <td class="imgMarca"><img src="http://localhost/sarafashion/public/uploads/${marca.logo_marca}" alt="${marca.alt_marca}"></td>
-                            <td>${marca.nome_marca}</td>
-                            <td>${marca.status_marcas}</td>
-                            <td><a href="http://localhost/sarafashion/public/marcas/editar/${marca.id_marca}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
-                            <td>${iconeAcao}</td>
-                        </tr>`;
+                        <td class="imgMarca"><img src="http://localhost/sarafashion/public/uploads/${marca.logo_marca}" alt="${marca.alt_marca}"></td>
+                        <td>${marca.nome_marca}</td>
+                        <td>${marca.status_marcas}</td>
+                        <td><a href="http://localhost/sarafashion/public/marcas/editar/${marca.id_marca}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                        <td>${iconeAcao}</td>
+                    </tr>`;
                 tabela.append(row);
               });
             } else {
