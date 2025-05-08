@@ -79,5 +79,9 @@ O projeto foi criado com o propósito de:
 
 🚧 Projeto em desenvolvimento — novas funcionalidades sendo implementadas ativamente.
 
+---
 
+<h3>▶️ Demonstração em Vídeo</h3>
 
+Veja uma prévia do sistema em funcionamento no meu LinkedIn:  
+🔗 [Acessar vídeo de apresentação](https://www.linkedin.com/in/weslleySantos) <!-- Substitua pelo link direto do post do vídeo, se quiser -->
