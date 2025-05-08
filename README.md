@@ -84,4 +84,4 @@ O projeto foi criado com o propósito de:
 <h3>▶️ Demonstração em Vídeo</h3>
 
 Veja uma prévia do sistema em funcionamento no meu LinkedIn:  
-🔗 [Acessar vídeo de apresentação](https://www.linkedin.com/in/weslleySantos) <!-- Substitua pelo link direto do post do vídeo, se quiser -->
+🔗 [Acessar vídeo de apresentação](https://www.linkedin.com/posts/weslleyholanda_projeto-em-andamento-e-commerce-com-agendamento-activity-7321946495937589248-4H4f?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTqjo0BtVuTKFvcEVybP2guSAeTdXav7VY) <!-- Substitua pelo link direto do post do vídeo, se quiser -->
