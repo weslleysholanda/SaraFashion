@@ -107,11 +107,9 @@ class ProdutoController extends Controller
                 if ($id_produto) {
                     if (isset($_FILES['foto_galeria'])) {
                         $fotos = $_FILES['foto_galeria'];
-                        $contFoto = 1; // Contador para nomear/numerar o alt das fotos
-                        // var_dump($fotos);
+                        $contFoto = 1;
 
                         foreach (array_keys($fotos['name']) as $key) {
-                            // Criando um array individual para cada arquivo
                             $arquivo = [
                                 'name'     => $fotos['name'][$key],
                                 'type'     => $fotos['type'][$key],
@@ -314,7 +312,7 @@ class ProdutoController extends Controller
 
     private function uploadFoto($file, $link_produto)
     {
-        $dir = '../public/uploads/produto';
+        $dir = '../public/uploads/';
 
         if (!file_exists($dir)) {
             mkdir($dir, 0755, true);

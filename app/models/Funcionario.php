@@ -154,6 +154,14 @@ class Funcionario extends Model
         return $stmt->execute();
     }
 
+    public function ativarFuncionario($id)
+    {
+        $sql = "UPDATE tbl_funcionario SET status_funcionario = 'Ativo' WHERE id_funcionario = :id_funcionario";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_funcionario', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
     public function getFuncionarioById($id)
     {
         $sql = "SELECT f.*, e.nome_especialidade 
@@ -166,6 +174,18 @@ class Funcionario extends Model
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getFuncionarioByStatusjx($status)
+    {
+        $sql ="SELECT * 
+             FROM tbl_funcionario 
+             INNER JOIN tbl_especialidade ON tbl_funcionario.id_especialidade = tbl_especialidade.id_especialidade 
+             WHERE status_funcionario = :status";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getListarEspecialidade()

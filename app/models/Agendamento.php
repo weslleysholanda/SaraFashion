@@ -18,8 +18,17 @@ class Agendamento extends Model
                 INNER JOIN 
                 tbl_funcionario ON tbl_agendamento.id_funcionario = tbl_funcionario.id_funcionario
                 INNER JOIN 
-                tbl_servico ON tbl_agendamento.id_servico = tbl_servico.id_servico";
+                tbl_servico ON tbl_agendamento.id_servico = tbl_servico.id_servico WHERE status_agendamento = 'Concluído';";
         $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAgendamentoByStatus($status)
+    {
+        $sql = "SELECT * FROM tbl_agendamento WHERE status_agendamento = :status";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

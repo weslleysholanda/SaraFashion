@@ -29,6 +29,22 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 ?>
 <h1>Agendamento</h1>
+<div class="navTool">
+    <div class="filtro">
+        <input type="radio" class="btn-check filtro-status-agendamento" name="options-outlined" id="info-outlined" value="Ativo" autocomplete="off" checked>
+        <label class="btn btn-outline-info" for="info-outlined">Agendado</label>
+
+        <input type="radio" class="btn-check filtro-status-agendamento" name="options-outlined" id="sucess-outlined" value="Inativo" autocomplete="off">
+        <label class="btn btn-outline-success" for="sucess-outlined">Concluído</label>
+        
+        <input type="radio" class="btn-check filtro-status-agendamento" name="options-outlined" id="danger-outlined" value="Inativo" autocomplete="off">
+        <label class="btn btn-outline-danger" for="danger-outlined">Cancelado</label>
+    </div>
+    <div class="navTool-button">
+        <a href="http://localhost/sarafashion/public/agendamento/adicionar">ADICIONAR</a>
+    </div>
+</div>
+<div class="scroll-tabela">
 <table class="table table-hover">
     <thead>
         <tr>
@@ -68,9 +84,10 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         <?php endforeach ?>
     </tbody>
 </table>
+</div>
 
 <!-- Modal cancelar agendamento -->
-<div class="modal faded" tabindex="-1" id="modalCancelar">
+<div class="modal faded" tabindex="-1" id="modalCancelarAgendamento">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">

@@ -274,6 +274,44 @@ class ServicoController extends Controller
         }
     }
 
+    public function ativar($id = null)
+    {
+        if (!isset($_SESSION['userTipo']) || $_SESSION['userTipo'] !== 'Funcionario') {
+
+            header('Location:' . BASE_URL);
+            exit;
+        }
+
+        if ($id === null) {
+            http_response_code(400);
+            echo json_encode(["sucesso" => false, "mensagem" => "ID inválido"]);
+            exit;
+        }
+
+        $resultado = $this->servicoModel->ativarServico($id);
+        header('Content-Type: Application/json');
+
+        if ($resultado) {
+            $_SESSION['mensagem'] = 'Serviço ativado com sucesso!';
+            $_SESSION['tipo-msg'] = 'sucesso';
+
+            echo json_encode(['sucesso' => true]);
+        } else {
+
+            $_SESSION['mensagem'] = 'Falha ao ativar';
+            $_SESSION['tipo-msg'] = 'erro';
+
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Falha ao ativar o serviço']);
+        }
+    }
+
+    public function filtrarServicos(){
+
+        $status = isset($_POST['status']) ? $_POST['status'] : 'Ativo';
+        $listarServico = $this->servicoModel->getServicoByStatus($status);
+        echo json_encode($listarServico);
+    }
+
     private function uploadFoto($file, $nome_servico)
     {
         $dir = '../public/uploads/';  // Diretório onde as fotos serão salvas

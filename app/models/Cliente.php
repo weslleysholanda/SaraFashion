@@ -20,6 +20,60 @@ class Cliente extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function addCliente($dados)
+{
+    $sql = "INSERT INTO tbl_cliente (
+        nome_cliente,
+        tipo_cliente,
+        cpf_cnpj_cliente,
+        data_nasc_cliente,
+        email_cliente,
+        senha_cliente,
+        foto_cliente,
+        alt_foto_cliente,
+        telefone_cliente,
+        endereco_cliente,
+        bairro_cliente,
+        cidade_cliente,
+        status_cliente
+    ) VALUES (
+        :nome_cliente,
+        :tipo_cliente,
+        :cpf_cnpj_cliente,
+        :data_nasc_cliente,
+        :email_cliente,
+        :senha_cliente,
+        :foto_cliente,
+        :alt_foto_cliente,
+        :telefone_cliente,
+        :endereco_cliente,
+        :bairro_cliente,
+        :cidade_cliente,
+        :status_cliente
+    )";
+
+    $stmt = $this->db->prepare($sql);
+
+    $stmt->bindValue(':nome_cliente', $dados['nome_cliente']);
+    $stmt->bindValue(':tipo_cliente', $dados['tipo_cliente']);
+    $stmt->bindValue(':cpf_cnpj_cliente', $dados['cpf_cnpj_cliente']);
+    $stmt->bindValue(':data_nasc_cliente', $dados['data_nasc_cliente']);
+    $stmt->bindValue(':email_cliente', $dados['email_cliente']);
+    $stmt->bindValue(':senha_cliente', $dados['senha_cliente']);
+    $stmt->bindValue(':foto_cliente', $dados['foto_cliente']);
+    $stmt->bindValue(':alt_foto_cliente', $dados['alt_foto_cliente']);
+    $stmt->bindValue(':telefone_cliente', $dados['telefone_cliente']);
+    $stmt->bindValue(':endereco_cliente', $dados['endereco_cliente']);
+    $stmt->bindValue(':bairro_cliente', $dados['bairro_cliente']);
+    $stmt->bindValue(':cidade_cliente', $dados['cidade_cliente']);
+    $stmt->bindValue(':status_cliente', $dados['status_cliente']);
+
+    $stmt->execute();
+
+    return $this->db->lastInsertId();
+}
+
+
     public function cadastrarCliente($nome, $email, $senha, $status)
     {
         $sql = "INSERT INTO tbl_cliente (nome_cliente, email_cliente, senha_cliente, status_cliente)
@@ -86,6 +140,23 @@ class Cliente extends Model
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_cliente', $id, PDO::PARAM_INT);
         return $stmt->execute();
+    }
+
+    public function ativarCliente($id)
+    {
+        $sql = "UPDATE tbl_cliente SET status_cliente = 'Ativo' WHERE id_cliente= :id_cliente";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_cliente', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    public function getClientesByStatus($status)
+    {
+        $sql = "SELECT * FROM tbl_cliente WHERE status_cliente = :status";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function buscarClientePorId($id)

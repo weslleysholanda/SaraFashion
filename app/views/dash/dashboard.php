@@ -398,6 +398,7 @@
   </script>
 
   <script>
+    //Abrir Modal: Servico - Desativar
     function abrirModalDesativar(idServico) {
 
       if ($('#modalDesativar').hasClass('show')) {
@@ -409,6 +410,43 @@
       $('#modalDesativar').modal('show');
     }
 
+    //Abrir Modal: Servico - Ativar
+    function abrirModalAtivarServico(idServico) {
+
+      if ($('#modalAtivar').hasClass('show')) {
+        return;
+      }
+
+      document.getElementById('idServicoAtivar').value = idServico;
+
+      $('#modalAtivar').modal('show');
+    }
+
+    //Abrir Modal: Especialidade - Desativar
+    function abrirModalDesativarEspecialidade(idEspecialidade) {
+
+      if ($('#modalDesativarEspecialidade').hasClass('show')) {
+        return;
+      }
+
+      document.getElementById('idEspecialidadeDesativar').value = idEspecialidade;
+
+      $('#modalDesativarEspecialidade').modal('show');
+    }
+
+    //Abrir Modal: Especialidade - Desativar
+    function abrirModalAtivarEspecialidade(idEspecialidade) {
+
+      if ($('#modalAtivarEspecialidade').hasClass('show')) {
+        return;
+      }
+
+      document.getElementById('idEspecialidadeAtivar').value = idEspecialidade;
+
+      $('#modalAtivarEspecialidade').modal('show');
+    }
+
+    //Abrir Modal: Cliente - Desativar
     function abrirModalDesativarCliente(idCliente) {
       if ($('#modalDesativarCliente').hasClass('show')) {
         return;
@@ -419,6 +457,18 @@
       $('#modalDesativarCliente').modal('show');
     }
 
+    //Abrir Modal: Cliente - Ativar
+    function abrirModalAtivarCliente(idCliente) {
+      if ($('#modalAtivarCliente').hasClass('show')) {
+        return;
+      }
+
+      document.getElementById('idClienteAtivar').value = idCliente;
+
+      $('#modalAtivarCliente').modal('show');
+    }
+
+    //Abrir Modal: Funcionário - Desativar
     function abrirModalDesativarFuncionario(idFuncionario) {
       if ($('#modalDesativarFuncionario').hasClass('show')) {
         return;
@@ -427,6 +477,17 @@
       document.getElementById('idFuncionarioDesativar').value = idFuncionario;
 
       $('#modalDesativarFuncionario').modal('show');
+    }
+
+    //Abrir Modal: Funcionário - Ativar
+    function abrirModalAtivarFuncionario(idFuncionario) {
+      if ($('#modalAtivarFuncionario').hasClass('show')) {
+        return;
+      }
+
+      document.getElementById('idFuncionarioAtivar').value = idFuncionario;
+
+      $('#modalAtivarFuncionario').modal('show');
     }
 
     function abrirModalDesativarFornecedor(idFornecedor) {
@@ -449,6 +510,7 @@
       $('#modalCancelar').modal('show');
     }
 
+    //Abrir Modal: Marca - Desativar
     function abrirModalDesativarMarca(idMarca) {
       if ($('#modalDesativarMarca').hasClass('show')) {
         return;
@@ -457,6 +519,17 @@
       document.getElementById('idMarcaDesativar').value = idMarca;
 
       $('#modalDesativarMarca').modal('show');
+    }
+
+    //Abrir Modal: Marca - Ativar
+    function abrirModalAtivarMarca(idMarca) {
+      if ($('#modalAtivarMarca').hasClass('show')) {
+        return;
+      }
+
+      document.getElementById('idMarcaAtivar').value = idMarca;
+
+      $('#modalAtivarMarca').modal('show');
     }
 
 
@@ -470,6 +543,16 @@
       $('#modalDesativarProduto').modal('show');
     }
 
+    function abrirModalCancelar(idAgendamento) {
+      if ($('#modalCancelarAgendamento').hasClass('show')) {
+        return;
+      }
+
+      document.getElementById('idAgendamentoCancelar').value = idProduto;
+
+      $('#modalCancelarAgendamento').modal('show');
+    }
+
     //Delegação de Evento: Serviço - Desativar
     document.addEventListener('click', function(event) {
       if (event.target && event.target.id === 'btnConfirmar') {
@@ -478,6 +561,42 @@
 
         if (idServico) {
           desativarServico(idServico);
+        }
+      }
+    });
+
+    //Delegação de Evento: Serviço - Ativar
+    document.addEventListener('click', function(event) {
+      if (event.target && event.target.id === 'btnConfirmar') {
+        const idServico = document.getElementById('idServicoAtivar').value;
+        console.log(idServico);
+
+        if (idServico) {
+          ativarServico(idServico);
+        }
+      }
+    });
+
+    //Delegação de Evento: Especialidade - Desativar
+    document.addEventListener('click', function(event) {
+      if (event.target && event.target.id === 'btnConfirmar') {
+        const idEspecialidade = document.getElementById('idEspecialidadeDesativar').value;
+        console.log(idEspecialidade);
+
+        if (idEspecialidade) {
+          desativarEspecialidade(idEspecialidade);
+        }
+      }
+    });
+
+    //Delegação de Evento: Especialidade - Ativar
+    document.addEventListener('click', function(event) {
+      if (event.target && event.target.id === 'btnConfirmar') {
+        const idEspecialidade = document.getElementById('idEspecialidadeAtivar').value;
+        console.log(idEspecialidade);
+
+        if (idEspecialidade) {
+          ativarEspecialidade(idEspecialidade);
         }
       }
     });
@@ -494,6 +613,18 @@
       }
     });
 
+    //Delegação de Evento: Cliente - Ativar
+    document.addEventListener('click', function(event) {
+      if (event.target && event.target.id === 'btnConfirmar') {
+        const idCliente = document.getElementById('idClienteAtivar').value;
+        console.log(idCliente);
+
+        if (idCliente) {
+          ativarCliente(idCliente);
+        }
+      }
+    });
+
     //Delegação de Evento: Funcionário - Desativar
     document.addEventListener('click', function(event) {
       if (event.target && event.target.id === 'btnConfirmar') {
@@ -502,6 +633,18 @@
 
         if (idFuncionario) {
           desativarFuncionario(idFuncionario);
+        }
+      }
+    });
+
+    //Delegação de Evento: Funcionário - Ativar
+    document.addEventListener('click', function(event) {
+      if (event.target && event.target.id === 'btnConfirmar') {
+        const idFuncionario = document.getElementById('idFuncionarioAtivar').value;
+        console.log(idFuncionario);
+
+        if (idFuncionario) {
+          ativarFuncionario(idFuncionario);
         }
       }
     });
@@ -542,6 +685,18 @@
       }
     });
 
+    //Delegação de Evento: Marca - Ativar
+    document.addEventListener('click', function(event) {
+      if (event.target && event.target.id === 'btnConfirmar') {
+        const idMarca = document.getElementById('idMarcaAtivar').value;
+        console.log(idMarca);
+
+        if (idMarca) {
+          ativarMarca(idMarca);
+        }
+      }
+    });
+
     //Delegação de Evento: Produto - Desativar
     document.addEventListener('click', function(event) {
       if (event.target && event.target.id === 'btnConfirmar') {
@@ -554,6 +709,19 @@
       }
     });
 
+    //Delegação de Evento: Agendamento - Cancelar
+    document.addEventListener('click', function(event) {
+      if (event.target && event.target.id === 'btnConfirmar') {
+        const idAgendamento = document.getElementById('idAgendamentoCancelar').value;
+        console.log(idAgendamento);
+
+        if (idAgendamento) {
+          cancelarAgendamento(idAgendamento);
+        }
+      }
+    });
+
+    // Desativar Servico
     function desativarServico(idServico) {
 
       fetch(`http://localhost/sarafashion/public/servico/desativar/${idServico}`, {
@@ -591,6 +759,121 @@
 
     }
 
+    // Ativar Servico
+    function ativarServico(idServico) {
+
+      fetch(`http://localhost/sarafashion/public/servico/ativar/${idServico}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          // Se o código de resposta NÃO for ok, lança um erro
+          if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+            console.log("ERRO -");
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Se a resposta do servidor for OK, fecha o modal e carrega e atualiza a lista
+          if (data.sucesso) {
+            console.log("Serviço ativado com sucesso");
+            $('#modalAtivar').modal('hide')
+            setTimeout(() => {
+              location.reload();
+            }), 500;
+
+          } else {
+            alert(data.mensagem || "Ocorreu um erro ao ativar o serviço");
+          }
+
+        })
+        .catch(erro => {
+          console.error('Erro', erro);
+          alert("Erro na requisição.");
+        })
+
+    }
+
+    // Desativar Especialidade
+    function desativarEspecialidade(idEspecialidade) {
+
+      fetch(`http://localhost/sarafashion/public/especialidade/desativar/${idEspecialidade}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          // Se o código de resposta NÃO for ok, lança um erro
+          if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+            console.log("ERRO -");
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Se a resposta do servidor for OK, fecha o modal e carrega e atualiza a lista
+          if (data.sucesso) {
+            console.log("especialidade desativado com sucesso");
+            $('#modalDesativarEspecialidade').modal('hide')
+            setTimeout(() => {
+              location.reload();
+            }), 500;
+
+          } else {
+            alert(data.mensagem || "Ocorreu um erro ao desativar o serviço");
+          }
+
+        })
+        .catch(erro => {
+          console.error('Erro', erro);
+          alert("Erro na requisição.");
+        })
+
+    }
+
+    // Ativar Especialidade
+    function ativarEspecialidade(idEspecialidade) {
+
+      fetch(`http://localhost/sarafashion/public/especialidade/ativar/${idEspecialidade}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          // Se o código de resposta NÃO for ok, lança um erro
+          if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+            console.log("ERRO -");
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Se a resposta do servidor for OK, fecha o modal e carrega e atualiza a lista
+          if (data.sucesso) {
+            console.log("especialidade ativada com sucesso");
+            $('#modalAtivarEspecialidade').modal('hide')
+            setTimeout(() => {
+              location.reload();
+            }), 500;
+
+          } else {
+            alert(data.mensagem || "Ocorreu um erro ao ativar o serviço");
+          }
+
+        })
+        .catch(erro => {
+          console.error('Erro', erro);
+          alert("Erro na requisição.");
+        })
+
+    }
+
+    // Desativar Cliente
     function desativarCliente(idCliente) {
 
       fetch(`http://localhost/sarafashion/public/cliente/desativar/${idCliente}`, {
@@ -611,7 +894,7 @@
           // Se a resposta do servidor for OK, fecha o modal e carrega e atualiza a lista
           if (data.sucesso) {
             console.log("Cliente desativado com sucesso");
-            $('#modalDesativar').modal('hide')
+            $('#modalDesativarCliente').modal('hide')
             setTimeout(() => {
               location.reload();
             }), 500;
@@ -628,6 +911,45 @@
 
     }
 
+    // Ativar Cliente
+    function ativarCliente(idCliente) {
+
+      fetch(`http://localhost/sarafashion/public/cliente/ativar/${idCliente}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          // Se o código de resposta NÃO for ok, lança um erro
+          if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+            console.log("ERRO -");
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Se a resposta do servidor for OK, fecha o modal e carrega e atualiza a lista
+          if (data.sucesso) {
+            console.log("Cliente ativado com sucesso");
+            $('#modalAtivarCliente').modal('hide')
+            setTimeout(() => {
+              location.reload();
+            }), 500;
+
+          } else {
+            alert(data.mensagem || "Ocorreu um erro ao ativar o Cliente");
+          }
+
+        })
+        .catch(erro => {
+          console.error('Erro', erro);
+          alert("Erro na requisição.");
+        })
+
+    }
+
+    // Desativar Funcionario
     function desativarFuncionario(idFuncionario) {
 
       fetch(`http://localhost/sarafashion/public/funcionario/desativar/${idFuncionario}`, {
@@ -655,6 +977,43 @@
 
           } else {
             alert(data.mensagem || "Ocorreu um erro ao desativar o Funcionário");
+          }
+
+        })
+        .catch(erro => {
+          console.error('Erro', erro);
+          alert("Erro na requisição.");
+        })
+
+    }
+    // Ativar Funcionario
+    function ativarFuncionario(idFuncionario) {
+
+      fetch(`http://localhost/sarafashion/public/funcionario/ativar/${idFuncionario}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          // Se o código de resposta NÃO for ok, lança um erro
+          if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+            console.log("ERRO -");
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Se a resposta do servidor for OK, fecha o modal e carrega e atualiza a lista
+          if (data.sucesso) {
+            console.log("Funcionário ativado com sucesso");
+            $('#modalAtivarFuncionario').modal('hide')
+            setTimeout(() => {
+              location.reload();
+            }), 500;
+
+          } else {
+            alert(data.mensagem || "Ocorreu um erro ao ativar o Funcionário");
           }
 
         })
@@ -737,7 +1096,6 @@
         })
     }
 
-
     function cancelarMarca(idMarca) {
       fetch(`http://localhost/sarafashion/public/marcas/desativar/${idMarca}`, {
           method: 'POST',
@@ -773,10 +1131,81 @@
         })
     }
 
+    function ativarMarca(idMarca) {
+      fetch(`http://localhost/sarafashion/public/marcas/ativar/${idMarca}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          // Se o código de resposta NÃO for ok, lança um erro
+          if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+            console.log("ERRO -");
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Se a resposta do servidor for OK, fecha o modal e carrega e atualiza a lista
+          if (data.sucesso) {
+            console.log("Marca desativada com sucesso");
+            $('#modalDesativarMarca').modal('hide')
+            setTimeout(() => {
+              location.reload();
+            }), 500;
+
+          } else {
+            alert(data.mensagem || "Ocorreu um erro ao desativar a Marca");
+          }
+
+        })
+        .catch(erro => {
+          console.error('Erro', erro);
+          alert("Erro na requisição.");
+        })
+    }
 
     function desativarProduto(idProduto) {
 
       fetch(`http://localhost/sarafashion/public/produto/desativar/${idProduto}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          // Se o código de resposta NÃO for ok, lança um erro
+          if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+            console.log("ERRO -");
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Se a resposta do servidor for OK, fecha o modal e carrega e atualiza a lista
+          if (data.sucesso) {
+            console.log("Produto desativado com sucesso");
+            $('#modalDesativarProduto').modal('hide')
+            setTimeout(() => {
+              location.reload();
+            }), 500;
+
+          } else {
+            alert(data.mensagem || "Ocorreu um erro ao desativar o Produto");
+          }
+
+        })
+        .catch(erro => {
+          console.error('Erro', erro);
+          alert("Erro na requisição.");
+        })
+
+    }
+
+    function cancelarAgendamento(idAgendamentoCancelar) {
+
+      fetch(`http://localhost/sarafashion/public/agendamento/cancelar/${idAgendamentoCancelar}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -815,6 +1244,7 @@
   <script>
     //filtro marca
     $(document).ready(function() {
+      //Delegação de Evento: Filtro  - Marca
       $(document).on("change", ".filtro-status", function() {
         let status = $(this).val();
 
@@ -829,27 +1259,231 @@
             let tabela = $("#tabela-marcas");
             tabela.empty();
 
+            // Atualiza o cabeçalho da coluna Ação com base no filtro selecionado
+            let textoAcao = (status === "Ativo") ? "Desativar" : "Ativar";
+            $("th.acao-coluna").text(textoAcao); // <- classe que vamos adicionar no HTML
+
             if (response.length > 0) {
               $.each(response, function(index, marca) {
                 let iconeAcao = (marca.status_marcas === "Ativo") ?
-                  `<i id="btn-secundary" onclick="desativarMarca(${marca.id_marca})" class="bi bi-trash"></i>` :
-                  `<i id="btn-primary" onclick="ativarMarca(${marca.id_marca})" class="bi bi-check-circle"></i>`;
+                  `<i id="btn-secundary" onclick="abrirModalDesativarMarca(${marca.id_marca})" class="bi bi-trash"></i>` :
+                  `<i id="btn-primary" onclick="abrirModalAtivarMarca(${marca.id_marca})" class="bi bi-check-circle"></i>`;
 
                 let row = `<tr>
-                        <td class="imgMarca"><img src="http://localhost/sarafashion/public/uploads/${marca.logo_marca}" alt="${marca.alt_marca}"></td>
-                        <td>${marca.nome_marca}</td>
-                        <td>${marca.status_marcas}</td>
-                        <td><a href="http://localhost/sarafashion/public/marcas/editar/${marca.id_marca}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
-                        <td>${iconeAcao}</td>
-                    </tr>`;
+                <td class="imgMarca"><img src="http://localhost/sarafashion/public/uploads/${marca.logo_marca}" alt="${marca.alt_marca}"></td>
+                <td>${marca.nome_marca}</td>
+                <td>${marca.status_marcas}</td>
+                <td><a href="http://localhost/sarafashion/public/marcas/editar/${marca.id_marca}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                <td>${iconeAcao}</td>
+                </tr>`;
                 tabela.append(row);
               });
             } else {
               tabela.append("<tr><td colspan='5' class='text-center'>Nenhuma marca encontrada.</td></tr>");
             }
           }
+
         });
       });
+
+      //Delegação de Evento: Filtro  - Serviços
+      $(document).on("change", ".filtro-status-servico", function() {
+        let status = $(this).val();
+
+        $.ajax({
+          url: "http://localhost/sarafashion/public/servico/filtrarServicos",
+          type: "POST",
+          data: {
+            status: status
+          },
+          dataType: "json",
+          success: function(response) {
+            let tabela = $("#tabela-servico");
+            tabela.empty();
+
+            // Atualiza o cabeçalho da coluna Ação com base no filtro selecionado
+            let textoAcao = (status === "Ativo") ? "Desativar" : "Ativar";
+            $("th.acao-coluna").text(textoAcao); // <- classe que vamos adicionar no HTML
+
+            if (response.length > 0) {
+              $.each(response, function(index, servico) {
+                let iconeAcao = (servico.status_servico === "Ativo") ?
+                  `<i id="btn-secundary" onclick="abrirModalDesativarServico(${servico.id_servico})" class="bi bi-trash"></i>` :
+                  `<i id="btn-primary" onclick="abrirModalAtivarServico(${servico.id_servico})" class="bi bi-check-circle"></i>`;
+
+                let row = `<tr>
+          <td class="imgBanco">
+              <img src="http://localhost/sarafashion/public/uploads/${servico.foto_servico}" 
+                   alt="${servico.alt_foto_servico}" 
+                   onerror="this.onerror=null;this.src='http://localhost/sarafashion/public/uploads/servico/sem-foto-servico.png'">
+          </td>
+          <td>${servico.nome_servico}</td>
+          <td>${servico.descricao_servico}</td>
+          <td>${servico.preco_base_servico}</td>
+          <td>${servico.tempo_estimado_servico}</td>
+          <td>${servico.nome_especialidade}</td>
+          <td>${servico.status_servico}</td>
+          <td><a href="http://localhost/sarafashion/public/servico/editar/${servico.id_servico}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+          <td>${iconeAcao}</td>
+        </tr>`;
+                tabela.append(row);
+              });
+            } else {
+              tabela.append("<tr><td colspan='5' class='text-center'>Nenhum Serviço encontrado.</td></tr>");
+            }
+          }
+
+        });
+      });
+
+      //Delegação de Evento: Filtro  - Especialidade
+      $(document).on("change", ".filtro-status-especialidade", function() {
+        let status = $(this).val();
+
+        $.ajax({
+          url: "http://localhost/sarafashion/public/especialidade/filtrarEspecialidade",
+          type: "POST",
+          data: {
+            status: status
+          },
+          dataType: "json",
+          success: function(response) {
+            let tabela = $("#tabela-especialidade");
+            tabela.empty();
+
+            // Atualiza o cabeçalho da coluna Ação com base no filtro selecionado
+            let textoAcao = (status === "Ativo") ? "Desativar" : "Ativar";
+            $("th.acao-coluna").text(textoAcao); // <- classe que vamos adicionar no HTML
+
+            if (response.length > 0) {
+              $.each(response, function(index, especialidade) {
+                let iconeAcao = (especialidade.status_especialidade === "Ativo") ?
+                  `<i id="btn-secundary" onclick="abrirModalDesativarEspecialidade(${especialidade.id_especialidade})" class="bi bi-trash"></i>` :
+                  `<i id="btn-primary" onclick="abrirModalAtivarEspecialidade(${especialidade.id_especialidade})" class="bi bi-check-circle"></i>`;
+
+                let row = `<tr>
+          <td>${especialidade.nome_especialidade}</td>
+          <td><a href="http://localhost/sarafashion/public/especialidade/editar/${especialidade.id_especialidade}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+          <td>${especialidade.status_especialidade}</td>
+          <td>${iconeAcao}</td>
+        </tr>`;
+                tabela.append(row);
+              });
+            } else {
+              tabela.append("<tr><td colspan='5' class='text-center' style='font-weight:bold;'>Nenhuma marca encontrada.</td></tr>");
+            }
+          }
+
+        });
+      });
+
+      //Delegação de Evento: Filtro  - Cliente
+      $(document).on("change", ".filtro-status-cliente", function() {
+        let status = $(this).val();
+
+        $.ajax({
+          url: "http://localhost/sarafashion/public/cliente/filtrarCliente",
+          type: "POST",
+          data: {
+            status: status
+          },
+          dataType: "json",
+          success: function(response) {
+            let tabela = $("#tabela-cliente");
+            tabela.empty();
+
+            // Atualiza o cabeçalho da coluna Ação com base no filtro selecionado
+            let textoAcao = (status === "Ativo") ? "Desativar" : "Ativar";
+            $("th.acao-coluna").text(textoAcao);
+
+            if (response.length > 0) {
+              $.each(response, function(index, cliente) {
+                let iconeAcao = (cliente.status_cliente === "Ativo") ?
+                  `<i id="btn-secundary" onclick="abrirModalDesativarCliente(${cliente.id_cliente})" class="bi bi-trash"></i>` :
+                  `<i id="btn-primary" onclick="abrirModalAtivarCliente(${cliente.id_cliente})" class="bi bi-check-circle"></i>`;
+
+                let row = `<tr>
+          <td class="imgBanco">
+              <img src="http://localhost/sarafashion/public/uploads/${cliente.foto_cliente}" 
+                   alt="${cliente.alt_foto_cliente}" 
+                   onerror="this.onerror=null;this.src='http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png'">
+            </td>
+            <td>${cliente.nome_cliente}</td>
+            <td>${cliente.cpf_cnpj_cliente}</td>
+            <td>${cliente.email_cliente}</td>
+            <td>${cliente.telefone_cliente}</td>
+            <td>${cliente.status_cliente}</td>
+            <td><a href="http://localhost/sarafashion/public/cliente/editar/${cliente.id_cliente}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+            <td>${iconeAcao}</td>
+        </tr>`;
+                tabela.append(row);
+              });
+            } else {
+              tabela.append("<tr><td colspan='8' class='text-center'>Nenhum Cliente encontrado.</td></tr>");
+            }
+          }
+
+        });
+      });
+
+      //Delegação de Evento: Filtro  - Funcionario
+      $(document).on("change", ".filtro-status-funcionario", function() {
+        let status = $(this).val();
+
+        $.ajax({
+          url: "http://localhost/sarafashion/public/funcionario/filtrarFuncionario",
+          type: "POST",
+          data: {
+            status: status
+          },
+          dataType: "json",
+          success: function(response) {
+            let tabela = $("#tabela-funcionario");
+            tabela.empty();
+
+            // Atualiza o cabeçalho da coluna Ação com base no filtro selecionado
+            let textoAcao = (status === "Ativo") ? "Desativar" : "Ativar";
+            $("th.acao-coluna").text(textoAcao); // <- classe que vamos adicionar no HTML
+
+            if (response.length > 0) {
+              $.each(response, function(index, funcionario) {
+                let iconeAcao = (funcionario.status_funcionario === "Ativo") ?
+                  `<i id="btn-secundary" onclick="abrirModalDesativarFuncionario(${funcionario.id_funcionario})" class="bi bi-trash"></i>` :
+                  `<i id="btn-primary" onclick="abrirModalAtivarFuncionario(${funcionario.id_funcionario})" class="bi bi-check-circle"></i>`;
+
+                let row = `<tr>
+            <td class="imgBanco">
+              <img src="http://localhost/sarafashion/public/uploads/${funcionario.foto_funcionario}" 
+                   alt="${funcionario.alt_foto_funcionario}" 
+                   onerror="this.onerror=null;this.src='http://localhost/sarafashion/public/uploads/funcionario/sem-foto-funcionario.png'">
+            </td>
+            <td>${funcionario.nome_funcionario}</td>
+            <td>${funcionario.tipo_funcionario}</td>
+            <td>${funcionario.cpf_cnpj_funcionario}</td>
+            <td>${funcionario.data_adm_funcionario}</td>
+            <td>${funcionario.email_funcionario}</td>
+            <td>${funcionario.telefone_funcionario}</td>
+            <td>${funcionario.nome_especialidade}</td>
+            <td>${funcionario.salario_funcionario}</td>
+            <td>${funcionario.status_funcionario}</td>
+            <td>
+              <a href="http://localhost/sarafashion/public/funcionario/editar/${funcionario.id_funcionario}">
+                <i id="btn-primary" class="bi bi-pencil"></i>
+              </a>
+            </td>
+            <td>${iconeAcao}</td>
+          </tr>`;
+                tabela.append(row);
+              });
+            } else {
+              tabela.append("<tr><td colspan='12' class='text-center'>Nenhum Funcionário encontrado.</td></tr>");
+            }
+          }
+        });
+      });
+
+
+
     });
   </script>
   <!--end::OverlayScrollbars Configure-->

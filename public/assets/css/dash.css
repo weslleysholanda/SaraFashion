@@ -185,11 +185,12 @@ h1 {
         .app-content {
             .container-fluid {
                 .row {
-                    .alert{
-                        .btn-close{
+                    .alert {
+                        .btn-close {
                             box-shadow: none !important;
                         }
                     }
+
                     .filtro {
                         display: flex;
                         align-items: center;
@@ -233,14 +234,15 @@ h1 {
 
 /* nav tool serviços */
 .row {
-    .navTool{
+    .navTool {
         display: flex;
         justify-content: space-between;
+
         .navTool-button {
             display: flex;
             gap: 1rem;
             margin: 10px 0 10px;
-    
+
             a {
                 width: 100%;
                 text-align: center;
@@ -251,13 +253,13 @@ h1 {
                 background: var(--cor1);
                 transform-style: preserve-3d;
                 transition: background-color 0.4s, transform 0.3s, color 0.3s;
-    
+
                 &:hover {
                     background: var(--corPrincipal);
                 }
             }
         }
-    
+
         .filtro {
             .btn-check {
                 &:checked+.btn {
@@ -266,69 +268,108 @@ h1 {
                     border: #000000;
                 }
             }
-    
-            .btn{
+
+            .btn {
                 border-color: #000000 !important;
                 color: #000000 !important;
                 border: 1px solid #000000 !important;
             }
         }
     }
-    
+
 }
 
-thead {
-    tr {
-        th {
-            text-align: center;
+.scroll-tabela {
+    max-height: 500px;
+    overflow-y: auto;
+
+    .table {
+        thead {
+            tr {
+                th {
+                    text-align: center;
+                }
+            }
         }
+
+        tbody {
+            tr {
+                td {
+                    text-align: center;
+
+                    .btn-success {
+                        width: 42px;
+                        height: 38px;
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+
+                .imgBanco {
+                    img {
+                        width: 140px;
+                        height: 140px;
+                    }
+
+                }
+
+                .imgMarca {
+                    img {
+                        width: 100px;
+                    }
+                }
+
+                #text-center {
+                    text-align: center;
+                }
+
+                #btn-primary,
+                #btn-secundary {
+                    cursor: pointer;
+                    font-size: 25px;
+                    transition: .2s all ease-in-out;
+                    color: #000000;
+
+                    &:hover {
+                        color: var(--corPrincipal);
+                    }
+                }
+            }
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #000000;
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
     }
 }
 
-tbody {
-    tr {
-        td {
-            text-align: center;
-
-            .btn-success {
-                width: 42px;
-                height: 38px;
-                display: flex;
-                align-items: center;
-            }
-        }
-
-        .imgBanco {
-            img {
-                width: 140px;
-                height: 140px;
-            }
-
-        }
-
-        .imgMarca {
-            img {
-                width: 100px;
-            }
-        }
-
-        #text-center {
-            text-align: center;
-        }
-
-        #btn-primary,
-        #btn-secundary {
-            cursor: pointer;
-            font-size: 25px;
-            transition: .2s all ease-in-out;
-            color: #000000;
-
-            &:hover {
-                color: var(--corPrincipal);
-            }
-        }
-    }
-}
 
 
 /* formulario editar servico */
@@ -342,92 +383,114 @@ tbody {
         }
 
         form {
-            &#normal {
-                display: unset;
-            }
-
             display: flex;
             justify-content: center;
             gap: 20px;
 
-            .img {
-                max-width: 500px;
-
-                img {
-                    width: 300px;
-                    height: 450px;
-                }
-
-
-
-                &.marca {
-                    width: 300px !important;
-                    height: 450px !important;
-                }
+            &#normal {
+                display: unset;
             }
 
-            .imgMarca {
-                max-width: 300px;
-                display: flex !important;
-                align-items: center !important;
-
-                img {
-                    width: 300px;
-                }
-            }
-
-            .flex {
+            .form-container {
                 display: flex;
+                width: 100%;
                 gap: 10px;
-            }
 
-            .mb-3 {
-                .form-control {
-                    border-radius: 0;
+                .img {
+                    max-width: 500px;
 
-                    &:focus {
-                        color: #212529;
-                        background-color: #ffff;
-                        border-color: #C59D5F;
-                        outline: 0;
-                        box-shadow: 0 0 0 0.25rem rgba(197, 157, 95, 0.25);
+                    img {
+                        width: 300px;
+                        height: 450px;
+                    }
+
+
+
+                    &.marca {
+                        width: 300px !important;
+                        height: 450px !important;
+                    }
+                }
+
+                .container-form {
+                    width: 80%;
+
+                    .flex {
+                        display: flex;
+                        gap: 10px;
+
+                        .mb-3 {
+                            width: 100%;
+                        }
+
+                    }
+                }
+
+
+
+                .imgMarca {
+                    max-width: 300px;
+                    display: flex !important;
+                    align-items: center !important;
+
+                    img {
+                        width: 300px;
+                    }
+                }
+
+                .flex {
+                    display: flex;
+                    gap: 10px;
+                }
+
+                .mb-3 {
+                    width: 100%;
+
+                    .form-control {
+                        border-radius: 0;
+
+                        &:focus {
+                            color: #212529;
+                            background-color: #ffff;
+                            border-color: #C59D5F;
+                            outline: 0;
+                            box-shadow: 0 0 0 0.25rem rgba(197, 157, 95, 0.25);
+                        }
+
+
+                    }
+
+                    .form-select {
+                        border-radius: 0;
+
+                        &:focus {
+                            color: #212529;
+                            background-color: #ffff;
+                            border-color: #C59D5F;
+                            outline: 0;
+                            box-shadow: 0 0 0 0.25rem rgba(197, 157, 95, 0.25);
+                        }
                     }
 
 
                 }
 
-                .form-select {
+                .btn {
+                    background: #000000;
+                    border: none;
                     border-radius: 0;
+                    transition: background-color 0.4s, transform 0.3s, color 0.3s;
+                    margin-top: 10px;
+                    padding: 5px 30px;
 
-                    &:focus {
-                        color: #212529;
-                        background-color: #ffff;
-                        border-color: #C59D5F;
-                        outline: 0;
-                        box-shadow: 0 0 0 0.25rem rgba(197, 157, 95, 0.25);
+                    &:hover {
+                        background: var(--corPrincipal);
                     }
                 }
-
-
             }
 
 
-
-            .btn {
-                background: #000000;
-                border: none;
-                border-radius: 0;
-                transition: background-color 0.4s, transform 0.3s, color 0.3s;
-                margin-top: 10px;
-                padding: 5px 30px;
-
-                &:hover {
-                    background: var(--corPrincipal);
-                }
-            }
         }
-
-
     }
 }
 

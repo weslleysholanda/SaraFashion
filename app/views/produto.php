@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="http://localhost/sarafashion/public/assets/css/style.css">
 </head>
 
-<body>
+<body style="overflow: inherit;">
     
     <!-- Topo Loja -->
     <?php require_once('templates/topo-loja.php') ?>

@@ -3794,7 +3794,7 @@ footer {
                             max-width: 100%;
                         }
 
-                        
+
 
                         .price {
                             font-size: 0.9rem;
@@ -4298,6 +4298,192 @@ footer {
         }
     }
 
+
+}
+
+/* Esqueci a senha */
+.esqueciSenha,
+.secao-recuperar {
+    .site {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+
+        .caixa-recuperar {
+            width: 400px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+
+            .title {
+                h1 {
+                    margin: 0 0 20px;
+                    font-family: var(--fonteMonteserrat);
+                    font-size: 20px;
+                    color: #333;
+                }
+            }
+
+            .area-logo {
+                img {
+                    width: 250px;
+                    height: auto;
+                }
+            }
+
+            .subtitle {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 30px;
+
+                p {
+                    font-size: 14px;
+                    color: #777;
+                }
+            }
+
+            .form-recuperar {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+
+                .label-email {
+                    text-align: start;
+                    padding: 0 0 0 5px;
+                    font-size: 14px;
+                    color: #555;
+                }
+
+                .form-control {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100%;
+
+                    .campo-input {
+                        display: flex;
+                        align-items: center;
+                        background-color: #EEEEEE;
+                        border-radius: 25px;
+                        padding: 0.2rem 1rem;
+                        width: 75%;
+                        height: 2.300rem;
+                        position: relative;
+
+                        svg {
+                            margin-right: 0.5rem;
+                            width: 20px;
+                            pointer-events: none;
+                        }
+
+                        input {
+                            border: none;
+                            background: transparent;
+                            outline: none;
+                            width: 100%;
+                            font-style: italic;
+                            color: #888888;
+
+                            &::placeholder {
+                                color: #888888;
+                            }
+                        }
+
+
+                        &:nth-of-type(2) svg {
+                            width: 25px;
+                        }
+
+                        &:nth-of-type(3) svg {
+                            width: 20px;
+                        }
+                    }
+
+                    .container_password {
+                        width: 100%;
+
+                        .forca-senha {
+                            span {
+                                display: inline-block;
+                                width: 18%;
+                                height: 5px;
+                                margin-right: 4px;
+                                background-color: #ccc;
+                                border-radius: 2px;
+                            }
+                        }
+
+                        .erro-senha {
+                            color: red;
+                            font-size: 12px;
+                            margin-top: 5px;
+                        }
+                    }
+
+                }
+
+                .campo-input {
+                    display: flex;
+                    align-items: center;
+                    background-color: #EEEEEE;
+                    border-radius: 25px;
+                    padding: 0.2rem 1rem;
+                    width: 75%;
+                    height: 2.300rem;
+                    position: relative;
+
+                    svg {
+                        margin-right: 0.5rem;
+                        width: 20px;
+                        pointer-events: none;
+                    }
+
+                    input {
+                        border: none;
+                        background: transparent;
+                        outline: none;
+                        width: 100%;
+                        font-style: italic;
+                        color: #888888;
+
+                        &::placeholder {
+                            color: #888888;
+                        }
+                    }
+
+
+                    &:nth-of-type(2) svg {
+                        width: 25px;
+                    }
+
+                    &:nth-of-type(3) svg {
+                        width: 20px;
+                    }
+                }
+
+                .btn-control {
+                    background-color: #C59D5F;
+                    color: white;
+                    padding: 12px;
+                    border: none;
+                    border-radius: 5px;
+                    width: 80%;
+                    cursor: pointer;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    transition: background-color 0.3s;
+
+                    &:hover {
+                        background-color: #9a6a2e;
+                    }
+                }
+            }
+        }
+    }
 
 }
 
@@ -5532,6 +5718,48 @@ footer {
         }
     }
 
+    .esqueciSenha,
+    .secao-recuperar {
+        .site {
+            padding: 20px;
+            height: 100vh;
+
+            .caixa-recuperar {
+                width: 100%;
+                max-width: 380px;
+                padding: 25px;
+
+                .area-logo {
+                    img {
+                        width: 220px;
+                    }
+                }
+
+                .subtitle {
+                    p {
+                        max-width: 100%;
+                    }
+                }
+
+                .form-recuperar {
+                    .form-control {
+                        .campo-input {
+                            width: 85%;
+                        }
+                    }
+
+                    .campo-input {
+                        width: 85%;
+                    }
+
+                    .btn-control {
+                        width: 90%;
+                    }
+                }
+            }
+        }
+    }
+
     /* PG - error 404 */
     .banner-404 {
         .site {
@@ -5784,9 +6012,12 @@ footer {
 
     .satisfacao {
         .site {
+            display: flex;
+            align-items: center;
+
             .container-satisfacao {
                 flex-direction: column;
-                align-items: center;
+
                 gap: 20px;
 
                 .satiscacao-item {
@@ -6150,6 +6381,55 @@ footer {
     /* PG - Login */
     .login {
         padding: 10px;
+    }
+
+    .esqueciSenha,
+    .secao-recuperar {
+        .site {
+            padding: 15px;
+
+            .caixa-recuperar {
+                padding: 20px;
+
+                .title {
+                    h2 {
+                        font-size: 16px;
+                    }
+                }
+
+                .area-logo {
+                    img {
+                        width: 180px;
+                    }
+
+                }
+
+                .subtitle {
+                    p {
+                        font-size: 13px;
+                    }
+                }
+
+                .form-recuperar {
+                    gap: 15px;
+
+                    .form-control {
+                        .campo-input {
+                            width: 75%;
+                        }
+                    }
+
+                    .campo-input {
+                        width: 75%;
+                    }
+
+                    .btn-control {
+                        width: 90%;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
     }
 
     /* PG - Login - Cliente */
@@ -6516,6 +6796,10 @@ footer {
                 .cards-depoimento {
                     .slide-card {
                         .card-slide {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
                             .card {
                                 width: 360px;
                             }
@@ -6952,6 +7236,59 @@ footer {
             }
         }
     }
+
+    .esqueciSenha,
+      .secao-recuperar {
+        .site {
+          padding: 0;
+
+          .caixa-recuperar {
+            padding: 15px;
+            border-radius: 8px;
+            background-color: none;
+            box-shadow: none;
+
+            .title {
+              h2 {
+                font-size: 15px;
+              }
+            }
+
+            .area-logo {
+              img {
+                width: 180px;
+              }
+            }
+
+            .subtitle {
+              p {
+                font-size: 12px;
+              }
+            }
+
+            .form-recuperar {
+              gap: 10px;
+
+              .form-control {
+                gap: 10px;
+
+                .campo-input {
+                  padding: 0.3rem 0.8rem;
+                }
+
+                input {
+                  font-size: 13px;
+                }
+              }
+
+              .btn-control {
+                font-size: 13px;
+                padding: 10px;
+              }
+            }
+          }
+        }
+      }
 
     /* PG -Login - Cliente*/
     .container {

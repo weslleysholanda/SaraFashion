@@ -13,6 +13,14 @@ class AgendamentoController extends Controller
         $this->agendamentoModel = new Agendamento();
         $this->dashboardModel = new Dashboard();
     }
+
+    public function filtrarAgendamento(){
+
+        $status = isset($_POST['status']) ? $_POST['status'] : 'Agendado';
+        $listarAgendamentos = $this->agendamentoModel->getAgendamentoByStatus($status);
+        echo json_encode($listarAgendamentos);
+    }
+
     public function listar()
     {
         if (!isset($_SESSION['userTipo']) || $_SESSION['userTipo'] !== 'Funcionario') {

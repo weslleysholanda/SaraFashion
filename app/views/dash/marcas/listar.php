@@ -43,48 +43,49 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 </div>
 
 <!-- Tabela de Marcas -->
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Logo</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Status</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Ação</th>
-        </tr>
-    </thead>
-    <tbody id="tabela-marcas">
-        <?php foreach ($listarMarcas as $linha): ?>
+<div class="scroll-tabela">
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <td class="imgMarca">
-                    <img src="<?php
-                                $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $linha['logo_marca'];
-                                if ($linha['logo_marca'] != "" && file_exists($caminhoArquivo)) {
-                                    echo "http://localhost/sarafashion/public/uploads/" . htmlspecialchars($linha['logo_marca'], ENT_QUOTES, 'UTF-8');
-                                } else {
-                                    echo "http://localhost/sarafashion/public/uploads/marca/sem-foto-marca.png";
-                                }
-                                ?>" alt="<?php echo htmlspecialchars($linha['alt_marca'], ENT_QUOTES, 'UTF-8') ?>">
-                </td>
-                <td><?php echo htmlspecialchars($linha['nome_marca'], ENT_QUOTES, 'UTF-8'); ?></td>
-                <td><?php echo htmlspecialchars($linha['status_marcas'], ENT_QUOTES, 'UTF-8'); ?></td>
-                <td>
-                    <a href="http://localhost/sarafashion/public/marcas/editar/<?php echo $linha['id_marca']; ?>">
-                        <i id="btn-primary" class="bi bi-pencil"></i>
-                    </a>
-                </td>
-                <td>
-                    <?php if ($linha['status_marcas'] === 'Ativo'): ?>
-                        <i id="btn-secundary" data-id="<?php echo $linha['id_marca']; ?>" onclick="desativarMarca(<?php echo $linha['id_marca']; ?>)" class="bi bi-trash"></i>
-                    <?php else: ?>
-                        <i id="btn-primary" data-id="<?php echo $linha['id_marca']; ?>" onclick="ativarMarca(<?php echo $linha['id_marca']; ?>)" class="bi bi-check-circle"></i>
-                    <?php endif; ?>
-                </td>
+                <th scope="col">Logo</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Status</th>
+                <th scope="col">Editar</th>
+                <th scope="col" class="acao-coluna">Desativar</th>
             </tr>
-        <?php endforeach ?>
-    </tbody>
-</table>
-
+        </thead>
+        <tbody id="tabela-marcas">
+            <?php foreach ($listarMarcas as $linha): ?>
+                <tr>
+                    <td class="imgMarca">
+                        <img src="<?php
+                                    $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $linha['logo_marca'];
+                                    if ($linha['logo_marca'] != "" && file_exists($caminhoArquivo)) {
+                                        echo "http://localhost/sarafashion/public/uploads/" . htmlspecialchars($linha['logo_marca'], ENT_QUOTES, 'UTF-8');
+                                    } else {
+                                        echo "http://localhost/sarafashion/public/uploads/marca/sem-foto-marca.png";
+                                    }
+                                    ?>" alt="<?php echo htmlspecialchars($linha['alt_marca'], ENT_QUOTES, 'UTF-8') ?>">
+                    </td>
+                    <td><?php echo htmlspecialchars($linha['nome_marca'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td><?php echo htmlspecialchars($linha['status_marcas'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td>
+                        <a href="http://localhost/sarafashion/public/marcas/editar/<?php echo $linha['id_marca']; ?>">
+                            <i id="btn-primary" class="bi bi-pencil"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <?php if ($linha['status_marcas'] === 'Ativo'): ?>
+                            <i id="btn-secundary" data-id="<?php echo $linha['id_marca']; ?>" onclick="abrirModalDesativarMarca(<?php echo $linha['id_marca']; ?>)" class="bi bi-trash"></i>
+                        <?php else: ?>
+                            <i id="btn-primary" data-id="<?php echo $linha['id_marca']; ?>" onclick="abrirModalAtivarMarca(<?php echo $linha['id_marca']; ?>)" class="bi bi-check-circle"></i>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</div>
 
 <!-- Modal para desativar Marca -->
 <div class="modal fade" tabindex="-1" id="modalDesativarMarca">

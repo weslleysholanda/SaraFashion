@@ -22,12 +22,14 @@ class Servico extends Model
 
     public function getServicoByStatus($status)
     {
-        $sql = "SELECT * FROM tbl_servico WHERE status_servico = :status";
+        $sql = "SELECT * FROM tbl_servico inner join tbl_especialidade ON tbl_servico.id_especialidade = tbl_especialidade.id_especialidade WHERE status_servico = :status;";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':status', $status, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    
 
     public function addServico($dados)
     {
@@ -106,6 +108,14 @@ class Servico extends Model
     public function desativarServico($id)
     {
         $sql = "UPDATE tbl_servico SET status_servico = 'Inativo' WHERE id_servico = :id_servico";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_servico', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    public function ativarServico($id)
+    {
+        $sql = "UPDATE tbl_servico SET status_servico = 'Ativo' WHERE id_servico = :id_servico";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_servico', $id, PDO::PARAM_INT);
         return $stmt->execute();

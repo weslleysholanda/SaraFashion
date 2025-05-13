@@ -249,6 +249,13 @@ class FuncionarioController extends Controller
         $this->carregarViews('dash/dashboard', $dados);
     }
 
+    public function filtrarFuncionario(){
+
+        $status = isset($_POST['status']) ? $_POST['status'] : 'Ativo';
+        $listarFuncionario = $this->funcionarioModel->getFuncionarioByStatusjx($status);
+        echo json_encode($listarFuncionario);
+    }
+
     public function desativar($id = null)
     {
         if (!isset($_SESSION['userTipo']) || $_SESSION['userTipo'] !== 'Funcionario') {
@@ -278,6 +285,37 @@ class FuncionarioController extends Controller
 
             echo json_encode(['sucesso' => false, 'mensagem' => 'Falha ao desativar o funcionario']);
         }
+    }
+
+    public function ativar($id = null){
+        if (!isset($_SESSION['userTipo']) || $_SESSION['userTipo'] !== 'Funcionario') {
+
+            header('Location:' . BASE_URL);
+            exit;
+        }
+
+        $resultado = $this->funcionarioModel->ativarFuncionario($id);
+        header('Content-Type: Application/json');
+
+        if ($id === null) {
+            http_response_code(400);
+            echo json_encode(["sucesso" => false, "mensagem" => "ID inválido"]);
+            exit;
+        }
+
+        if ($resultado) {
+            $_SESSION['mensagem'] = 'Funcionario ativada com sucesso!';
+            $_SESSION['tipo-msg'] = 'sucesso';
+
+            echo json_encode(['sucesso' => true]);
+        } else {
+
+            $_SESSION['mensagem'] = 'Falha ao ativar';
+            $_SESSION['tipo-msg'] = 'erro';
+
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Falha ao ativar o funcionario']);
+        }
+
     }
 
     private function uploadFoto($file, $nome_funcionario)
