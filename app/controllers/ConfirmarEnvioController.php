@@ -1,6 +1,6 @@
 <?php
 
-class ConfirmarEnvioEmailController extends Controller{
+class ConfirmarEnvioController extends Controller{
 
     public function index(){
         $dados = array();
