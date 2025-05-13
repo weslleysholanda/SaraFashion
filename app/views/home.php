@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
-
     <title><?php echo isset($titulo) ? $titulo : 'Bem-Vindo a SaraFashion' ?></title>
 </head>
 

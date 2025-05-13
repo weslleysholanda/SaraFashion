@@ -36,7 +36,7 @@
                         <option value="Cliente">Cliente</option>
                         <option value="Funcionario">Funcionário</option>
                     </select>
-                    <a href="#">Esqueceu a Senha?</a>
+                    <a href="http://localhost/sarafashion/public/esqueciSenha">Esqueceu a Senha?</a>
                     <button>Entrar</button>
                 </form>
             </div>

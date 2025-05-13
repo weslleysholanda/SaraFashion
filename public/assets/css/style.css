@@ -4274,15 +4274,16 @@ footer {
 
     button {
         border-radius: 20px;
-        border: 1px solid #6A3D16;
-        background-color: #6A3D16;
+        border: 1px solid var(--corPrincipal);
+        background-color: var(--corPrincipal);
         color: #FFFFFF;
+        cursor: pointer;
         font-size: 12px;
         font-weight: bold;
         padding: 12px 45px;
         letter-spacing: 1px;
         text-transform: uppercase;
-        transition: transform 80ms ease-in;
+        transition: background-color 0.3s ease, border 0.3s ease, transform 80ms ease-in;
 
         &:active {
             transform: scale(0.95);
@@ -4290,6 +4291,11 @@ footer {
 
         &:focus {
             outline: none;
+        }
+
+        &:hover {
+            border: 1px solid #6A3D16;
+            background-color: #6A3D16;
         }
 
         &.ghost {
@@ -4322,6 +4328,7 @@ footer {
                 h1 {
                     margin: 0 0 20px;
                     font-family: var(--fonteMonteserrat);
+                    font-weight: 700;
                     font-size: 20px;
                     color: #333;
                 }
@@ -4342,6 +4349,11 @@ footer {
                 p {
                     font-size: 14px;
                     color: #777;
+
+                    span {
+                        color: #535050;
+                        font-weight: 700;
+                    }
                 }
             }
 
@@ -7238,57 +7250,57 @@ footer {
     }
 
     .esqueciSenha,
-      .secao-recuperar {
+    .secao-recuperar {
         .site {
-          padding: 0;
+            padding: 0;
 
-          .caixa-recuperar {
-            padding: 15px;
-            border-radius: 8px;
-            background-color: none;
-            box-shadow: none;
+            .caixa-recuperar {
+                padding: 15px;
+                border-radius: 8px;
+                background-color: none;
+                box-shadow: none;
 
-            .title {
-              h2 {
-                font-size: 15px;
-              }
-            }
-
-            .area-logo {
-              img {
-                width: 180px;
-              }
-            }
-
-            .subtitle {
-              p {
-                font-size: 12px;
-              }
-            }
-
-            .form-recuperar {
-              gap: 10px;
-
-              .form-control {
-                gap: 10px;
-
-                .campo-input {
-                  padding: 0.3rem 0.8rem;
+                .title {
+                    h2 {
+                        font-size: 15px;
+                    }
                 }
 
-                input {
-                  font-size: 13px;
+                .area-logo {
+                    img {
+                        width: 180px;
+                    }
                 }
-              }
 
-              .btn-control {
-                font-size: 13px;
-                padding: 10px;
-              }
+                .subtitle {
+                    p {
+                        font-size: 12px;
+                    }
+                }
+
+                .form-recuperar {
+                    gap: 10px;
+
+                    .form-control {
+                        gap: 10px;
+
+                        .campo-input {
+                            padding: 0.3rem 0.8rem;
+                        }
+
+                        input {
+                            font-size: 13px;
+                        }
+                    }
+
+                    .btn-control {
+                        font-size: 13px;
+                        padding: 10px;
+                    }
+                }
             }
-          }
         }
-      }
+    }
 
     /* PG -Login - Cliente*/
     .container {
