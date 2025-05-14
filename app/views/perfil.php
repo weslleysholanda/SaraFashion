@@ -13,6 +13,8 @@
 </head>
 
 <body>
+    <!-- Preloader -->
+    <?php require_once('templates/preloader.php') ?>
     <!-- Menu Cliente -->
     <?php require_once('templates/topo-loja.php') ?>
     <!-- Perfil Cliente -->
@@ -29,15 +31,23 @@
     <script src="assets/js/script.js"></script>
     <script>
         function changeTab(event, tabId) {
+            // Desativa todas as abas
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
+
+            // Ativa a aba escolhida
             document.getElementById(tabId).classList.add('active');
 
+            // Remove classe 'active' dos links laterais
             document.querySelectorAll('.sidebar a').forEach(item => {
                 item.classList.remove('active');
             });
-            event.target.classList.add('active');
+
+            // Só aplica 'active' se veio de um clique
+            if (event) {
+                event.target.classList.add('active');
+            }
         }
 
         function editarPerfil() {
@@ -72,50 +82,44 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const visualizarImg = document.getElementById('preview-img');
-            const arquivo = document.getElementById('foto_cliente');
 
-            visualizarImg.addEventListener('click', function() {
-                arquivo.click()
-            })
+        document.querySelector('#form-editar-perfil').addEventListener('submit', async function(e) {
+            e.preventDefault();
 
-            arquivo.addEventListener('change', function() {
-                if (arquivo.files && arquivo.files[0]) {
-                    let render = new FileReader();
-                    render.onload = function(e) {
-                        visualizarImg.src = e.target.result
+            const form = e.target;
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('<?= BASE_URL ?>/perfil/editar', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const json = await response.json();
+
+                const msg = document.querySelector('#mensagem');
+                msg.innerText = json.mensagem;
+                msg.className = json.sucesso ? 'mensagem sucesso' : 'mensagem erro';
+
+                if (json.sucesso) {
+                    if (json.novaFoto) {
+                        const img = document.querySelector('.foto-preview img');
+                        img.src = '<?= BASE_URL ?>/assets/images/clientes/' + json.novaFoto;
                     }
 
-                    render.readAsDataURL(arquivo.files[0]);
+                    // Trocar para a aba "dados"
+                    changeTab(null, 'dados');
 
+                    setTimeout(() => {
+                        msg.innerText = '';
+                        msg.className = '';
+                    }, 3000);
                 }
 
-            })
-        })
-
-        function editarPerfil(event, el) {
-            // Impede o comportamento padrão do link
-            event.preventDefault();
-
-            // Pega o ID do cliente logado a partir do atributo data-id
-            var usuarioId = el.getAttribute("data-id");
-
-            // Exemplo de como você pode chamar a função que vai carregar o formulário de edição
-            // Aqui, podemos chamar um modal ou uma requisição para carregar os dados via AJAX
-            console.log("ID do cliente logado: ", usuarioId);
-
-            // Exemplo: usando AJAX para carregar o formulário de edição sem recarregar a página
-            fetch('perfil/editar/' + usuarioId)
-                .then(response => response.text())
-                .then(data => {
-                    // Aqui você pode inserir o formulário de edição na página
-                    document.getElementById("formulario-edicao").innerHTML = data;
-                })
-                .catch(error => {
-                    console.error("Erro ao carregar os dados de edição", error);
-                });
-        }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+            }
+        });
     </script>
 </body>
 

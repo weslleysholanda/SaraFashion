@@ -2,7 +2,7 @@
      <div class="site">
          <div class="caixa-recuperar">
              <div class="area-logo">
-                 <img src="../../public/assets/img/logoDark.svg" alt="Logo">
+                 <img src="assets/img/logoDark.svg" alt="Logo">
              </div>
 
              <div class="title">
@@ -40,8 +40,8 @@
                              transform="translate(-4.085 -4.763)" fill="#888" />
                      </svg>
                      <input type="password" placeholder="Confirmar senha" id="senha2" />
-                     <div class="erro-senha" id="erro-confirmacao"></div>
                  </div>
+                 <div class="erro-senha" id="erro-confirmacao"></div>
                  <button type="submit" class="btn-control" id="btn-submit" disabled>Confirmar</button>
              </form>
          </div>

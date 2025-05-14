@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resetar Senha</title>
-  <link rel="stylesheet" href="../../public/vendors/css/reset.css">
-  <link rel="stylesheet" href="../../public/assets/css/style.css">
+  <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/reset.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-  <?php require_once('template/recuperar.php')?>
+  <?php require_once('templates/recuperar.php')?>
  
 
   <script>
@@ -32,7 +32,7 @@
 
     function atualizarIndicadores(forca) {
       let mensagem = '';
-      let corMensagem = ''; // nova variável para a cor da mensagem
+      let corMensagem = '';
 
       forcaSpans.forEach((span, index) => {
         if (index < forca) {
@@ -57,7 +57,7 @@
       // Só exibe a mensagem se houver algo digitado
       if (senhaInput.value) {
         erroSenha.textContent = mensagem;
-        erroSenha.style.color = corMensagem; // <-- aqui você define a cor da mensagem
+        erroSenha.style.color = corMensagem;
       } else {
         erroSenha.textContent = '';
       }

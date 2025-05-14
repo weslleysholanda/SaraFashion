@@ -70,7 +70,8 @@
         </div>
         <div id="editar" class="tab">
             <h2>Editar Dados</h2>
-            <form action="<?php echo BASE_URL; ?>perfil/editar" method="POST">
+            <div id="mensagem"></div>
+            <form action="salvarEdicaoPerfil(<?php echo $cliente['id_cliente']; ?>)" id="form-editar-perfil" method="POST" enctype="multipart/form-data">
                 <div class="img">
                     <img id="preview-img"
                         title="Clique na imagem para selecionar uma foto do funcionário"
@@ -90,6 +91,7 @@
                             <input type="text" class="form-control" name="telefone_cliente" value="<?php echo htmlspecialchars($cliente['telefone_cliente']); ?>" required>
                         </div>
                     </div>
+
                     <div class="flex">
                         <div class="mb-3">
                             <label class="form-label">E-mail</label>
@@ -100,7 +102,6 @@
                             <input type="password" class="form-control" name="senha_cliente">
                         </div>
                     </div>
-
 
                     <div class="flex">
                         <div class="mb-3">
@@ -117,6 +118,7 @@
                             <input type="text" class="form-control" name="cpf_cnpj_cliente" value="<?php echo htmlspecialchars($cliente['cpf_cnpj_cliente']); ?>" required>
                         </div>
                     </div>
+
                     <div class="flex">
                         <div class="mb-3">
                             <label for="endereco_cliente" class="form-label">Endereço</label>
@@ -147,11 +149,12 @@
                     </div>
 
                     <div class="buttons">
-                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="submit" class="btn btn-primary" onclick="salvarEdicaoPerfil(<?php echo $cliente['id_cliente']; ?>)">Salvar</button>
                         <button type="button" class="btn btn-secondary" onclick="cancelarEdicao()">Cancelar</button>
                     </div>
                 </div>
             </form>
+
         </div>
         <div id="pedidos" class="tab">
             <h2>Pedidos</h2>

@@ -21,8 +21,8 @@ class Cliente extends Model
     }
 
     public function addCliente($dados)
-{
-    $sql = "INSERT INTO tbl_cliente (
+    {
+        $sql = "INSERT INTO tbl_cliente (
         nome_cliente,
         tipo_cliente,
         cpf_cnpj_cliente,
@@ -52,26 +52,26 @@ class Cliente extends Model
         :status_cliente
     )";
 
-    $stmt = $this->db->prepare($sql);
+        $stmt = $this->db->prepare($sql);
 
-    $stmt->bindValue(':nome_cliente', $dados['nome_cliente']);
-    $stmt->bindValue(':tipo_cliente', $dados['tipo_cliente']);
-    $stmt->bindValue(':cpf_cnpj_cliente', $dados['cpf_cnpj_cliente']);
-    $stmt->bindValue(':data_nasc_cliente', $dados['data_nasc_cliente']);
-    $stmt->bindValue(':email_cliente', $dados['email_cliente']);
-    $stmt->bindValue(':senha_cliente', $dados['senha_cliente']);
-    $stmt->bindValue(':foto_cliente', $dados['foto_cliente']);
-    $stmt->bindValue(':alt_foto_cliente', $dados['alt_foto_cliente']);
-    $stmt->bindValue(':telefone_cliente', $dados['telefone_cliente']);
-    $stmt->bindValue(':endereco_cliente', $dados['endereco_cliente']);
-    $stmt->bindValue(':bairro_cliente', $dados['bairro_cliente']);
-    $stmt->bindValue(':cidade_cliente', $dados['cidade_cliente']);
-    $stmt->bindValue(':status_cliente', $dados['status_cliente']);
+        $stmt->bindValue(':nome_cliente', $dados['nome_cliente']);
+        $stmt->bindValue(':tipo_cliente', $dados['tipo_cliente']);
+        $stmt->bindValue(':cpf_cnpj_cliente', $dados['cpf_cnpj_cliente']);
+        $stmt->bindValue(':data_nasc_cliente', $dados['data_nasc_cliente']);
+        $stmt->bindValue(':email_cliente', $dados['email_cliente']);
+        $stmt->bindValue(':senha_cliente', $dados['senha_cliente']);
+        $stmt->bindValue(':foto_cliente', $dados['foto_cliente']);
+        $stmt->bindValue(':alt_foto_cliente', $dados['alt_foto_cliente']);
+        $stmt->bindValue(':telefone_cliente', $dados['telefone_cliente']);
+        $stmt->bindValue(':endereco_cliente', $dados['endereco_cliente']);
+        $stmt->bindValue(':bairro_cliente', $dados['bairro_cliente']);
+        $stmt->bindValue(':cidade_cliente', $dados['cidade_cliente']);
+        $stmt->bindValue(':status_cliente', $dados['status_cliente']);
 
-    $stmt->execute();
+        $stmt->execute();
 
-    return $this->db->lastInsertId();
-}
+        return $this->db->lastInsertId();
+    }
 
 
     public function cadastrarCliente($nome, $email, $senha, $status)
@@ -91,18 +91,19 @@ class Cliente extends Model
         $stmt->execute();
     }
 
-    public function atualizarCliente($id, $dados) {
+    public function atualizarCliente($id, $dados)
+    {
         $sql = "UPDATE tbl_cliente SET 
-                    nome_cliente = :nome_cliente,
-                    tipo_cliente = :tipo_cliente,
-                    cpf_cnpj_cliente = :cpf_cnpj_cliente,
-                    data_nasc_cliente = :data_nasc_cliente,
-                    email_cliente = :email_cliente,
-                    alt_foto_cliente = :alt_cliente,
-                    telefone_cliente = :telefone_cliente,
-                    endereco_cliente = :endereco_cliente,
-                    bairro_cliente = :bairro_cliente,
-                    cidade_cliente = :cidade_cliente";
+                nome_cliente = :nome_cliente,
+                tipo_cliente = :tipo_cliente,
+                cpf_cnpj_cliente = :cpf_cnpj_cliente,
+                data_nasc_cliente = :data_nasc_cliente,
+                email_cliente = :email_cliente,
+                alt_foto_cliente = :alt_foto_cliente,
+                telefone_cliente = :telefone_cliente,
+                endereco_cliente = :endereco_cliente,
+                bairro_cliente = :bairro_cliente,
+                cidade_cliente = :cidade_cliente";
 
         if (!empty($dados['foto_cliente'])) {
             $sql .= ", foto_cliente = :foto_cliente";
@@ -125,14 +126,19 @@ class Cliente extends Model
         $stmt->bindValue(':endereco_cliente', $dados['endereco_cliente']);
         $stmt->bindValue(':bairro_cliente', $dados['bairro_cliente']);
         $stmt->bindValue(':cidade_cliente', $dados['cidade_cliente']);
-
+        $stmt->bindValue(':alt_foto_cliente', $dados['alt_foto_cliente']);
 
         if (!empty($dados['foto_cliente'])) {
             $stmt->bindValue(':foto_cliente', $dados['foto_cliente']);
         }
 
+        if (!empty($dados['senha_cliente'])) {
+            $stmt->bindValue(':senha_cliente', $dados['senha_cliente']);
+        }
+
         return $stmt->execute();
     }
+
 
     public function desativarCliente($id)
     {

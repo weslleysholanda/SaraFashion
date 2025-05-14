@@ -2666,6 +2666,23 @@ footer {
         .tab.active {
             display: block;
 
+            .mensagem {
+                padding: 10px;
+                margin-bottom: 15px;
+                display: block;
+                font-weight: bold;
+            }
+
+            .sucesso {
+                background-color: #d4edda;
+                color: #155724;
+            }
+
+            .erro {
+                background-color: #f8d7da;
+                color: #721c24;
+            }
+
             .container-info-row {
                 .info-row {
                     display: flex;
@@ -3926,12 +3943,12 @@ footer {
                         color: #000000;
                     }
 
-                    .sub-tags{
+                    .sub-tags {
                         display: flex;
                         flex-flow: wrap;
-                        
 
-                        a{
+
+                        a {
                             color: var(--cor1);
                             line-height: 1.2;
                         }
@@ -4457,7 +4474,9 @@ footer {
                             font-size: 12px;
                             margin-top: 5px;
                         }
+
                     }
+
 
                 }
 
@@ -4516,6 +4535,12 @@ footer {
                         background-color: #9a6a2e;
                     }
                 }
+
+                #erro-confirmacao {
+                    color: red;
+                    font-size: 14px;
+                    margin: -10px 0 10px;
+                }
             }
         }
     }
@@ -4564,6 +4589,7 @@ footer {
             color: #3f3f40;
             font-weight: bold;
             font-family: var(--fonteParisienne);
+            margin-bottom: 15px;
         }
 
         .tab {
