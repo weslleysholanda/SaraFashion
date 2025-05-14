@@ -105,6 +105,8 @@ class PerfilController extends Controller
             // Carrega novamente a página de edição após o POST
             $dados['cliente'] = $clienteModel->buscarClientePorId($_SESSION['userId']);
         }
+
+        $this->carregarViews('perfil', $dados);
     }
 
 

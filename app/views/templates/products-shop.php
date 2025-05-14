@@ -102,7 +102,10 @@
                 </div>
                 <div class="tags">
                     <h3>TAGS</h3>
-                    <p>blends, fashion, gloss, haircut, hidratante, selagem, trends</p>
+                    <div class="sub-tags">
+                        <a href="">blends</a>, <a href="#">fashion</a>,<a href="#"> gloss</a>, <a href="#">haircut</a>, <a href="#">hidratante</a>,<a href="#">selagem</a>,<a href="#">trends</a>
+                    </div>
+
                 </div>
                 <div class="filter-widget">
                     <div class="filter-title">

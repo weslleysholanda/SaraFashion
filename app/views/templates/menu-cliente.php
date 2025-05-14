@@ -51,16 +51,26 @@
                 <div class="info-row">
                     <div class="info-box">
                         <strong>Data de nascimento</strong>
-                        <span><?php echo date_format(date_create($cliente['data_nasc_cliente']), 'd/m/Y'); ?></span>
+                        <span>
+                            <?php
+                            $data = $cliente['data_nasc_cliente'];
+
+                            if ($data === '0000-00-00' || empty($data)) {
+                                echo '00/00/0000';
+                            } else {
+                                echo date_format(date_create($data), 'd/m/Y');
+                            }
+                            ?>
+                        </span>
                     </div>
                 </div>
 
-                <a href="#" class="btn-edit" onclick="editarPerfil()">Editar</a>
+                <a href="#" class="btn-edit" data-id="<?php echo $_SESSION['userId']; ?>" onclick="editarPerfil(event, this)">Editar</a>
             </div>
         </div>
         <div id="editar" class="tab">
             <h2>Editar Dados</h2>
-            <form action="atualizar_cliente.php" method="POST">
+            <form action="<?php echo BASE_URL; ?>perfil/editar" method="POST">
                 <div class="img">
                     <img id="preview-img"
                         title="Clique na imagem para selecionar uma foto do funcionário"

@@ -93,6 +93,29 @@
 
             })
         })
+
+        function editarPerfil(event, el) {
+            // Impede o comportamento padrão do link
+            event.preventDefault();
+
+            // Pega o ID do cliente logado a partir do atributo data-id
+            var usuarioId = el.getAttribute("data-id");
+
+            // Exemplo de como você pode chamar a função que vai carregar o formulário de edição
+            // Aqui, podemos chamar um modal ou uma requisição para carregar os dados via AJAX
+            console.log("ID do cliente logado: ", usuarioId);
+
+            // Exemplo: usando AJAX para carregar o formulário de edição sem recarregar a página
+            fetch('perfil/editar/' + usuarioId)
+                .then(response => response.text())
+                .then(data => {
+                    // Aqui você pode inserir o formulário de edição na página
+                    document.getElementById("formulario-edicao").innerHTML = data;
+                })
+                .catch(error => {
+                    console.error("Erro ao carregar os dados de edição", error);
+                });
+        }
     </script>
 </body>
 

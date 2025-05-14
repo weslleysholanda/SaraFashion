@@ -3917,6 +3917,27 @@ footer {
                     margin-bottom: 2rem;
                 }
 
+                .tags {
+                    h3 {
+                        font-size: 1.05em;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        margin-bottom: 18px;
+                        color: #000000;
+                    }
+
+                    .sub-tags{
+                        display: flex;
+                        flex-flow: wrap;
+                        
+
+                        a{
+                            color: var(--cor1);
+                            line-height: 1.2;
+                        }
+                    }
+                }
+
                 .filter-category {
                     h3 {
                         font-size: 1.2rem;
@@ -3950,8 +3971,6 @@ footer {
                 }
 
                 .filter-widget {
-                    font-family: Arial, sans-serif;
-
                     .filter-title {
                         h4 {
                             font-size: 18px;
@@ -3968,25 +3987,29 @@ footer {
                             position: relative;
                             height: 7px;
                             width: 180px;
-                            background: #000;
+                            background: #ccc;
                             border-radius: 5px;
 
-                            .slider-range {
+
+                            .ui-slider-range {
                                 position: absolute;
                                 background: black;
                                 height: 100%;
                                 border-radius: 5px;
+                                z-index: 1;
                             }
 
-                            .slider-handle {
-                                position: absolute;
-                                top: -5px;
+
+                            .ui-slider-handle {
+                                top: -5px !important;
                                 width: 15px;
                                 height: 15px;
                                 background: black;
                                 border-radius: 50%;
                                 cursor: pointer;
                                 z-index: 2;
+                                border: none;
+                                position: absolute;
                             }
                         }
 
@@ -4008,7 +4031,6 @@ footer {
                                     background: var(--corPrincipal);
                                     color: var(--corLetras);
                                     border: 1px solid #fff;
-
                                 }
                             }
 
@@ -4023,6 +4045,7 @@ footer {
                         }
                     }
                 }
+
 
                 .promo {
                     img {
@@ -5055,6 +5078,14 @@ footer {
                     margin-top: 10px;
                     color: #555;
                     font-size: 14px;
+
+                }
+
+                .tag {
+                    h3 {
+                        color: #555;
+                        font-size: 14px;
+                    }
                 }
             }
 
@@ -5705,6 +5736,8 @@ footer {
                             }
                         }
                     }
+
+
                 }
 
             }

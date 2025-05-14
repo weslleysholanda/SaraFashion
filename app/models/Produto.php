@@ -51,6 +51,7 @@ class Produto extends Model
 
         return $this->db->lastInsertId();
     }
+    
     public function atualizarProduto($id, $dados)
     {
         $sql = "UPDATE tbl_produto 
