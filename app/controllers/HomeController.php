@@ -10,15 +10,15 @@ class HomeController extends Controller{
         $depoimentoModel = new Depoimento();
 
         // obter marcas logo
-        $marcaLogo = $marcasModel ->getLogoNome();
+        $marcaLogo = $marcasModel->getLogoNome();
         
         // Depoimento
-        $depoimentoCliente = $depoimentoModel ->getDepoimentoCliente();
+        $depoimentoCliente = $depoimentoModel->getDepoimentoCliente();
 
         $dados['marcaLogo'] = $marcaLogo;
         $dados['depoimentoCliente'] = $depoimentoCliente;
 
 
-        $this->carregarViews('home',$dados);
+        $this->carregarViews('home', $dados);
     }       
 }

@@ -117,7 +117,7 @@ class PerfilController extends Controller
                     'sucesso' => true,
                     'mensagem' => 'Perfil atualizado com sucesso!',
                     'novaFoto' => $foto_cliente,
-                    'cliente' => $clienteAtualizado // Retorna os dados atualizados do cliente
+                    'cliente' => $clienteAtualizado
                 ]);
                 exit;
             } else {

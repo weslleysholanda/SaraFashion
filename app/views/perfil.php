@@ -98,10 +98,10 @@
                     } else {
                         // Exibe a mensagem de erro usando a estrutura de alerta do Bootstrap
                         $('#mensagem-container').html(`
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Erro!</strong> ${response.mensagem}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                        </div>
                 `);
                     }
                 },

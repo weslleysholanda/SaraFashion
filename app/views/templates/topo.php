@@ -1,8 +1,80 @@
 <?php
 // Verifica se o usuário está logado
-    $destino = isset($_SESSION['userId']) ? BASE_URL . 'perfil' : BASE_URL . 'login';
+$destino = isset($_SESSION['userId']) ? BASE_URL . 'perfil' : BASE_URL . 'login';
 ?>
 <header class="topo">
+    <style>
+        .userIcon {
+            position: relative;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+
+            &::after {
+                display: none;
+                content: "";
+                position: absolute;
+                z-index: 9;
+                top: 34px;
+                left: 50%;
+                transform: translateX(-60%) rotate(45deg);
+                width: 15px;
+                height: 15px;
+                background: #fff;
+                box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.05);
+            }
+
+            &:hover::after {
+                display: block;
+            }
+        }
+
+
+
+        .dropdownContent {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            transform: translateX(-50px);
+            background-color: #fff;
+            min-width: 150px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            z-index: 10;
+            padding: 5px 0;
+        }
+
+
+        .userImage img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            object-fit: cover;
+            /* cor da paleta */
+        }
+
+        .dropdownContent a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #022333;
+            /* cor da paleta */
+            transition: background 0.2s;
+            font-size: 14px;
+        }
+
+        .dropdownContent a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .dropdown:hover .dropdownContent {
+            display: block;
+        }
+    </style>
     <div class="site">
         <div class="logo">
             <img src="http://localhost/sarafashion/public/assets/img/logoInicial.png" alt="Logo">
@@ -98,14 +170,33 @@
             </div>
             <div class="separator"></div>
             <div class="userIcon">
-                <a href="http://localhost/sarafashion/public/login">
-                    <span class="user">
-                        <svg viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13.4472 13.2001C15.1345 11.9094 16.25 9.7029 16.25 7.20003C16.25 3.22983 13.4464 0 10 0C6.55364 0 3.74997 3.22983 3.74997 7.20003C3.74997 9.70321 4.86553 11.9097 6.55283 13.2001C2.73488 14.8231 0 19.0451 0 24H1.66671C1.66671 18.7063 5.40476 14.4001 10 14.4001C14.5952 14.4001 18.3333 18.7063 18.3333 24H20C20 19.0451 17.2651 14.8231 13.4472 13.2001ZM10 12.48C7.47285 12.48 5.41668 10.1113 5.41668 7.20003C5.41668 4.28876 7.47285 1.92005 10 1.92005C12.5272 1.92005 14.5833 4.28876 14.5833 7.20003C14.5833 10.1113 12.5272 12.48 10 12.48Z" fill="white"></path>
-                        </svg>
-                    </span>
-                </a>
+                <div class="dropdown">
+                    <?php
+
+                    if ($usuario): ?>
+                        <!-- Usuário logado: mostra a imagem -->
+                        <div class="userImage">
+                            <img src="assets/img/foto-do-usuario.png" alt="Foto do Usuário">
+                        </div>
+                    <?php else: ?>
+                        <!-- Não logado: mostra o ícone SVG -->
+                        <span class="user">
+                            <svg viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.4472 13.2001C15.1345 11.9094 16.25 9.7029 16.25 7.20003C16.25 3.22983 13.4464 0 10 0C6.55364 0 3.74997 3.22983 3.74997 7.20003C3.74997 9.70321 4.86553 11.9097 6.55283 13.2001C2.73488 14.8231 0 19.0451 0 24H1.66671C1.66671 18.7063 5.40476 14.4001 10 14.4001C14.5952 14.4001 18.3333 18.7063 18.3333 24H20C20 19.0451 17.2651 14.8231 13.4472 13.2001ZM10 12.48C7.47285 12.48 5.41668 10.1113 5.41668 7.20003C5.41668 4.28876 7.47285 1.92005 10 1.92005C12.5272 1.92005 14.5833 4.28876 14.5833 7.20003C14.5833 10.1113 12.5272 12.48 10 12.48Z" fill="white"></path>
+                            </svg>
+                        </span>
+                    <?php endif; ?>
+
+                    <!-- Dropdown compartilhado -->
+                    <div class="dropdownContent">
+                        <a href="#">Meu Perfil</a>
+                        <a href="#">Meus Favoritos</a>
+                        <a href="#">Meus Pedidos</a>
+                        <a href="#">Sair</a>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </header>

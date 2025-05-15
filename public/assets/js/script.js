@@ -78,7 +78,7 @@ links.forEach(link => {
             $slideBanner.slick({
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                autoplay: true,
+                autoplay: false,
                 dots: false,
                 autoplaySpeed: 10000,
                 speed: 800,
