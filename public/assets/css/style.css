@@ -4719,47 +4719,6 @@ footer {
                                 box-shadow: 0 0 0 0.25rem rgba(197, 157, 95, 0.25);
                             }
                         }
-
-                        .input-group date {
-                            .tempus-dominus-widget {
-                                .date-container {
-                                    .date-container-days {
-                                        .dow {
-                                            color: #000000 !important;
-                                        }
-
-                                        .day {
-                                            color: #000000 !important;
-                                        }
-
-                                        div:not(.no-highlight):hover {
-                                            background: var(--corPrincipal) !important;
-                                            color: var(--corLetras) !important;
-                                        }
-
-                                        div:not(.no-highlight).active {
-                                            background-color: #C59D5F !important;
-                                            color: var(--corLetras) !important;
-                                        }
-                                    }
-                                }
-
-                                .toolbar {
-                                    div {
-                                        transition: .3s all ease;
-                                        border: 0;
-                                        border-radius: 0;
-
-                                        &:hover {
-                                            background: var(--corPrincipal) !important;
-                                            color: var(--corLetras);
-
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
                     }
                 }
             }

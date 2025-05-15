@@ -14,6 +14,7 @@
     <div class="content">
         <div id="dados" class="tab active">
             <h2>Dados pessoais</h2>
+            <div id="mensagem-container"></div>
             <div class="container-info-row">
                 <div class="info-row">
                     <div class="info-box">
@@ -70,32 +71,41 @@
         </div>
         <div id="editar" class="tab">
             <h2>Editar Dados</h2>
-            <div id="mensagem"></div>
-            <form action="salvarEdicaoPerfil(<?php echo $cliente['id_cliente']; ?>)" id="form-editar-perfil" method="POST" enctype="multipart/form-data">
+            <form action="<?= BASE_URL ?>perfil/editar" id="form-editar-perfil" method="POST" enctype="multipart/form-data">
                 <div class="img">
-                    <img id="preview-img"
+                    <?php
+                    $fotoCliente = $cliente['foto_cliente'];
+                    $fotoPath = "http://localhost/sarafashion/public/uploads/" . $fotoCliente;
+                    $fotoDefault = "http://localhost/sarafashion/public/assets/img/sem-foto-cliente.png";
+
+                    $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $fotoCliente) && !empty($fotoCliente))
+                        ? $fotoPath
+                        : $fotoDefault;
+                    ?>
+
+                    <img id="preview-img" style="width:100%; cursor:pointer;"
                         title="Clique na imagem para selecionar uma foto do funcionário"
-                        src="http://localhost/sarafashion/public/assets/img/sem-foto-cliente.png"
-                        alt="Foto do Funcionário">
+                        src="<?php echo $imagePath; ?>"
+                        alt="Foto do Cliente">
                     <input type="file" name="foto_cliente" id="foto_cliente" style="display: none;" accept="image/*">
                 </div>
                 <div class="container-form">
                     <div class="flex">
                         <div class="mb-3">
                             <label for="nome_cliente" class="form-label">Nome</label>
-                            <input type="text" class="form-control" name="nome_cliente" value="<?php echo htmlspecialchars($cliente['nome_cliente']); ?>" required>
+                            <input type="text" class="form-control" name="nome_cliente" required pattern="[A-Za-zÀ-ÿ\s]+" value="<?php echo htmlspecialchars($cliente['nome_cliente']); ?>">
                         </div>
 
                         <div class="mb-3">
                             <label for="telefone_cliente" class="form-label">Telefone</label>
-                            <input type="text" class="form-control" name="telefone_cliente" value="<?php echo htmlspecialchars($cliente['telefone_cliente']); ?>" required>
+                            <input type="text" class="form-control" name="telefone_cliente" value="<?php echo htmlspecialchars($cliente['telefone_cliente']); ?>" placeholder="(__) _____-____">
                         </div>
                     </div>
 
                     <div class="flex">
                         <div class="mb-3">
                             <label class="form-label">E-mail</label>
-                            <input type="email" class="form-control" name="email_cliente" value="<?php echo htmlspecialchars($cliente['email_cliente']); ?>" required>
+                            <input type="email" class="form-control" name="email_cliente" value="<?php echo htmlspecialchars($cliente['email_cliente']); ?>">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Senha</label>
@@ -106,7 +116,7 @@
                     <div class="flex">
                         <div class="mb-3">
                             <label class="form-label">Tipo Cliente</label>
-                            <select class="form-select" name="tipo_cliente" required>
+                            <select class="form-select" name="tipo_cliente">
                                 <option selected disabled>Selecione o tipo</option>
                                 <option value="Pessoa Jurídica" <?php echo ($cliente['tipo_cliente'] == 'Pessoa Jurídica') ? 'selected' : ''; ?>>Pessoa Jurídica</option>
                                 <option value="Pessoa Física" <?php echo ($cliente['tipo_cliente'] == 'Pessoa Física') ? 'selected' : ''; ?>>Pessoa Física</option>
@@ -115,41 +125,51 @@
 
                         <div class="mb-3">
                             <label for="cpf_cnpj_cliente" class="form-label">CPF/CNPJ</label>
-                            <input type="text" class="form-control" name="cpf_cnpj_cliente" value="<?php echo htmlspecialchars($cliente['cpf_cnpj_cliente']); ?>" required>
+                            <input type="text" class="form-control" name="cpf_cnpj_cliente" value="<?php echo htmlspecialchars($cliente['cpf_cnpj_cliente']); ?>">
                         </div>
                     </div>
 
                     <div class="flex">
                         <div class="mb-3">
                             <label for="endereco_cliente" class="form-label">Endereço</label>
-                            <input type="text" class="form-control" name="endereco_cliente" value="<?php echo htmlspecialchars($cliente['endereco_cliente']); ?>" required>
+                            <input type="text" class="form-control" name="endereco_cliente" value="<?php echo htmlspecialchars($cliente['endereco_cliente']); ?>">
                         </div>
 
                         <div class="mb-3">
                             <label for="bairro_cliente" class="form-label">Bairro</label>
-                            <input type="text" class="form-control" name="bairro_cliente" value="<?php echo htmlspecialchars($cliente['bairro_cliente']); ?>" required>
+                            <input type="text" class="form-control" name="bairro_cliente" value="<?php echo htmlspecialchars($cliente['bairro_cliente']); ?>">
                         </div>
                     </div>
 
                     <div class="flex">
                         <div class="mb-3">
                             <label for="cidade_cliente" class="form-label">Cidade</label>
-                            <input type="text" class="form-control" name="cidade_cliente" value="<?php echo htmlspecialchars($cliente['cidade_cliente']); ?>" required>
+                            <input type="text" class="form-control" name="cidade_cliente" value="<?php echo htmlspecialchars($cliente['cidade_cliente']); ?>">
                         </div>
 
                         <div class="mb-3">
-                            <label for="dataCadastro" class="form-label">Data de Cadastro</label>
-                            <div class="input-group date" id="dataCadastroPicker">
-                                <input type="text" class="form-control" name="data_nasc_cliente" value="<?php echo date_format(date_create($cliente['data_nasc_cliente']), 'd/m/Y'); ?>" required />
-                                <span class="input-group-text">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
+                            <?php
+                            $data_banco = $cliente['data_nasc_cliente'] ?? null;
+                            $data_formatada = '';
+
+                            if (!empty($data_banco) && $data_banco !== '0000-00-00') {
+                                $data_obj = DateTime::createFromFormat('Y-m-d', $data_banco);
+                                if ($data_obj) {
+                                    $data_formatada = $data_obj->format('d/m/Y');
+                                }
+                            }
+                            ?>
+                            <label for="data_nasc_cliente" class="form-label">Data de Nascimento</label>
+                            <div class="input-group">
+
+                                <input type="text" id="data_nasc_cliente" class="form-control" name="data_nasc_cliente"
+                                    value="<?= htmlspecialchars($data_formatada) ?>" placeholder="dd/mm/aa" autocomplete="off">
                             </div>
                         </div>
                     </div>
 
                     <div class="buttons">
-                        <button type="submit" class="btn btn-primary" onclick="salvarEdicaoPerfil(<?php echo $cliente['id_cliente']; ?>)">Salvar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
                         <button type="button" class="btn btn-secondary" onclick="cancelarEdicao()">Cancelar</button>
                     </div>
                 </div>

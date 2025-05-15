@@ -56,6 +56,24 @@ class PerfilController extends Controller
             $cidade_cliente = filter_input(INPUT_POST, 'cidade_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
             $data_nasc_cliente = filter_input(INPUT_POST, 'data_nasc_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
 
+            // Converte data para formato do banco (Y-m-d)
+            if (!empty($data_nasc_cliente)) {
+                $data_nasc_cliente_obj = DateTime::createFromFormat('d/m/Y', $data_nasc_cliente);
+                if ($data_nasc_cliente_obj) {
+                    $data_nasc_cliente = $data_nasc_cliente_obj->format('Y-m-d');
+                } else {
+                    $data_nasc_cliente = null; // ou '0000-00-00' se preferir
+                }
+            }
+
+            // Criptografa a senha apenas se foi informada
+            if (!empty($senha_cliente)) {
+                $senha_cliente = password_hash($senha_cliente, PASSWORD_DEFAULT);
+            } else {
+                // Mantém a senha atual se não for enviada
+                $senha_cliente = $clienteModel->buscarClientePorId($_SESSION['userId'])['senha_cliente'];
+            }
+
             $foto_cliente = '';
 
             // Se houver nova foto
@@ -63,6 +81,7 @@ class PerfilController extends Controller
                 $foto_cliente = $this->uploadFoto($_FILES['foto_cliente'], $nome_cliente);
 
                 if (!$foto_cliente) {
+                    header('Content-Type: application/json');
                     echo json_encode([
                         'sucesso' => false,
                         'mensagem' => 'Erro ao fazer upload da foto.'
@@ -70,6 +89,7 @@ class PerfilController extends Controller
                     exit;
                 }
             } else {
+                // Mantém a foto atual
                 $foto_cliente = $clienteModel->buscarClientePorId($_SESSION['userId'])['foto_cliente'];
             }
 
@@ -85,33 +105,31 @@ class PerfilController extends Controller
                 'cidade_cliente' => $cidade_cliente,
                 'data_nasc_cliente' => $data_nasc_cliente,
                 'foto_cliente' => $foto_cliente,
+                'alt_foto_cliente' => $nome_cliente
             ];
 
             if ($clienteModel->atualizarCliente($_SESSION['userId'], $dadosCliente)) {
+                // Recarrega os dados atualizados
+                $clienteAtualizado = $clienteModel->buscarClientePorId($_SESSION['userId']);
+
                 header('Content-Type: application/json');
                 echo json_encode([
                     'sucesso' => true,
                     'mensagem' => 'Perfil atualizado com sucesso!',
-                    'novaFoto' => $foto_cliente
+                    'novaFoto' => $foto_cliente,
+                    'cliente' => $clienteAtualizado // Retorna os dados atualizados do cliente
                 ]);
+                exit;
             } else {
+                header('Content-Type: application/json');
                 echo json_encode([
                     'sucesso' => false,
                     'mensagem' => 'Erro ao atualizar o perfil.'
                 ]);
+                exit;
             }
-            exit;
         }
-
-        // GET: carrega view normalmente
-        $dados['titulo'] = 'Editar Perfil - Cliente';
-        $clienteModel = new Cliente();
-        $dados['cliente'] = $clienteModel->buscarClientePorId($_SESSION['userId']);
-        $this->carregarViews('perfil', $dados);
     }
-
-
-
 
 
 

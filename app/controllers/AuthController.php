@@ -8,39 +8,36 @@ class AuthController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
             $senha = filter_input(INPUT_POST, 'senha');
-            $tipo_usuario = filter_input(INPUT_POST, 'tipo_usuario');
 
-            if ($email && $senha && $tipo_usuario !== "Selecione") {
-                if ($tipo_usuario === 'Cliente') {
-                    $usuarioModel = new Cliente();
-                    $usuario = $usuarioModel->buscarCliente($email);
-                    $campoSenha = 'senha_cliente';
-                    $campoId = 'id_cliente';
-                    $campoNome = 'nome_cliente';
-                    $redirect = 'perfil';
-                } elseif ($tipo_usuario === 'Funcionario') {
-                    $usuarioModel = new Funcionario();
-                    $usuario = $usuarioModel->buscarFuncionario($email);
-                    $campoSenha = 'senha_funcionario';
-                    $campoId = 'id_funcionario';
-                    $campoNome = 'nome_funcionario';
-                    $redirect = 'dashboard';
-                } else {
-                    $_SESSION['login-erro'] = 'Tipo de usuário inválido.';
-                    header('Location: ' . BASE_URL . 'login');
+            if ($email && $senha) {
+                // Tenta logar como Cliente
+                $clienteModel = new Cliente();
+                $cliente = $clienteModel->buscarCliente($email);
+
+                if ($cliente && password_verify($senha, $cliente['senha_cliente'])) {
+                    $_SESSION['userId'] = $cliente['id_cliente'];
+                    $_SESSION['userTipo'] = 'Cliente';
+                    $_SESSION['userNome'] = $cliente['nome_cliente'];
+
+                    header('Location: ' . BASE_URL . 'perfil');
                     exit;
                 }
 
-                if ($usuario && $usuario[$campoSenha] === $senha) {
-                    $_SESSION['userId'] = $usuario[$campoId];
-                    $_SESSION['userTipo'] = $tipo_usuario;
-                    $_SESSION['userNome'] = $usuario[$campoNome];
+                // Tenta logar como Funcionário
+                $funcionarioModel = new Funcionario();
+                $funcionario = $funcionarioModel->buscarFuncionario($email);
 
-                    header('Location: ' . BASE_URL . $redirect);
+                if ($funcionario && password_verify($senha, $funcionario['senha_funcionario'])) {
+                    $_SESSION['userId'] = $funcionario['id_funcionario'];
+                    $_SESSION['userTipo'] = 'Funcionario';
+                    $_SESSION['userNome'] = $funcionario['nome_funcionario'];
+
+                    header('Location: ' . BASE_URL . 'dashboard');
                     exit;
-                } else {
-                    $_SESSION['login-erro'] = 'Email ou senha incorretos.';
                 }
+
+                // Se nenhum login der certo
+                $_SESSION['login-erro'] = 'Email ou senha incorretos.';
             } else {
                 $_SESSION['login-erro'] = 'Preencha todos os campos.';
             }
@@ -52,6 +49,7 @@ class AuthController extends Controller
         header('Location: ' . BASE_URL . 'login');
         exit;
     }
+
 
     public function cadastrar()
     {
@@ -95,5 +93,4 @@ class AuthController extends Controller
         header('Location:' . BASE_URL);
         exit;
     }
-
 }

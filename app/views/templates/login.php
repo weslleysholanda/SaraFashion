@@ -31,11 +31,6 @@
 
                     <input type="email" name="email" placeholder="Insira seu email" required />
                     <input type="password" name="senha" placeholder="Insira sua senha" required />
-                    <select class="form-select" name="tipo_usuario" id="tipo_usuario" required>
-                        <option selected disabled>Selecione</option>
-                        <option value="Cliente">Cliente</option>
-                        <option value="Funcionario">Funcionário</option>
-                    </select>
                     <a href="http://localhost/sarafashion/public/esqueceuSenha">Esqueceu a Senha?</a>
                     <button>Entrar</button>
                 </form>

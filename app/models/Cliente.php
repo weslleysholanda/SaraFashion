@@ -87,7 +87,7 @@ class Cliente extends Model
         $stmt->bindValue(':senha', $senha);
         $stmt->bindValue(':status', $status);
 
-        // Executa a query
+
         $stmt->execute();
     }
 

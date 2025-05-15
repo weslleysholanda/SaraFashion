@@ -189,6 +189,11 @@ class FuncionarioController extends Controller
                 $foto_funcionario = $this->uploadFoto($_FILES['foto_funcionario'], $nome_funcionario);
             }
 
+            // Criptografa a senha apenas se foi informada
+             if (!empty($senha_funcionario)) {
+                $senha_funcionario = password_hash($senha_funcionario, PASSWORD_DEFAULT);
+            }
+
             // var_dump($foto_funcionario);
             // return;
 

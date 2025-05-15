@@ -7,10 +7,10 @@ links.forEach(link => link.classList.remove("ativo"));
 
 links.forEach(link => {
     const linkPath = new URL(link.href).pathname; // Obtém apenas o caminho do link
-    
+
     if (linkPath === currentPath) {
         link.classList.add("ativo"); // Ativa o link correto
-    } 
+    }
     // Se estiver em /sarafashion/public/, ativa a home
     else if (currentPath === "/sarafashion/public/" && linkPath.endsWith("/home")) {
         link.classList.add("ativo");
@@ -23,96 +23,112 @@ links.forEach(link => {
     "use strict";
 
     $(window).on('load', function () {
-        // Garante que o VLibras continue escondido
-        $('.enabled').hide();
-        
-        // Oculta o botão "Back to Top" no início
-        $('#backtop').hide();
+        // Garante que o VLibras continue escondido, se existir
+        if ($('.enabled').length) {
+            $('.enabled').hide();
+        }
 
-        // Remove o preloader e inicializa as animações suavemente
-        $(".preloader").delay(800).fadeOut(600, function () {
-            // Primeiro, garante que o scroll está desativado
-            $('html, body').css({
-                'overflow': 'hidden',
-                'height': '100%',
-                'background-color': '#f0f0f0' // Cor de fundo alterada durante o preloader
-            });
+        // Oculta o botão "Back to Top", se existir
+        if ($('#backtop').length) {
+            $('#backtop').hide();
+        }
 
-            // Aguarda um pouco antes de liberar o scroll com um fade-in
-            setTimeout(function () {
-                // Libera o scroll e faz a transição de fundo
+        // Remove o preloader e inicia animações suavemente
+        if ($('.preloader').length) {
+            $(".preloader").delay(800).fadeOut(600, function () {
+                // Desativa scroll e muda cor de fundo temporariamente
                 $('html, body').css({
-                    'overflow': 'visible',
-                    'height': 'auto',
-                    'background-color': '#fff' // Cor final após o preloader
+                    'overflow': 'hidden',
+                    'height': '100%',
+                    'background-color': '#f0f0f0'
                 });
 
-                // Aplica o fade-in suavemente ao body (evita o "clarão")
-                $('body').fadeIn(800);
-                
-                // Faz o VLibras aparecer suavemente
+                // Após pequena pausa, libera o scroll e aplica fade-in
                 setTimeout(function () {
-                    $('.enabled').fadeIn(800);
-                }, 1000);
+                    $('html, body').css({
+                        'overflow': 'visible',
+                        'height': 'auto',
+                        'background-color': '#fff'
+                    });
 
-                // Exibe o botão "Back to Top" suavemente
-                $('#backtop').fadeIn(800);
-            }, 500); // Aguarda um pequeno tempo antes de liberar o scroll
-        });
+                    $('body').fadeIn(800);
 
-        // Torna o slider visível imediatamente
-        $('.slide-banner').css({ visibility: 'visible' });
+                    // Faz o VLibras aparecer suavemente, se existir
+                    if ($('.enabled').length) {
+                        setTimeout(function () {
+                            $('.enabled').fadeIn(800);
+                        }, 1000);
+                    }
 
-        // Inicializa o slider com o tempo ajustado
-        $('.slide-banner').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            dots: false,
-            autoplaySpeed: 10000, // Tempo de espera antes de mudar o slide
-            speed: 800,
-            pauseOnHover: false,
-        });
+                    // Exibe o botão "Back to Top", se existir
+                    if ($('#backtop').length) {
+                        $('#backtop').fadeIn(800);
+                    }
 
-        // Aplica animações no slide inicial simultaneamente com o término do preloader
-        const initialElements = $('.slide-banner .slick-current [data-animation]');
-        initialElements.each(function () {
-            const animationName = $(this).data('animation');
-            $(this).css({ opacity: 1 }).addClass(`animate__animated ${animationName}`);
-        });
-
-        // Evento antes de mudar o slide
-        $('.slide-banner').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-            const currentElements = $(slick.$slides[currentSlide]).find('[data-animation]');
-            currentElements.each(function () {
-                const animationName = $(this).data('animation');
-                $(this).css({ opacity: 0 }).removeClass(`animate__animated ${animationName}`);
+                }, 500);
             });
-        });
+        }
 
-        // Evento após mudar o slide
-        $('.slide-banner').on('afterChange', function (event, slick, currentSlide) {
-            const nextElements = $(slick.$slides[currentSlide]).find('[data-animation]');
-            nextElements.each(function (index) {
-                const animationName = $(this).data('animation');
-                setTimeout(() => {
-                    $(this).css({ opacity: 1 }).addClass(`animate__animated ${animationName}`);
-                }, index * 300); // Ajuste o tempo conforme necessário
+        // Torna o slider visível, se existir
+        const $slideBanner = $('.slide-banner');
+        if ($slideBanner.length) {
+            $slideBanner.css({ visibility: 'visible' });
+
+            // Inicializa o slick
+            $slideBanner.slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                dots: false,
+                autoplaySpeed: 10000,
+                speed: 800,
+                pauseOnHover: false,
             });
-        });
+
+            // Aplica animações no slide inicial
+            const initialElements = $slideBanner.find('.slick-current [data-animation]');
+            initialElements.each(function () {
+                const animationName = $(this).data('animation');
+                $(this).css({ opacity: 1 }).addClass(`animate__animated ${animationName}`);
+            });
+
+            // Remove animação antes de mudar
+            $slideBanner.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+                const currentElements = $(slick.$slides[currentSlide]).find('[data-animation]');
+                currentElements.each(function () {
+                    const animationName = $(this).data('animation');
+                    $(this).css({ opacity: 0 }).removeClass(`animate__animated ${animationName}`);
+                });
+            });
+
+            // Aplica animação depois de mudar
+            $slideBanner.on('afterChange', function (event, slick, currentSlide) {
+                const nextElements = $(slick.$slides[currentSlide]).find('[data-animation]');
+                nextElements.each(function (index) {
+                    const animationName = $(this).data('animation');
+                    setTimeout(() => {
+                        $(this).css({ opacity: 1 }).addClass(`animate__animated ${animationName}`);
+                    }, index * 300);
+                });
+            });
+        }
     });
 
 })(jQuery);
+
+
 
 //slider - marcas
 $(function () {
     const $slider = $('.marcas-slider');
 
-    // Função para inicializar o slider, se ainda não estiver ativo
+    // Verifica se o elemento existe antes de continuar
+    if ($slider.length === 0) return;
+
     const initSlider = () => {
         if (!$slider.hasClass('slick-initialized')) {
             $slider.slick({
-                slidesToShow: 4, // Configuração inicial para desktop
+                slidesToShow: 4,
                 slidesToScroll: 1,
                 autoplay: true,
                 dots: false,
@@ -120,21 +136,21 @@ $(function () {
                 autoplaySpeed: 2000,
                 responsive: [
                     {
-                        breakpoint: 780, // Configuração para telas menores ou iguais a 768px
+                        breakpoint: 780,
                         settings: {
                             slidesToShow: 3,
                             slidesToScroll: 1,
                         },
                     },
                     {
-                        breakpoint: 480, // Configuração para telas menores ou iguais a 480px
+                        breakpoint: 480,
                         settings: {
                             slidesToShow: 2,
                             slidesToScroll: 1,
                         },
                     },
                     {
-                        breakpoint: 330, // Configuração para telas menores ou iguais a 480px
+                        breakpoint: 330,
                         settings: {
                             slidesToShow: 2,
                             slidesToScroll: 1,
@@ -145,25 +161,22 @@ $(function () {
         }
     };
 
-    // Função para destruir o slider, se estiver ativo
     const destroySlider = () => {
         if ($slider.hasClass('slick-initialized')) {
             $slider.slick('unslick');
         }
     };
 
-    // Atualizar o slider com base no redimensionamento da janela
     const updateSlider = () => {
         destroySlider();
         initSlider();
     };
 
-    // Inicializa o slider na carga da página
     initSlider();
 
-    // Gerencia o slider ao redimensionar a janela
     $(window).on('resize', updateSlider);
 });
+
 
 
 //Menu mobile + scrollbar fixo topo loja
@@ -213,141 +226,72 @@ window.addEventListener("scroll", function () {
 
 
 //Depoimento
-$('.slide-card').slick({
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    dots: true,
-    arrows: false,
-    responsive: [
-        {
-            breakpoint: 780,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
+$(function () {
+    const $slideCard = $('.slide-card');
+
+    // Verifica se o elemento existe antes de tentar iniciar o slick
+    if ($slideCard.length === 0) return;
+
+    // Inicializa o slick slider com as configurações desejadas
+    $slideCard.slick({
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        dots: true,
+        arrows: false,
+        responsive: [
+            {
+                breakpoint: 780,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                },
             },
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 330,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
             }
-        },
-        {
-            breakpoint: 330,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-            }
-        }
-
-
-    ]
+        ]
+    });
 });
 
 
+
 // counterUp - Contador
-const counterUp = window.counterUp.default;
-const callback = (entries) => {
-    entries.forEach((entry) => {
-        const el = entry.target;
-        if (entry.isIntersecting && !el.classList.contains('is-visible')) {
-            counterUp(el, {
-                duration: 2000,
-                delay: 16,
+$(function () {
+    const elements = document.querySelectorAll('.counter');
+
+    // Só executa se houver pelo menos um .counter
+    if (elements.length > 0 && window.counterUp && window.counterUp.default) {
+        const counterUp = window.counterUp.default;
+
+        const callback = (entries) => {
+            entries.forEach((entry) => {
+                const el = entry.target;
+                if (entry.isIntersecting && !el.classList.contains('is-visible')) {
+                    counterUp(el, {
+                        duration: 2000,
+                        delay: 16,
+                    });
+                    el.classList.add('is-visible');
+                }
             });
-            el.classList.add('is-visible');
-        }
-    });
-};
-const IO = new IntersectionObserver(callback, { threshold: 1 });
-const elements = document.querySelectorAll('.counter');
-elements.forEach((el) => IO.observe(el));
-//fim counterUp - Contador
+        };
 
-// // PG - Contato  Calendario
-// const calendarHeader = document.querySelector(".calendar-header");
-// const prevMonthButton = document.querySelector("#prev-month-button");
-// const nextMonthButton = document.querySelector("#next-month-button");
-// const calendarDaysDiv = document.querySelector(".calendar-days");
-// const currentMonthSpan = document.querySelector("#current-month");
+        const IO = new IntersectionObserver(callback, { threshold: 1 });
 
-// const today = new Date();
-// let currentYear = today.getFullYear();
-// let currentMonth = today.getMonth();
+        elements.forEach((el) => IO.observe(el));
+    }
+});
+// fim counterUp - Contador
 
-// const months = [
-//     "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-//     "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
-// ];
-
-// // Atualiza o calendário na tela
-// function updateCalendar() {
-//     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-//     const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
-//     const lastMonthDays = new Date(currentYear, currentMonth, 0).getDate();
-
-//     let daysHTML = '';
-
-//     // Atualizar o cabeçalho com o mês e o ano atual
-//     currentMonthSpan.textContent = `${months[currentMonth]} ${currentYear}`;
-
-//     // Exibir ou ocultar o botão de voltar
-//     prevMonthButton.style.display = (currentMonth === today.getMonth() && currentYear === today.getFullYear()) ? 'none' : 'block';
-
-//     // Dias do mês anterior (cinza)
-//     for (let i = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1; i > 0; i--) {
-//         daysHTML += `<div class="prev-month">${lastMonthDays - i + 1}</div>`;
-//     }
-
-//     // Dias do mês atual
-//     for (let i = 1; i <= daysInMonth; i++) {
-//         if (currentMonth === today.getMonth() && currentYear === today.getFullYear() && i < today.getDate()) {
-//             daysHTML += `<div class="past-day">${i}</div>`; // Dias passados
-//         } else {
-//             daysHTML += `<div>${i}</div>`;
-//         }
-//     }
-
-//     // Dias do próximo mês (cinza)
-//     const nextMonthDays = 7 - (new Date(currentYear, currentMonth + 1, 0).getDay() || 7);
-//     for (let i = 1; i <= nextMonthDays; i++) {
-//         daysHTML += `<div class="next-month">${i}</div>`;
-//     }
-
-//     // Atualizar os dias no DOM
-//     calendarDaysDiv.innerHTML = `
-//               <div>SEG</div>
-//               <div>TER</div>
-//               <div>QUA</div>
-//               <div>QUI</div>
-//               <div>SEX</div>
-//               <div>SAB</div>
-//               <div>DOM</div>
-//             ` + daysHTML;
-// }
-
-// // Configurar o botão de próximo mês
-// nextMonthButton.addEventListener("click", () => {
-//     currentMonth++;
-//     if (currentMonth > 11) {
-//         currentMonth = 0;
-//         currentYear++;
-//     }
-//     updateCalendar();
-// });
-
-// // Configurar o botão de mês anterior
-// prevMonthButton.addEventListener("click", () => {
-//     currentMonth--;
-//     if (currentMonth < 0) {
-//         currentMonth = 11;
-//         currentYear--;
-//     }
-//     updateCalendar();
-// });
-
-// // Inicializar o calendário ao carregar a página
-// updateCalendar();
-// PG fim - Contato  Calendario
 
