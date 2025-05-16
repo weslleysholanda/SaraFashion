@@ -14,6 +14,9 @@ class HomeController extends Controller
         // obter marcas logo
         $marcaLogo = $marcasModel->getLogoNome();
 
+        // $dados['usuario'] = $this->usuario_logado;
+        // var_dump($dados['usuario']);
+
         // Depoimento
         $depoimentoCliente = $depoimentoModel->getDepoimentoCliente();
 

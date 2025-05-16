@@ -8,9 +8,8 @@ class ContatoController extends Controller
     private $contatoModel;
     public function __construct()
     {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
+
+        parent::__construct();
 
         $this->dashboardModel = new Dashboard();
         $this->contatoModel = new Contato();

@@ -1,20 +1,18 @@
 <?php
 
 class DashboardController extends Controller{
-    private $dashboardModel;
-    public function __construct(){
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
+    // private $dashboardModel;
+    // public function __construct(){
 
-        $this->dashboardModel = new Dashboard();
-    }
+    //     $this->dashboardModel = new Dashboard();
+    // }
     public function index(){
         if (!isset($_SESSION['userId']) || !isset($_SESSION['userTipo'])) {
             header('Location:' . BASE_URL);
             exit();
         }
 
+        $dashboardModel = new Dashboard();
         
         $dados = array();
         $dados['titulo'] = 'Dashboard - Sara Fashion';
@@ -23,10 +21,10 @@ class DashboardController extends Controller{
         $dados['tipoUser'] = $_SESSION['userTipo'];
 
         //pegar dados do usuario Logado
-        $dados['usuario'] = $this->dashboardModel->getUsuarioLogado($_SESSION['userId']);
-        $dados['depoimento'] = $this->dashboardModel->getDepoimento();
-        $dados['cadastro'] = $this->dashboardModel->getTotalRegistros();
-        $dados['venda'] = $this->dashboardModel->getVendas();
+        $dados['usuario'] = $dashboardModel->getUsuarioLogado($_SESSION['userId']);
+        $dados['depoimento'] = $dashboardModel->getDepoimento();
+        $dados['cadastro'] = $dashboardModel->getTotalRegistros();
+        $dados['venda'] = $dashboardModel->getVendas();
 
         $this->carregarViews('dash/dashboard', $dados);
     }

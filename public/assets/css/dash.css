@@ -141,6 +141,11 @@ h1 {
                 .nav-item {
                     a {
                         color: #ffff;
+
+                        .user-image{
+                            object-fit: cover;
+                            object-position: center top;
+                        }
                     }
 
                 }
@@ -151,6 +156,11 @@ h1 {
                 .user-menu {
                     .user-header {
                         background: #222222 !important;
+
+                        .user-image{
+                            object-fit: cover;
+                            object-position: center top;
+                        }
                     }
 
                     .user-footer {

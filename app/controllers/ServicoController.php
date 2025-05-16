@@ -8,9 +8,7 @@ class ServicoController extends Controller
     private $especialidadeModel;
     public function __construct()
     {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
+        parent::__construct();
 
         $this->servicoModel = new Servico();
         $this->dashboardModel = new Dashboard();

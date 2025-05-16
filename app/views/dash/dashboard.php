@@ -47,46 +47,44 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-              <?php foreach ($usuario as $usuarioLogado): ?>
+              <?php if ($usuario): ?>
                 <img src="<?php
-                          $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $usuarioLogado['foto_funcionario'];
-                          if ($usuarioLogado['foto_funcionario'] != "") {
-                            if (file_exists($caminhoArquivo)) {
-                              echo ("http://localhost/sarafashion/public/uploads/" . htmlspecialchars($usuarioLogado['foto_funcionario'], ENT_QUOTES, 'UTF-8'));
-                            } else {
-                              echo ("http://localhost/sarafashion/public/uploads/funcionario/sem-foto-funcionario.png");
-                            }
+                          $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $_SESSION['userFoto'];
+                          if (!empty($_SESSION['userFoto']) && file_exists($caminhoArquivo)) {
+                            echo "http://localhost/sarafashion/public/uploads/" . htmlspecialchars($_SESSION['userFoto'], ENT_QUOTES, 'UTF-8');
                           } else {
-                            echo ("http://localhost/sarafashion/public/uploads/funcionario/sem-foto-funcionario.png");
-                          } ?>" class="user-image rounded-circle shadow" alt="User Image" />
-                <span><?php echo htmlspecialchars($usuarioLogado['nome_funcionario'], ENT_QUOTES, 'UTF-8') ?></span>
-              <?php endforeach ?>
+                            echo "http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png";
+                          }
+                          ?>" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
+              <?php else: ?>
+                <img src="http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
+              <?php endif; ?>
+
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
               <!--begin::User Image-->
               <li class="user-header text-bg-primary">
-                <?php foreach ($usuario as $usuarioLogado): ?>
+                <?php if ($usuario): ?>
                   <img src="<?php
-                            $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $usuarioLogado['foto_funcionario'];
-                            if ($usuarioLogado['foto_funcionario'] != "") {
-                              if (file_exists($caminhoArquivo)) {
-                                echo ("http://localhost/sarafashion/public/uploads/" . htmlspecialchars($usuarioLogado['foto_funcionario'], ENT_QUOTES, 'UTF-8'));
-                              } else {
-                                echo ("http://localhost/sarafashion/public/uploads/funcionario/sem-foto-funcionario.png");
-                              }
+                            $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $_SESSION['userFoto'];
+                            if (!empty($_SESSION['userFoto']) && file_exists($caminhoArquivo)) {
+                              echo "http://localhost/sarafashion/public/uploads/" . htmlspecialchars($_SESSION['userFoto'], ENT_QUOTES, 'UTF-8');
                             } else {
-                              echo ("http://localhost/sarafashion/public/uploads/funcionario/sem-foto-funcionario.png");
-                            } ?>" class="rounded-circle shadow" alt="User Image" />
-                  <p>
-                    <?php echo htmlspecialchars($usuarioLogado['nome_funcionario'], ENT_QUOTES, 'UTF-8'); ?> -
-                    <?php echo htmlspecialchars($usuarioLogado['cargo_funcionario'], ENT_QUOTES, 'UTF-8'); ?>
-                    <small>
-                      <?php $data = new DateTime($usuarioLogado['data_adm_funcionario']);
-                      echo htmlspecialchars('Membro desde ' . $data->format('M. Y'), ENT_QUOTES, 'UTF-8');
-                      ?>
-                    </small>
-                  </p>
-                <?php endforeach ?>
+                              echo "http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png";
+                            }
+                            ?>" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
+                <?php else: ?>
+                  <img src="http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
+                <?php endif; ?>
+                <p>
+                  <?php echo htmlspecialchars($_SESSION['userNome'], ENT_QUOTES, 'UTF-8'); ?> -
+                  <?php echo htmlspecialchars($_SESSION['userCargo'], ENT_QUOTES, 'UTF-8'); ?>
+                  <small>
+                    <?php $data = new DateTime($_SESSION['userDataAdm']);
+                    echo htmlspecialchars('Membro desde ' . $data->format('M. Y'), ENT_QUOTES, 'UTF-8');
+                    ?>
+                  </small>
+                </p>
               </li>
               <!--end::User Image-->
               <!--begin::Menu Footer-->

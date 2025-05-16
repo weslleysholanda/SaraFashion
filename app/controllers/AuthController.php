@@ -29,7 +29,9 @@ class AuthController extends Controller
                     $_SESSION['userId'] = $funcionario['id_funcionario'];
                     $_SESSION['userTipo'] = 'Funcionario';
                     $_SESSION['userNome'] = $funcionario['nome_funcionario'];
+                    $_SESSION['userCargo'] = $funcionario['cargo_funcionario'];
                     $_SESSION['userFoto'] = $funcionario['foto_funcionario'];
+                    $_SESSION['userDataAdm'] = $funcionario['data_adm_funcionario'];
                     header('Location: ' . BASE_URL . 'dashboard');
                     exit;
                 }

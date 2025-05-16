@@ -112,6 +112,8 @@ class PerfilController extends Controller
                 // Atualiza a foto na sessão
                 $_SESSION['userFoto'] = $foto_cliente;
 
+                // var_dump($_SESSION['userFoto'] = $foto_cliente);
+
                 // Recarrega os dados atualizados
                 $clienteAtualizado = $clienteModel->buscarClientePorId($_SESSION['userId']);
 

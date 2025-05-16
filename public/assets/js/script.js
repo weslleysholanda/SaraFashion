@@ -310,6 +310,6 @@ $(function () {
     dropdown.addEventListener('mouseleave', () => {
         closeTimeout = setTimeout(() => {
             content.classList.remove('active');
-        }, 30000);
+        }, 200);
     });
 })();
