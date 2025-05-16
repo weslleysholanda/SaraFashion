@@ -109,6 +109,9 @@ class PerfilController extends Controller
             ];
 
             if ($clienteModel->atualizarCliente($_SESSION['userId'], $dadosCliente)) {
+                // Atualiza a foto na sessão
+                $_SESSION['userFoto'] = $foto_cliente;
+
                 // Recarrega os dados atualizados
                 $clienteAtualizado = $clienteModel->buscarClientePorId($_SESSION['userId']);
 

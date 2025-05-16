@@ -295,3 +295,21 @@ $(function () {
 // fim counterUp - Contador
 
 
+
+// drop down
+(function () {
+    const dropdown = document.querySelector('.userIcon .dropdown');
+    const content = dropdown.querySelector('.dropdownContent');
+    let closeTimeout;
+
+    dropdown.addEventListener('mouseenter', () => {
+        clearTimeout(closeTimeout);
+        content.classList.add('active');
+    });
+
+    dropdown.addEventListener('mouseleave', () => {
+        closeTimeout = setTimeout(() => {
+            content.classList.remove('active');
+        }, 30000);
+    });
+})();

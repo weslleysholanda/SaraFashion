@@ -1,7 +1,9 @@
-<?php 
+<?php
 
-class HomeController extends Controller{
-    public function index(){
+class HomeController extends Controller
+{
+    public function index()
+    {
         $dados = array();
 
         $dados['mensagem'] = 'Bem-Vindo a SaraFashion';
@@ -11,14 +13,15 @@ class HomeController extends Controller{
 
         // obter marcas logo
         $marcaLogo = $marcasModel->getLogoNome();
-        
+
         // Depoimento
         $depoimentoCliente = $depoimentoModel->getDepoimentoCliente();
+
 
         $dados['marcaLogo'] = $marcaLogo;
         $dados['depoimentoCliente'] = $depoimentoCliente;
 
 
         $this->carregarViews('home', $dados);
-    }       
+    }
 }

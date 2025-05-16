@@ -10,7 +10,6 @@ class AuthController extends Controller
             $senha = filter_input(INPUT_POST, 'senha');
 
             if ($email && $senha) {
-                // Tenta logar como Cliente
                 $clienteModel = new Cliente();
                 $cliente = $clienteModel->buscarCliente($email);
 
@@ -18,12 +17,11 @@ class AuthController extends Controller
                     $_SESSION['userId'] = $cliente['id_cliente'];
                     $_SESSION['userTipo'] = 'Cliente';
                     $_SESSION['userNome'] = $cliente['nome_cliente'];
-
+                    $_SESSION['userFoto'] = $cliente['foto_cliente'];
                     header('Location: ' . BASE_URL . 'perfil');
                     exit;
                 }
 
-                // Tenta logar como Funcionário
                 $funcionarioModel = new Funcionario();
                 $funcionario = $funcionarioModel->buscarFuncionario($email);
 
@@ -31,7 +29,7 @@ class AuthController extends Controller
                     $_SESSION['userId'] = $funcionario['id_funcionario'];
                     $_SESSION['userTipo'] = 'Funcionario';
                     $_SESSION['userNome'] = $funcionario['nome_funcionario'];
-
+                    $_SESSION['userFoto'] = $funcionario['foto_funcionario'];
                     header('Location: ' . BASE_URL . 'dashboard');
                     exit;
                 }

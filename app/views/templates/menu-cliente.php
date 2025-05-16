@@ -14,7 +14,7 @@
     <div class="content">
         <div id="dados" class="tab active">
             <h2>Dados pessoais</h2>
-            <div id="mensagem-container"></div>
+            <div class="mensagem-container"></div>
             <div class="container-info-row">
                 <div class="info-row">
                     <div class="info-box">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
 
-                <a href="#" class="btn-edit" data-id="<?php echo $_SESSION['userId']; ?>" onclick="editarPerfil(event, this)">Editar</a>
+                <a href="#editar" class="btn-edit" data-id="<?php echo $_SESSION['userId']; ?>" onclick="editarPerfil(event, this)">Editar</a>
             </div>
         </div>
         <div id="editar" class="tab">
@@ -83,7 +83,7 @@
                         : $fotoDefault;
                     ?>
 
-                    <img id="preview-img" style="width:100%; cursor:pointer;"
+                    <img id="preview-img"
                         title="Clique na imagem para selecionar uma foto do funcionário"
                         src="<?php echo $imagePath; ?>"
                         alt="Foto do Cliente">

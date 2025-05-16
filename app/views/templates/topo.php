@@ -1,80 +1,5 @@
-<?php
-// Verifica se o usuário está logado
-$destino = isset($_SESSION['userId']) ? BASE_URL . 'perfil' : BASE_URL . 'login';
-?>
 <header class="topo">
-    <style>
-        .userIcon {
-            position: relative;
-        }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-
-            &::after {
-                display: none;
-                content: "";
-                position: absolute;
-                z-index: 9;
-                top: 34px;
-                left: 50%;
-                transform: translateX(-60%) rotate(45deg);
-                width: 15px;
-                height: 15px;
-                background: #fff;
-                box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.05);
-            }
-
-            &:hover::after {
-                display: block;
-            }
-        }
-
-
-
-        .dropdownContent {
-            display: none;
-            position: absolute;
-            top: 40px;
-            left: 0;
-            transform: translateX(-50px);
-            background-color: #fff;
-            min-width: 150px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-            border-radius: 8px;
-            z-index: 10;
-            padding: 5px 0;
-        }
-
-
-        .userImage img {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            object-fit: cover;
-            /* cor da paleta */
-        }
-
-        .dropdownContent a {
-            display: block;
-            padding: 10px 15px;
-            text-decoration: none;
-            color: #022333;
-            /* cor da paleta */
-            transition: background 0.2s;
-            font-size: 14px;
-        }
-
-        .dropdownContent a:hover {
-            background-color: #f0f0f0;
-        }
-
-        .dropdown:hover .dropdownContent {
-            display: block;
-        }
-    </style>
     <div class="site">
         <div class="logo">
             <img src="http://localhost/sarafashion/public/assets/img/logoInicial.png" alt="Logo">
@@ -176,7 +101,18 @@ $destino = isset($_SESSION['userId']) ? BASE_URL . 'perfil' : BASE_URL . 'login'
                     if ($usuario): ?>
                         <!-- Usuário logado: mostra a imagem -->
                         <div class="userImage">
-                            <img src="assets/img/foto-do-usuario.png" alt="Foto do Usuário">
+                            <img src="<?php
+                                        $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $_SESSION['userFoto'];
+                                        if ($_SESSION['userFoto'] != "") {
+                                            if (file_exists($caminhoArquivo)) {
+                                                echo ("http://localhost/sarafashion/public/uploads/" . htmlspecialchars($_SESSION['userFoto'], ENT_QUOTES, 'UTF-8'));
+                                            } else {
+                                                echo ("http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png");
+                                            }
+                                        } else {
+                                            echo ("http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png");
+                                        }
+                                        ?>" class="user-image rounded-circle shadow" alt="User Image" />
                         </div>
                     <?php else: ?>
                         <!-- Não logado: mostra o ícone SVG -->
@@ -187,16 +123,16 @@ $destino = isset($_SESSION['userId']) ? BASE_URL . 'perfil' : BASE_URL . 'login'
                         </span>
                     <?php endif; ?>
 
-                    <!-- Dropdown compartilhado -->
                     <div class="dropdownContent">
-                        <a href="#">Meu Perfil</a>
-                        <a href="#">Meus Favoritos</a>
-                        <a href="#">Meus Pedidos</a>
-                        <a href="#">Sair</a>
+                        <a href="<?php echo $usuario ? BASE_URL . 'perfil' : BASE_URL . 'login'; ?>">Meu Perfil</a>
+                        <a href="<?php echo $usuario ? BASE_URL . 'perfil#pedidos' : BASE_URL . 'login'; ?>">Meus Pedidos</a>
+                        <a href="<?php echo $usuario ? BASE_URL . 'perfil#favoritos' : BASE_URL . 'login'; ?>">Meus Favoritos</a>
+                        <a href="<?php echo BASE_URL; ?>perfil/logout">Sair</a>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+
 </header>

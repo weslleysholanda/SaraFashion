@@ -21,13 +21,13 @@ class ServicoController extends Controller
         $dados = array();
         $dados['titulo'] = 'Serviços - Sara Fashion';
 
+        // $dados['usuario'] = $this->usuario_logado;
+        // var_dump($dados['usuario']);
 
         // obter 3 serviços aleatorios
         $dados['servicos'] = $this->servicoModel->getServicoAleatorio(3);
 
         // $nomeServico = $servicoModel->getNomeServicoAleatorio(4);
-
-
 
         // $dados['nomeServico'] = $nomeServico;
 
@@ -172,16 +172,16 @@ class ServicoController extends Controller
             $id_especialidade = filter_input(INPUT_POST, 'id_especialidade', FILTER_SANITIZE_NUMBER_INT);
             $status_servico = filter_input(INPUT_POST, 'status_servico', FILTER_SANITIZE_SPECIAL_CHARS);
             $nova_especialidade = filter_input(INPUT_POST, 'nova_especialidade', FILTER_SANITIZE_SPECIAL_CHARS);
-        
+
             // Manter a foto existente caso não seja alterada
-            $foto_servico = $servico['foto_servico'];  
-        
+            $foto_servico = $servico['foto_servico'];
+
             // Verifica se foi enviada uma nova foto
             if (isset($_FILES['foto_servico']) && $_FILES['foto_servico']['error'] == 0) {
                 // Faz o upload da nova foto e retorna o caminho
                 $foto_servico = $this->uploadFoto($_FILES['foto_servico'], $nome_servico);
             }
-        
+
             // Verifica se houve erro no upload
             if (!$foto_servico) {
                 $_SESSION['mensagem'] = "Erro ao atualizar a foto do serviço";
@@ -189,19 +189,19 @@ class ServicoController extends Controller
                 header('Location: http://localhost/sarafashion/public/servico/editar/' . $id);
                 exit;
             }
-        
+
             // Se não houver especialidade, cria uma nova
             if (empty($id_especialidade) && !empty($nova_especialidade)) {
                 $id_especialidade = $this->servicoModel->obterOuCriarEspecialidade($nova_especialidade);
             }
-        
+
             if (empty($id_especialidade)) {
                 $_SESSION['mensagem'] = "É necessário escolher ou criar uma especialidade!";
                 $_SESSION['tipo-msg'] = "erro";
                 header('Location: http://localhost/sarafashion/public/servico/editar/' . $id);
                 exit;
             }
-        
+
             // Dados para atualização do serviço
             $dadosServico = [
                 'nome_servico'        => $nome_servico,
@@ -213,10 +213,10 @@ class ServicoController extends Controller
                 'id_especialidade'    => $id_especialidade,
                 'status_servico'      => $status_servico
             ];
-        
+
             // Atualiza o serviço no banco de dados
             $atualizado = $this->servicoModel->atualizarServico($id, $dadosServico);
-        
+
             if ($atualizado) {
                 $_SESSION['mensagem'] = "Serviço atualizado com sucesso!";
                 $_SESSION['tipo-msg'] = 'sucesso';
@@ -229,7 +229,7 @@ class ServicoController extends Controller
                 exit;
             }
         }
-        
+
 
 
         $dados['listarEspecialidade'] = $this->especialidadeModel->getListarEspecialidade();

@@ -54,7 +54,43 @@
             if (event && event.target) {
                 event.target.classList.add('active');
             }
+
+            // Atualiza o hash da URL sem recarregar a página
+            history.replaceState(null, null, '#' + tabId);
         }
+
+        // Função para abrir aba com base no hash da URL
+        function openTabFromHash() {
+            let hash = window.location.hash.replace('#', '');
+            if (!hash) hash = 'dados'; // Aba padrão
+
+            // Verifica se existe uma aba com esse id
+            if (document.getElementById(hash)) {
+                changeTab(null, hash);
+
+                // Também ativa o link da sidebar correspondente
+                document.querySelectorAll('.sidebar a').forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('onclick')?.includes("'" + hash + "'")) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        // Quando a página carregar
+        window.addEventListener('DOMContentLoaded', openTabFromHash);
+
+        // Também abre a aba quando o hash mudar (exemplo: usuário muda manualmente ou volta no histórico)
+        window.addEventListener('hashchange', openTabFromHash);
+
+
+        // Ao carregar a página, pega o parâmetro 'tab' da URL e abre a aba certa
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const tab = params.get('tab') || 'dados';
+        });
+
 
         function editarPerfil() {
             document.getElementById("dados").classList.remove("active");
@@ -81,7 +117,7 @@
                 success: function(response) {
                     if (response.sucesso) {
                         // Exibe a mensagem de sucesso usando a estrutura de alerta do Bootstrap
-                        $('#mensagem-container').html(`
+                        $('.mensagem-container').html(`
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Sucesso!</strong> ${response.mensagem}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -131,12 +167,17 @@
             // Atualiza a data de nascimento (formato d/m/Y)
             let dataNascimento = cliente.data_nasc_cliente;
             if (dataNascimento === '0000-00-00' || !dataNascimento) {
-                dataNascimento = '00/00/0000'; // Caso esteja vazio ou inválido
+                dataNascimento = '00/00/0000';
             } else {
-                let partes = dataNascimento.split('-'); // Divide a data no formato YYYY-MM-DD
-                dataNascimento = `${partes[2]}/${partes[1]}/${partes[0]}`; // Formata para d/m/Y
+                let partes = dataNascimento.split('-');
+                dataNascimento = `${partes[2]}/${partes[1]}/${partes[0]}`;
             }
             $('#dados .info-box strong:contains("Data de nascimento") + span').text(dataNascimento);
+
+            // Atualiza a foto do usuário, adicionando timestamp para evitar cache
+            if (cliente.foto_cliente) {
+                $('.userImage img').attr('src', `http://localhost/sarafashion/public/uploads/${cliente.foto_cliente}?t=${new Date().getTime()}`);
+            }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
