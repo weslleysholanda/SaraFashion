@@ -14,18 +14,18 @@
                             $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $servico['foto_servico'];
                                         if ($servico['foto_servico'] != "") {
                                             if (file_exists($caminhoArquivo)){
-                                                echo ("http://localhost/sarafashion/public/uploads/" .htmlspecialchars($servico['foto_servico'], ENT_QUOTES, 'UTF-8'));
+                                                echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/" .htmlspecialchars($servico['foto_servico'], ENT_QUOTES, 'UTF-8'));
                                             } else {
-                                                echo ("http://localhost/sarafashion/public/uploads/servico/sem-foto-servico.png");
+                                                echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/servico/sem-foto-servico.png");
                                             }
                                         } else {
-                                            echo ("http://localhost/sarafashion/public/uploads/servico/sem-foto-servico.png");
+                                            echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/servico/sem-foto-servico.png");
                                         }
                                         ?>" alt="<?php echo htmlspecialchars($servico['alt_foto_servico'],ENT_QUOTES,'UTF-8') ?>">
                         <div class="card-conteudo">
                             <h3><?php echo htmlspecialchars($servico['nome_servico'],ENT_QUOTES,'UTF-8');?></h3>
                             <div class="card-footer">
-                                <a href="http://localhost/sarafashion/public/contato">CONTRATAR</a>
+                                <a href="https://sarafashion.webdevsolutions.com.br/public/contato">CONTRATAR</a>
                             </div>
                         </div>
                     </div>

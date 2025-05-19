@@ -1,6 +1,6 @@
 <h1>Editar Fornecedor</h1>
 <div class="container mt-5">
-    <form id="normal" method="POST" action="http://localhost/sarafashion/public/fornecedor/editar/<?php echo $fornecedor['id_fornecedor']; ?>">
+    <form id="normal" method="POST" action="https://sarafashion.webdevsolutions.com.br/public/fornecedor/editar/<?php echo $fornecedor['id_fornecedor']; ?>">
         <!-- Nome do Fornecedor -->
         <div class="mb-3">
             <label for="nomeFornecedor" class="form-label">Nome do Fornecedor</label>

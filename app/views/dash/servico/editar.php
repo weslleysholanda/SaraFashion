@@ -16,12 +16,12 @@ if (!empty($_SESSION['mensagem']) && !empty($_SESSION['tipo-msg']) && $_SESSION[
 <!-- Tempus dominus timepicker -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
 <div class="container mt-5">
-    <form method="POST" action="http://localhost/sarafashion/public/servico/editar/<?php echo $servico['id_servico']; ?>" enctype="multipart/form-data">
+    <form method="POST" action="https://sarafashion.webdevsolutions.com.br/public/servico/editar/<?php echo $servico['id_servico']; ?>" enctype="multipart/form-data">
         <div class="img">
             <?php
             $fotoServico = $servico['foto_servico'];
-            $fotoPath = "http://localhost/sarafashion/public/uploads/" . $fotoServico;
-            $fotoDefault = "http://localhost/sarafashion/public/uploads/servico/sem-foto-servico.png";
+            $fotoPath = "https://sarafashion.webdevsolutions.com.br/public/uploads/" . $fotoServico;
+            $fotoDefault = "https://sarafashion.webdevsolutions.com.br/public/uploads/servico/sem-foto-servico.png";
 
             $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $fotoServico) && !empty($fotoServico))
                 ? $fotoPath

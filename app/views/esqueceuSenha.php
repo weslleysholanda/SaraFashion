@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/reset.css">
+  <link rel="stylesheet" href="https://sarafashion.webdevsolutions.com.br/public/vendors/css/reset.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <title><?php echo isset($titulo) ? $titulo : 'Esqueceu a senha?' ?></title>
 </head>

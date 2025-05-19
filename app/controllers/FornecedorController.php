@@ -88,7 +88,7 @@ class FornecedorController extends Controller
                 if ($id_fornecedor) {
                     $_SESSION['mensagem'] = "Fornecedor adicionado com sucesso!";
                     $_SESSION['tipo-msg'] = 'sucesso';
-                    header('Location: http://localhost/sarafashion/public/fornecedor/listar');
+                    header('Location: https://sarafashion.webdevsolutions.com.br/public/fornecedor/listar');
                     exit;
                 } else {
                     $_SESSION['mensagem'] = "Erro ao adicionar o fornecedor.";
@@ -113,7 +113,7 @@ class FornecedorController extends Controller
                 }
             }
             
-            header('Location: http://localhost/sarafashion/public/fornecedor/adicionar');
+            header('Location: https://sarafashion.webdevsolutions.com.br/public/fornecedor/adicionar');
             exit;
             
         }
@@ -138,7 +138,7 @@ class FornecedorController extends Controller
         }
 
         if ($id == null) {
-            header('Location: http://localhost/sarafashion/public/servico/listar');
+            header('Location: https://sarafashion.webdevsolutions.com.br/public/servico/listar');
             exit;
         }
 
@@ -188,12 +188,12 @@ class FornecedorController extends Controller
             if($id_fornecedor){
                 $_SESSION['mensagem'] = "Fornecedor atualizado com sucesso!";
                 $_SESSION['tipo-msg'] = "sucesso";
-                header('Location: http://localhost/sarafashion/public/fornecedor/listar');
+                header('Location: https://sarafashion.webdevsolutions.com.br/public/fornecedor/listar');
                 exit;
             }else{
                 $_SESSION['mensagem'] = "Erro ao atualizar o funcionário";
                 $_SESSION['tipo-msg'] = "erro";
-                header('Location: http://localhost/sarafashion/public/fornecedor/editar/' . $id);
+                header('Location: https://sarafashion.webdevsolutions.com.br/public/fornecedor/editar/' . $id);
                 exit;
             }
         }

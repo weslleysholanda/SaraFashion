@@ -211,14 +211,14 @@ window.addEventListener("scroll", function () {
 
             // Troca a logo somente no .topo-loja
             if (logo) {
-                logo.src = "http://localhost/sarafashion/public/assets/img/logoInicial.png";
+                logo.src = "https://sarafashion.webdevsolutions.com.br/public/assets/img/logoInicial.png";
             }
         } else {
             topoLoja.classList.remove("fixo");
 
             // Volta para a logo Inicial somente no .topo-loja
             if (logo) {
-                logo.src = "http://localhost/sarafashion/public/assets/img/logoDark.png";
+                logo.src = "https://sarafashion.webdevsolutions.com.br/public/assets/img/logoDark.png";
             }
         }
     }

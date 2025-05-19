@@ -1,18 +1,18 @@
 <h1>Editar Produto</h1>
 <div class="container mt-5">
-    <form method="POST" action="http://localhost/sarafashion/public/produto/editar/<?php echo $produto['id_produto']; ?>" enctype="multipart/form-data">
+    <form method="POST" action="https://sarafashion.webdevsolutions.com.br/public/produto/editar/<?php echo $produto['id_produto']; ?>" enctype="multipart/form-data">
         <!-- Contêiner das imagens -->
         <div class="product-images">
             <div class="thumbnail-container">
                 <?php for ($i = 0; $i < 3; $i++) : ?>
                     <img class="preview-img" data-index="<?= $i ?>"
-                        src="<?= !empty($produto['imagens'][$i]) ? 'http://localhost/sarafashion/public/uploads/' . htmlspecialchars($produto['imagens'][$i]) : 'http://localhost/sarafashion/public/assets/img/sem-foto-produto.png'; ?>">
+                        src="<?= !empty($produto['imagens'][$i]) ? 'https://sarafashion.webdevsolutions.com.br/public/uploads/' . htmlspecialchars($produto['imagens'][$i]) : 'https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png'; ?>">
                 <?php endfor; ?>
             </div>
 
             <div class="main-image">
                 <img class="preview-img" data-index="3"
-                    src="<?= !empty($produto['imagens'][3]) ? 'http://localhost/sarafashion/public/uploads/' . htmlspecialchars($produto['imagens'][3]) : 'http://localhost/sarafashion/public/assets/img/sem-foto-produto.png'; ?>">
+                    src="<?= !empty($produto['imagens'][3]) ? 'https://sarafashion.webdevsolutions.com.br/public/uploads/' . htmlspecialchars($produto['imagens'][3]) : 'https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png'; ?>">
             </div>
         </div>
 

@@ -36,19 +36,19 @@
                     <div class="informacao-conteudo">
                         <div class="contatoDesc">
                             <div class="contatoIcon">
-                                <img src="http://localhost/sarafashion/public/assets/img/localizacao.png" alt="">
+                                <img src="https://sarafashion.webdevsolutions.com.br/public/assets/img/localizacao.png" alt="">
                             </div>
                             <p>AV. MONSENHOR AGNELO, 628 - VILA PROGRESSO</p>
                         </div>
                         <div class="contatoDesc">
                             <div class="contatoIcon">
-                                <img src="http://localhost/sarafashion/public/assets/img/fone.png" alt="">
+                                <img src="https://sarafashion.webdevsolutions.com.br/public/assets/img/fone.png" alt="">
                             </div>
                             <p>(11)98361-2610</p>
                         </div>
                         <div class="contatoDesc">
                             <div class="contatoIcon">
-                                <img src="http://localhost/sarafashion/public/assets/img/mail.png" alt="">
+                                <img src="https://sarafashion.webdevsolutions.com.br/public/assets/img/mail.png" alt="">
                             </div>
                             <p>sara_silva1502@hotmail.com</p>
                         </div>

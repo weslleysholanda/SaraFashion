@@ -14,12 +14,12 @@ if (!empty($_SESSION['mensagem']) && !empty($_SESSION['tipo-msg']) && $_SESSION[
 ?>
 <h1>Editar Marca</h1>
 <div class="container mt-5">
-    <form method="POST" action="http://localhost/sarafashion/public/marcas/editar/<?php echo $marca['id_marca']; ?>" enctype="multipart/form-data">
+    <form method="POST" action="https://sarafashion.webdevsolutions.com.br/public/marcas/editar/<?php echo $marca['id_marca']; ?>" enctype="multipart/form-data">
         <div class="imgMarca">
             <?php
             $fotoMarca = $marca['logo_marca'];
-            $fotoPath = "http://localhost/sarafashion/public/uploads/" . $fotoMarca;
-            $fotoDefault = "http://localhost/sarafashion/public/uploads/marca/sem-foto-marca.png";
+            $fotoPath = "https://sarafashion.webdevsolutions.com.br/public/uploads/" . $fotoMarca;
+            $fotoDefault = "https://sarafashion.webdevsolutions.com.br/public/uploads/marca/sem-foto-marca.png";
 
             $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $fotoMarca) && !empty($fotoMarca))
                 ? $fotoPath

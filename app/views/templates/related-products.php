@@ -30,7 +30,7 @@
                         ?>
 
                         <!-- Exibe a imagem principal -->
-                        <img src="http://localhost/sarafashion/public/uploads/<?php echo htmlspecialchars($imagemPrincipal, ENT_QUOTES, 'UTF-8'); ?>"
+                        <img src="https://sarafashion.webdevsolutions.com.br/public/uploads/<?php echo htmlspecialchars($imagemPrincipal, ENT_QUOTES, 'UTF-8'); ?>"
                             alt="<?php echo htmlspecialchars($produto['alt_foto_galeria'] ?? 'Imagem do produto', ENT_QUOTES, 'UTF-8'); ?>">
                         <h4><?php echo htmlspecialchars($produto['nome_produto'], ENT_QUOTES, 'UTF-8') ?></h4>
                         <div class="price"><?php echo htmlspecialchars($produto['preco_produto'], ENT_QUOTES, 'UTF-8') ?></div>

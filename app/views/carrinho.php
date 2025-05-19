@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/reset.css">
-    <link rel="stylesheet" href="http://localhost/sarafashion/public/assets/css/style.css">
+    <link rel="stylesheet" href="https://sarafashion.webdevsolutions.com.br/public/vendors/css/reset.css">
+    <link rel="stylesheet" href="https://sarafashion.webdevsolutions.com.br/public/assets/css/style.css">
 </head>
 
 <body>

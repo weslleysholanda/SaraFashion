@@ -5,19 +5,19 @@
                 <div class="product-images">
                     <div class="thumbnail-container">
                         <?php for ($i = 0; $i < 3; $i++) : ?>
-                            <a href="<?= !empty($detalhe['imagens'][$i]) ? 'http://localhost/sarafashion/public/uploads/' . htmlspecialchars($detalhe['imagens'][$i]) : 'http://localhost/sarafashion/public/assets/img/sem-foto-produto.png'; ?>"
+                            <a href="<?= !empty($detalhe['imagens'][$i]) ? 'https://sarafashion.webdevsolutions.com.br/public/uploads/' . htmlspecialchars($detalhe['imagens'][$i]) : 'https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png'; ?>"
                                 data-lightbox="roadtrip">
                                 <img class="preview-img" data-index="<?= $i ?>"
-                                    src="<?= !empty($detalhe['imagens'][$i]) ? 'http://localhost/sarafashion/public/uploads/' . htmlspecialchars($detalhe['imagens'][$i]) : 'http://localhost/sarafashion/public/assets/img/sem-foto-produto.png'; ?>">
+                                    src="<?= !empty($detalhe['imagens'][$i]) ? 'https://sarafashion.webdevsolutions.com.br/public/uploads/' . htmlspecialchars($detalhe['imagens'][$i]) : 'https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png'; ?>">
                             </a>
                         <?php endfor; ?>
                     </div>
 
                     <div class="main-image">
-                        <a href="<?= !empty($detalhe['imagens'][3]) ? 'http://localhost/sarafashion/public/uploads/' . htmlspecialchars($detalhe['imagens'][3]) : 'http://localhost/sarafashion/public/assets/img/sem-foto-produto.png'; ?>"
+                        <a href="<?= !empty($detalhe['imagens'][3]) ? 'https://sarafashion.webdevsolutions.com.br/public/uploads/' . htmlspecialchars($detalhe['imagens'][3]) : 'https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png'; ?>"
                             data-lightbox="roadtrip">
                             <img class="preview-img" data-index="3"
-                                src="<?= !empty($detalhe['imagens'][3]) ? 'http://localhost/sarafashion/public/uploads/' . htmlspecialchars($detalhe['imagens'][3]) : 'http://localhost/sarafashion/public/assets/img/sem-foto-produto.png'; ?>">
+                                src="<?= !empty($detalhe['imagens'][3]) ? 'https://sarafashion.webdevsolutions.com.br/public/uploads/' . htmlspecialchars($detalhe['imagens'][3]) : 'https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png'; ?>">
                         </a>
                     </div>
                 </div>

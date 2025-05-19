@@ -18,7 +18,7 @@
             </div>
             <div class="sobreInfo">
                 <div class="sobreConteudo">
-                    <a href="http://localhost/sarafashion/public/sobre">
+                    <a href="https://sarafashion.webdevsolutions.com.br/public/sobre">
                         <span class="buttonIcon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Veja Mais">
                             <svg viewBox="0 0 28 37" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="sobreConteudo">
-                    <a href="http://localhost/sarafashion/public/sobre">
+                    <a href="https://sarafashion.webdevsolutions.com.br/public/sobre">
                         <span class="buttonIcon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Veja Mais">
                             <svg viewBox="0 0 28 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_597_2)">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="sobreConteudo">
-                    <a href="http://localhost/sarafashion/public/sobre">
+                    <a href="https://sarafashion.webdevsolutions.com.br/public/sobre">
                         <span class="buttonIcon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Veja Mais">
                             <svg width="28" height="37" id="quality-seal" viewBox="0 0 28 37" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">

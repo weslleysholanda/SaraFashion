@@ -16,11 +16,11 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg']) && $_SESSION['t
 <!-- Tempus Dominus Datepicker -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
 <div class="container mt-5">
-    <form method="POST" action="http://localhost/sarafashion/public/funcionario/adicionar" enctype="multipart/form-data">
+    <form method="POST" action="https://sarafashion.webdevsolutions.com.br/public/funcionario/adicionar" enctype="multipart/form-data">
         <div class="img">
             <img id="preview-img" style="width:100%; cursor:pointer;"
                 title="Clique na imagem para selecionar uma foto do funcionário"
-                src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png"
+                src="https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png"
                 alt="Foto do Funcionário">
             <input type="file" name="foto_funcionario" id="foto_funcionario" style="display: none;" accept="image/*">
         </div>
@@ -129,7 +129,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg']) && $_SESSION['t
             <!-- Botões -->
             <div class="buttons">
                 <button type="submit" class="btn btn-primary">Salvar</button>
-                <a href="http://localhost/sarafashion/public/funcionario/listar"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+                <a href="https://sarafashion.webdevsolutions.com.br/public/funcionario/listar"><button type="button" class="btn btn-secondary">Cancelar</button></a>
             </div>
 
         </div>
@@ -141,7 +141,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg']) && $_SESSION['t
 <!-- Tempus Dominus JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus/dist/js/tempus-dominus.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-<script src="http://localhost/sarafashion/public/assets/js/teste.js"></script>
+<script src="https://sarafashion.webdevsolutions.com.br/public/assets/js/teste.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

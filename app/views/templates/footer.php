@@ -4,7 +4,7 @@
         <div class="container-footer">
             <div class="right-content-footer">
                 <div class="footer-texto">
-                    <img src="http://localhost/sarafashion/public/assets/img/logoInicial.png" alt="Logo" class="logo-footer">
+                    <img src="https://sarafashion.webdevsolutions.com.br/public/assets/img/logoInicial.png" alt="Logo" class="logo-footer">
                     <div class="paragrafo-footer">
                         <p>Sara Fashion é um salão de beleza com serviços de qualidade e sofisticação.</p>
                     </div>
@@ -104,7 +104,7 @@
                     </div>
                     <div class="maps-footer">
                         <a href="sobre.html">
-                            <img src="http://localhost/sarafashion/public/assets/img/footer-img-2.png" alt="">
+                            <img src="https://sarafashion.webdevsolutions.com.br/public/assets/img/footer-img-2.png" alt="">
                         </a>
                     </div>
 

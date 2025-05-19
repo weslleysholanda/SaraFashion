@@ -6,7 +6,7 @@
                     <div class="page-header-box">
                         <h1 class="text-anime">Page Not Found</h1>
                         <ol class="nav-path">
-                            <li class="nav-item"><a href="http://localhost/sarafashion/public/home">Home</a></li>
+                            <li class="nav-item"><a href="https://sarafashion.webdevsolutions.com.br/public/home">Home</a></li>
                             <li class="nav-item">404 Error</li>
                         </ol>
                     </div>

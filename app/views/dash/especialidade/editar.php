@@ -14,7 +14,7 @@ if (!empty($_SESSION['mensagem']) && !empty($_SESSION['tipo-msg']) && $_SESSION[
 ?>
 <h1>Editar Especialidade</h1>
 <div class="container mt-5">
-    <form method="POST" action="http://localhost/sarafashion/public/especialidade/editar/<?php echo $especialidade['id_especialidade']; ?>">
+    <form method="POST" action="https://sarafashion.webdevsolutions.com.br/public/especialidade/editar/<?php echo $especialidade['id_especialidade']; ?>">
         <div class="container-form">
             <!-- Nome do Serviço -->
             <div class="mb-3">

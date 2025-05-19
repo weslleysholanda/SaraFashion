@@ -17,7 +17,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 
 // Criando o ícone personalizado
 const customIcon = L.icon({
-    iconUrl: 'http://localhost/sarafashion/public/assets/img/pin-icon.png',  // Caminho para a imagem do ícone
+    iconUrl: 'https://sarafashion.webdevsolutions.com.br/public/assets/img/pin-icon.png',  // Caminho para a imagem do ícone
     iconSize: [50, 70],           // Tamanho do ícone
     iconAnchor: [3, 3],         // Posição do ponto de ancoragem do ícone
     popupAnchor: [22, -10],        // Posição do popup em relação ao ícone

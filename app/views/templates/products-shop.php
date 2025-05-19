@@ -47,7 +47,7 @@
                             ?>
 
                             <!-- Exibe a imagem principal -->
-                            <img src="http://localhost/sarafashion/public/uploads/<?php echo htmlspecialchars($imagemPrincipal, ENT_QUOTES, 'UTF-8'); ?>"
+                            <img src="https://sarafashion.webdevsolutions.com.br/public/uploads/<?php echo htmlspecialchars($imagemPrincipal, ENT_QUOTES, 'UTF-8'); ?>"
                                 alt="<?php echo htmlspecialchars($produtos['alt_foto_galeria'] ?? 'Imagem do produto', ENT_QUOTES, 'UTF-8'); ?>">
 
 

@@ -15,12 +15,12 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg']) && $_SESSION['t
 ?>
 <h1>Editar Funcionário</h1>
 <div class="container mt-5">
-    <form method="POST" action="http://localhost/sarafashion/public/funcionario/editar/<?php echo $funcionario['id_funcionario']; ?>" enctype="multipart/form-data">
+    <form method="POST" action="https://sarafashion.webdevsolutions.com.br/public/funcionario/editar/<?php echo $funcionario['id_funcionario']; ?>" enctype="multipart/form-data">
         <div class="img">
             <?php
             $fotoFuncionario = $funcionario['foto_funcionario'];
-            $fotoPath = "http://localhost/sarafashion/public/uploads/" . $fotoFuncionario;
-            $fotoDefault = "http://localhost/sarafashion/public/assets/img/sem-foto-produto.png";
+            $fotoPath = "https://sarafashion.webdevsolutions.com.br/public/uploads/" . $fotoFuncionario;
+            $fotoDefault = "https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png";
 
             $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $fotoFuncionario) && !empty($fotoFuncionario))
                 ? $fotoPath
@@ -136,7 +136,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg']) && $_SESSION['t
 
             <div class="buttons">
                 <button type="submit" class="btn btn-primary">Salvar</button>
-                <a href="http://localhost/sarafashion/public/funcionario/listar"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+                <a href="https://sarafashion.webdevsolutions.com.br/public/funcionario/listar"><button type="button" class="btn btn-secondary">Cancelar</button></a>
             </div>
         </div>
     </form>
@@ -169,4 +169,4 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg']) && $_SESSION['t
     <!-- Tempus Dominus JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus/dist/js/tempus-dominus.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="http://localhost/sarafashion/public/assets/js/teste.js"></script>
+    <script src="https://sarafashion.webdevsolutions.com.br/public/assets/js/teste.js"></script>

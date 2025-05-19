@@ -7,9 +7,9 @@
     <title><?php echo isset($titulo) ? $titulo : 'Detalhe - Produto' ?></title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/lightbox.min.css">
-    <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/reset.css">
-    <link rel="stylesheet" href="http://localhost/sarafashion/public/assets/css/style.css">
+    <link rel="stylesheet" href="https://sarafashion.webdevsolutions.com.br/public/vendors/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://sarafashion.webdevsolutions.com.br/public/vendors/css/reset.css">
+    <link rel="stylesheet" href="https://sarafashion.webdevsolutions.com.br/public/assets/css/style.css">
 </head>
 
 <body style="overflow: inherit;">
@@ -37,7 +37,7 @@
     </a>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://kit.fontawesome.com/89bd08d7e0.js" crossorigin="anonymous"></script>
-    <script src="http://localhost/sarafashion/public/vendors/js/lightbox.min.js"></script>
+    <script src="https://sarafashion.webdevsolutions.com.br/public/vendors/js/lightbox.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
         //contador

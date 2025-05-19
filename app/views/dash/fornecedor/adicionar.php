@@ -18,7 +18,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg']) && $_SESSION['t
 
 <h1>Adicionar Fornecedor</h1>
 <div class="container mt-5">
-    <form id="normal" method="POST" action="http://localhost/sarafashion/public/fornecedor/adicionar">
+    <form id="normal" method="POST" action="https://sarafashion.webdevsolutions.com.br/public/fornecedor/adicionar">
         <!-- Nome do Fornecedor -->
         <div class="mb-3">
             <label for="nomeFornecedor" class="form-label">Nome do Fornecedor</label>
@@ -106,4 +106,4 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg']) && $_SESSION['t
 <!-- Tempus Dominus JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus/dist/js/tempus-dominus.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-<script src="http://localhost/sarafashion/public/assets/js/teste.js"></script>
+<script src="https://sarafashion.webdevsolutions.com.br/public/assets/js/teste.js"></script>

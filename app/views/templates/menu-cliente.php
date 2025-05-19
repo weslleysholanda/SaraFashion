@@ -75,8 +75,8 @@
                 <div class="img">
                     <?php
                     $fotoCliente = $cliente['foto_cliente'];
-                    $fotoPath = "http://localhost/sarafashion/public/uploads/" . $fotoCliente;
-                    $fotoDefault = "http://localhost/sarafashion/public/assets/img/sem-foto-cliente.png";
+                    $fotoPath = "https://sarafashion.webdevsolutions.com.br/public/uploads/" . $fotoCliente;
+                    $fotoDefault = "https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-cliente.png";
 
                     $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $fotoCliente) && !empty($fotoCliente))
                         ? $fotoPath

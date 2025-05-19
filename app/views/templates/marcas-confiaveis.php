@@ -16,12 +16,12 @@
                                 $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $marcasLogo['logo_marca'];
                                 if ($marcasLogo['logo_marca'] != "") {
                                     if (file_exists($caminhoArquivo)) {
-                                        echo ("http://localhost/sarafashion/public/uploads/" . htmlspecialchars($marcasLogo['logo_marca'], ENT_QUOTES, 'UTF-8'));
+                                        echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/" . htmlspecialchars($marcasLogo['logo_marca'], ENT_QUOTES, 'UTF-8'));
                                     } else {
-                                        echo ("http://localhost/sarafashion/public/uploads/marca/sem-foto-marca.png");
+                                        echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/marca/sem-foto-marca.png");
                                     }
                                 } else {
-                                    echo ("http://localhost/sarafashion/public/uploads/marca/sem-foto-marca.png");
+                                    echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/marca/sem-foto-marca.png");
                                 }
                                 ?>" alt="<?php $marcasLogo['alt_marca'] ?>">
             </div>

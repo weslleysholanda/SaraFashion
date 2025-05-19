@@ -171,7 +171,7 @@ class ContatoController extends Controller
         } else {
             $_SESSION['mensagem'] = "Contato não encontrado.";
             $_SESSION['tipo-msg'] = 'erro';
-            header('Location: http://localhost/sarafashion/public/contato/listar');
+            header('Location: https://sarafashion.webdevsolutions.com.br/public/contato/listar');
             exit;
         }
     }

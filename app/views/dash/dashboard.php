@@ -15,14 +15,14 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI=" crossorigin="anonymous" />
 
   <!-- Lightbox 2 -->
-  <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/lightbox.min.css">
+  <link rel="stylesheet" href="https://sarafashion.webdevsolutions.com.br/public/vendors/css/lightbox.min.css">
   <!-- css adminlte -->
-  <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/adminlte.css" />
+  <link rel="stylesheet" href="https://sarafashion.webdevsolutions.com.br/public/vendors/css/adminlte.css" />
   <!-- font awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
   <!-- css dash -->
-  <link rel="stylesheet" href="http://localhost/sarafashion/public/assets/css/dash.css" />
+  <link rel="stylesheet" href="https://sarafashion.webdevsolutions.com.br/public/assets/css/dash.css" />
 
   <!-- apexcharts -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css" integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous" />
@@ -42,7 +42,7 @@
               <i class="bi bi-list"></i>
             </a>
           </li>
-          <li class="nav-item d-none d-md-block"><a href="http://localhost/sarafashion/public/dashboard" class="nav-link">Site SaraFashion</a></li>
+          <li class="nav-item d-none d-md-block"><a href="https://sarafashion.webdevsolutions.com.br/public/dashboard" class="nav-link">Site SaraFashion</a></li>
         </ul>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item dropdown user-menu">
@@ -51,13 +51,13 @@
                 <img src="<?php
                           $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $_SESSION['userFoto'];
                           if (!empty($_SESSION['userFoto']) && file_exists($caminhoArquivo)) {
-                            echo "http://localhost/sarafashion/public/uploads/" . htmlspecialchars($_SESSION['userFoto'], ENT_QUOTES, 'UTF-8');
+                            echo "https://sarafashion.webdevsolutions.com.br/public/uploads/" . htmlspecialchars($_SESSION['userFoto'], ENT_QUOTES, 'UTF-8');
                           } else {
-                            echo "http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png";
+                            echo "https://sarafashion.webdevsolutions.com.br/public/uploads/cliente/sem-foto-cliente.png";
                           }
                           ?>" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
               <?php else: ?>
-                <img src="http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
+                <img src="https://sarafashion.webdevsolutions.com.br/public/uploads/cliente/sem-foto-cliente.png" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
               <?php endif; ?>
 
             </a>
@@ -68,13 +68,13 @@
                   <img src="<?php
                             $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $_SESSION['userFoto'];
                             if (!empty($_SESSION['userFoto']) && file_exists($caminhoArquivo)) {
-                              echo "http://localhost/sarafashion/public/uploads/" . htmlspecialchars($_SESSION['userFoto'], ENT_QUOTES, 'UTF-8');
+                              echo "https://sarafashion.webdevsolutions.com.br/public/uploads/" . htmlspecialchars($_SESSION['userFoto'], ENT_QUOTES, 'UTF-8');
                             } else {
-                              echo "http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png";
+                              echo "https://sarafashion.webdevsolutions.com.br/public/uploads/cliente/sem-foto-cliente.png";
                             }
                             ?>" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
                 <?php else: ?>
-                  <img src="http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
+                  <img src="https://sarafashion.webdevsolutions.com.br/public/uploads/cliente/sem-foto-cliente.png" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
                 <?php endif; ?>
                 <p>
                   <?php echo htmlspecialchars($_SESSION['userNome'], ENT_QUOTES, 'UTF-8'); ?> -
@@ -90,7 +90,7 @@
               <!--begin::Menu Footer-->
               <li class="user-footer">
                 <a href="#" class="btn btn-default btn-flat">Profile</a>
-                <a href="http://localhost/sarafashion/public/auth/sair" class="btn btn-default btn-flat float-end">Logoff</a>
+                <a href="https://sarafashion.webdevsolutions.com.br/public/auth/sair" class="btn btn-default btn-flat float-end">Logoff</a>
               </li>
               <!--end::Menu Footer-->
             </ul>
@@ -107,9 +107,9 @@
       <!--begin::Sidebar Brand-->
       <div class="sidebar-brand">
         <!--begin::Brand Link-->
-        <a href="http://localhost/sarafashion/public/dashboard" class="brand-link">
+        <a href="https://sarafashion.webdevsolutions.com.br/public/dashboard" class="brand-link">
           <!--begin::Brand Image-->
-          <img src="http://localhost/sarafashion/public/assets/img/logoInicial.png" alt="Sara Fashion Logo" class="brand-image" />
+          <img src="https://sarafashion.webdevsolutions.com.br/public/assets/img/logoInicial.png" alt="Sara Fashion Logo" class="brand-image" />
           <!--end::Brand Image-->
         </a>
         <!--end::Brand Link-->
@@ -142,20 +142,20 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/agendamento/listar" class="nav-link">
+                        <a href="https://sarafashion.webdevsolutions.com.br/public/agendamento/listar" class="nav-link">
                           <i class="bi bi-calendar-check"></i>
                           <p>Agendamento de Serviços</p>
 
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/servico/listar" class="nav-link">
+                        <a href="https://sarafashion.webdevsolutions.com.br/public/servico/listar" class="nav-link">
                           <i class="bi bi-scissors"></i>
                           <p>Serviços</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/especialidade/listar" class="nav-link">
+                        <a href="https://sarafashion.webdevsolutions.com.br/public/especialidade/listar" class="nav-link">
                           <i class="bi bi-briefcase"></i>
                           <p>Especialidade</p>
                         </a>
@@ -171,7 +171,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/cliente/listar" class="nav-link">
+                        <a href="https://sarafashion.webdevsolutions.com.br/public/cliente/listar" class="nav-link">
                           <i class="bi bi-person"></i>
                           <p>Clientes</p>
                         </a>
@@ -189,7 +189,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/funcionario/listar" class="nav-link">
+                        <a href="https://sarafashion.webdevsolutions.com.br/public/funcionario/listar" class="nav-link">
                           <i class="bi bi-person-badge"></i>
                           <p>Funcionários</p>
                         </a>
@@ -207,13 +207,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/fornecedor/listar" class="nav-link">
+                        <a href="https://sarafashion.webdevsolutions.com.br/public/fornecedor/listar" class="nav-link">
                           <i class="bi bi-box-seam"></i>
                           <p>Fornecedores</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/produto/listar" class="nav-link">
+                        <a href="https://sarafashion.webdevsolutions.com.br/public/produto/listar" class="nav-link">
                           <i class="bi bi-bag"></i>
                           <p>Produtos</p>
                         </a>
@@ -223,7 +223,7 @@
                   <li class="nav-header">SITE</li>
 
                   <li class="nav-item">
-                    <a href="http://localhost/sarafashion/public/depoimento/listar" class="nav-link">
+                    <a href="https://sarafashion.webdevsolutions.com.br/public/depoimento/listar" class="nav-link">
                       <i class="bi bi-chat-left-text"></i>
 
                       <p>Depoimentos</p>
@@ -231,14 +231,14 @@
                   </li>
 
                   <li class="nav-item">
-                    <a href="http://localhost/sarafashion/public/contato/listar" class="nav-link">
+                    <a href="https://sarafashion.webdevsolutions.com.br/public/contato/listar" class="nav-link">
                       <i class="bi bi-envelope"></i>
                       <p>Contato</p>
                     </a>
                   </li>
 
                   <li class="nav-item">
-                    <a href="http://localhost/sarafashion/public/marcas/listar" class="nav-link">
+                    <a href="https://sarafashion.webdevsolutions.com.br/public/marcas/listar" class="nav-link">
                       <i class="bi bi-tags"></i>
                       <p>Marcas</p>
                     </a>
@@ -267,7 +267,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-end">
-                <li class="breadcrumb-item"><a href="http://localhost/sarafashion/public/">Home</a></li>
+                <li class="breadcrumb-item"><a href="https://sarafashion.webdevsolutions.com.br/public/">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">SaraFashion</li>
               </ol>
             </div>
@@ -382,8 +382,8 @@
 
 
   <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-  <script src="http://localhost/sarafashion/public/vendors/js/adminlte.js"></script>
-  <script src="http://localhost/sarafashion/public/vendors/js/lightbox.min.js"></script>
+  <script src="https://sarafashion.webdevsolutions.com.br/public/vendors/js/adminlte.js"></script>
+  <script src="https://sarafashion.webdevsolutions.com.br/public/vendors/js/lightbox.min.js"></script>
 
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -722,7 +722,7 @@
     // Desativar Servico
     function desativarServico(idServico) {
 
-      fetch(`http://localhost/sarafashion/public/servico/desativar/${idServico}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/servico/desativar/${idServico}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -760,7 +760,7 @@
     // Ativar Servico
     function ativarServico(idServico) {
 
-      fetch(`http://localhost/sarafashion/public/servico/ativar/${idServico}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/servico/ativar/${idServico}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -798,7 +798,7 @@
     // Desativar Especialidade
     function desativarEspecialidade(idEspecialidade) {
 
-      fetch(`http://localhost/sarafashion/public/especialidade/desativar/${idEspecialidade}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/especialidade/desativar/${idEspecialidade}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -836,7 +836,7 @@
     // Ativar Especialidade
     function ativarEspecialidade(idEspecialidade) {
 
-      fetch(`http://localhost/sarafashion/public/especialidade/ativar/${idEspecialidade}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/especialidade/ativar/${idEspecialidade}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -874,7 +874,7 @@
     // Desativar Cliente
     function desativarCliente(idCliente) {
 
-      fetch(`http://localhost/sarafashion/public/cliente/desativar/${idCliente}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/cliente/desativar/${idCliente}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -912,7 +912,7 @@
     // Ativar Cliente
     function ativarCliente(idCliente) {
 
-      fetch(`http://localhost/sarafashion/public/cliente/ativar/${idCliente}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/cliente/ativar/${idCliente}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -950,7 +950,7 @@
     // Desativar Funcionario
     function desativarFuncionario(idFuncionario) {
 
-      fetch(`http://localhost/sarafashion/public/funcionario/desativar/${idFuncionario}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/funcionario/desativar/${idFuncionario}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -987,7 +987,7 @@
     // Ativar Funcionario
     function ativarFuncionario(idFuncionario) {
 
-      fetch(`http://localhost/sarafashion/public/funcionario/ativar/${idFuncionario}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/funcionario/ativar/${idFuncionario}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -1024,7 +1024,7 @@
 
     function desativarFornecedor(idFornecedor) {
 
-      fetch(`http://localhost/sarafashion/public/fornecedor/desativar/${idFornecedor}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/fornecedor/desativar/${idFornecedor}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -1060,7 +1060,7 @@
     }
 
     function cancelarAgendamento(idAgendamento) {
-      fetch(`http://localhost/sarafashion/public/agendamento/desativar/${idAgendamento}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/agendamento/desativar/${idAgendamento}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -1095,7 +1095,7 @@
     }
 
     function cancelarMarca(idMarca) {
-      fetch(`http://localhost/sarafashion/public/marcas/desativar/${idMarca}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/marcas/desativar/${idMarca}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -1130,7 +1130,7 @@
     }
 
     function ativarMarca(idMarca) {
-      fetch(`http://localhost/sarafashion/public/marcas/ativar/${idMarca}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/marcas/ativar/${idMarca}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -1166,7 +1166,7 @@
 
     function desativarProduto(idProduto) {
 
-      fetch(`http://localhost/sarafashion/public/produto/desativar/${idProduto}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/produto/desativar/${idProduto}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -1203,7 +1203,7 @@
 
     function cancelarAgendamento(idAgendamentoCancelar) {
 
-      fetch(`http://localhost/sarafashion/public/agendamento/cancelar/${idAgendamentoCancelar}`, {
+      fetch(`https://sarafashion.webdevsolutions.com.br/public/agendamento/cancelar/${idAgendamentoCancelar}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -1247,7 +1247,7 @@
         let status = $(this).val();
 
         $.ajax({
-          url: "http://localhost/sarafashion/public/marcas/filtrarMarcas",
+          url: "https://sarafashion.webdevsolutions.com.br/public/marcas/filtrarMarcas",
           type: "POST",
           data: {
             status: status
@@ -1268,10 +1268,10 @@
                   `<i id="btn-primary" onclick="abrirModalAtivarMarca(${marca.id_marca})" class="bi bi-check-circle"></i>`;
 
                 let row = `<tr>
-                <td class="imgMarca"><img src="http://localhost/sarafashion/public/uploads/${marca.logo_marca}" alt="${marca.alt_marca}"></td>
+                <td class="imgMarca"><img src="https://sarafashion.webdevsolutions.com.br/public/uploads/${marca.logo_marca}" alt="${marca.alt_marca}"></td>
                 <td>${marca.nome_marca}</td>
                 <td>${marca.status_marcas}</td>
-                <td><a href="http://localhost/sarafashion/public/marcas/editar/${marca.id_marca}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                <td><a href="https://sarafashion.webdevsolutions.com.br/public/marcas/editar/${marca.id_marca}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
                 <td>${iconeAcao}</td>
                 </tr>`;
                 tabela.append(row);
@@ -1289,7 +1289,7 @@
         let status = $(this).val();
 
         $.ajax({
-          url: "http://localhost/sarafashion/public/servico/filtrarServicos",
+          url: "https://sarafashion.webdevsolutions.com.br/public/servico/filtrarServicos",
           type: "POST",
           data: {
             status: status
@@ -1311,9 +1311,9 @@
 
                 let row = `<tr>
           <td class="imgBanco">
-              <img src="http://localhost/sarafashion/public/uploads/${servico.foto_servico}" 
+              <img src="https://sarafashion.webdevsolutions.com.br/public/uploads/${servico.foto_servico}" 
                    alt="${servico.alt_foto_servico}" 
-                   onerror="this.onerror=null;this.src='http://localhost/sarafashion/public/uploads/servico/sem-foto-servico.png'">
+                   onerror="this.onerror=null;this.src='https://sarafashion.webdevsolutions.com.br/public/uploads/servico/sem-foto-servico.png'">
           </td>
           <td>${servico.nome_servico}</td>
           <td>${servico.descricao_servico}</td>
@@ -1321,7 +1321,7 @@
           <td>${servico.tempo_estimado_servico}</td>
           <td>${servico.nome_especialidade}</td>
           <td>${servico.status_servico}</td>
-          <td><a href="http://localhost/sarafashion/public/servico/editar/${servico.id_servico}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+          <td><a href="https://sarafashion.webdevsolutions.com.br/public/servico/editar/${servico.id_servico}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
           <td>${iconeAcao}</td>
         </tr>`;
                 tabela.append(row);
@@ -1339,7 +1339,7 @@
         let status = $(this).val();
 
         $.ajax({
-          url: "http://localhost/sarafashion/public/especialidade/filtrarEspecialidade",
+          url: "https://sarafashion.webdevsolutions.com.br/public/especialidade/filtrarEspecialidade",
           type: "POST",
           data: {
             status: status
@@ -1361,7 +1361,7 @@
 
                 let row = `<tr>
           <td>${especialidade.nome_especialidade}</td>
-          <td><a href="http://localhost/sarafashion/public/especialidade/editar/${especialidade.id_especialidade}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+          <td><a href="https://sarafashion.webdevsolutions.com.br/public/especialidade/editar/${especialidade.id_especialidade}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
           <td>${especialidade.status_especialidade}</td>
           <td>${iconeAcao}</td>
         </tr>`;
@@ -1380,7 +1380,7 @@
         let status = $(this).val();
 
         $.ajax({
-          url: "http://localhost/sarafashion/public/cliente/filtrarCliente",
+          url: "https://sarafashion.webdevsolutions.com.br/public/cliente/filtrarCliente",
           type: "POST",
           data: {
             status: status
@@ -1402,16 +1402,16 @@
 
                 let row = `<tr>
           <td class="imgBanco">
-              <img src="http://localhost/sarafashion/public/uploads/${cliente.foto_cliente}" 
+              <img src="https://sarafashion.webdevsolutions.com.br/public/uploads/${cliente.foto_cliente}" 
                    alt="${cliente.alt_foto_cliente}" 
-                   onerror="this.onerror=null;this.src='http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png'">
+                   onerror="this.onerror=null;this.src='https://sarafashion.webdevsolutions.com.br/public/uploads/cliente/sem-foto-cliente.png'">
             </td>
             <td>${cliente.nome_cliente}</td>
             <td>${cliente.cpf_cnpj_cliente}</td>
             <td>${cliente.email_cliente}</td>
             <td>${cliente.telefone_cliente}</td>
             <td>${cliente.status_cliente}</td>
-            <td><a href="http://localhost/sarafashion/public/cliente/editar/${cliente.id_cliente}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+            <td><a href="https://sarafashion.webdevsolutions.com.br/public/cliente/editar/${cliente.id_cliente}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
             <td>${iconeAcao}</td>
         </tr>`;
                 tabela.append(row);
@@ -1429,7 +1429,7 @@
         let status = $(this).val();
 
         $.ajax({
-          url: "http://localhost/sarafashion/public/funcionario/filtrarFuncionario",
+          url: "https://sarafashion.webdevsolutions.com.br/public/funcionario/filtrarFuncionario",
           type: "POST",
           data: {
             status: status
@@ -1451,9 +1451,9 @@
 
                 let row = `<tr>
             <td class="imgBanco">
-              <img src="http://localhost/sarafashion/public/uploads/${funcionario.foto_funcionario}" 
+              <img src="https://sarafashion.webdevsolutions.com.br/public/uploads/${funcionario.foto_funcionario}" 
                    alt="${funcionario.alt_foto_funcionario}" 
-                   onerror="this.onerror=null;this.src='http://localhost/sarafashion/public/uploads/funcionario/sem-foto-funcionario.png'">
+                   onerror="this.onerror=null;this.src='https://sarafashion.webdevsolutions.com.br/public/uploads/funcionario/sem-foto-funcionario.png'">
             </td>
             <td>${funcionario.nome_funcionario}</td>
             <td>${funcionario.tipo_funcionario}</td>
@@ -1465,7 +1465,7 @@
             <td>${funcionario.salario_funcionario}</td>
             <td>${funcionario.status_funcionario}</td>
             <td>
-              <a href="http://localhost/sarafashion/public/funcionario/editar/${funcionario.id_funcionario}">
+              <a href="https://sarafashion.webdevsolutions.com.br/public/funcionario/editar/${funcionario.id_funcionario}">
                 <i id="btn-primary" class="bi bi-pencil"></i>
               </a>
             </td>

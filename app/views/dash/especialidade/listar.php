@@ -51,7 +51,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             <?php foreach ($listarEspecialidade as $linha): ?>
                 <tr>
                     <td><?php echo $linha['nome_especialidade'] ?></td>
-                    <td><a href="http://localhost/sarafashion/public/especialidade/editar/<?php echo $linha['id_especialidade'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                    <td><a href="https://sarafashion.webdevsolutions.com.br/public/especialidade/editar/<?php echo $linha['id_especialidade'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
                     <td><?php echo $linha['status_especialidade'] ?></td>
                     <td>
                         <?php if ($linha['status_especialidade'] === 'Ativo'): ?>

@@ -2,7 +2,7 @@
     <div class="site">
         <div class="container" id="container">
             <div class="form-container sign-up-container">
-                <form action="http://localhost/sarafashion/public/auth/cadastrar" method="POST">
+                <form action="https://sarafashion.webdevsolutions.com.br/public/auth/cadastrar" method="POST">
                     <?php if (isset($_SESSION['cadastro-erro'])) : ?>
                         <div style="color: #58151c; background: #f1aeb5; border: 1px solid #f8d7da; padding: 10px; margin-bottom: 10px;">
                             <?= $_SESSION['cadastro-erro'];
@@ -18,7 +18,7 @@
                 </form>
             </div>
             <div class="form-container sign-in-container">
-                <form method="POST" action="http://localhost/sarafashion/public/auth/login">
+                <form method="POST" action="https://sarafashion.webdevsolutions.com.br/public/auth/login">
                     <h1>Entre</h1>
                     <span>Faça login com suas credenciais para continuar sua jornada.</span>
 
@@ -31,7 +31,7 @@
 
                     <input type="email" name="email" placeholder="Insira seu email" required />
                     <input type="password" name="senha" placeholder="Insira sua senha" required />
-                    <a href="http://localhost/sarafashion/public/esqueceuSenha">Esqueceu a Senha?</a>
+                    <a href="https://sarafashion.webdevsolutions.com.br/public/esqueceuSenha">Esqueceu a Senha?</a>
                     <button>Entrar</button>
                 </form>
             </div>

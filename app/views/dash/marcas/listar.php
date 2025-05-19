@@ -38,7 +38,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         <label class="btn btn-outline-danger" for="danger-outlined">Inativo</label>
     </div>
     <div class="navTool-button">
-        <a href="http://localhost/sarafashion/public/marcas/adicionar">ADICIONAR</a>
+        <a href="https://sarafashion.webdevsolutions.com.br/public/marcas/adicionar">ADICIONAR</a>
     </div>
 </div>
 
@@ -61,16 +61,16 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         <img src="<?php
                                     $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $linha['logo_marca'];
                                     if ($linha['logo_marca'] != "" && file_exists($caminhoArquivo)) {
-                                        echo "http://localhost/sarafashion/public/uploads/" . htmlspecialchars($linha['logo_marca'], ENT_QUOTES, 'UTF-8');
+                                        echo "https://sarafashion.webdevsolutions.com.br/public/uploads/" . htmlspecialchars($linha['logo_marca'], ENT_QUOTES, 'UTF-8');
                                     } else {
-                                        echo "http://localhost/sarafashion/public/uploads/marca/sem-foto-marca.png";
+                                        echo "https://sarafashion.webdevsolutions.com.br/public/uploads/marca/sem-foto-marca.png";
                                     }
                                     ?>" alt="<?php echo htmlspecialchars($linha['alt_marca'], ENT_QUOTES, 'UTF-8') ?>">
                     </td>
                     <td><?php echo htmlspecialchars($linha['nome_marca'], ENT_QUOTES, 'UTF-8'); ?></td>
                     <td><?php echo htmlspecialchars($linha['status_marcas'], ENT_QUOTES, 'UTF-8'); ?></td>
                     <td>
-                        <a href="http://localhost/sarafashion/public/marcas/editar/<?php echo $linha['id_marca']; ?>">
+                        <a href="https://sarafashion.webdevsolutions.com.br/public/marcas/editar/<?php echo $linha['id_marca']; ?>">
                             <i id="btn-primary" class="bi bi-pencil"></i>
                         </a>
                     </td>

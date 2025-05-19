@@ -1,16 +1,16 @@
 <h1>Adicionar Produto</h1>
 <div class="container mt-5">
-    <form method="POST" action="http://localhost/sarafashion/public/produto/adicionar" enctype="multipart/form-data">
+    <form method="POST" action="https://sarafashion.webdevsolutions.com.br/public/produto/adicionar" enctype="multipart/form-data">
         <!-- Contêiner das imagens -->
         <div class="product-images">
             <div class="thumbnail-container">
-                <img class="preview-img" data-index="0" src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png">
-                <img class="preview-img" data-index="1" src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png">
-                <img class="preview-img" data-index="2" src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png">
+                <img class="preview-img" data-index="0" src="https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png">
+                <img class="preview-img" data-index="1" src="https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png">
+                <img class="preview-img" data-index="2" src="https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png">
             </div>
 
             <div class="main-image">
-                <img class="preview-img" data-index="3" src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png">
+                <img class="preview-img" data-index="3" src="https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png">
             </div>
         </div>
 

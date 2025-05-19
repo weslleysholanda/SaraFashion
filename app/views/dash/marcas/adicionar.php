@@ -1,8 +1,8 @@
 <h1>Adicionar Marca</h1>
 <div class="container mt-5">
-    <form method="POST" action="http://localhost/sarafashion/public/marcas/adicionar" enctype="multipart/form-data">
+    <form method="POST" action="https://sarafashion.webdevsolutions.com.br/public/marcas/adicionar" enctype="multipart/form-data">
         <div class="img">
-            <img id="preview-img" style="width:100%; cursor:pointer;" title="Clique na imagem para selecionar uma foto de serviço" src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png" alt="">
+            <img id="preview-img" style="width:100%; cursor:pointer;" title="Clique na imagem para selecionar uma foto de serviço" src="https://sarafashion.webdevsolutions.com.br/public/assets/img/sem-foto-produto.png" alt="">
             <input type="file" name="logo_marca" id="logo_marca" required style="display: none;" accept="image/*">
         </div>
         <div class="container-form">

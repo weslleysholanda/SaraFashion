@@ -16,12 +16,12 @@
                                             $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $depoimentoCliente['foto_cliente'];
                                             if ($depoimentoCliente['foto_cliente'] != "") {
                                                 if (file_exists($caminhoArquivo)) {
-                                                    echo ("http://localhost/sarafashion/public/uploads/" . htmlspecialchars($depoimentoCliente['foto_cliente'], ENT_QUOTES, 'UTF-8'));
+                                                    echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/" . htmlspecialchars($depoimentoCliente['foto_cliente'], ENT_QUOTES, 'UTF-8'));
                                                 } else {
-                                                    echo ("http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png");
+                                                    echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/cliente/sem-foto-cliente.png");
                                                 }
                                             } else {
-                                                echo ("http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png");
+                                                echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/cliente/sem-foto-cliente.png");
                                             }
                                             ?>" alt="<?php echo htmlspecialchars($depoimentoCliente['alt_foto_cliente'])?>">
                                     <div class="cabecalho-info">

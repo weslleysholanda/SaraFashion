@@ -11,7 +11,7 @@
                     <p>A página que você está procurando pode ter sido removida, teve seu nome alterado,<br> ou está
                         temporariamente indisponível.</p>
 
-                    <a href="http://localhost/sarafashion/public/home" class="btn-default"> Voltar para a Página Inicial</a>
+                    <a href="https://sarafashion.webdevsolutions.com.br/public/home" class="btn-default"> Voltar para a Página Inicial</a>
                 </div>
             </div>
         </div>

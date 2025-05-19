@@ -17,12 +17,12 @@
                                                 $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $linha['foto_cliente'];
                                                 if ($linha['foto_cliente'] != "") {
                                                     if (file_exists($caminhoArquivo)) {
-                                                        echo ("http://localhost/sarafashion/public/uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
+                                                        echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
                                                     } else {
-                                                        echo ("http://localhost/sarafashion/public/uploads/cliente/sem-foto-funcionario.png");
+                                                        echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/cliente/sem-foto-funcionario.png");
                                                     }
                                                 } else {
-                                                    echo ("http://localhost/sarafashion/public/uploads/cliente/sem-foto-funcionario.png");
+                                                    echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/cliente/sem-foto-funcionario.png");
                                                 }
                                                 ?>" alt="<?php echo htmlspecialchars($linha['alt_foto_cliente'], ENT_QUOTES, 'UTF-8') ?>"></td>
                 <td><?php echo $linha['nome_cliente'] ?></td>

@@ -47,7 +47,7 @@ class MarcasController extends Controller
             if (!$logo_marca) {
                 $_SESSION['mensagem'] = "A imagem da marca é obrigatória!";
                 $_SESSION['tipo-msg'] = 'erro';
-                header('Location: http://localhost/sarafashion/public/marcas/adicionar');
+                header('Location: https://sarafashion.webdevsolutions.com.br/public/marcas/adicionar');
                 exit;
             }
 
@@ -63,12 +63,12 @@ class MarcasController extends Controller
             if ($id_marca) {
                 $_SESSION['mensagem'] = "Marca adicionada com Sucesso!";
                 $_SESSION['tipo-msg'] = 'sucesso';
-                header('Location: http://localhost/sarafashion/public/marcas/listar');
+                header('Location: https://sarafashion.webdevsolutions.com.br/public/marcas/listar');
                 exit;
             } else {
                 $_SESSION['mensagem'] = "Erro ao adicionar a marca";
                 $_SESSION['tipo-msg'] = 'erro';
-                header('Location: http://localhost/sarafashion/public/marcas/adicionar');
+                header('Location: https://sarafashion.webdevsolutions.com.br/public/marcas/adicionar');
                 exit;
             }
         }
@@ -92,7 +92,7 @@ class MarcasController extends Controller
         $dados['conteudo'] = 'dash/marcas/editar';
 
         if ($id == null) {
-            header('Location: http://localhost/sarafashion/public/marcas/listar');
+            header('Location: https://sarafashion.webdevsolutions.com.br/public/marcas/listar');
             exit;
         }
 
@@ -115,7 +115,7 @@ class MarcasController extends Controller
             if (!$logo_marca) {
                 $_SESSION['mensagem'] = "Erro ao atualizar a logo da marca";
                 $_SESSION['tipo-msg'] = 'erro';
-                header('Location: http://localhost/sarafashion/public/marcas/editar/' . $id);
+                header('Location: https://sarafashion.webdevsolutions.com.br/public/marcas/editar/' . $id);
                 exit;
             }
 
@@ -132,12 +132,12 @@ class MarcasController extends Controller
             if ($atualizado) {
                 $_SESSION['mensagem'] = "Marca atualizado com sucesso!";
                 $_SESSION['tipo-msg'] = 'sucesso';
-                header('Location: http://localhost/sarafashion/public/marcas/listar');
+                header('Location: https://sarafashion.webdevsolutions.com.br/public/marcas/listar');
                 exit;
             } else {
                 $_SESSION['mensagem'] = "Erro ao atualizar a logo da marca";
                 $_SESSION['tipo-msg'] = "erro";
-                header('Location: http://localhost/sarafashion/public/marcas/editar/' . $id);
+                header('Location: https://sarafashion.webdevsolutions.com.br/public/marcas/editar/' . $id);
                 exit;
             }
         }

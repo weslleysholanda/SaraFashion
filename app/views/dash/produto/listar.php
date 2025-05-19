@@ -36,7 +36,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         <label class="btn btn-outline-danger" for="danger-outlined">Inativo</label>
     </div>
     <div class="navTool-button">
-        <a href="http://localhost/sarafashion/public/produto/adicionar">ADICIONAR</a>
+        <a href="https://sarafashion.webdevsolutions.com.br/public/produto/adicionar">ADICIONAR</a>
     </div>
 </div>
 
@@ -71,16 +71,16 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     ?>
 
                     <!-- Exibir a imagem principal e ativar o Lightbox -->
-                    <a href="http://localhost/sarafashion/public/uploads/<?php echo htmlspecialchars($imagemPrincipal, ENT_QUOTES, 'UTF-8'); ?>"
+                    <a href="https://sarafashion.webdevsolutions.com.br/public/uploads/<?php echo htmlspecialchars($imagemPrincipal, ENT_QUOTES, 'UTF-8'); ?>"
                         data-lightbox="produto-<?php echo $linha['id_produto']; ?>">
-                        <img src="http://localhost/sarafashion/public/uploads/<?php echo htmlspecialchars($imagemPrincipal, ENT_QUOTES, 'UTF-8'); ?>"
+                        <img src="https://sarafashion.webdevsolutions.com.br/public/uploads/<?php echo htmlspecialchars($imagemPrincipal, ENT_QUOTES, 'UTF-8'); ?>"
                             width="50">
                     </a>
 
                     <!-- Adicionar as outras imagens ocultas para Lightbox -->
                     <?php foreach ($imagens as $index => $imagem): ?>
                         <?php if ($index > 0): ?>
-                            <a href="http://localhost/sarafashion/public/uploads/<?php echo htmlspecialchars($imagem, ENT_QUOTES, 'UTF-8'); ?>"
+                            <a href="https://sarafashion.webdevsolutions.com.br/public/uploads/<?php echo htmlspecialchars($imagem, ENT_QUOTES, 'UTF-8'); ?>"
                                 data-lightbox="produto-<?php echo $linha['id_produto']; ?>"
                                 style="display: none;"></a>
                         <?php endif; ?>
@@ -91,7 +91,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <td><?php echo number_format($linha['preco_produto'], 2, ',', '.'); ?></td>
                 <td><?php echo $linha['quantidade_estoque_produto']; ?></td>
                 <td><?php echo $linha['status_produto']; ?></td>
-                <td><a href="http://localhost/sarafashion/public/produto/editar/<?php echo $linha['id_produto'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                <td><a href="https://sarafashion.webdevsolutions.com.br/public/produto/editar/<?php echo $linha['id_produto'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
                 <td id="text-center"><i id="btn-secundary" onclick="abrirModalDesativarProduto(<?php echo $linha['id_produto']; ?>)" class="bi bi-trash"></i></td>
             </tr>
         <?php endforeach; ?>

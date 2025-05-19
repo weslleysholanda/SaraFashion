@@ -4,7 +4,7 @@
     </div>
 
     <div>
-        <a href="http://localhost/sarafashion/public/loja">
+        <a href="https://sarafashion.webdevsolutions.com.br/public/loja">
             <button>VOLTAR PARA A LOJA</button>
         </a>
     </div>

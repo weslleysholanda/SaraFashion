@@ -38,7 +38,7 @@
         <label class="btn btn-outline-danger" for="danger-outlined">Inativo</label>
     </div>
     <div class="navTool-button">
-        <a href="http://localhost/sarafashion/public/fornecedor/adicionar">ADICIONAR</a>
+        <a href="https://sarafashion.webdevsolutions.com.br/public/fornecedor/adicionar">ADICIONAR</a>
     </div>
 </div>
 <table class="table table-hover">
@@ -63,7 +63,7 @@
                 <td><?php echo $linha['telefone_fornecedor'] ?></td>
                 <td><?php echo $linha['produto_fornecido'] ?></td>
                 <td><?php echo $linha['status_fornecedor'] ?></td>
-                <td id="text-center"><a href="http://localhost/sarafashion/public/fornecedor/editar/<?php echo $linha['id_fornecedor'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                <td id="text-center"><a href="https://sarafashion.webdevsolutions.com.br/public/fornecedor/editar/<?php echo $linha['id_fornecedor'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
                 <td><i id="btn-secundary" onclick="abrirModalDesativarFornecedor(<?php echo $linha['id_fornecedor']; ?>)" class="bi bi-trash"></i></td>
             </tr>
         <?php endforeach ?>

@@ -37,7 +37,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         <label class="btn btn-outline-danger" for="danger-outlined">Inativo</label>
     </div>
     <div class="navTool-button">
-        <a href="http://localhost/sarafashion/public/funcionario/adicionar">ADICIONAR</a>
+        <a href="https://sarafashion.webdevsolutions.com.br/public/funcionario/adicionar">ADICIONAR</a>
     </div>
 </div>
 <div class="scroll-tabela">
@@ -65,12 +65,12 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                                                     $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $linha['foto_funcionario'];
                                                     if ($linha['foto_funcionario'] != "") {
                                                         if (file_exists($caminhoArquivo)) {
-                                                            echo ("http://localhost/sarafashion/public/uploads/" . htmlspecialchars($linha['foto_funcionario'], ENT_QUOTES, 'UTF-8'));
+                                                            echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/" . htmlspecialchars($linha['foto_funcionario'], ENT_QUOTES, 'UTF-8'));
                                                         } else {
-                                                            echo ("http://localhost/sarafashion/public/uploads/funcionario/sem-foto-funcionario.png");
+                                                            echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/funcionario/sem-foto-funcionario.png");
                                                         }
                                                     } else {
-                                                        echo ("http://localhost/sarafashion/public/uploads/funcionario/sem-foto-funcionario.png");
+                                                        echo ("https://sarafashion.webdevsolutions.com.br/public/uploads/funcionario/sem-foto-funcionario.png");
                                                     }
                                                     ?>" alt="<?php echo htmlspecialchars($linha['alt_foto_funcionario'], ENT_QUOTES, 'UTF-8') ?>"></td>
                     <td><?php echo $linha['nome_funcionario'] ?></td>
@@ -82,7 +82,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     <td><?php echo $linha['nome_especialidade'] ?></td>
                     <td><?php echo $linha['salario_funcionario'] ?></td>
                     <td><?php echo $linha['status_funcionario'] ?></td>
-                    <td id="text-center"><a href="http://localhost/sarafashion/public/funcionario/editar/<?php echo $linha['id_funcionario'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                    <td id="text-center"><a href="https://sarafashion.webdevsolutions.com.br/public/funcionario/editar/<?php echo $linha['id_funcionario'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
                     <td id="text-center">
                         <?php if ($linha['status_funcionario'] === 'Ativo'): ?>
                             <i id="btn-secundary" data-id="<?php echo $linha['id_funcionario']; ?>" onclick="abrirModalDesativarFuncionario(<?php echo $linha['id_funcionario']; ?>)" class="bi bi-trash"></i>
