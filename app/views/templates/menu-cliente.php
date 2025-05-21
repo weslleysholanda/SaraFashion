@@ -74,19 +74,22 @@
             <form action="<?= BASE_URL ?>perfil/editar" id="form-editar-perfil" method="POST" enctype="multipart/form-data">
                 <div class="img">
                     <?php
-                    $fotoCliente = $cliente['foto_cliente'];
-                    $fotoPath = "http://localhost/sarafashion/public/uploads/" . $fotoCliente;
-                    $fotoDefault = "http://localhost/sarafashion/public/assets/img/sem-foto-cliente.png";
+                    $fotoCliente = $cliente['foto_cliente'] ?? '';
+                    $fotoPath = "/uploads/" . $fotoCliente;
+                    $fotoDefault = "/assets/img/sem-foto-cliente.png";
 
-                    $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $fotoCliente) && !empty($fotoCliente))
+                    $caminhoFisico = $_SERVER['DOCUMENT_ROOT'] . $fotoPath;
+
+                    $imagePath = (!empty($fotoCliente) && file_exists($caminhoFisico))
                         ? $fotoPath
                         : $fotoDefault;
                     ?>
 
                     <img id="preview-img"
                         title="Clique na imagem para selecionar uma foto do funcionário"
-                        src="<?php echo $imagePath; ?>"
+                        src="<?php echo htmlspecialchars($imagePath, ENT_QUOTES, 'UTF-8'); ?>"
                         alt="Foto do Cliente">
+
                     <input type="file" name="foto_cliente" id="foto_cliente" style="display: none;" accept="image/*">
                 </div>
                 <div class="container-form">

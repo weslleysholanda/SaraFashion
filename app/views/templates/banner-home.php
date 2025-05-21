@@ -2,7 +2,7 @@
     <div class="slide-banner">
         <div class="banner-slide">
             <div class="banner-item">
-                <img src="assets/img/h1-slider1.jpg" alt="">
+                <img src="/assets/img/h1-slider1.jpg" alt="">
                 <div class="banner-titulo">
                     <div>
                         <div>
@@ -13,7 +13,7 @@
                             </div>
                             <div></div>
                             <div>
-                                <img src="assets/img/h1-slider-img.png" class="animate__animated" data-animation="animate__fadeInUp" alt="">
+                                <img src="/assets/img/h1-slider-img.png" class="animate__animated" data-animation="animate__fadeInUp" alt="">
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
 
         <div class="banner-slide">
             <div class="banner-item">
-                <img src="assets/img/h1-slider2.jpg" alt="">
+                <img src="/assets/img/h1-slider2.jpg" alt="">
                 <div class="banner-titulo">
                     <div>
                         <div>
@@ -34,7 +34,7 @@
                             </div>
                             <div></div>
                             <div>
-                                <img src="assets/img/h1-slider-img.png" data-animation="animate__fadeInUp" alt="">
+                                <img src="/assets/img/h1-slider-img.png" data-animation="animate__fadeInUp" alt="">
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
 
         <div class="banner-slide">
             <div class="banner-item">
-                <img src="assets/img/h1-slider3.jpg" alt="">
+                <img src="/assets/img/h1-slider3.jpg" alt="">
                 <div class="banner-titulo">
                     <div>
                         <div>
@@ -55,7 +55,7 @@
                             </div>
                             <div></div>
                             <div>
-                                <img src="assets/img/h1-slider-img.png" data-animation="animate__fadeInUp" alt="">
+                                <img src="/assets/img/h1-slider-img.png" data-animation="animate__fadeInUp" alt="">
                             </div>
                         </div>
                     </div>

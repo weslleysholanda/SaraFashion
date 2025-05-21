@@ -85,7 +85,7 @@ class ServicoController extends Controller
             if (empty($id_especialidade)) {
                 $_SESSION['mensagem'] = "É necessário escolher ou criar uma especialidade!";
                 $_SESSION['tipo-msg'] = "erro";
-                header('Location: http://localhost/sarafashion/public/servico/adicionar');
+                header('Location:' . BASE_URL . 'servico/adicionar');
                 exit;
             }
 
@@ -99,7 +99,7 @@ class ServicoController extends Controller
             if (!$foto_servico) {
                 $_SESSION['mensagem'] = "A foto do serviço é obrigatória!";
                 $_SESSION['tipo-msg'] = 'erro';
-                header('Location: http://localhost/sarafashion/public/servico/adicionar');
+                header('Location:' . BASE_URL . 'servico/adicionar');
                 exit;
             }
 
@@ -121,12 +121,12 @@ class ServicoController extends Controller
             if ($id_servico) {
                 $_SESSION['mensagem'] = "Serviço adicionado com Sucesso!";
                 $_SESSION['tipo-msg'] = 'sucesso';
-                header('Location: http://localhost/sarafashion/public/servico/listar');
+                header('Location:' . BASE_URL . 'servico/listar');
                 exit;
             } else {
                 $_SESSION['mensagem'] = "Erro ao adicionar o serviço";
                 $_SESSION['tipo-msg'] = "erro";
-                header('Location: http://localhost/sarafashion/public/servico/adicionar');
+                header('Location:' . BASE_URL . 'servico/adicionar');
                 exit;
             }
         }
@@ -154,7 +154,7 @@ class ServicoController extends Controller
         $dados['conteudo'] = 'dash/servico/editar';
 
         if ($id == null) {
-            header('Location: http://localhost/sarafashion/public/servico/listar');
+            header('Location:' . BASE_URL . 'servico/listar');
             exit;
         }
         $servico = $this->servicoModel->getServicoById($id);
@@ -184,7 +184,7 @@ class ServicoController extends Controller
             if (!$foto_servico) {
                 $_SESSION['mensagem'] = "Erro ao atualizar a foto do serviço";
                 $_SESSION['tipo-msg'] = 'erro';
-                header('Location: http://localhost/sarafashion/public/servico/editar/' . $id);
+                header('Location:' . BASE_URL . 'servico/editar/' . $id);
                 exit;
             }
 
@@ -196,7 +196,7 @@ class ServicoController extends Controller
             if (empty($id_especialidade)) {
                 $_SESSION['mensagem'] = "É necessário escolher ou criar uma especialidade!";
                 $_SESSION['tipo-msg'] = "erro";
-                header('Location: http://localhost/sarafashion/public/servico/editar/' . $id);
+                header('Location:' . BASE_URL . 'servico/editar/' . $id);
                 exit;
             }
 
@@ -218,12 +218,12 @@ class ServicoController extends Controller
             if ($atualizado) {
                 $_SESSION['mensagem'] = "Serviço atualizado com sucesso!";
                 $_SESSION['tipo-msg'] = 'sucesso';
-                header('Location: http://localhost/sarafashion/public/servico/listar');
+                header('Location:' . BASE_URL . 'servico/listar');
                 exit;
             } else {
                 $_SESSION['mensagem'] = "Erro ao atualizar o serviço";
                 $_SESSION['tipo-msg'] = "erro";
-                header('Location: http://localhost/sarafashion/public/servico/editar/' . $id);
+                header('Location:' . BASE_URL . 'servico/editar/' . $id);
                 exit;
             }
         }

@@ -130,7 +130,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg']) && $_SESSION['t
                 <!-- Botões -->
                 <div class="buttons">
                     <button type="submit" class="btn btn-primary">Salvar</button>
-                    <a href="http://localhost/sarafashion/public/funcionario/listar"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+                    <a href="/funcionario/listar"><button type="button" class="btn btn-secondary">Cancelar</button></a>
                 </div>
 
             </div>

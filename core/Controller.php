@@ -40,6 +40,6 @@ class Controller
         $dados['nome'] = $this->nome;
         extract($dados);
 
-        require '../app/views/' . $view . '.php';
+        require 'app/views/' . $view . '.php';
     }
 }

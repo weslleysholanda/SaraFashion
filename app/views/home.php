@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- CSS e bibliotecas -->
-    <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/slick-theme.css">
-    <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/slick.css">
+    <link rel="stylesheet" href="/vendors/css/slick-theme.css">
+    <link rel="stylesheet" href="/vendors/css/slick.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/reset.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/vendors/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <title><?php echo isset($titulo) ? $titulo : 'Bem-Vindo a SaraFashion' ?></title>
 </head>
 
@@ -81,8 +81,8 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Slick -->
-    <script src="vendors/js/slick.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="/vendors/js/slick.min.js"></script>
+    <script src="/assets/js/script.js"></script>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 
 

@@ -12,21 +12,28 @@
                         <div class="card-slide">
                             <div class="card">
                                 <div class="cabecalho-card">
-                                    <img src="<?php
-                                            $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $depoimentoCliente['foto_cliente'];
-                                            if ($depoimentoCliente['foto_cliente'] != "") {
-                                                if (file_exists($caminhoArquivo)) {
-                                                    echo ("http://localhost/sarafashion/public/uploads/" . htmlspecialchars($depoimentoCliente['foto_cliente'], ENT_QUOTES, 'UTF-8'));
-                                                } else {
-                                                    echo ("http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png");
-                                                }
-                                            } else {
-                                                echo ("http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png");
-                                            }
-                                            ?>" alt="<?php echo htmlspecialchars($depoimentoCliente['alt_foto_cliente'])?>">
+                                    <?php
+
+                                    // var_dump($depoimentoCliente['foto_cliente']);
+
+                                    $caminhoArquivo = BASE_URL . "uploads/" . $depoimentoCliente['foto_cliente'];
+                                    $img = "/uploads/cliente/sem-foto-cliente.png";
+                                    $alt_foto = "imagem sem foto";
+
+                                    if (!empty($depoimentoCliente['foto_cliente'])) {
+                                        $headers = @get_headers($caminhoArquivo);
+                                        if ($headers && strpos($headers[0], '200') !== false) {
+                                            $img = $caminhoArquivo;
+                                            $alt_foto = htmlspecialchars($depoimentoCliente['alt_foto_cliente'], ENT_QUOTES, 'UTF-8');
+                                        }
+                                    }
+
+                                    ?>
+
+                                    <img src="<?= $img ?>" alt="<?= $alt_foto ?>">
                                     <div class="cabecalho-info">
-                                        <h3><?php echo htmlspecialchars($depoimentoCliente['nome_cliente'],ENT_QUOTES, 'UTF-8')?></h3>
-                                        <small><?php echo htmlspecialchars($depoimentoCliente['nome_servico'],ENT_QUOTES, 'UTF-8')?></small>
+                                        <h3><?php echo htmlspecialchars($depoimentoCliente['nome_cliente'], ENT_QUOTES, 'UTF-8') ?></h3>
+                                        <small><?php echo htmlspecialchars($depoimentoCliente['nome_servico'], ENT_QUOTES, 'UTF-8') ?></small>
                                         <svg width="100" height="18" viewBox="0 0 100 18" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -62,7 +69,7 @@
                                     </div>
                                 </div>
                                 <div class="card-info-depoimento">
-                                    <p><?php echo htmlspecialchars($depoimentoCliente['comentario_avaliacao'],ENT_QUOTES, 'UTF-8')?></p>
+                                    <p><?php echo htmlspecialchars($depoimentoCliente['comentario_avaliacao'], ENT_QUOTES, 'UTF-8') ?></p>
                                 </div>
                             </div>
                         </div>

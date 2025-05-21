@@ -26,43 +26,45 @@
                             // Separar as imagens armazenadas no banco
                             $imagens = explode(',', $produtos['imagens']);
 
-                            // Verifica se a posição 3 existe
+                            // Verifica se a posição 3 existe e coloca como principal
                             if (isset($imagens[3])) {
-                                // Se a posição 3 existe, ela se torna a principal
                                 $imagemPrincipal = $imagens[3];
-                                unset($imagens[3]); // Remove a posição 3
-                                array_unshift($imagens, $imagemPrincipal); // Coloca a posição 3 na primeira posição
+                                unset($imagens[3]);
+                                array_unshift($imagens, $imagemPrincipal);
                             } else {
-                                // Caso contrário, usa a primeira imagem ou a imagem padrão
                                 $imagemPrincipal = $imagens[0] ?? 'produto/sem-foto-produto.png';
                             }
 
-                            // Verifica o caminho da imagem
-                            $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $imagemPrincipal;
+                            // Monta o caminho completo da imagem
+                            $caminhoArquivo = BASE_URL . "uploads/" . $imagemPrincipal;
 
-                            if (!file_exists($caminhoArquivo)) {
-                                // Se o arquivo não existir, usa a imagem padrão
-                                $imagemPrincipal = "produto/sem-foto-produto.png";
+                            // Verifica se a imagem existe no servidor
+                            $img = "uploads/produto/sem-foto-produto.png";
+                            $alt = "Imagem do produto";
+
+                            if (!empty($imagemPrincipal)) {
+                                $headers = @get_headers($caminhoArquivo);
+                                if ($headers && strpos($headers[0], '200') !== false) {
+                                    $img = "uploads/" . $imagemPrincipal;
+                                    $alt = htmlspecialchars($produtos['alt_foto_galeria'] ?? 'Imagem do produto', ENT_QUOTES, 'UTF-8');
+                                }
                             }
                             ?>
 
                             <!-- Exibe a imagem principal -->
-                            <img src="http://localhost/sarafashion/public/uploads/<?php echo htmlspecialchars($imagemPrincipal, ENT_QUOTES, 'UTF-8'); ?>"
-                                alt="<?php echo htmlspecialchars($produtos['alt_foto_galeria'] ?? 'Imagem do produto', ENT_QUOTES, 'UTF-8'); ?>">
-
-
+                            <img src="<?= $img ?>" alt="<?= $alt ?>">
 
                             <h4><?php echo htmlspecialchars($produtos['nome_produto'], ENT_QUOTES, 'UTF-8'); ?></h4>
                             <p class="price"><span class="old-price">$79.00</span> <?php echo htmlspecialchars($produtos['preco_produto'], ENT_QUOTES, 'UTF-8'); ?></p>
                         </a>
+
                         <!-- Ícone de coração -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="favoriteProduct" viewBox="0 0 17.59 16.305">
                             <path d="M9.3,3.265h0l-.9-.943a4.2,4.2,0,0,0-6.126,0,4.679,4.679,0,0,0,0,6.406l7.027,7.349,7.027-7.349a4.679,4.679,0,0,0,0-6.406,4.2,4.2,0,0,0-6.126,0l-.9.943h0Z" transform="translate(-0.5 -0.495)" stroke="#c59d5f" stroke-miterlimit="10" stroke-width="1" />
                         </svg>
-
                     </div>
-
                 <?php endforeach; ?>
+
             </div>
 
             <div class="paginacao">

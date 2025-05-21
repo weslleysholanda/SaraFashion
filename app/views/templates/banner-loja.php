@@ -4,7 +4,7 @@
         <div class="banner-titulo">
             <h1>Loja Sara Fashion</h1>
             <div class="tag">
-                <a href="index.html">Home</a>
+                <a href="/home">Home</a>
                 <span>/</span>
                 <span>Loja</span>
             </div>

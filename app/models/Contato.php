@@ -2,15 +2,14 @@
 
 class Contato extends Model{
 
-    public function salvarEmail($nome,$email,$tel,$tipoServico,$mensagem){
+    public function salvarEmail($nome,$email,$tel,$mensagem){
 
-        $sql = "INSERT INTO tbl_contato(nome_contato,email_contato,telefone_contato,assunto_contato,mensagem_contato) VALUES(:nome_contato, :email_contato, :telefone_contato, :assunto_contato, :mensagem_contato)";
+        $sql = "INSERT INTO tbl_contato(nome_contato,email_contato,telefone_contato,mensagem_contato) VALUES(:nome_contato, :email_contato, :telefone_contato, :mensagem_contato)";
 
         $stmt = $this -> db ->prepare($sql);
         $stmt -> bindValue(':nome_contato', $nome);
         $stmt ->bindValue(':email_contato', $email);
         $stmt ->bindValue(':telefone_contato', $tel);
-        $stmt ->bindValue(':assunto_contato', $tipoServico);
         $stmt ->bindValue(':mensagem_contato', $mensagem);
 
         return $stmt -> execute();

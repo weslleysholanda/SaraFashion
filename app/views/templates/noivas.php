@@ -12,7 +12,7 @@
                     <p>No seu dia especial, oferecemos um pacote exclusivo para noivas com serviços personalizados e cuidados para realçar sua beleza, tornando o momento inesquecível. </p>
                 </div>
                 <div class="button-info">
-                    <a href="http://localhost/sarafashion/public/contato">
+                    <a href="/contato">
                         <span>Veja Mais</span>
                     </a>
                 </div>

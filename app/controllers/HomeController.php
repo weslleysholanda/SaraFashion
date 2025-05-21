@@ -19,7 +19,7 @@ class HomeController extends Controller
 
         // Depoimento
         $depoimentoCliente = $depoimentoModel->getDepoimentoCliente();
-
+        
 
         $dados['marcaLogo'] = $marcaLogo;
         $dados['depoimentoCliente'] = $depoimentoCliente;

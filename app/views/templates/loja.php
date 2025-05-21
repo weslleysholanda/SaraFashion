@@ -15,7 +15,7 @@
                     <p>Descubra nossa linha exclusiva de produtos de beleza, desenvolvidos para realçar sua melhor versão. Desde 1997, oferecemos qualidade e inovação para atender às suas necessidades. </p>
                 </div>
                 <div class="button-loja">
-                    <a href="http://localhost/sarafashion/public/loja">
+                    <a href="/loja">
                         <span>Veja Mais</span>
                     </a>
                 </div>

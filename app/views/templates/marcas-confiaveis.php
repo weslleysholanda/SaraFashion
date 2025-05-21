@@ -10,22 +10,26 @@
             </div>
         </div>
         <div class="marcas-slider">
-        <?php foreach ($marcaLogo as $marcasLogo): ?>
-            <div>
-                <img src="<?php
-                                $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $marcasLogo['logo_marca'];
-                                if ($marcasLogo['logo_marca'] != "") {
-                                    if (file_exists($caminhoArquivo)) {
-                                        echo ("http://localhost/sarafashion/public/uploads/" . htmlspecialchars($marcasLogo['logo_marca'], ENT_QUOTES, 'UTF-8'));
-                                    } else {
-                                        echo ("http://localhost/sarafashion/public/uploads/marca/sem-foto-marca.png");
-                                    }
-                                } else {
-                                    echo ("http://localhost/sarafashion/public/uploads/marca/sem-foto-marca.png");
-                                }
-                                ?>" alt="<?php $marcasLogo['alt_marca'] ?>">
-            </div>
-        <?php endforeach ?>    
+            <?php foreach ($marcaLogo as $marcasLogo): ?>
+                <?php
+
+                $caminhoArquivo = BASE_URL . "uploads/" . $marcasLogo['logo_marca'];
+                $img = "/uploads/cliente/sem-foto-marca.png";
+                $alt_foto = "imagem sem foto";
+
+                if (!empty($marcasLogo['logo_marca'])) {
+                    $headers = @get_headers($caminhoArquivo);
+                    if ($headers && strpos($headers[0], '200') !== false) {
+                        $img = $caminhoArquivo;
+                        $alt_foto = htmlspecialchars($marcasLogo['alt_marca'], ENT_QUOTES, 'UTF-8');
+                    }
+                }
+
+                ?>
+                <div>
+                    <img src="<?= $img ?>" alt="<?= $alt_foto?>">
+                </div>
+            <?php endforeach ?>
             <!-- <div><img src="assets/img/logoIluminata.png" alt=""></div>
             <div><img src="assets/img/logoJoico.png" alt=""></div>
             <div><img src="assets/img/logoWella.png" alt=""></div>

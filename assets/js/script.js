@@ -12,7 +12,7 @@ links.forEach(link => {
         link.classList.add("ativo"); // Ativa o link correto
     }
     // Se estiver em /sarafashion/public/, ativa a home
-    else if (currentPath === "/sarafashion/public/" && linkPath.endsWith("/home")) {
+    else if (currentPath === "/" && linkPath.endsWith("/home")) {
         link.classList.add("ativo");
     }
 });

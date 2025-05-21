@@ -88,7 +88,7 @@ class FornecedorController extends Controller
                 if ($id_fornecedor) {
                     $_SESSION['mensagem'] = "Fornecedor adicionado com sucesso!";
                     $_SESSION['tipo-msg'] = 'sucesso';
-                    header('Location: http://localhost/sarafashion/public/fornecedor/listar');
+                    header('Location:' . BASE_URL . 'fornecedor/listar');
                     exit;
                 } else {
                     $_SESSION['mensagem'] = "Erro ao adicionar o fornecedor.";
@@ -113,7 +113,7 @@ class FornecedorController extends Controller
                 }
             }
             
-            header('Location: http://localhost/sarafashion/public/fornecedor/adicionar');
+            header('Location:' . BASE_URL . 'fornecedor/adicionar');
             exit;
             
         }
@@ -138,7 +138,7 @@ class FornecedorController extends Controller
         }
 
         if ($id == null) {
-            header('Location: http://localhost/sarafashion/public/servico/listar');
+            header('Location:' . BASE_URL . 'servico/listar');
             exit;
         }
 
@@ -188,12 +188,12 @@ class FornecedorController extends Controller
             if($id_fornecedor){
                 $_SESSION['mensagem'] = "Fornecedor atualizado com sucesso!";
                 $_SESSION['tipo-msg'] = "sucesso";
-                header('Location: http://localhost/sarafashion/public/fornecedor/listar');
+                header('Location:' . BASE_URL . 'fornecedor/listar');
                 exit;
             }else{
                 $_SESSION['mensagem'] = "Erro ao atualizar o funcionário";
                 $_SESSION['tipo-msg'] = "erro";
-                header('Location: http://localhost/sarafashion/public/fornecedor/editar/' . $id);
+                header('Location:' . BASE_URL . 'fornecedor/editar/' . $id);
                 exit;
             }
         }

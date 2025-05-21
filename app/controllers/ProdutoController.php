@@ -138,7 +138,7 @@ class ProdutoController extends Controller
                     // Mensagem de sucesso e redirecionamento
                     $_SESSION['mensagem'] = "Produto adicionado com sucesso!";
                     $_SESSION['tipo-msg'] = 'sucesso';
-                    header('Location: http://localhost/sarafashion/public/produto/listar');
+                    header('Location:' . BASE_URL . 'produto/listar');
                     exit;
                 } else {
                     // Erro ao inserir produto no banco
@@ -173,7 +173,7 @@ class ProdutoController extends Controller
         $dados['conteudo'] = 'dash/produto/editar';
 
         if ($id == null) {
-            header('Location: http://localhost/sarafashion/public/produto/listar');
+            header('Location:' . BASE_URL . 'produto/listar');
             exit;
         }
 
@@ -235,12 +235,12 @@ class ProdutoController extends Controller
                 if ($resultado) {
                     $_SESSION['mensagem'] = "Produto atualizado com Sucesso!";
                     $_SESSION['tipo-msg'] = 'sucesso';
-                    header('Location: http://localhost/sarafashion/public/produto/listar');
+                    header('Location:' . BASE_URL . 'produto/listar');
                     exit;
                 } else {
                     $_SESSION['mensagem'] = "Erro ao atualizar o produto";
                     $_SESSION['tipo-msg'] = "erro";
-                    header('Location: http://localhost/sarafashion/public/produto/adicionar');
+                    header('Location:' . BASE_URL . 'produto/adicionar');
                     exit;
                 }
             }

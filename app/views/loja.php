@@ -7,8 +7,8 @@
         <title>Loja Sara Fashion</title>
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/reset.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="/vendors/css/reset.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
     </head>
 
     <body>

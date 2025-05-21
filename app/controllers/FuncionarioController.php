@@ -71,7 +71,7 @@ class FuncionarioController extends Controller
             if (!$foto_funcionario) {
                 $_SESSION['mensagem'] = "A foto do funcionário é obrigatória!";
                 $_SESSION['tipo-msg'] = 'erro';
-                header('Location: http://localhost/sarafashion/public/funcionario/adicionar');
+                header('Location:' . BASE_URL . 'funcionario/adicionar');
                 exit;
             }
 
@@ -100,7 +100,7 @@ class FuncionarioController extends Controller
                 if ($id_funcionario) {
                     $_SESSION['mensagem'] = "Funcionário adicionado com sucesso!";
                     $_SESSION['tipo-msg'] = 'sucesso';
-                    header('Location: http://localhost/sarafashion/public/funcionario/listar');
+                    header('Location:' . BASE_URL . 'funcionario/listar');
                     exit;
                 } else {
                     $_SESSION['mensagem'] = "Erro ao adicionar o funcionário.";
@@ -110,7 +110,7 @@ class FuncionarioController extends Controller
                 if ($e->errorInfo[1] == 1062) {
                     $erroMsg = "Erro! CPF/CNPJ ou Email já está cadastrado.";
                     $_SESSION['tipo-msg'] = 'erro';
-                    header('Location: http://localhost/sarafashion/public/funcionario/adicionar');
+                    header('Location:' . BASE_URL . 'funcionario/adicionar');
                     exit;
 
                     // Verifica qual campo específico causou o erro
@@ -128,7 +128,7 @@ class FuncionarioController extends Controller
                 }
             }
 
-            header('Location: http://localhost/sarafashion/public/funcionario/adicionar');
+            header('Location:' . BASE_URL . 'funcionario/adicionar');
             exit;
         }
 
@@ -147,7 +147,7 @@ class FuncionarioController extends Controller
         $dados['conteudo'] = 'dash/funcionario/editar';
 
         if ($id == null) {
-            header('Location: http://localhost/sarafashion/public/servico/listar');
+            header('Location:' . BASE_URL . 'servico/listar');
             exit;
         }
 
@@ -201,7 +201,7 @@ class FuncionarioController extends Controller
             if (!$foto_funcionario) {
                 $_SESSION['mensagem'] = "Erro ao atualizar a foto do funcionário";
                 $_SESSION['tipo-msg'] = 'erro';
-                header('Location: http://localhost/sarafashion/public/funcionario/editar/' . $id);
+                header('Location:' . BASE_URL . 'funcionario/editar/' . $id);
                 exit;
             }
 
@@ -233,12 +233,12 @@ class FuncionarioController extends Controller
             if ($id_funcionario) {
                 $_SESSION['mensagem'] = "Funcionário atualizado com sucesso!";
                 $_SESSION['tipo-msg'] = 'sucesso';
-                header('Location: http://localhost/sarafashion/public/funcionario/listar');
+                header('Location:' . BASE_URL . 'funcionario/listar');
                 exit;
             } else {
                 $_SESSION['mensagem'] = "Erro ao atualizar o funcionário";
                 $_SESSION['tipo-msg'] = 'erro';
-                header('Location: http://localhost/sarafashion/public/funcionario/editar/' . $id);
+                header('Location:' . BASE_URL . 'funcionario/editar/' . $id);
                 exit;
             }
         }

@@ -7,13 +7,15 @@
     <title><?php echo isset($titulo) ? $titulo : 'Detalhe - Produto' ?></title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/lightbox.min.css">
-    <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/reset.css">
-    <link rel="stylesheet" href="http://localhost/sarafashion/public/assets/css/style.css">
+    <link rel="stylesheet" href="/vendors/css/lightbox.min.css">
+    <link rel="stylesheet" href="/vendors/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
-<body style="overflow: inherit;">
-    
+<body>
+
+    <?php require_once('templates/preloader.php') ?>
+
     <!-- Topo Loja -->
     <?php require_once('templates/topo-loja.php') ?>
     <!-- Banner/header Produto -->
@@ -37,8 +39,8 @@
     </a>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://kit.fontawesome.com/89bd08d7e0.js" crossorigin="anonymous"></script>
-    <script src="http://localhost/sarafashion/public/vendors/js/lightbox.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="/vendors/js/lightbox.min.js"></script>
+    <script src="/assets/js/script.js"></script>
     <script>
         //contador
         const valorSpan = document.getElementById('valor');

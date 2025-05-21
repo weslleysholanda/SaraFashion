@@ -38,7 +38,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         <label class="btn btn-outline-danger" for="danger-outlined">Inativo</label>
     </div>
     <div class="navTool-button">
-        <a href="http://localhost/sarafashion/public/cliente/adicionar">ADICIONAR</a>
+        <a href="/cliente/adicionar">ADICIONAR</a>
     </div>
 </div>
 <div class="scroll-tabela">
@@ -59,15 +59,15 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             <?php foreach ($listarCliente as $linha): ?>
                 <tr>
                     <td class="imgBanco"><img src="<?php
-                                                    $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $linha['foto_cliente'];
+                                                    $caminhoArquivo = BASE_URL  . "uploads/" . $linha['foto_cliente'];
                                                     if ($linha['foto_cliente'] != "") {
                                                         if (file_exists($caminhoArquivo)) {
-                                                            echo ("http://localhost/sarafashion/public/uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
+                                                            echo (BASE_URL . "uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
                                                         } else {
-                                                            echo ("http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png");
+                                                            echo (BASE_URL . "uploads/cliente/sem-foto-cliente.png");
                                                         }
                                                     } else {
-                                                        echo ("http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png");
+                                                        echo (BASE_URL . "uploads/cliente/sem-foto-cliente.png");
                                                     }
                                                     ?>" alt="<?php echo htmlspecialchars($linha['alt_foto_cliente'], ENT_QUOTES, 'UTF-8') ?>"></td>
                     <td><?php echo $linha['nome_cliente'] ?></td>
@@ -75,7 +75,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     <td><?php echo $linha['email_cliente'] ?></td>
                     <td><?php echo $linha['telefone_cliente'] ?></td>
                     <td><?php echo $linha['status_cliente'] ?></td>
-                    <td id="text-center"><a href="http://localhost/sarafashion/public/cliente/editar/<?php echo $linha['id_cliente'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                    <td id="text-center"><a href="/cliente/editar/<?php echo $linha['id_cliente'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
                     <td>
                         <?php if ($linha['status_cliente'] === 'Ativo'): ?>
                             <i id="btn-secundary" data-id="<?php echo $linha['id_cliente']; ?>" onclick="abrirModalDesativarCliente(<?php echo $linha['id_cliente']; ?>)" class="bi bi-trash"></i>

@@ -10,24 +10,24 @@
                 <div class="detalhe">
                     <h3>ALISAMENTO</h3>
                     <div class="linha"></div>
-                    <a href="http://localhost/sarafashion/public/contato">CONTRATAR</a>
+                    <a href="/contato">CONTRATAR</a>
                 </div>
                 <div class="detalhe">
                     <h3>MAQUIAGEM</h3>
                     <div class="linha"></div>
-                    <a href="http://localhost/sarafashion/public/contato">CONTRATAR</a>
+                    <a href="/contato">CONTRATAR</a>
 
                 </div>
                 <div class="detalhe">
                     <h3>CORTE <br> VISAGISTA</h3>
                     <div class="linha"></div>
-                    <a href="http://localhost/sarafashion/public/contato">CONTRATAR</a>
+                    <a href="/contato">CONTRATAR</a>
 
                 </div>
                 <div class="detalhe">
                     <h3>ALONGAMENTO</h3>
                     <div class="linha"></div>
-                    <a href="http://localhost/sarafashion/public/contato">CONTRATAR</a>
+                    <a href="/contato">CONTRATAR</a>
                 </div>
             </div>
         </div>

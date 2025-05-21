@@ -34,7 +34,7 @@
         <div class="conteudo-vale-right">
             <h3>VALES-PRESENTE QUE TODOS OS SEUS AMIGOS VÃO ADORAR.</h3>
             <p>Ganhe benefícios a cada visita! Acumule pontos conforme o valor gasto e troque por descontos ou serviços exclusivos. Quanto mais você vem, mais vantagens ganha.</p>
-            <a href="http://localhost/sarafashion/public/loja">VER PRODUTOS</a>
+            <a href="/loja">VER PRODUTOS</a>
         </div>
     </div>
 </section>

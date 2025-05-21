@@ -1,6 +1,7 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class ContatoController extends Controller
 {
@@ -23,27 +24,35 @@ class ContatoController extends Controller
 
     public function enviarEmail()
     {
-        if ($_SERVER['REQUEST_METHOD'] = 'POST') {
-            $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
-            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-            $tel = filter_input(INPUT_POST, 'tel', FILTER_SANITIZE_NUMBER_INT);
-            $tipoServico = filter_input(INPUT_POST, 'tipoServico', FILTER_SANITIZE_SPECIAL_CHARS);
-            $mensagem = filter_input(INPUT_POST, 'mensagem', FILTER_SANITIZE_SPECIAL_CHARS);
+        // header('Content-Type: application/json');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nome = filter_input(INPUT_POST, 'nome_contato', FILTER_SANITIZE_SPECIAL_CHARS);
+            $email = filter_input(INPUT_POST, 'email_contato', FILTER_SANITIZE_EMAIL);
+            $tel = filter_input(INPUT_POST, 'telefone_contato', FILTER_SANITIZE_NUMBER_INT);
+            $mensagem = filter_input(INPUT_POST, 'mensagem_contato', FILTER_SANITIZE_SPECIAL_CHARS);
             $assunto = 'Contato Via Site';
 
+
             // Envio do email
-            if ($nome && $email && $tel && $tipoServico && $mensagem) {
+            if ($nome && $email && $tel && $mensagem) {
                 // instancia da model Contato
                 $contatoModel = new Contato();
 
-                $salvar = $contatoModel->salvarEmail($nome, $email, $tel, $tipoServico, $mensagem);
+               
+
+                $salvar = $contatoModel->salvarEmail($nome, $email, $tel, $mensagem);
+
+                // echo $salvar;
+
 
                 if ($salvar) {
                     require_once('vendors/phpmailer/src/PHPMailer.php');
                     require_once('vendors/phpmailer/src/SMTP.php');
                     require_once('vendors/phpmailer/src/Exception.php');
 
-                    $phpmail = new PHPMAILER();
+                    $phpmail = new PHPMailer();
+                    $phpmail->CharSet = 'UTF-8';
 
                     try {
                         $phpmail->isSMTP();
@@ -66,12 +75,10 @@ class ContatoController extends Controller
                         $phpmail->msgHtml("Nome: $nome <br>
                                           E-mail: $email <br>
                                           Telefone: $tel <br>
-                                          Tipo de serviço: $tipoServico <br>
                                           Mensagem: $mensagem");
                         $phpmail->AltBody = "Nome: $nome   \n
                                             E-mail: $email \n
                                             Telefone: $tel  \n
-                                            Tipo de serviço: $tipoServico\n
                                             Mensagem: $mensagem";
                         $phpmail->send();
 
@@ -79,8 +86,6 @@ class ContatoController extends Controller
                             'mensagem' => 'Obrigado pelo seu contato, em breve responderemos',
                             'status' => 'sucesso'
                         );
-
-                        $this->carregarViews('contato', $dados);
 
                         //Resposta do email
                         $phpmailResposta = new PHPMAILER;
@@ -111,6 +116,7 @@ class ContatoController extends Controller
                                
                                 (11)98361-2610";
                         $phpmailResposta->send();
+                        header('Location:' . BASE_URL . 'contato');
                     } catch (Exception $e) {
                         $dados = array(
                             'mensagem' => 'Não foi possível enviar o e-mail. Por favor, tente mais tarde',
@@ -118,7 +124,6 @@ class ContatoController extends Controller
                             'nome' => $nome,
                             'email' => $email,
                             'telefone' => $tel,
-                            'Tipo de serviço' => $tipoServico,
                             'mensagem' => $mensagem
                         );
 
@@ -127,16 +132,11 @@ class ContatoController extends Controller
                 }
             } else {
                 $dados = array();
-                $this->carregarViews('contato', $dados);
+                header('Location:' . BASE_URL . 'contato');
             }
-            //---------teste captura--------------------
-            // echo "Nome: $nome<br>";
-            // echo "Email: $email<br>";
-            // echo "Telefone: $tel<br>";
-            // echo "Tipo de Serviço: $tipoServico<br>";
-            // echo "Mensagem: $mensagem<br>";
 
         }
+
     }
 
     public function listar()
@@ -171,7 +171,7 @@ class ContatoController extends Controller
         } else {
             $_SESSION['mensagem'] = "Contato não encontrado.";
             $_SESSION['tipo-msg'] = 'erro';
-            header('Location: http://localhost/sarafashion/public/contato/listar');
+            header('Location:' . BASE_URL . 'contato/listar');
             exit;
         }
     }

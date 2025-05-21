@@ -42,14 +42,14 @@
               <i class="bi bi-list"></i>
             </a>
           </li>
-          <li class="nav-item d-none d-md-block"><a href="http://localhost/sarafashion/public/dashboard" class="nav-link">Site SaraFashion</a></li>
+          <li class="nav-item d-none d-md-block"><a href="/dashboard" class="nav-link">Site SaraFashion</a></li>
         </ul>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
               <?php if ($usuario): ?>
                 <img src="<?php
-                          $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $_SESSION['userFoto'];
+                          $caminhoArquivo = BASE_URL  . "uploads/" . $_SESSION['userFoto'];
                           if (!empty($_SESSION['userFoto']) && file_exists($caminhoArquivo)) {
                             echo "http://localhost/sarafashion/public/uploads/" . htmlspecialchars($_SESSION['userFoto'], ENT_QUOTES, 'UTF-8');
                           } else {
@@ -66,7 +66,7 @@
               <li class="user-header text-bg-primary">
                 <?php if ($usuario): ?>
                   <img src="<?php
-                            $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $_SESSION['userFoto'];
+                            $caminhoArquivo = BASE_URL  . "uploads/" . $_SESSION['userFoto'];
                             if (!empty($_SESSION['userFoto']) && file_exists($caminhoArquivo)) {
                               echo "http://localhost/sarafashion/public/uploads/" . htmlspecialchars($_SESSION['userFoto'], ENT_QUOTES, 'UTF-8');
                             } else {
@@ -90,7 +90,7 @@
               <!--begin::Menu Footer-->
               <li class="user-footer">
                 <a href="#" class="btn btn-default btn-flat">Profile</a>
-                <a href="http://localhost/sarafashion/public/auth/sair" class="btn btn-default btn-flat float-end">Logoff</a>
+                <a href="/auth/sair" class="btn btn-default btn-flat float-end">Logoff</a>
               </li>
               <!--end::Menu Footer-->
             </ul>
@@ -107,9 +107,9 @@
       <!--begin::Sidebar Brand-->
       <div class="sidebar-brand">
         <!--begin::Brand Link-->
-        <a href="http://localhost/sarafashion/public/dashboard" class="brand-link">
+        <a href="/dashboard" class="brand-link">
           <!--begin::Brand Image-->
-          <img src="http://localhost/sarafashion/public/assets/img/logoInicial.png" alt="Sara Fashion Logo" class="brand-image" />
+          <img src="/assets/img/logoInicial.png" alt="Sara Fashion Logo" class="brand-image" />
           <!--end::Brand Image-->
         </a>
         <!--end::Brand Link-->
@@ -142,20 +142,20 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/agendamento/listar" class="nav-link">
+                        <a href="/agendamento/listar" class="nav-link">
                           <i class="bi bi-calendar-check"></i>
                           <p>Agendamento de Serviços</p>
 
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/servico/listar" class="nav-link">
+                        <a href="/servico/listar" class="nav-link">
                           <i class="bi bi-scissors"></i>
                           <p>Serviços</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/especialidade/listar" class="nav-link">
+                        <a href="/especialidade/listar" class="nav-link">
                           <i class="bi bi-briefcase"></i>
                           <p>Especialidade</p>
                         </a>
@@ -171,7 +171,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/cliente/listar" class="nav-link">
+                        <a href="/cliente/listar" class="nav-link">
                           <i class="bi bi-person"></i>
                           <p>Clientes</p>
                         </a>
@@ -189,7 +189,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/funcionario/listar" class="nav-link">
+                        <a href="/funcionario/listar" class="nav-link">
                           <i class="bi bi-person-badge"></i>
                           <p>Funcionários</p>
                         </a>
@@ -207,13 +207,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/fornecedor/listar" class="nav-link">
+                        <a href="/fornecedor/listar" class="nav-link">
                           <i class="bi bi-box-seam"></i>
                           <p>Fornecedores</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="http://localhost/sarafashion/public/produto/listar" class="nav-link">
+                        <a href="/produto/listar" class="nav-link">
                           <i class="bi bi-bag"></i>
                           <p>Produtos</p>
                         </a>
@@ -223,7 +223,7 @@
                   <li class="nav-header">SITE</li>
 
                   <li class="nav-item">
-                    <a href="http://localhost/sarafashion/public/depoimento/listar" class="nav-link">
+                    <a href="/depoimento/listar" class="nav-link">
                       <i class="bi bi-chat-left-text"></i>
 
                       <p>Depoimentos</p>
@@ -231,14 +231,14 @@
                   </li>
 
                   <li class="nav-item">
-                    <a href="http://localhost/sarafashion/public/contato/listar" class="nav-link">
+                    <a href="/contato/listar" class="nav-link">
                       <i class="bi bi-envelope"></i>
                       <p>Contato</p>
                     </a>
                   </li>
 
                   <li class="nav-item">
-                    <a href="http://localhost/sarafashion/public/marcas/listar" class="nav-link">
+                    <a href="/marcas/listar" class="nav-link">
                       <i class="bi bi-tags"></i>
                       <p>Marcas</p>
                     </a>
@@ -267,7 +267,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-end">
-                <li class="breadcrumb-item"><a href="http://localhost/sarafashion/public/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">SaraFashion</li>
               </ol>
             </div>
@@ -1271,7 +1271,7 @@
                 <td class="imgMarca"><img src="http://localhost/sarafashion/public/uploads/${marca.logo_marca}" alt="${marca.alt_marca}"></td>
                 <td>${marca.nome_marca}</td>
                 <td>${marca.status_marcas}</td>
-                <td><a href="http://localhost/sarafashion/public/marcas/editar/${marca.id_marca}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                <td><a href="/marcas/editar/${marca.id_marca}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
                 <td>${iconeAcao}</td>
                 </tr>`;
                 tabela.append(row);
@@ -1321,7 +1321,7 @@
           <td>${servico.tempo_estimado_servico}</td>
           <td>${servico.nome_especialidade}</td>
           <td>${servico.status_servico}</td>
-          <td><a href="http://localhost/sarafashion/public/servico/editar/${servico.id_servico}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+          <td><a href="/servico/editar/${servico.id_servico}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
           <td>${iconeAcao}</td>
         </tr>`;
                 tabela.append(row);
@@ -1361,7 +1361,7 @@
 
                 let row = `<tr>
           <td>${especialidade.nome_especialidade}</td>
-          <td><a href="http://localhost/sarafashion/public/especialidade/editar/${especialidade.id_especialidade}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+          <td><a href="/especialidade/editar/${especialidade.id_especialidade}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
           <td>${especialidade.status_especialidade}</td>
           <td>${iconeAcao}</td>
         </tr>`;
@@ -1411,7 +1411,7 @@
             <td>${cliente.email_cliente}</td>
             <td>${cliente.telefone_cliente}</td>
             <td>${cliente.status_cliente}</td>
-            <td><a href="http://localhost/sarafashion/public/cliente/editar/${cliente.id_cliente}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+            <td><a href="/cliente/editar/${cliente.id_cliente}"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
             <td>${iconeAcao}</td>
         </tr>`;
                 tabela.append(row);
@@ -1465,7 +1465,7 @@
             <td>${funcionario.salario_funcionario}</td>
             <td>${funcionario.status_funcionario}</td>
             <td>
-              <a href="http://localhost/sarafashion/public/funcionario/editar/${funcionario.id_funcionario}">
+              <a href="/funcionario/editar/${funcionario.id_funcionario}">
                 <i id="btn-primary" class="bi bi-pencil"></i>
               </a>
             </td>

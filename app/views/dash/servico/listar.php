@@ -38,7 +38,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         <label class="btn btn-outline-danger" for="danger-outlined">Inativo</label>
     </div>
     <div class="navTool-button">
-        <a href="http://localhost/sarafashion/public/servico/adicionar">ADICIONAR</a>
+        <a href="/servico/adicionar">ADICIONAR</a>
     </div>
 </div>
 <div class="scroll-tabela">
@@ -60,15 +60,15 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             <?php foreach ($listarServico as $linha): ?>
                 <tr>
                     <td class="imgBanco"><img src="<?php
-                                                    $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/sarafashion/public/uploads/" . $linha['foto_servico'];
+                                                    $caminhoArquivo = BASE_URL  . "uploads/" . $linha['foto_servico'];
                                                     if ($linha['foto_servico'] != "") {
                                                         if (file_exists($caminhoArquivo)) {
-                                                            echo ("http://localhost/sarafashion/public/uploads/" . htmlspecialchars($linha['foto_servico'], ENT_QUOTES, 'UTF-8'));
+                                                            echo (BASE_URL . "uploads/" . htmlspecialchars($linha['foto_servico'], ENT_QUOTES, 'UTF-8'));
                                                         } else {
-                                                            echo ("http://localhost/sarafashion/public/uploads/servico/sem-foto-servico.png");
+                                                            echo (BASE_URL . "uploads/servico/sem-foto-servico.png");
                                                         }
                                                     } else {
-                                                        echo ("http://localhost/sarafashion/public/uploads/servico/sem-foto-servico.png");
+                                                        echo (BASE_URL . "uploads/servico/sem-foto-servico.png");
                                                     }
                                                     ?>" alt="<?php echo htmlspecialchars($linha['alt_foto_servico'], ENT_QUOTES, 'UTF-8') ?>"></td>
                     <td><?php echo $linha['nome_servico'] ?></td>
@@ -77,7 +77,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     <td><?php echo $linha['tempo_estimado_servico'] ?></td>
                     <td><?php echo $linha['nome_especialidade'] ?></td>
                     <td><?php echo $linha['status_servico'] ?></td>
-                    <td><a href="http://localhost/sarafashion/public/servico/editar/<?php echo $linha['id_servico'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
+                    <td><a href="/servico/editar/<?php echo $linha['id_servico'] ?>"><i id="btn-primary" class="bi bi-pencil"></i></a></td>
                     <td>
                         <?php if ($linha['status_servico'] === 'Ativo'): ?>
                             <i id="btn-secundary" data-id="<?php echo $linha['id_servico']; ?>" onclick="abrirModalDesativar(<?php echo $linha['id_servico']; ?>)" class="bi bi-trash"></i>

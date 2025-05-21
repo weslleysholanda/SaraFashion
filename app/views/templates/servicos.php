@@ -17,7 +17,7 @@
                         <h2>Alisamento de Cabelo</h2>
                         <p>Fios lisos e sem frizz</p>
                     </div>
-                    <a href="http://localhost/sarafashion/public/servico">
+                    <a href="/servico">
                         <span class="buttonIcon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Veja Mais">
                             <svg width="28" height="34" viewBox="0 0 28 34" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@
                         <h2>Corte Visagista</h2>
                         <p>Corte ideal para seu rosto.</p>
                     </div>
-                    <a href="http://localhost/sarafashion/public/servico">
+                    <a href="/servico">
                         <span class="buttonIcon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Veja Mais">
                             <svg viewBox="0 0 28 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -58,7 +58,7 @@
                         <h2>Maquiagem</h2>
                         <p>Beleza para todas as ocasiões.</p>
                     </div>
-                    <a href="http://localhost/sarafashion/public/servico">
+                    <a href="/servico">
                         <span class="buttonIcon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Veja Mais">
                             <svg viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -88,7 +88,7 @@
             <!-- Conteúdo à direita -->
             <div class="container-Right">
                 <div class="container-Right-Conteudo">
-                    <a href="http://localhost/sarafashion/public/servico">
+                    <a href="/servico">
                         <span class="buttonIcon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Veja Mais">
                             <svg width="28" height="38" viewBox="0 0 28 38" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -168,7 +168,7 @@
 
                 </div>
                 <div class="container-Right-Conteudo">
-                    <a href="http://localhost/sarafashion/public/servico">
+                    <a href="/servico">
                         <span class="buttonIcon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Veja Mais">
                             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="1.70666in" height="1.70666in" version="1.1"
                                 viewBox="0 0 1707 1707"
@@ -213,7 +213,7 @@
                     </div>
                 </div>
                 <div class="container-Right-Conteudo">
-                    <a href="http://localhost/sarafashion/public/servico">
+                    <a href="/servico">
                         <span class="buttonIcon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Veja Mais">
                             <svg width="28" height="38" viewBox="0 0 28 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9993 5.76865C10.4868 5.76865 7.63515 8.64863 7.63515 12.1764V16.8246C7.63515 20.3611 10.4955 23.2324 13.9993 23.2324C17.5117 23.2324 20.3634 20.3524 20.3634 16.8246V12.1764C20.3634 8.64863 17.503 5.76865 13.9993 5.76865ZM13.9993 24.0727C10.0347 24.0727 6.8092 20.8251 6.8092 16.8334V12.1851C6.8092 8.19344 10.0347 4.9458 13.9993 4.9458C17.9638 4.9458 21.1893 8.19344 21.1893 12.1851V16.8334C21.1893 20.8163 17.9638 24.0727 13.9993 24.0727Z" fill="black" />

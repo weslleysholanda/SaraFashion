@@ -12,7 +12,7 @@
                     <p>Transformamos sua beleza em arte. Com paixão e técnica, criamos modas únicas que valorizam seu estilo e autoestima. Venha conhecer nosso trabalho e inspire-se!  </p>
                 </div>
                 <div class="button-info">
-                    <a href="http://localhost/sarafashion/public/sobre">
+                    <a href="/sobre">
                         <span>Veja Mais</span>
                     </a>
                 </div>
