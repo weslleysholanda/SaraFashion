@@ -2829,10 +2829,10 @@ footer {
                     }
                 }
 
-                #preview-img{
+                #preview-img {
                     max-width: 250px;
                     max-height: 250px;
-                    cursor:pointer;
+                    cursor: pointer;
                 }
             }
         }
@@ -4647,6 +4647,7 @@ footer {
         border-right: 0.5px solid #909090;
 
         p {
+            font-size: 1.115em;
             font-weight: bold;
             color: #3f3f40 !important;
         }
@@ -4774,10 +4775,13 @@ footer {
                     }
 
                     .mb-3 {
+                        position: relative;
+
                         .form-control {
                             border-radius: 0;
                             width: 250px;
                             font-size: 15px;
+
 
                             &:focus {
                                 color: #212529;
@@ -4787,6 +4791,15 @@ footer {
                                 box-shadow: 0 0 0 0.25rem rgba(197, 157, 95, 0.25);
                             }
 
+                        }
+
+                        svg {
+                            position: absolute;
+                            width: 20px;
+                            height: 20px;
+                            right: 10px;
+                            transform: translateX(-2px);
+                            bottom: 10px;
                         }
 
                         .form-select {

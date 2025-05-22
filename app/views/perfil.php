@@ -234,6 +234,23 @@
             $('input[name="data_nasc_cliente"]').mask('00/00/0000');
             $('input[name="cpf_cnpj_cliente"]').mask('000.000.000-00');
         });
+
+        // toggle password
+        const senhaInput = document.getElementById('senha');
+        const eyeOpen = document.getElementById('eyeOpen');
+        const eyeClosed = document.getElementById('eyeClosed');
+
+        eyeClosed.addEventListener('click', () => {
+            senhaInput.type = 'text';
+            eyeClosed.style.display = 'none';
+            eyeOpen.style.display = 'inline';
+        });
+
+        eyeOpen.addEventListener('click', () => {
+            senhaInput.type = 'password';
+            eyeOpen.style.display = 'none';
+            eyeClosed.style.display = 'inline';
+        });
     </script>
 </body>
 
