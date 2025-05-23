@@ -8,6 +8,8 @@
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- FancyBox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" /> 
     <link rel="stylesheet" href="assets/css/style.css">
     <title><?php echo isset($titulo) ? $titulo : 'Sobre - Sara Fashion' ?></title>
 </head>
@@ -55,7 +57,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
     <!-- tippy.js -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="https://kit.fontawesome.com/89bd08d7e0.js" crossorigin="anonymous"></script>
     <script src="assets/js/script.js"></script>
 </body>
@@ -93,6 +94,13 @@
                 });
             });
         });
+    });
+
+    Fancybox.bind("[data-fancybox]", {
+        Thumbs: false,
+        Toolbar: {
+            display: ["close"],
+        },
     });
 
     window.addEventListener('scroll', function() {
