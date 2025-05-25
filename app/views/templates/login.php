@@ -2,7 +2,7 @@
     <div class="site">
         <div class="container" id="container">
             <div class="form-container sign-up-container">
-                <form action="/auth/cadastrar" method="POST">
+                <form method="POST" action="<?= BASE_URL?>auth/cadastrar">
                     <?php if (isset($_SESSION['cadastro-erro'])) : ?>
                         <div style="color: #58151c; background: #f1aeb5; border: 1px solid #f8d7da; padding: 10px; margin-bottom: 10px;">
                             <?= $_SESSION['cadastro-erro'];

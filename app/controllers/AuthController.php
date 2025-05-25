@@ -7,7 +7,7 @@ class AuthController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-            $senha = filter_input(INPUT_POST, 'senha');
+            $senha = filter_input(INPUT_POST, 'senha' , FILTER_SANITIZE_SPECIAL_CHARS);
 
             if ($email && $senha) {
                 $clienteModel = new Cliente();
@@ -53,22 +53,26 @@ class AuthController extends Controller
 
     public function cadastrar()
     {
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
             $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
 
             if ($nome && $email && $senha) {
+                $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+
                 $clienteModel = new Cliente();
 
                 if (!$clienteModel->buscarCliente($email)) {
-                    $clienteModel->cadastrarCliente($nome, $email, $senha, 'Ativo');
+                    // Aqui você passa a senha criptografada para o banco
+                    $clienteModel->cadastrarCliente($nome, $email, $senhaCriptografada, 'Ativo');
 
                     $cliente = $clienteModel->buscarCliente($email);
                     $_SESSION['userId'] = $cliente['id_cliente'];
                     $_SESSION['userTipo'] = 'Cliente';
                     $_SESSION['userNome'] = $cliente['nome_cliente'];
-
+                    $_SESSION['userFoto'] = $cliente['foto_cliente'];
 
                     header('Location: ' . BASE_URL . 'perfil');
                     exit;
@@ -83,6 +87,8 @@ class AuthController extends Controller
         header('Location: ' . BASE_URL . 'login');
         exit;
     }
+
+
 
     public function sair()
     {

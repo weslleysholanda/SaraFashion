@@ -6,12 +6,40 @@ class Cliente extends Model
 
     public function buscarCliente($email)
     {
-        $sql =  "SELECT * FROM tbl_cliente WHERE email_cliente = :email AND status_cliente = 'Ativo'  ";
+        $sql =  "SELECT * FROM tbl_cliente WHERE email_cliente = :email AND status_cliente = 'Ativo'";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':email', $email);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($resultado) {
+            $datAdm = new DateTime($resultado['membro_desde']);
+
+            $fmt = new IntlDateFormatter(
+                'pt_BR', // Localidade para português do Brasil
+                IntlDateFormatter::NONE,
+                IntlDateFormatter::NONE,
+                'UTC', // Ou use date_default_timezone_get() se preferir
+                IntlDateFormatter::GREGORIAN,
+                "dd MMM.yyyy" // Dia, mês abreviado, ano
+            );
+
+            $resultado['membro_desde'] = 'Membro Desde ' . $fmt->format($datAdm);
+        }
+
+        return $resultado;
     }
+
+    // public function getCliente($email)
+    // {
+    //     $sql = "SELECT * FROM tbl_cliente WHERE email_cliente = :email AND status_cliente = 'Ativo'";
+
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    //     $stmt->execute();
+
+    //     return $stmt->fetch(PDO::FETCH_ASSOC);
+    // }
 
     public function getlistarCliente()
     {
@@ -23,34 +51,34 @@ class Cliente extends Model
     public function addCliente($dados)
     {
         $sql = "INSERT INTO tbl_cliente (
-        nome_cliente,
-        tipo_cliente,
-        cpf_cnpj_cliente,
-        data_nasc_cliente,
-        email_cliente,
-        senha_cliente,
-        foto_cliente,
-        alt_foto_cliente,
-        telefone_cliente,
-        endereco_cliente,
-        bairro_cliente,
-        cidade_cliente,
-        status_cliente
-    ) VALUES (
-        :nome_cliente,
-        :tipo_cliente,
-        :cpf_cnpj_cliente,
-        :data_nasc_cliente,
-        :email_cliente,
-        :senha_cliente,
-        :foto_cliente,
-        :alt_foto_cliente,
-        :telefone_cliente,
-        :endereco_cliente,
-        :bairro_cliente,
-        :cidade_cliente,
-        :status_cliente
-    )";
+            nome_cliente,
+            tipo_cliente,
+            cpf_cnpj_cliente,
+            data_nasc_cliente,
+            email_cliente,
+            senha_cliente,
+            foto_cliente,
+            alt_foto_cliente,
+            telefone_cliente,
+            endereco_cliente,
+            bairro_cliente,
+            cidade_cliente,
+            status_cliente
+        ) VALUES (
+            :nome_cliente,
+            :tipo_cliente,
+            :cpf_cnpj_cliente,
+            :data_nasc_cliente,
+            :email_cliente,
+            :senha_cliente,
+            :foto_cliente,
+            :alt_foto_cliente,
+            :telefone_cliente,
+            :endereco_cliente,
+            :bairro_cliente,
+            :cidade_cliente,
+            :status_cliente
+        )";
 
         $stmt = $this->db->prepare($sql);
 
@@ -73,11 +101,10 @@ class Cliente extends Model
         return $this->db->lastInsertId();
     }
 
-
     public function cadastrarCliente($nome, $email, $senha, $status)
     {
         $sql = "INSERT INTO tbl_cliente (nome_cliente, email_cliente, senha_cliente, status_cliente)
-                VALUES (:nome, :email, :senha, :status,)";
+                VALUES (:nome, :email, :senha, :status)";
 
         $stmt = $this->db->prepare($sql);
 
@@ -168,6 +195,21 @@ class Cliente extends Model
     public function buscarClientePorId($id)
     {
         $sql = "SELECT * FROM tbl_cliente WHERE id_cliente = :id LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function fidelidadeCliente($id)
+    {
+        $sql = "SELECT 
+                c.nome_cliente,
+                COALESCE(f.id_fidelidade) AS id_fidelidade,
+                COALESCE(f.pontos_acumulados_fidelidade, 0) AS pontos_acumulados_fidelidade
+                FROM tbl_cliente c
+                LEFT JOIN tbl_fidelidade f ON c.id_cliente = f.id_cliente
+                WHERE c.id_cliente = :id;";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();

@@ -3,9 +3,11 @@
 class ApiController extends Controller
 {
     private $clienteModel;
+    private $servicoModel;
     public function __construct()
     {
         $this->clienteModel = new Cliente();
+        $this->servicoModel = new Servico();
     }
     /**
      * Da autorização para o dominio do app para fazer requisições POST
@@ -123,7 +125,7 @@ class ApiController extends Controller
         $dadosToken = [
             'id'    => $cliente['id_cliente'],
             'email' => $cliente['email_cliente'],
-            'exp'   => time() + (86400 * 30)
+            'exp'   => time() + (86400 * 30) // 30 dias de validade
         ];
 
         $token = TokenHelper::gerar($dadosToken);
@@ -143,7 +145,7 @@ class ApiController extends Controller
     public function cliente($id)
     {
 
-        $cliente = $this->clienteModel-> buscarClientePorId($id);
+        $cliente = $this->clienteModel->buscarClientePorId($id);
 
         if (!$cliente) {
             http_response_code(404);
@@ -152,5 +154,32 @@ class ApiController extends Controller
         }
 
         echo json_encode($cliente);
+    }
+
+
+    public function fidelidadeCliente($id)
+    {
+        $fidelidade = $this->clienteModel->fidelidadeCliente($id);
+
+        if (!$fidelidade) {
+            http_response_code(404);
+            echo json_encode(["mensagem" => "Nenhum cliente encontrado"]);
+            exit;
+        }
+
+        echo json_encode($fidelidade);
+    }
+
+    //Listar Servico
+    public function ListarServico()
+    {
+        $servico = $this->servicoModel->getServicoAll();
+
+        if (empty($servico)) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => "Nenhum registro encontrado"]);
+            exit;
+        }
+        echo json_encode($servico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 }

@@ -19,15 +19,12 @@ class Controller
         if (isset($_SESSION['userId'])) {
             $this->usuario_logado = true;
             $this->usuario = $_SESSION['userTipo'];
-            $this->usuario = $_SESSION['userNome'];
+            $this->nome = $_SESSION['userNome'];
             $this->userFoto = $_SESSION['userFoto'];
             
         } else {
             $this->usuario_logado = false;
         }
-
-        
-
         // var_dump($_SESSION['usuario']);
 
         // $this->userId = $_SESSION['userId'] ?? null;

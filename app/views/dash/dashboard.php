@@ -15,14 +15,14 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI=" crossorigin="anonymous" />
 
   <!-- Lightbox 2 -->
-  <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/lightbox.min.css">
+  <link rel="stylesheet" href="/vendors/css/lightbox.min.css">
   <!-- css adminlte -->
-  <link rel="stylesheet" href="http://localhost/sarafashion/public/vendors/css/adminlte.css" />
+  <link rel="stylesheet" href="/vendors/css/adminlte.css" />
   <!-- font awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
   <!-- css dash -->
-  <link rel="stylesheet" href="http://localhost/sarafashion/public/assets/css/dash.css" />
+  <link rel="stylesheet" href="/assets/css/dash.css" />
 
   <!-- apexcharts -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css" integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous" />
