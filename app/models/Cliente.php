@@ -21,7 +21,7 @@ class Cliente extends Model
                 IntlDateFormatter::NONE,
                 'UTC', // Ou use date_default_timezone_get() se preferir
                 IntlDateFormatter::GREGORIAN,
-                "dd MMM.yyyy" // Dia, mês abreviado, ano
+                "dd MMM yyyy" // Dia, mês abreviado, ano
             );
 
             $resultado['membro_desde'] = 'Membro Desde ' . $fmt->format($datAdm);
@@ -101,7 +101,7 @@ class Cliente extends Model
         return $this->db->lastInsertId();
     }
 
-    public function cadastrarCliente($nome, $email, $senha, $status)
+    public function cadastrarCliente($nome, $email, $senha)
     {
         $sql = "INSERT INTO tbl_cliente (nome_cliente, email_cliente, senha_cliente, status_cliente)
                 VALUES (:nome, :email, :senha, :status)";
@@ -112,7 +112,7 @@ class Cliente extends Model
         $stmt->bindValue(':nome', $nome);
         $stmt->bindValue(':email', $email);
         $stmt->bindValue(':senha', $senha);
-        $stmt->bindValue(':status', $status);
+        $stmt->bindValue(':status', 'Ativo');
 
 
         $stmt->execute();

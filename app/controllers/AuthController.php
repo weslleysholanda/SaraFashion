@@ -65,9 +65,9 @@ class AuthController extends Controller
                 $clienteModel = new Cliente();
 
                 if (!$clienteModel->buscarCliente($email)) {
-                    // Aqui você passa a senha criptografada para o banco
-                    $clienteModel->cadastrarCliente($nome, $email, $senhaCriptografada, 'Ativo');
-
+                    $clienteModel->cadastrarCliente($nome, $email, $senhaCriptografada);
+                    var_dump($clienteModel);
+                    
                     $cliente = $clienteModel->buscarCliente($email);
                     $_SESSION['userId'] = $cliente['id_cliente'];
                     $_SESSION['userTipo'] = 'Cliente';

@@ -144,16 +144,33 @@ class ApiController extends Controller
 
     public function cliente($id)
     {
-
-        $cliente = $this->clienteModel->buscarClientePorId($id);
-
-        if (!$cliente) {
-            http_response_code(404);
-            echo json_encode(["mensagem" => "Nenhum cliente encontrado"]);
-            exit;
+        try {
+            $cliente = $this->autenticarToken();
+ 
+            // Verifica se o token está válido e pertence ao cliente requisitado
+            if (!$cliente || !isset($cliente['id_cliente']) || $cliente['id_cliente'] != $id) {
+                http_response_code(403);
+                echo json_encode(['erro' => 'Acesso negado.']);
+                return;
+            }
+ 
+            // Busca os dados completos do cliente no banco (Com pré cadastro ou já cadastrado)
+            $dados = $this->clienteModel->buscarClientePorId($id);
+ 
+            if (!$dados) {
+                http_response_code(404);
+                echo json_encode(['erro' => 'Cliente não encontrado']);
+                return;
+            }
+ 
+            echo json_encode($dados, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                'erro' => 'Erro interno no servidor',
+                'detalhe' => $e->getMessage()
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         }
-
-        echo json_encode($cliente);
     }
 
 
@@ -182,4 +199,6 @@ class ApiController extends Controller
         }
         echo json_encode($servico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
+
+    
 }
