@@ -146,23 +146,23 @@ class ApiController extends Controller
     {
         try {
             $cliente = $this->autenticarToken();
- 
+
             // Verifica se o token está válido e pertence ao cliente requisitado
             if (!$cliente || !isset($cliente['id_cliente']) || $cliente['id_cliente'] != $id) {
                 http_response_code(403);
                 echo json_encode(['erro' => 'Acesso negado.']);
                 return;
             }
- 
+
             // Busca os dados completos do cliente no banco (Com pré cadastro ou já cadastrado)
             $dados = $this->clienteModel->buscarClientePorId($id);
- 
+
             if (!$dados) {
                 http_response_code(404);
                 echo json_encode(['erro' => 'Cliente não encontrado']);
                 return;
             }
- 
+
             echo json_encode($dados, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         } catch (Exception $e) {
             http_response_code(500);
@@ -200,5 +200,125 @@ class ApiController extends Controller
         echo json_encode($servico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-    
+    //Cadastrar Cliente
+    public function preCadastro()
+    {
+        session_start();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido.']);
+            return;
+        }
+
+        $dados = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+
+        $nome  = filter_var(trim($dados['nome'] ?? ''), FILTER_SANITIZE_SPECIAL_CHARS);
+        $email = filter_var(trim($dados['email'] ?? ''), FILTER_VALIDATE_EMAIL);
+        $senha = trim($dados['senha'] ?? '');
+
+        if (!$nome || !$email || !$senha) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Nome, e-mail e senha são obrigatórios.']);
+            return;
+        }
+
+        if ($this->clienteModel->buscarCliente($email)) {
+            http_response_code(409);
+            echo json_encode(['erro' => 'Este e-mail já está em uso.']);
+            return;
+        }
+
+        $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+
+        $_SESSION['pre_cadastro'] = [
+            'nome'  => $nome,
+            'email' => $email,
+            'senha' => $senhaCriptografada
+        ];
+
+        echo json_encode([
+            'mensagem' => 'Pré-cadastro salvo com sucesso. Agora selecione o método de verificação.'
+        ]);
+    }
+
+    public function cadastrarCliente()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido.']);
+            return;
+        }
+
+        $dados = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+
+        date_default_timezone_set('America/Sao_Paulo');
+        $dados["data_cadastro"] = date('Y-m-d');
+
+        if (!is_array($dados) || empty($dados)) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Nenhum dado enviado.']);
+            return;
+        }
+
+        $nome  = $dados['nome_cliente'] ?? null;
+        $email = $dados['email_cliente'] ?? null;
+        $senha = $dados['senha_cliente'] ?? null;
+
+        if (!$nome || !$email || !$senha) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Nome, e-mail e senha são obrigatórios.']);
+            return;
+        }
+
+        if ($this->clienteModel->buscarCliente($email)) {
+            http_response_code(409);
+            echo json_encode(['erro' => 'Este e-mail já está em uso.']);
+            return;
+        }
+
+        // Criptografa a senha
+        $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+
+        // Agora passa a senha criptografada para o model
+        $resultado = $this->clienteModel->cadastrarCliente($nome, $email, $senhaCriptografada);
+
+        if ($resultado) {
+            echo json_encode(['mensagem' => 'Cliente cadastrado com sucesso!']);
+        } else {
+            http_response_code(500);
+            echo json_encode(['erro' => 'Erro ao cadastrar o cliente.']);
+        }
+    }
+
+    //fim cadastro cliente
+
+
+    private function uploadFoto($file, $nome_cliente)
+    {
+        $dir = __DIR__ . '/../../uploads/cliente/';
+
+        if (!file_exists(($dir))) {
+            mkdir($dir, 0755, true);
+        }
+
+        $extensoes_permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+
+        if (!in_array($ext, $extensoes_permitidas)) {
+            throw new Exception('Tipo de arquivo não permitido.');
+        }
+
+        if (isset($file['tmp_name']) && !empty($file['tmp_name'])) {
+            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+            // Gera um nome aleatório seguro
+            $nome_cliente_formatado = preg_replace('/[^a-zA-Z0-9_-]/', '_', strtolower($nome_cliente));
+            $nome_arquivo = $nome_cliente_formatado . '_' . uniqid() . '.' . $ext;
+
+            if (move_uploaded_file($file['tmp_name'], $dir . $nome_arquivo)) {
+                return 'cliente/' . $nome_arquivo;
+            }
+        }
+        return false;
+    }
 }

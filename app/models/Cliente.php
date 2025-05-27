@@ -115,7 +115,7 @@ class Cliente extends Model
         $stmt->bindValue(':status', 'Ativo');
 
 
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     public function atualizarCliente($id, $dados)

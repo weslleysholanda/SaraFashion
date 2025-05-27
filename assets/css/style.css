@@ -4502,9 +4502,9 @@ footer {
                         display: flex;
                         align-items: center;
                         background-color: #EEEEEE;
-                        border-radius: 25px;
+                        border-radius: 5px;
                         padding: 0.2rem 1rem;
-                        width: 75%;
+                        width: 70%;
                         height: 2.300rem;
                         position: relative;
 

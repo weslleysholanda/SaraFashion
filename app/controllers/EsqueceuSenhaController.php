@@ -10,4 +10,5 @@ class EsqueceuSenhaController extends Controller
 
         $this->carregarViews('esqueceuSenha', $dados);
     }
+
 }
