@@ -284,12 +284,33 @@ class ApiController extends Controller
         $resultado = $this->clienteModel->cadastrarCliente($nome, $email, $senhaCriptografada);
 
         if ($resultado) {
-            echo json_encode(['mensagem' => 'Cliente cadastrado com sucesso!']);
+            // Buscar o cliente recém-cadastrado
+            $cliente = $this->clienteModel->buscarCliente($email);
+
+            $dadosToken = [
+                'id'    => $cliente['id_cliente'],
+                'email' => $cliente['email_cliente'],
+                'exp'   => time() + (86400 * 30) // 30 dias
+            ];
+
+            if (!class_exists('TokenHelper')) {
+                http_response_code(500);
+                echo json_encode(['erro' => 'TokenHelper não carregado.']);
+                return;
+            }
+
+            $token = TokenHelper::gerar($dadosToken);
+
+            echo json_encode([
+                'mensagem' => 'Cliente cadastrado com sucesso!',
+                'token'    => $token
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         } else {
             http_response_code(500);
             echo json_encode(['erro' => 'Erro ao cadastrar o cliente.']);
         }
     }
+
 
     //fim cadastro cliente
 
