@@ -176,7 +176,7 @@
 
             // Atualiza a foto do usuário, adicionando timestamp para evitar cache
             if (cliente.foto_cliente) {
-                $('.userImage img').attr('src', `http://localhost/sarafashion/public/uploads/${cliente.foto_cliente}?t=${new Date().getTime()}`);
+                $('.userImage img').attr('src', `https://sarafashion.webdevsolutions.com.br/public/uploads/${cliente.foto_cliente}?t=${new Date().getTime()}`);
             }
         }
 

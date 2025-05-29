@@ -101,10 +101,10 @@ class Cliente extends Model
         return $this->db->lastInsertId();
     }
 
-    public function cadastrarCliente($nome, $email, $senha)
+    public function cadastrarCliente($nome, $email, $senha, $membroDesde)
     {
-        $sql = "INSERT INTO tbl_cliente (nome_cliente, email_cliente, senha_cliente, status_cliente)
-                VALUES (:nome, :email, :senha, :status)";
+        $sql = "INSERT INTO tbl_cliente (nome_cliente, email_cliente, senha_cliente, status_cliente,membro_desde)
+                VALUES (:nome, :email, :senha, :status, :membro_desde)";
 
         $stmt = $this->db->prepare($sql);
 
@@ -113,6 +113,7 @@ class Cliente extends Model
         $stmt->bindValue(':email', $email);
         $stmt->bindValue(':senha', $senha);
         $stmt->bindValue(':status', 'Ativo');
+        $stmt->bindValue(':membro_desde', $membroDesde);
 
 
         return $stmt->execute();

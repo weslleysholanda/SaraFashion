@@ -203,8 +203,6 @@ class ApiController extends Controller
     //Cadastrar Cliente
     public function preCadastro()
     {
-        session_start();
-
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);
             echo json_encode(['erro' => 'Método não permitido.']);
@@ -253,7 +251,8 @@ class ApiController extends Controller
         $dados = json_decode(file_get_contents('php://input'), true) ?? $_POST;
 
         date_default_timezone_set('America/Sao_Paulo');
-        $dados["data_cadastro"] = date('Y-m-d');
+        $dados["membro_desde"] = date('Y-m-d');
+        $membroDesde = $dados["membro_desde"];
 
         if (!is_array($dados) || empty($dados)) {
             http_response_code(400);
@@ -277,11 +276,8 @@ class ApiController extends Controller
             return;
         }
 
-        // Criptografa a senha
-        $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
 
-        // Agora passa a senha criptografada para o model
-        $resultado = $this->clienteModel->cadastrarCliente($nome, $email, $senhaCriptografada);
+        $resultado = $this->clienteModel->cadastrarCliente($nome, $email, $senha, $membroDesde);
 
         if ($resultado) {
             // Buscar o cliente recém-cadastrado
@@ -315,31 +311,31 @@ class ApiController extends Controller
     //fim cadastro cliente
 
 
-    private function uploadFoto($file, $nome_cliente)
-    {
-        $dir = __DIR__ . '/../../uploads/cliente/';
+    // private function uploadFoto($file, $nome_cliente)
+    // {
+    //     $dir = __DIR__ . '/../../uploads/cliente/';
 
-        if (!file_exists(($dir))) {
-            mkdir($dir, 0755, true);
-        }
+    //     if (!file_exists(($dir))) {
+    //         mkdir($dir, 0755, true);
+    //     }
 
-        $extensoes_permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    //     $extensoes_permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+    //     $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
 
-        if (!in_array($ext, $extensoes_permitidas)) {
-            throw new Exception('Tipo de arquivo não permitido.');
-        }
+    //     if (!in_array($ext, $extensoes_permitidas)) {
+    //         throw new Exception('Tipo de arquivo não permitido.');
+    //     }
 
-        if (isset($file['tmp_name']) && !empty($file['tmp_name'])) {
-            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-            // Gera um nome aleatório seguro
-            $nome_cliente_formatado = preg_replace('/[^a-zA-Z0-9_-]/', '_', strtolower($nome_cliente));
-            $nome_arquivo = $nome_cliente_formatado . '_' . uniqid() . '.' . $ext;
+    //     if (isset($file['tmp_name']) && !empty($file['tmp_name'])) {
+    //         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+    //         // Gera um nome aleatório seguro
+    //         $nome_cliente_formatado = preg_replace('/[^a-zA-Z0-9_-]/', '_', strtolower($nome_cliente));
+    //         $nome_arquivo = $nome_cliente_formatado . '_' . uniqid() . '.' . $ext;
 
-            if (move_uploaded_file($file['tmp_name'], $dir . $nome_arquivo)) {
-                return 'cliente/' . $nome_arquivo;
-            }
-        }
-        return false;
-    }
+    //         if (move_uploaded_file($file['tmp_name'], $dir . $nome_arquivo)) {
+    //             return 'cliente/' . $nome_arquivo;
+    //         }
+    //     }
+    //     return false;
+    // }
 }

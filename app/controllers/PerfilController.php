@@ -62,7 +62,7 @@ class PerfilController extends Controller
                 if ($data_nasc_cliente_obj) {
                     $data_nasc_cliente = $data_nasc_cliente_obj->format('Y-m-d');
                 } else {
-                    $data_nasc_cliente = null; // ou '0000-00-00' se preferir
+                    $data_nasc_cliente = null;
                 }
             }
 
