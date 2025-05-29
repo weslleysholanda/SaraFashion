@@ -5,6 +5,8 @@
                 <img src="assets/img/logoDark.svg" alt="Logo">
             </div>
 
+            <div id="mensagemErro" style="color: #58151c; background: #f1aeb5; border: 1px solid #f8d7da; padding: 10px; margin-bottom: 10px; display:none;"></div>
+
             <div class="title">
                 <h1>Esqueceu a Senha?</h1>
             </div>
@@ -13,7 +15,7 @@
                 <p>Digite seu Email para enviarmos instruções para redefinir sua senha.</p>
             </div>
 
-            <form method="" class="form-recuperar">
+            <form id="formRecuperarSenha" action="<?= BASE_URL ?>esqueceuSenha/recuperarSenha" method="POST" class="form-recuperar">
                 <div class="form-control">
                     <div class="campo-input">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12">
@@ -22,11 +24,10 @@
                                 transform="translate(0 -64)" fill="#888" />
                         </svg>
 
-
-                        <input type="email" placeholder="E-mail: " />
+                        <input type="email" name="email_cliente" id="email_cliente" placeholder="E-mail: " required />
                     </div>
                 </div>
-                <button type="submit" class="btn-control">confirmar</button>
+                <button type="submit" class="btn-control">Confirmar</button>
             </form>
         </div>
     </div>

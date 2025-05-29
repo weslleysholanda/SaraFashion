@@ -11,7 +11,7 @@
             </div>
 
             <div class="subtitle">
-                <p>Acabamos de enviar um código para <span>usuario@gmail.com.br</span>
+                <p>Acabamos de enviar um código para o seu email
                     Confira sua caixa de entrada!</p>
             </div>
 

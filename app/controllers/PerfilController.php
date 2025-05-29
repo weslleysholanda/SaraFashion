@@ -156,16 +156,19 @@ class PerfilController extends Controller
 
     private function uploadFoto($file, $nome_cliente)
     {
-        $dir = '../public/uploads/';
+        $dir = dirname(__DIR__, 2) . '/uploads/cliente/';
+
         if (!file_exists($dir)) {
             mkdir($dir, 0755, true);
         }
 
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-        $nome_arquivo = 'cliente/' . strtolower(str_replace(' ', '_', $nome_cliente)) . '.' . $ext;
+        $nome_arquivo = strtolower(str_replace(' ', '_', $nome_cliente)) . '.' . $ext;
 
-        if (move_uploaded_file($file['tmp_name'], $dir . $nome_arquivo)) {
-            return $nome_arquivo;
+        $caminho_arquivo = $dir . $nome_arquivo;
+
+        if (move_uploaded_file($file['tmp_name'], $caminho_arquivo)) {
+            return 'cliente/' . $nome_arquivo;
         }
 
         return false;

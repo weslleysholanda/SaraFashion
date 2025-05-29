@@ -10,8 +10,8 @@
 </head>
 
 <body>
-  <?php require_once('templates/recuperar.php')?>
- 
+  <?php require_once('templates/recuperar.php') ?>
+
 
   <script>
     const senhaInput = document.getElementById('senha');
@@ -20,6 +20,7 @@
     const erroSenha = document.getElementById('erro-senha');
     const erroConfirmacao = document.getElementById('erro-confirmacao');
     const btnSubmit = document.getElementById('btn-submit');
+    const form = document.querySelector('.form-recuperar');
 
     function verificarForca(senha) {
       let forca = 0;
@@ -54,7 +55,6 @@
         }
       });
 
-      // Só exibe a mensagem se houver algo digitado
       if (senhaInput.value) {
         erroSenha.textContent = mensagem;
         erroSenha.style.color = corMensagem;
@@ -63,17 +63,12 @@
       }
     }
 
-
     function validar() {
       const senha = senhaInput.value;
       const confirmacao = senha2Input.value;
       const forca = verificarForca(senha);
-      atualizarIndicadores(forca);
 
-      // Só limpa a mensagem se o campo estiver vazio
-      if (!senha) {
-        erroSenha.textContent = '';
-      }
+      atualizarIndicadores(forca);
 
       // Validação da confirmação
       if (!confirmacao) {
@@ -84,12 +79,40 @@
         erroConfirmacao.textContent = '';
       }
 
+      // Libera botão só se senha for forte e confirmação bater
       btnSubmit.disabled = !(forca >= 3 && senha === confirmacao);
     }
 
     senhaInput.addEventListener('input', validar);
     senha2Input.addEventListener('input', validar);
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData
+      });
+
+      const resultado = await response.json();
+
+      erroSenha.textContent = '';
+      erroConfirmacao.textContent = '';
+
+      if (resultado.erro) {
+        erroSenha.textContent = resultado.erro;
+        erroSenha.style.color = '#b00020';
+      } else if (resultado.sucesso) {
+        erroSenha.textContent = resultado.sucesso;
+        erroSenha.style.color = '#008000';
+        form.reset();
+        btnSubmit.disabled = true;
+      }
+    });
   </script>
+
 
 </body>
 

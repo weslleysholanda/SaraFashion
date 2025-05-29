@@ -3,9 +3,10 @@
 class ConfirmarEnvioController extends Controller{
 
     public function index(){
+
         $dados = array();
 
-        $dados['mensagem'] = 'Confirmação Envio?';
+        $dados['titulo'] = 'Confirmação Envio?';
 
         $this->carregarViews('confirmarEnvio',$dados);
 
