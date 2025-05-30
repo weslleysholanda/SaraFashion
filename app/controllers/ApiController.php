@@ -229,7 +229,7 @@ class ApiController extends Controller
 
         $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
 
-        $_SESSION['pre_cadastro'] = [
+        $_SESSION['preRegistro'] = [
             'nome'  => $nome,
             'email' => $email,
             'senha' => $senhaCriptografada

@@ -19,33 +19,33 @@
                 <div class="info-row">
                     <div class="info-box">
                         <strong>Nome</strong>
-                        <span><?php echo htmlspecialchars($cliente['nome_cliente']); ?></span>
+                        <span><?php echo htmlspecialchars($cliente['nome_cliente'] ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
                     </div>
                     <div class="info-box">
                         <strong>Email</strong>
-                        <span><?php echo htmlspecialchars($cliente['email_cliente']); ?></span>
+                        <span><?php echo htmlspecialchars($cliente['email_cliente']?? '', ENT_QUOTES, 'UTF-8'); ?></span>
                     </div>
                 </div>
 
                 <div class="info-row">
                     <div class="info-box">
                         <strong>Endereço</strong>
-                        <span><?php echo htmlspecialchars($cliente['endereco_cliente']); ?></span>
+                        <span><?php echo htmlspecialchars($cliente['endereco_cliente']?? '', ENT_QUOTES, 'UTF-8'); ?></span>
                     </div>
                     <div class="info-box">
                         <strong>Bairro</strong>
-                        <span><?php echo htmlspecialchars($cliente['bairro_cliente']); ?></span>
+                        <span><?php echo htmlspecialchars($cliente['bairro_cliente']?? '', ENT_QUOTES, 'UTF-8'); ?></span>
                     </div>
                 </div>
 
                 <div class="info-row">
                     <div class="info-box">
                         <strong>CPF</strong>
-                        <span><?php echo htmlspecialchars($cliente['cpf_cnpj_cliente']); ?></span>
+                        <span><?php echo htmlspecialchars($cliente['cpf_cnpj_cliente']?? '', ENT_QUOTES, 'UTF-8'); ?></span>
                     </div>
                     <div class="info-box">
                         <strong>Telefone</strong>
-                        <span><?php echo htmlspecialchars($cliente['telefone_cliente']); ?></span>
+                        <span><?php echo htmlspecialchars($cliente['telefone_cliente']?? '', ENT_QUOTES, 'UTF-8'); ?></span>
                     </div>
                 </div>
 
@@ -96,19 +96,19 @@
                     <div class="flex">
                         <div class="mb-3">
                             <label for="nome_cliente" class="form-label">Nome</label>
-                            <input type="text" class="form-control" name="nome_cliente" required pattern="[A-Za-zÀ-ÿ\s]+" value="<?php echo htmlspecialchars($cliente['nome_cliente']); ?>">
+                            <input type="text" class="form-control" name="nome_cliente" required pattern="[A-Za-zÀ-ÿ\s]+" value="<?php echo htmlspecialchars($cliente['nome_cliente']?? '', ENT_QUOTES, 'UTF-8'); ?>">
                         </div>
 
                         <div class="mb-3">
                             <label for="telefone_cliente" class="form-label">Telefone</label>
-                            <input type="text" class="form-control" name="telefone_cliente" value="<?php echo htmlspecialchars($cliente['telefone_cliente']); ?>" placeholder="(__) _____-____">
+                            <input type="text" class="form-control" name="telefone_cliente" value="<?php echo htmlspecialchars($cliente['telefone_cliente']?? '', ENT_QUOTES, 'UTF-8'); ?>" placeholder="(__) _____-____">
                         </div>
                     </div>
 
                     <div class="flex">
                         <div class="mb-3">
                             <label class="form-label">E-mail</label>
-                            <input type="email" class="form-control" name="email_cliente" value="<?php echo htmlspecialchars($cliente['email_cliente']); ?>">
+                            <input type="email" class="form-control" name="email_cliente" value="<?php echo htmlspecialchars($cliente['email_cliente']?? '', ENT_QUOTES, 'UTF-8'); ?>">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Senha</label>
@@ -137,26 +137,26 @@
 
                         <div class="mb-3">
                             <label for="cpf_cnpj_cliente" class="form-label">CPF/CNPJ</label>
-                            <input type="text" class="form-control" name="cpf_cnpj_cliente" value="<?php echo htmlspecialchars($cliente['cpf_cnpj_cliente']); ?>">
+                            <input type="text" class="form-control" name="cpf_cnpj_cliente" value="<?php echo htmlspecialchars($cliente['cpf_cnpj_cliente']?? '', ENT_QUOTES, 'UTF-8'); ?>">
                         </div>
                     </div>
 
                     <div class="flex">
                         <div class="mb-3">
                             <label for="endereco_cliente" class="form-label">Endereço</label>
-                            <input type="text" class="form-control" name="endereco_cliente" value="<?php echo htmlspecialchars($cliente['endereco_cliente']); ?>">
+                            <input type="text" class="form-control" name="endereco_cliente" value="<?php echo htmlspecialchars($cliente['endereco_cliente']?? '', ENT_QUOTES, 'UTF-8'); ?>">
                         </div>
 
                         <div class="mb-3">
                             <label for="bairro_cliente" class="form-label">Bairro</label>
-                            <input type="text" class="form-control" name="bairro_cliente" value="<?php echo htmlspecialchars($cliente['bairro_cliente']); ?>">
+                            <input type="text" class="form-control" name="bairro_cliente" value="<?php echo htmlspecialchars($cliente['bairro_cliente']?? '', ENT_QUOTES, 'UTF-8'); ?>">
                         </div>
                     </div>
 
                     <div class="flex">
                         <div class="mb-3">
                             <label for="cidade_cliente" class="form-label">Cidade</label>
-                            <input type="text" class="form-control" name="cidade_cliente" value="<?php echo htmlspecialchars($cliente['cidade_cliente']); ?>">
+                            <input type="text" class="form-control" name="cidade_cliente" value="<?php echo htmlspecialchars($cliente['cidade_cliente']?? '', ENT_QUOTES, 'UTF-8'); ?>">
                         </div>
 
                         <div class="mb-3">
