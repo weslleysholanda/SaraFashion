@@ -17,12 +17,12 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg']) && $_SESSION['t
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
 <div class="container mt-5">
 
-    <form method="POST" action="http://localhost/sarafashion/public/funcionario/adicionar" enctype="multipart/form-data">
+    <form method="POST" action="<?= BASE_URL ?>funcionario/adicionar" enctype="multipart/form-data">
         <div class="form-container">
             <div class="img">
                 <img id="preview-img" style="width:100%; cursor:pointer;"
                     title="Clique na imagem para selecionar uma foto do funcionário"
-                    src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png"
+                    src="<?= BASE_URL ?>assets/img/sem-foto-produto.png"
                     alt="Foto do Funcionário">
                 <input type="file" name="foto_funcionario" id="foto_funcionario" style="display: none;" accept="image/*">
             </div>

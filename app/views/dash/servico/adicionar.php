@@ -3,9 +3,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
 <div class="container mt-5">
 
-    <form method="POST" action="http://localhost/sarafashion/public/servico/adicionar" enctype="multipart/form-data">
+    <form method="POST" action="<?= BASE_URL ?>servico/adicionar" enctype="multipart/form-data">
         <div class="img">
-            <img id="preview-img" style="width:100%; cursor:pointer;" title="Clique na imagem para selecionar uma foto de serviço" src="http://localhost/sarafashion/public/assets/img/sem-foto-produto.png" alt="">
+            <img id="preview-img" style="width:100%; cursor:pointer;" title="Clique na imagem para selecionar uma foto de serviço" src="<?= BASE_URL ?>assets/img/sem-foto-produto.png" alt="">
             <input type="file" name="foto_servico" id="foto_servico" style="display: none;" accept="image/*">
         </div>
         <div class="container-form">

@@ -38,7 +38,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         <label class="btn btn-outline-danger" for="danger-outlined">Inativo</label>
     </div>
     <div class="navTool-button">
-        <a href="/servico/adicionar">ADICIONAR</a>
+        <a href="<?= BASE_URL ?>servico/adicionar">ADICIONAR</a>
     </div>
 </div>
 <div class="scroll-tabela">

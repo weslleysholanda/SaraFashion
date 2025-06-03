@@ -15,9 +15,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI=" crossorigin="anonymous" />
 
   <!-- Lightbox 2 -->
-  <link rel="stylesheet" href="/vendors/css/lightbox.min.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>vendors/css/lightbox.min.css">
   <!-- css adminlte -->
-  <link rel="stylesheet" href="/vendors/css/adminlte.css" />
+  <link rel="stylesheet" href="<?= BASE_URL ?>vendors/css/adminlte.css" />
   <!-- font awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
@@ -49,15 +49,20 @@
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
               <?php if ($usuario): ?>
                 <img src="<?php
-                          $caminhoArquivo = BASE_URL  . "uploads/" . $_SESSION['userFoto'];
-                          if (!empty($_SESSION['userFoto']) && file_exists($caminhoArquivo)) {
-                            echo "http://localhost/sarafashion/public/uploads/" . htmlspecialchars($_SESSION['userFoto'], ENT_QUOTES, 'UTF-8');
-                          } else {
-                            echo "http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png";
+                          $foto = $_SESSION['userFoto'] ?? '';
+                          $imagemFinal = 'uploads/funcionario/sem-foto-funcionario.png';
+
+                          if (!empty($foto)) {
+                            $caminhoFisico = $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $foto;
+                            if (file_exists($caminhoFisico)) {
+                              $imagemFinal = 'uploads/' . $foto;
+                            }
                           }
+
+                          echo '/' . htmlspecialchars($imagemFinal, ENT_QUOTES, 'UTF-8');
                           ?>" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
               <?php else: ?>
-                <img src="http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
+                <img src="<?= $imagemFinal ?>" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
               <?php endif; ?>
 
             </a>
@@ -66,15 +71,20 @@
               <li class="user-header text-bg-primary">
                 <?php if ($usuario): ?>
                   <img src="<?php
-                            $caminhoArquivo = BASE_URL  . "uploads/" . $_SESSION['userFoto'];
-                            if (!empty($_SESSION['userFoto']) && file_exists($caminhoArquivo)) {
-                              echo "http://localhost/sarafashion/public/uploads/" . htmlspecialchars($_SESSION['userFoto'], ENT_QUOTES, 'UTF-8');
-                            } else {
-                              echo "http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png";
+                            $foto = $_SESSION['userFoto'] ?? '';
+                            $imagemFinal = 'uploads/funcionario/sem-foto-funcionario.png';
+
+                            if (!empty($foto)) {
+                              $caminhoFisico = $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $foto;
+                              if (file_exists($caminhoFisico)) {
+                                $imagemFinal = 'uploads/' . $foto;
+                              }
                             }
+
+                            echo '/' . htmlspecialchars($imagemFinal, ENT_QUOTES, 'UTF-8');
                             ?>" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
                 <?php else: ?>
-                  <img src="http://localhost/sarafashion/public/uploads/cliente/sem-foto-cliente.png" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
+                  <img src="<?= $imagemFinal ?>" class="user-image rounded-circle shadow" alt="<?php echo $_SESSION['userNome'] ?>" />
                 <?php endif; ?>
                 <p>
                   <?php echo htmlspecialchars($_SESSION['userNome'], ENT_QUOTES, 'UTF-8'); ?> -
@@ -357,7 +367,7 @@
       <!--begin::Copyright-->
       <strong>
         Copyright &copy; 2025&nbsp;
-        <a href="https://localhost/sarafashion/public" class="text-decoration-none">SaraFashion</a>.
+        <a href="<?= BASE_URL ?>public" class="text-decoration-none">SaraFashion</a>.
       </strong>
       All rights reserved.
       <!--end::Copyright-->
@@ -378,12 +388,12 @@
   <!-- Tempus Dominus JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-  <script src="http://localhost/kioficina/public/assets/js/teste.js"></script>
+  <script src="<?= BASE_URL ?>assets/js/teste.js"></script>
 
 
   <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-  <script src="http://localhost/sarafashion/public/vendors/js/adminlte.js"></script>
-  <script src="http://localhost/sarafashion/public/vendors/js/lightbox.min.js"></script>
+  <script src="<?= BASE_URL ?>vendors/js/adminlte.js"></script>
+  <script src="<?= BASE_URL ?>vendors/js/lightbox.min.js"></script>
 
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

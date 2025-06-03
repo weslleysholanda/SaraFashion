@@ -307,35 +307,78 @@ class ApiController extends Controller
         }
     }
 
+    public function atualizarCliente($id){
+        $cliente = $this-> autenticarToken();
+
+        if(!$cliente || $cliente['id_cliente'] != $id){
+            http_response_code(403);
+            echo json_encode(['erro' => 'Acesso negado.']);
+            return;
+        }
+
+        if($_SERVER['REQUEST_METHOD'] !== 'PATCH'){
+            http_response_code(405);
+            echo json_encode(['erro'  => 'Método não permitido.']);
+            return;
+        }
+
+        $dados = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+
+        if (!is_array($dados) || empty($dados)) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Nenhum dado enviado.']);
+            return;
+        }
+
+        $dadosAtualizados = array_merge($cliente, $dados);
+
+        if(!empty($_FILES['foto_cliente']['name'])){
+            $foto = $this->uploadFoto($_FILES['foto_cliente'], $cliente['nome_cliente']);
+            if($foto){
+                $dadosAtualizados['foto_cliente'] = $foto;
+                $dadosAtualizados['alt_foto_cliente'] = $cliente['nome_cliente'];
+            }
+        }
+
+        if($this->clienteModel->atualizarCliente($id, $dadosAtualizados)){
+            echo json_encode(['mensagem' => 'Dados atualizados com sucesso.']);
+        } else{
+            http_response_code(500);
+            echo json_encode(['erro' => 'Erro ao atualizar os dados.']);
+        }
+        
+
+    }
+
 
     //fim cadastro cliente
 
 
-    // private function uploadFoto($file, $nome_cliente)
-    // {
-    //     $dir = __DIR__ . '/../../uploads/cliente/';
+    private function uploadFoto($file, $nome_cliente)
+    {
+        $dir = __DIR__ . '/../../uploads/cliente/';
 
-    //     if (!file_exists(($dir))) {
-    //         mkdir($dir, 0755, true);
-    //     }
+        if (!file_exists(($dir))) {
+            mkdir($dir, 0755, true);
+        }
 
-    //     $extensoes_permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-    //     $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $extensoes_permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
 
-    //     if (!in_array($ext, $extensoes_permitidas)) {
-    //         throw new Exception('Tipo de arquivo não permitido.');
-    //     }
+        if (!in_array($ext, $extensoes_permitidas)) {
+            throw new Exception('Tipo de arquivo não permitido.');
+        }
 
-    //     if (isset($file['tmp_name']) && !empty($file['tmp_name'])) {
-    //         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-    //         // Gera um nome aleatório seguro
-    //         $nome_cliente_formatado = preg_replace('/[^a-zA-Z0-9_-]/', '_', strtolower($nome_cliente));
-    //         $nome_arquivo = $nome_cliente_formatado . '_' . uniqid() . '.' . $ext;
+        if (isset($file['tmp_name']) && !empty($file['tmp_name'])) {
+            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+            // Gera um nome aleatório seguro
+            $nome_cliente_formatado = preg_replace('/[^a-zA-Z0-9_-]/', '_', strtolower($nome_cliente));
+            $nome_arquivo = $nome_cliente_formatado . '_' . uniqid() . '.' . $ext;
 
-    //         if (move_uploaded_file($file['tmp_name'], $dir . $nome_arquivo)) {
-    //             return 'cliente/' . $nome_arquivo;
-    //         }
-    //     }
-    //     return false;
-    // }
+            if (move_uploaded_file($file['tmp_name'], $dir . $nome_arquivo)) {
+                return 'cliente/' . $nome_arquivo;
+            }
+        }
+        return false;
+    }
 }
