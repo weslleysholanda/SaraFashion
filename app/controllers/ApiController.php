@@ -306,17 +306,20 @@ class ApiController extends Controller
             echo json_encode(['erro' => 'Erro ao cadastrar o cliente.']);
         }
     }
+    //fim cadastro cliente
 
-    public function atualizarCliente($id){
-        $cliente = $this-> autenticarToken();
+    //Atualizar Cliente
+    public function atualizarCliente($id)
+    {
+        $cliente = $this->autenticarToken();
 
-        if(!$cliente || $cliente['id_cliente'] != $id){
+        if (!$cliente || $cliente['id_cliente'] != $id) {
             http_response_code(403);
             echo json_encode(['erro' => 'Acesso negado.']);
             return;
         }
 
-        if($_SERVER['REQUEST_METHOD'] !== 'PATCH'){
+        if ($_SERVER['REQUEST_METHOD'] !== 'PATCH') {
             http_response_code(405);
             echo json_encode(['erro'  => 'Método não permitido.']);
             return;
@@ -332,26 +335,56 @@ class ApiController extends Controller
 
         $dadosAtualizados = array_merge($cliente, $dados);
 
-        if(!empty($_FILES['foto_cliente']['name'])){
-            $foto = $this->uploadFoto($_FILES['foto_cliente'], $cliente['nome_cliente']);
-            if($foto){
-                $dadosAtualizados['foto_cliente'] = $foto;
-                $dadosAtualizados['alt_foto_cliente'] = $cliente['nome_cliente'];
-            }
-        }
 
-        if($this->clienteModel->atualizarCliente($id, $dadosAtualizados)){
+        if ($this->clienteModel->atualizarCliente($id, $dadosAtualizados)) {
             echo json_encode(['mensagem' => 'Dados atualizados com sucesso.']);
-        } else{
+        } else {
             http_response_code(500);
             echo json_encode(['erro' => 'Erro ao atualizar os dados.']);
         }
-        
-
     }
 
+    public function uploadFotoCliente($id)
+    {
+        $cliente = $this->autenticarToken();
 
-    //fim cadastro cliente
+        if (!$cliente || $cliente['id_cliente'] != $id) {
+            http_response_code(403);
+            echo json_encode(['erro' => 'Acesso negado.']);
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro'  => 'Método não permitido.']);
+            return;
+        }
+
+        if (!isset($_FILES['foto_cliente']) || empty($_FILES['foto_cliente']['name'])) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Nenhum arquivo enviado.']);
+            return;
+        }
+
+        try {
+            $foto = $this->uploadFoto($_FILES['foto_cliente'], $cliente['nome_cliente']);
+
+            if ($foto) {
+                $this->clienteModel->atualizarCliente($id, [
+                    'foto_cliente' => $foto,
+                    'alt_foto_cliente' => $cliente['nome_cliente']
+                ]);
+
+                echo json_encode(['mensagem' => 'Foto atualizada com sucesso.', 'caminho' => $foto]);
+            } else {
+                http_response_code(500);
+                echo json_encode(['erro' => 'Erro ao salvar a foto.']);
+            }
+        } catch (Exception $e) {
+            http_response_code(400);
+            echo json_encode(['erro' => $e->getMessage()]);
+        }
+    }
 
 
     private function uploadFoto($file, $nome_cliente)

@@ -121,51 +121,50 @@ class Cliente extends Model
 
     public function atualizarCliente($id, $dados)
     {
-        $sql = "UPDATE tbl_cliente SET 
-                nome_cliente = :nome_cliente,
-                tipo_cliente = :tipo_cliente,
-                cpf_cnpj_cliente = :cpf_cnpj_cliente,
-                data_nasc_cliente = :data_nasc_cliente,
-                email_cliente = :email_cliente,
-                alt_foto_cliente = :alt_foto_cliente,
-                telefone_cliente = :telefone_cliente,
-                endereco_cliente = :endereco_cliente,
-                bairro_cliente = :bairro_cliente,
-                cidade_cliente = :cidade_cliente";
+        // Campos que podem ser atualizados
+        $camposPermitidos = [
+            'nome_cliente',
+            'tipo_cliente',
+            'cpf_cnpj_cliente',
+            'data_nasc_cliente',
+            'email_cliente',
+            'telefone_cliente',
+            'endereco_cliente',
+            'bairro_cliente',
+            'cidade_cliente',
+            'alt_foto_cliente',
+            'foto_cliente',
+            'senha_cliente'
+        ];
 
-        if (!empty($dados['foto_cliente'])) {
-            $sql .= ", foto_cliente = :foto_cliente";
+        // Monta dinamicamente o SQL apenas com os campos enviados
+        $setParts = [];
+        foreach ($camposPermitidos as $campo) {
+            if (isset($dados[$campo])) {
+                $setParts[] = "$campo = :$campo";
+            }
         }
 
-        if (!empty($dados['senha_cliente'])) {
-            $sql .= ", senha_cliente = :senha_cliente";
+        if (empty($setParts)) {
+            return false;
         }
 
-        $sql .= " WHERE id_cliente = :id_cliente";
+        $sql = "UPDATE tbl_cliente SET " . implode(', ', $setParts) . " WHERE id_cliente = :id_cliente";
 
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_cliente', $id);
-        $stmt->bindValue(':nome_cliente', $dados['nome_cliente']);
-        $stmt->bindValue(':tipo_cliente', $dados['tipo_cliente']);
-        $stmt->bindValue(':cpf_cnpj_cliente', $dados['cpf_cnpj_cliente']);
-        $stmt->bindValue(':data_nasc_cliente', $dados['data_nasc_cliente']);
-        $stmt->bindValue(':email_cliente', $dados['email_cliente']);
-        $stmt->bindValue(':telefone_cliente', $dados['telefone_cliente']);
-        $stmt->bindValue(':endereco_cliente', $dados['endereco_cliente']);
-        $stmt->bindValue(':bairro_cliente', $dados['bairro_cliente']);
-        $stmt->bindValue(':cidade_cliente', $dados['cidade_cliente']);
-        $stmt->bindValue(':alt_foto_cliente', $dados['alt_foto_cliente']);
 
-        if (!empty($dados['foto_cliente'])) {
-            $stmt->bindValue(':foto_cliente', $dados['foto_cliente']);
-        }
-
-        if (!empty($dados['senha_cliente'])) {
-            $stmt->bindValue(':senha_cliente', $dados['senha_cliente']);
+        // Faz o bind apenas dos campos enviados
+        foreach ($camposPermitidos as $campo) {
+            if (isset($dados[$campo])) {
+                $stmt->bindValue(":$campo", $dados[$campo]);
+            }
         }
 
         return $stmt->execute();
     }
+
+
 
     public function desativarCliente($id)
     {
@@ -245,7 +244,7 @@ class Cliente extends Model
         return $stmt->execute();
     }
 
-     public function limparTokenRecuperacao($id)
+    public function limparTokenRecuperacao($id)
     {
         $sql = "UPDATE tbl_cliente SET token_recuperacao = NULL, token_expira = NULL WHERE id_cliente = :id";
         $stmt = $this->db->prepare($sql);
