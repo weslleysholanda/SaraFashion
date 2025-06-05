@@ -6,29 +6,34 @@ class Cliente extends Model
 
     public function buscarCliente($email)
     {
-        $sql =  "SELECT * FROM tbl_cliente WHERE email_cliente = :email AND status_cliente = 'Ativo'";
+        $sql = "SELECT * FROM tbl_cliente WHERE email_cliente = :email AND status_cliente = 'Ativo'";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':email', $email);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($resultado) {
-            $datAdm = new DateTime($resultado['membro_desde']);
+            // Exemplo de formatação de data, caso queira
+            if (!empty($resultado['membro_desde'])) {
+                $datAdm = new DateTime($resultado['membro_desde']);
 
-            $fmt = new IntlDateFormatter(
-                'pt_BR', // Localidade para português do Brasil
-                IntlDateFormatter::NONE,
-                IntlDateFormatter::NONE,
-                'UTC', // Ou use date_default_timezone_get() se preferir
-                IntlDateFormatter::GREGORIAN,
-                "dd MMM yyyy" // Dia, mês abreviado, ano
-            );
+                $fmt = new IntlDateFormatter(
+                    'pt_BR',
+                    IntlDateFormatter::NONE,
+                    IntlDateFormatter::NONE,
+                    'UTC',
+                    IntlDateFormatter::GREGORIAN,
+                    "dd MMM yyyy"
+                );
 
-            $resultado['membro_desde'] = 'Membro Desde ' . $fmt->format($datAdm);
+                $resultado['membro_desde'] = 'Membro desde ' . $fmt->format($datAdm);
+            }
         }
 
         return $resultado;
     }
+
 
     // public function getCliente($email)
     // {
@@ -163,8 +168,6 @@ class Cliente extends Model
 
         return $stmt->execute();
     }
-
-
 
     public function desativarCliente($id)
     {

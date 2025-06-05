@@ -14,7 +14,7 @@ class ApiController extends Controller
      */
     private function liberarCORS()
     {
-        header("Access-Control-Allow-Origin: https://rrgarageapp.webdevsolutions.com.br");
+        header("Access-Control-Allow-Origin: https://sarafashionapp.webdevsolutions.com.br");
         header("Access-Control-Allow-Methods: POST, PUT, PATCH, GET, OPTIONS");
         header("Access-Control-Allow-Headers: Content-Type, Authorization");
         header("Access-Control-Allow-Credentials: true");
@@ -343,6 +343,93 @@ class ApiController extends Controller
             echo json_encode(['erro' => 'Erro ao atualizar os dados.']);
         }
     }
+
+    public function esqueceuSenha()
+    {
+        $this->liberarCORS();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $email = filter_input(INPUT_POST, 'email_cliente', FILTER_SANITIZE_EMAIL);
+
+        if (!$email) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'E-mail é obrigatório'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $cliente = $this->clienteModel->buscarCliente($email);
+
+        if (!$cliente) {
+            http_response_code(404);
+            echo json_encode(['erro' => 'E-mail não encontrado'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $nome = $cliente['nome'] ?? 'usuário';
+        $codigo = rand(100000, 999999);
+
+        $_SESSION['recuperacao_senha'] = [
+            'email'     => $email,
+            'codigo'    => $codigo,
+            'expira_em' => time() + 600 // 10 minutos
+        ];
+
+        // PHPMailer
+        require_once __DIR__ . '/../../vendors/phpmailer/src/PHPMailer.php';
+        require_once __DIR__ . '/../../vendors/phpmailer/src/SMTP.php';
+        require_once __DIR__ . '/../../vendors/phpmailer/src/Exception.php';
+
+        $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->Host       = HOST_EMAIL;
+            $mail->SMTPAuth   = true;
+            $mail->Username   = USER_EMAIL;
+            $mail->Password   = PASS_EMAIL;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port       = PORT_EMAIL;
+
+            $mail->CharSet = 'UTF-8';
+
+            $mail->setFrom(USER_EMAIL, 'Sara Fashion');
+            $mail->addAddress($email);
+            $mail->isHTML(true);
+            $mail->Subject = 'Recuperação de Senha - Sara Fashion';
+            $mail->Body = "
+        <div style='text-align: center; font-family: Trebuchet MS, Verdana, sans-serif;'>
+            <div style='border: 2px solid #C59D5F; border-radius: 5px; padding: 40px; display: inline-block; background-color: #fff;'>
+                <div style='background-color: #C59D5F; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom:25px;'>
+                    <img src='https://sarafashionapp.webdevsolutions.com.br/public/assets/img/logo_sarafashionEmail.png' style='width: 250px;' alt='logoSara'>
+                </div>
+                <h1 style='font-size: 1.563em; color: black;'>Olá, <strong>{$nome}</strong>!</h1>
+                <p style='color: black;'>Use o código abaixo para redefinir sua senha:</p>
+                <div>
+                    <h2 style='color: #B8860B; font-size: 25px; font-weight: bold;'>{$codigo}</h2>
+                </div>
+                <p style='font-weight: bold; color: black;'>O código é válido por 10 minutos.</p>
+            </div>
+        </div>";
+
+            $mail->send();
+
+            echo json_encode(['sucesso' => 'Código enviado para o e-mail informado'], JSON_UNESCAPED_UNICODE);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(['erro' => 'Erro ao enviar e-mail: ' . $mail->ErrorInfo], JSON_UNESCAPED_UNICODE);
+        }
+    }
+
 
     public function uploadFotoCliente($id)
     {
