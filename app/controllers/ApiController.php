@@ -348,6 +348,8 @@ class ApiController extends Controller
     {
         $this->liberarCORS();
 
+        date_default_timezone_set('America/Sao_Paulo');
+
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);
             echo json_encode(['erro' => 'Método não permitido'], JSON_UNESCAPED_UNICODE);
@@ -370,18 +372,21 @@ class ApiController extends Controller
             return;
         }
 
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        // Gerar token seguro para recuperação
+        $token = bin2hex(random_bytes(32));
 
-        $nome = $cliente['nome'] ?? 'usuário';
+        // Expiração do token: 1 hora a partir de agora
+        $expira = date('Y-m-d H:i:s', strtotime('+10 minutes'));
+
         $codigo = rand(100000, 999999);
 
-        $_SESSION['recuperacao_senha'] = [
-            'email'     => $email,
-            'codigo'    => $codigo,
-            'expira_em' => time() + 600 // 10 minutos
-        ];
+        $salvou = $this->clienteModel->salvarTokenRecuperacao($cliente['id_cliente'], $token, $expira, $codigo);
+
+        if (!$salvou) {
+            http_response_code(500);
+            echo json_encode(['erro' => 'Erro ao gerar token de recuperação'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
 
         // PHPMailer
         require_once __DIR__ . '/../../vendors/phpmailer/src/PHPMailer.php';
@@ -406,20 +411,23 @@ class ApiController extends Controller
             $mail->addAddress($email);
             $mail->isHTML(true);
             $mail->Subject = 'Recuperação de Senha - Sara Fashion';
+            $nome = $cliente['nome_cliente'] ?? 'usuário';
+
             $mail->Body = "
-        <div style='text-align: center; font-family: Trebuchet MS, Verdana, sans-serif;'>
-            <div style='border: 2px solid #C59D5F; border-radius: 5px; padding: 40px; display: inline-block; background-color: #fff;'>
-                <div style='background-color: #C59D5F; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom:25px;'>
-                    <img src='https://sarafashionapp.webdevsolutions.com.br/public/assets/img/logo_sarafashionEmail.png' style='width: 250px;' alt='logoSara'>
+            <div style='text-align: center; font-family: Trebuchet MS, Verdana, sans-serif;'>
+                <div style='border: 2px solid #C59D5F; border-radius: 5px; padding: 40px; display: inline-block; background-color: #fff;'>
+                    <div style='background-color: #C59D5F; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom:25px;'>
+                        <img src='https://sarafashionapp.webdevsolutions.com.br/public/assets/img/logo_sarafashionEmail.png' style='width: 250px;' alt='logoSara'>
+                    </div>
+                    <h1 style='font-size: 1.563em; color: black;'>Olá, <strong>{$nome}</strong>!</h1>
+                    <p style='color: black;'>Use o código abaixo para redefinir sua senha:</p>
+                    <div>
+                        <h2 style='color: #B8860B; font-size: 25px; font-weight: bold;'>{$codigo}</h2>
+                    </div>
+                    <p style='font-weight: bold; color: black;'>O código é válido por 1 hora.</p>
                 </div>
-                <h1 style='font-size: 1.563em; color: black;'>Olá, <strong>{$nome}</strong>!</h1>
-                <p style='color: black;'>Use o código abaixo para redefinir sua senha:</p>
-                <div>
-                    <h2 style='color: #B8860B; font-size: 25px; font-weight: bold;'>{$codigo}</h2>
-                </div>
-                <p style='font-weight: bold; color: black;'>O código é válido por 10 minutos.</p>
             </div>
-        </div>";
+        ";
 
             $mail->send();
 
