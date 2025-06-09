@@ -139,7 +139,6 @@ class ApiController extends Controller
             'token'    => $token
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
-
     //retornar dados do cliente
 
     public function cliente($id)
@@ -346,9 +345,159 @@ class ApiController extends Controller
 
     public function esqueceuSenha()
     {
+        date_default_timezone_set('America/Sao_Paulo');
         $this->liberarCORS();
 
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido']);
+            return;
+        }
+
+        $email = filter_input(INPUT_POST, 'email_cliente', FILTER_SANITIZE_EMAIL);
+        if (!$email) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'E-mail é obrigatório']);
+            return;
+        }
+
+        $cliente = $this->clienteModel->buscarCliente($email);
+        if (!$cliente) {
+            http_response_code(404);
+            echo json_encode(['erro' => 'E-mail não encontrado']);
+            return;
+        }
+
+        // Gera token, expiração e código (string)
+        $token = bin2hex(random_bytes(32));
+        $expira = date('Y-m-d H:i:s', strtotime('+10 minutes'));
+        $codigo = (string) rand(100000, 999999); // importante converter para string
+        $codigoHash = password_hash($codigo, PASSWORD_DEFAULT);
+
+        // Salva token, expiração e código hash
+        $salvou = $this->clienteModel->salvarTokenRecuperacaoApp($cliente['id_cliente'], $token, $expira, $codigoHash);
+        if (!$salvou) {
+            http_response_code(500);
+            echo json_encode(['erro' => 'Erro ao salvar token']);
+            return;
+        }
+
+        // Enviar email com o código original (não o hash)
+        require_once __DIR__ . '/../../vendors/phpmailer/src/PHPMailer.php';
+        require_once __DIR__ . '/../../vendors/phpmailer/src/SMTP.php';
+        require_once __DIR__ . '/../../vendors/phpmailer/src/Exception.php';
+
+        $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host       = HOST_EMAIL;
+            $mail->SMTPAuth   = true;
+            $mail->Username   = USER_EMAIL;
+            $mail->Password   = PASS_EMAIL;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port       = PORT_EMAIL;
+            $mail->CharSet    = 'UTF-8';
+
+            $mail->setFrom(USER_EMAIL, 'Sara Fashion');
+            $mail->addAddress($email);
+            $mail->isHTML(true);
+            $mail->Subject = 'Recuperação de Senha - Sara Fashion';
+
+            $nome = $cliente['nome_cliente'] ?? 'usuário';
+
+            $mail->Body = "
+            <div style='text-align: center; font-family: Trebuchet MS, Verdana, sans-serif;'>
+                <div style='border: 2px solid #C59D5F; border-radius: 5px; padding: 40px; display: inline-block; background-color: #fff;'>
+                    <div style='background-color: #C59D5F; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom:25px;'>
+                        <img src='https://sarafashionapp.webdevsolutions.com.br/public/assets/img/logo_sarafashionEmail.png' style='width: 250px; object-fit: cover;' alt='logoSara'>
+                    </div>
+
+                    <h1 style='font-size: 1.563em; color: black;'>Olá, <strong>{$nome}</strong>!</h1>
+                    <p style='color: black;'>Seu código de verificação é:</p>
+                    <div>
+                        <h2 style='color: #B8860B; font-size: 25px; font-weight: bold;'>{$codigo}</h2>
+                    </div>
+                    <p style='font-weight: bold; color: black;'>Válido por 10 minutos.</p>
+                </div>
+            </div>
+        ";
+
+            $mail->send();
+            echo json_encode(['sucesso' => 'Código enviado por e-mail.', 'token' => $token]);
+            // DICA: enviar o token junto para usar na API de validação
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(['erro' => 'Erro ao enviar e-mail: ' . $mail->ErrorInfo]);
+        }
+    }
+
+    public function alterarSenha()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido']);
+            exit;
+        }
+
+        session_start();
+        $token = $_SESSION['recuperarSenha']['token'] ?? null;
+        $novaSenha = $_POST['nova_senha'] ?? null;
+        $confirmarSenha = $_POST['confirmar_senha'] ?? null;
+
+        if (!$token || !$novaSenha || !$confirmarSenha) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Dados insuficientes']);
+            exit;
+        }
+
+        if ($novaSenha !== $confirmarSenha) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'As senhas não conferem']);
+            exit;
+        }
+
+        // Buscar cliente pelo token
+        $cliente = $this->clienteModel->getClientePorToken($token);
+
+        if (!$cliente) {
+            http_response_code(401);
+            echo json_encode(['erro' => 'Token inválido ou expirado']);
+            exit;
+        }
+
+        // Validar se o token não expirou
+        if (strtotime($cliente['token_expira']) < time()) {
+            http_response_code(403);
+            echo json_encode(['erro' => 'Token expirado']);
+            exit;
+        }
+
+        // Hash da nova senha
+        $senhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
+
+        // Atualizar senha
+        $atualizou = $this->clienteModel->atualizarSenha($cliente['id_cliente'], $senhaHash);
+
+        if (!$atualizou) {
+            http_response_code(500);
+            echo json_encode(['erro' => 'Erro ao atualizar a senha']);
+            exit;
+        }
+
+        // Limpar token e código verificação
+        $this->clienteModel->limparTokenRecuperacaoApp($cliente['id_cliente']);
+
+        // Opcional: remover dados da sessão
+        unset($_SESSION['recuperarSenha']);
+
+        echo json_encode(['sucesso' => 'Senha alterada com sucesso']);
+    }
+
+
+    public function validarCodigoRecuperacao()
+    {
         date_default_timezone_set('America/Sao_Paulo');
+        $this->liberarCORS();
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);
@@ -356,88 +505,37 @@ class ApiController extends Controller
             return;
         }
 
-        $email = filter_input(INPUT_POST, 'email_cliente', FILTER_SANITIZE_EMAIL);
+        $token = $_POST['token_recuperacao'] ?? '';
+        $codigo = $_POST['codigo_verificacao'] ?? '';
 
-        if (!$email) {
+        if (!$token || !$codigo) {
             http_response_code(400);
-            echo json_encode(['erro' => 'E-mail é obrigatório'], JSON_UNESCAPED_UNICODE);
+            echo json_encode(['erro' => 'Token e código são obrigatórios'], JSON_UNESCAPED_UNICODE);
             return;
         }
 
-        $cliente = $this->clienteModel->buscarCliente($email);
+        $cliente = $this->clienteModel->getClientePorToken($token);
 
         if (!$cliente) {
-            http_response_code(404);
-            echo json_encode(['erro' => 'E-mail não encontrado'], JSON_UNESCAPED_UNICODE);
+            http_response_code(401);
+            echo json_encode(['erro' => 'Token inválido'], JSON_UNESCAPED_UNICODE);
             return;
         }
 
-        // Gerar token seguro para recuperação
-        $token = bin2hex(random_bytes(32));
-
-        // Expiração do token: 1 hora a partir de agora
-        $expira = date('Y-m-d H:i:s', strtotime('+10 minutes'));
-
-        $codigo = rand(100000, 999999);
-
-        $salvou = $this->clienteModel->salvarTokenRecuperacao($cliente['id_cliente'], $token, $expira, $codigo);
-
-        if (!$salvou) {
-            http_response_code(500);
-            echo json_encode(['erro' => 'Erro ao gerar token de recuperação'], JSON_UNESCAPED_UNICODE);
+        if (strtotime($cliente['token_expira']) < time()) {
+            http_response_code(403);
+            echo json_encode(['erro' => 'Token expirado'], JSON_UNESCAPED_UNICODE);
             return;
         }
 
-        // PHPMailer
-        require_once __DIR__ . '/../../vendors/phpmailer/src/PHPMailer.php';
-        require_once __DIR__ . '/../../vendors/phpmailer/src/SMTP.php';
-        require_once __DIR__ . '/../../vendors/phpmailer/src/Exception.php';
-
-        $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-
-        try {
-            $mail->isSMTP();
-            $mail->SMTPDebug = 0;
-            $mail->Host       = HOST_EMAIL;
-            $mail->SMTPAuth   = true;
-            $mail->Username   = USER_EMAIL;
-            $mail->Password   = PASS_EMAIL;
-            $mail->SMTPSecure = 'ssl';
-            $mail->Port       = PORT_EMAIL;
-
-            $mail->CharSet = 'UTF-8';
-
-            $mail->setFrom(USER_EMAIL, 'Sara Fashion');
-            $mail->addAddress($email);
-            $mail->isHTML(true);
-            $mail->Subject = 'Recuperação de Senha - Sara Fashion';
-            $nome = $cliente['nome_cliente'] ?? 'usuário';
-
-            $mail->Body = "
-            <div style='text-align: center; font-family: Trebuchet MS, Verdana, sans-serif;'>
-                <div style='border: 2px solid #C59D5F; border-radius: 5px; padding: 40px; display: inline-block; background-color: #fff;'>
-                    <div style='background-color: #C59D5F; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom:25px;'>
-                        <img src='https://sarafashionapp.webdevsolutions.com.br/public/assets/img/logo_sarafashionEmail.png' style='width: 250px;' alt='logoSara'>
-                    </div>
-                    <h1 style='font-size: 1.563em; color: black;'>Olá, <strong>{$nome}</strong>!</h1>
-                    <p style='color: black;'>Use o código abaixo para redefinir sua senha:</p>
-                    <div>
-                        <h2 style='color: #B8860B; font-size: 25px; font-weight: bold;'>{$codigo}</h2>
-                    </div>
-                    <p style='font-weight: bold; color: black;'>O código é válido por 1 hora.</p>
-                </div>
-            </div>
-        ";
-
-            $mail->send();
-
-            echo json_encode(['sucesso' => 'Código enviado para o e-mail informado'], JSON_UNESCAPED_UNICODE);
-        } catch (Exception $e) {
-            http_response_code(500);
-            echo json_encode(['erro' => 'Erro ao enviar e-mail: ' . $mail->ErrorInfo], JSON_UNESCAPED_UNICODE);
+        if (!password_verify($codigo, $cliente['codigo_verificacao'])) {
+            http_response_code(401);
+            echo json_encode(['erro' => 'Código incorreto'], JSON_UNESCAPED_UNICODE);
+            return;
         }
+
+        echo json_encode(['sucesso' => 'Código validado com sucesso'], JSON_UNESCAPED_UNICODE);
     }
-
 
     public function uploadFotoCliente($id)
     {
@@ -480,7 +578,6 @@ class ApiController extends Controller
             echo json_encode(['erro' => $e->getMessage()]);
         }
     }
-
 
     private function uploadFoto($file, $nome_cliente)
     {

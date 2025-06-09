@@ -2,8 +2,6 @@
 
 class Cliente extends Model
 {
-
-
     public function buscarCliente($email)
     {
         $sql = "SELECT * FROM tbl_cliente WHERE email_cliente = :email AND status_cliente = 'Ativo'";
@@ -33,18 +31,6 @@ class Cliente extends Model
 
         return $resultado;
     }
-
-
-    // public function getCliente($email)
-    // {
-    //     $sql = "SELECT * FROM tbl_cliente WHERE email_cliente = :email AND status_cliente = 'Ativo'";
-
-    //     $stmt = $this->db->prepare($sql);
-    //     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-    //     $stmt->execute();
-
-    //     return $stmt->fetch(PDO::FETCH_ASSOC);
-    // }
 
     public function getlistarCliente()
     {
@@ -229,6 +215,24 @@ class Cliente extends Model
         return $stmt->execute();
     }
 
+    public function salvarTokenRecuperacaoApp($id, $token, $expira, $codigo)
+    {
+        $sql = "UPDATE tbl_cliente 
+            SET token_recuperacao = :token, 
+                token_expira = :expira, 
+                codigo_verificacao = :codigo 
+            WHERE id_cliente = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':token', $token);
+        $stmt->bindValue(':expira', $expira);
+        $stmt->bindValue(':codigo', $codigo);
+        $stmt->bindValue(':id', $id);
+
+        return $stmt->execute();
+    }
+
+
     public function getClientePorToken($token)
     {
         $sql = "SELECT * FROM tbl_cliente WHERE token_recuperacao = :token";
@@ -250,6 +254,14 @@ class Cliente extends Model
     public function limparTokenRecuperacao($id)
     {
         $sql = "UPDATE tbl_cliente SET token_recuperacao = NULL, token_expira = NULL WHERE id_cliente = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
+    }
+
+    public function limparTokenRecuperacaoApp($id)
+    {
+        $sql = "UPDATE tbl_cliente SET token_recuperacao = NULL,codigo_verificacao = NULL, token_expira = NULL WHERE id_cliente = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id', $id);
         return $stmt->execute();
