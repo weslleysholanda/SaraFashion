@@ -4,10 +4,12 @@ class ApiController extends Controller
 {
     private $clienteModel;
     private $servicoModel;
+    private $produtoModel;
     public function __construct()
     {
         $this->clienteModel = new Cliente();
         $this->servicoModel = new Servico();
+        $this->produtoModel = new Produto();
     }
     /**
      * Da autorização para o dominio do app para fazer requisições POST
@@ -186,18 +188,19 @@ class ApiController extends Controller
         echo json_encode($fidelidade);
     }
 
-    //Listar Servico
-    public function ListarServico()
-    {
-        $servico = $this->servicoModel->getServicoAll();
+     //Listar Servico
+     public function ListarServico()
+     {
+         $servico = $this->servicoModel->getServicoAll();
+ 
+         if (empty($servico)) {
+             http_response_code(404);
+             echo json_encode(['mensagem' => "Nenhum registro encontrado"]);
+             exit;
+         }
+         echo json_encode($servico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+     }
 
-        if (empty($servico)) {
-            http_response_code(404);
-            echo json_encode(['mensagem' => "Nenhum registro encontrado"]);
-            exit;
-        }
-        echo json_encode($servico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-    }
 
     //Cadastrar Cliente
     public function preCadastro()
@@ -604,4 +607,19 @@ class ApiController extends Controller
         }
         return false;
     }
+
+
+
+    //Listar Produto
+    public function ListarProdutos()
+    {
+        $produtos = $this->produtoModel->getProduto();
+
+        if (empty($produtos)) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => "Nenhum produto encontrado"]);
+            exit;
+        }
+        echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }  
 }
