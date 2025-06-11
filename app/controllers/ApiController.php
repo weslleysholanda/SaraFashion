@@ -388,6 +388,7 @@ class ApiController extends Controller
         require_once __DIR__ . '/../../vendors/phpmailer/src/Exception.php';
 
         $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
         try {
             $mail->isSMTP();
             $mail->Host       = HOST_EMAIL;
@@ -406,25 +407,24 @@ class ApiController extends Controller
             $nome = $cliente['nome_cliente'] ?? 'usuário';
 
             $mail->Body = "
-            <div style='text-align: center; font-family: Trebuchet MS, Verdana, sans-serif;'>
-                <div style='border: 2px solid #C59D5F; border-radius: 5px; padding: 40px; display: inline-block; background-color: #fff;'>
-                    <div style='background-color: #C59D5F; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom:25px;'>
-                        <img src='https://sarafashionapp.webdevsolutions.com.br/public/assets/img/logo_sarafashionEmail.png' style='width: 250px; object-fit: cover;' alt='logoSara'>
-                    </div>
+                <div style='text-align: center; font-family: Trebuchet MS, Verdana, sans-serif;'>
+                    <div style='border: 2px solid #C59D5F; border-radius: 5px; padding: 40px; display: inline-block; background-color: #fff;'>
+                        <div style='background-color: #C59D5F; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom:25px;'>
+                            <img src='https://sarafashionapp.webdevsolutions.com.br/public/assets/img/logo_sarafashionEmail.png' style='width: 250px; object-fit: cover;' alt='logoSara'>
+                        </div>
 
-                    <h1 style='font-size: 1.563em; color: black;'>Olá, <strong>{$nome}</strong>!</h1>
-                    <p style='color: black;'>Seu código de verificação é:</p>
-                    <div>
-                        <h2 style='color: #B8860B; font-size: 25px; font-weight: bold;'>{$codigo}</h2>
+                        <h1 style='font-size: 1.563em; color: black;'>Olá, <strong>{$nome}</strong>!</h1>
+                        <p style='color: black;'>Seu código de verificação é:</p>
+                        <div>
+                            <h2 style='color: #B8860B; font-size: 25px; font-weight: bold;'>{$codigo}</h2>
+                        </div>
+                        <p style='font-weight: bold; color: black;'>Válido por 10 minutos.</p>
                     </div>
-                    <p style='font-weight: bold; color: black;'>Válido por 10 minutos.</p>
                 </div>
-            </div>
-        ";
+            ";
 
             $mail->send();
             echo json_encode(['sucesso' => 'Código enviado por e-mail.', 'token' => $token]);
-            // DICA: enviar o token junto para usar na API de validação
         } catch (Exception $e) {
             http_response_code(500);
             echo json_encode(['erro' => 'Erro ao enviar e-mail: ' . $mail->ErrorInfo]);
@@ -487,12 +487,10 @@ class ApiController extends Controller
         // Limpar token e código verificação
         $this->clienteModel->limparTokenRecuperacaoApp($cliente['id_cliente']);
 
-        // Opcional: remover dados da sessão
         unset($_SESSION['recuperarSenha']);
 
         echo json_encode(['sucesso' => 'Senha alterada com sucesso']);
     }
-
 
     public function validarCodigoRecuperacao()
     {
