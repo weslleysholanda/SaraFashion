@@ -607,9 +607,7 @@ class ApiController extends Controller
         }
         return false;
     }
-
-
-
+    
     //Listar Produto
     public function ListarProdutos()
     {
