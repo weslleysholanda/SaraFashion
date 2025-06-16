@@ -188,18 +188,18 @@ class ApiController extends Controller
         echo json_encode($fidelidade);
     }
 
-     //Listar Servico
-     public function ListarServico()
-     {
-         $servico = $this->servicoModel->getServicoAll();
- 
-         if (empty($servico)) {
-             http_response_code(404);
-             echo json_encode(['mensagem' => "Nenhum registro encontrado"]);
-             exit;
-         }
-         echo json_encode($servico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-     }
+    //Listar Servico
+    public function ListarServico()
+    {
+        $servico = $this->servicoModel->getServicoAll();
+
+        if (empty($servico)) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => "Nenhum registro encontrado"]);
+            exit;
+        }
+        echo json_encode($servico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
 
 
     //Cadastrar Cliente
@@ -374,7 +374,7 @@ class ApiController extends Controller
         // Gera token, expiração e código (string)
         $token = bin2hex(random_bytes(32));
         $expira = date('Y-m-d H:i:s', strtotime('+10 minutes'));
-        $codigo = (string) rand(100000, 999999); // importante converter para string
+        $codigo = (string) rand(100000, 999999);
         $codigoHash = password_hash($codigo, PASSWORD_DEFAULT);
 
         // Salva token, expiração e código hash
@@ -434,6 +434,49 @@ class ApiController extends Controller
         }
     }
 
+    public function validarCodigoRecuperacao()
+    {
+        date_default_timezone_set('America/Sao_Paulo');
+        $this->liberarCORS();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $token = $_POST['token_recuperacao'] ?? '';
+        $codigo = $_POST['codigo_verificacao'] ?? '';
+
+        if (!$token || !$codigo) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Token e código são obrigatórios'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $cliente = $this->clienteModel->getClientePorToken($token);
+
+        if (!$cliente) {
+            http_response_code(401);
+            echo json_encode(['erro' => 'Token inválido'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        if (strtotime($cliente['token_expira']) < time()) {
+            http_response_code(403);
+            echo json_encode(['erro' => 'Token expirado'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        if (!password_verify($codigo, $cliente['codigo_verificacao'])) {
+            http_response_code(401);
+            echo json_encode(['erro' => 'Código incorreto'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        echo json_encode(['sucesso' => 'Código validado com sucesso'], JSON_UNESCAPED_UNICODE);
+    }
+
     public function alterarSenha()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -487,56 +530,14 @@ class ApiController extends Controller
             exit;
         }
 
-        // Limpar token e código verificação
-        $this->clienteModel->limparTokenRecuperacaoApp($cliente['id_cliente']);
+        // Limpar token pelo próprio token (não precisa id_cliente mais)
+        $this->clienteModel->limparTokenRecuperacaoPorToken($token);
 
         unset($_SESSION['recuperarSenha']);
 
         echo json_encode(['sucesso' => 'Senha alterada com sucesso']);
     }
 
-    public function validarCodigoRecuperacao()
-    {
-        date_default_timezone_set('America/Sao_Paulo');
-        $this->liberarCORS();
-
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            http_response_code(405);
-            echo json_encode(['erro' => 'Método não permitido'], JSON_UNESCAPED_UNICODE);
-            return;
-        }
-
-        $token = $_POST['token_recuperacao'] ?? '';
-        $codigo = $_POST['codigo_verificacao'] ?? '';
-
-        if (!$token || !$codigo) {
-            http_response_code(400);
-            echo json_encode(['erro' => 'Token e código são obrigatórios'], JSON_UNESCAPED_UNICODE);
-            return;
-        }
-
-        $cliente = $this->clienteModel->getClientePorToken($token);
-
-        if (!$cliente) {
-            http_response_code(401);
-            echo json_encode(['erro' => 'Token inválido'], JSON_UNESCAPED_UNICODE);
-            return;
-        }
-
-        if (strtotime($cliente['token_expira']) < time()) {
-            http_response_code(403);
-            echo json_encode(['erro' => 'Token expirado'], JSON_UNESCAPED_UNICODE);
-            return;
-        }
-
-        if (!password_verify($codigo, $cliente['codigo_verificacao'])) {
-            http_response_code(401);
-            echo json_encode(['erro' => 'Código incorreto'], JSON_UNESCAPED_UNICODE);
-            return;
-        }
-
-        echo json_encode(['sucesso' => 'Código validado com sucesso'], JSON_UNESCAPED_UNICODE);
-    }
 
     public function uploadFotoCliente($id)
     {
@@ -607,7 +608,7 @@ class ApiController extends Controller
         }
         return false;
     }
-    
+
     //Listar Produto
     public function ListarProdutos()
     {
@@ -619,5 +620,5 @@ class ApiController extends Controller
             exit;
         }
         echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-    }  
+    }
 }

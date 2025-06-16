@@ -259,11 +259,11 @@ class Cliente extends Model
         return $stmt->execute();
     }
 
-    public function limparTokenRecuperacaoApp($id)
+    public function limparTokenRecuperacaoPorToken($token)
     {
-        $sql = "UPDATE tbl_cliente SET token_recuperacao = NULL,codigo_verificacao = NULL, token_expira = NULL WHERE id_cliente = :id";
+        $sql = "UPDATE tbl_cliente SET token_recuperacao = NULL, token_expira = NULL WHERE token_recuperacao = :token";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':token', $token);
         return $stmt->execute();
     }
 }
