@@ -610,7 +610,7 @@ class ApiController extends Controller
     }
 
     //Listar Produto
-    public function ListarProdutos()
+    public function listarProdutos()
     {
         $produtos = $this->produtoModel->getProduto();
 
@@ -621,4 +621,24 @@ class ApiController extends Controller
         }
         echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
+<<<<<<< HEAD
+=======
+
+    public function produtosPopulares(){
+
+        try {
+            $populares = $this->produtoModel->getProdutosPopulares();
+            echo json_encode([
+                'status' => 'success',
+                'data' => $populares
+            ]);
+
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Erro ao buscar produtos populares: ' . $e->getMessage()
+            ]);
+        }
+    }
+>>>>>>> e45f149b72f74211bf786229cd540a2bb65ad06b
 }
