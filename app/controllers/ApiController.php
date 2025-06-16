@@ -479,14 +479,15 @@ class ApiController extends Controller
 
     public function alterarSenha()
     {
+        date_default_timezone_set('America/Sao_Paulo');
+        $this->liberarCORS();
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);
             echo json_encode(['erro' => 'Método não permitido']);
             exit;
         }
 
-        session_start();
-        $token = $_SESSION['recuperarSenha']['token'] ?? null;
+        $token = $_POST['token'] ?? null;
         $novaSenha = $_POST['nova_senha'] ?? null;
         $confirmarSenha = $_POST['confirmar_senha'] ?? null;
 
@@ -530,7 +531,7 @@ class ApiController extends Controller
             exit;
         }
 
-        // Limpar token pelo próprio token (não precisa id_cliente mais)
+
         $this->clienteModel->limparTokenRecuperacaoPorToken($token);
 
         unset($_SESSION['recuperarSenha']);
@@ -621,8 +622,6 @@ class ApiController extends Controller
         }
         echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
-<<<<<<< HEAD
-=======
 
     public function produtosPopulares(){
 
@@ -640,5 +639,4 @@ class ApiController extends Controller
             ]);
         }
     }
->>>>>>> e45f149b72f74211bf786229cd540a2bb65ad06b
 }
