@@ -215,18 +215,12 @@ class Produto extends Model
     public function getProdutosPopulares()
     {
 
-        $sql = "SELECT 
-            SUM(iv.quantidade_item_venda) AS total_vendido, 
-            p.nome_produto, 
-            g.foto_galeria, 
-            g.alt_foto_galeria
-            FROM tbl_item_venda iv
-            INNER JOIN tbl_produto p ON iv.id_produto = p.id_produto
-            INNER JOIN tbl_venda v ON iv.id_venda = v.id_venda
-            LEFT JOIN tbl_galeria g ON p.id_produto = g.id_produto AND g.status_galeria = 'Ativo'
-            GROUP BY p.id_produto
-            ORDER BY total_vendido DESC
-            LIMIT 5
+        $sql = "SELECT sum(quantidade_item_venda) AS total_vendido,nome_produto, preco_produto,preco_anterior, foto_galeria, alt_foto_galeria FROM tbl_item_venda 
+            INNER JOIN tbl_produto ON tbl_item_venda.id_produto = tbl_produto.id_produto
+            INNER JOIN tbl_venda ON tbl_item_venda.id_venda = tbl_venda.id_venda
+            LEFT JOIN tbl_galeria ON tbl_produto.id_produto=tbl_galeria.id_produto AND status_galeria = 'Ativo'
+            GROUP BY nome_produto
+            ORDER BY total_vendido DESC LIMIT 5;
         ";
 
         $stmt = $this->db->prepare($sql);
