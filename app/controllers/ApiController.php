@@ -639,4 +639,17 @@ class ApiController extends Controller
             ]);
         }
     }
-}
+
+    public function promocaoProduto()
+    {
+        $produtos = $this->produtoModel->getPromocaoProduto();
+        if (empty($produtos)) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => "Nenhuma promoção encontrada"]);
+            exit;
+        }
+    
+        echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+    }
