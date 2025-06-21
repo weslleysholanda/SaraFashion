@@ -29,8 +29,6 @@ class Servico extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    
-
     public function addServico($dados)
     {
         $sql = "INSERT INTO tbl_servico(
@@ -102,6 +100,13 @@ class Servico extends Model
         $stmt->bindValue(':id_servico', $id, PDO::PARAM_INT);
     
         return $stmt->execute();
+    }
+
+    public function getPromocaoServico(){
+        $sql = "SELECT * FROM tbl_promocao WHERE status_promocao = 'Ativa'";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
 

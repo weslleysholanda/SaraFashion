@@ -232,13 +232,13 @@ class Produto extends Model
     {
 
         $sql = "SELECT 
-        descricao_promocao_produto, 
-        desconto_promocao_produto, 
-        foto_promocao_produto,
-        alt_foto_promocao_produto
-    FROM tbl_promocao_produto
-    WHERE status_promocao_produto = 'Ativo'
-    ";
+            descricao_promocao_produto, 
+            desconto_promocao_produto, 
+            foto_promocao_produto,
+            alt_foto_promocao_produto
+            FROM tbl_promocao_produto
+            WHERE status_promocao_produto = 'Ativo'
+        ";
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();

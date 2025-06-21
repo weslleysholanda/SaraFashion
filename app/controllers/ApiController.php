@@ -201,6 +201,16 @@ class ApiController extends Controller
         echo json_encode($servico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
+    public function promocaoServico(){
+       $servico = $this->servicoModel->getPromocaoServico();
+       if(empty($servico)){
+        http_response_code(404);
+        echo json_encode(['mensagem' => "Nenhuma promoção encontrada"]);
+        exit;
+       }
+       echo json_encode($servico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE); 
+    }
+
 
     //Cadastrar Cliente
     public function preCadastro()
@@ -623,7 +633,8 @@ class ApiController extends Controller
         echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-    public function produtosPopulares(){
+    public function produtosPopulares()
+    {
 
         try {
             $populares = $this->produtoModel->getProdutosPopulares();
@@ -631,7 +642,6 @@ class ApiController extends Controller
                 'status' => 'success',
                 'data' => $populares
             ]);
-
         } catch (Exception $e) {
             echo json_encode([
                 'status' => 'error',
@@ -648,8 +658,7 @@ class ApiController extends Controller
             echo json_encode(['mensagem' => "Nenhuma promoção encontrada"]);
             exit;
         }
-    
+
         echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
-
-    }
+}
