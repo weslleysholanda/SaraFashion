@@ -17,6 +17,31 @@ class Produto extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getProdutoApp()
+    {
+        $sql = "SELECT 
+                tbl_produto.id_produto,
+                tbl_produto.link_produto,
+                tbl_produto.categoria_produto,
+                tbl_produto.nome_produto,
+                tbl_produto.preco_produto,
+                tbl_produto.preco_anterior,
+                tbl_galeria.foto_galeria,
+                tbl_galeria.alt_foto_galeria
+            FROM tbl_produto
+            LEFT JOIN tbl_galeria 
+                ON tbl_produto.id_produto = tbl_galeria.id_produto 
+                AND tbl_galeria.status_galeria = 'Ativo'
+            WHERE tbl_produto.status_produto = 'Ativo'
+            GROUP BY tbl_produto.id_produto
+            ORDER BY tbl_produto.id_produto ASC
+        ";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function addProduto($dados)
     {
         $sql = "INSERT INTO tbl_produto (
@@ -88,12 +113,18 @@ class Produto extends Model
 
     public function getProdutoLink($link)
     {
-        $sql = "SELECT p.*, 
-        GROUP_CONCAT(DISTINCT g.foto_galeria ORDER BY g.id_galeria SEPARATOR ',') AS imagens
-        FROM tbl_produto p
-        LEFT JOIN tbl_galeria g ON p.id_produto = g.id_produto 
-        WHERE p.status_produto = 'Ativo' AND p.link_produto = :link
-        GROUP BY p.id_produto;";
+        $sql = "SELECT 
+                p.*, 
+                GROUP_CONCAT(DISTINCT g.foto_galeria ORDER BY g.id_galeria SEPARATOR ',') AS imagens
+            FROM 
+                tbl_produto p
+            LEFT JOIN 
+                tbl_galeria g ON p.id_produto = g.id_produto
+            WHERE 
+                p.status_produto = 'Ativo' 
+                AND p.link_produto = :link
+            GROUP BY 
+                p.id_produto";
 
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':link', $link);
@@ -106,7 +137,6 @@ class Produto extends Model
 
         return $produto;
     }
-
 
 
     public function addFotoGaleria($id_produto, $arquivo, $nome_produto)
@@ -215,7 +245,7 @@ class Produto extends Model
     public function getProdutosPopulares()
     {
 
-        $sql = "SELECT sum(quantidade_item_venda) AS total_vendido,tbl_produto.id_produto,tbl_produto.categoria_produto,nome_produto, preco_produto,preco_anterior, foto_galeria, alt_foto_galeria FROM tbl_item_venda 
+        $sql = "SELECT sum(quantidade_item_venda) AS total_vendido,tbl_produto.id_produto,tbl_produto.link_produto,tbl_produto.categoria_produto,nome_produto, preco_produto,preco_anterior, foto_galeria, alt_foto_galeria FROM tbl_item_venda 
             INNER JOIN tbl_produto ON tbl_item_venda.id_produto = tbl_produto.id_produto
             INNER JOIN tbl_venda ON tbl_item_venda.id_venda = tbl_venda.id_venda
             LEFT JOIN tbl_galeria ON tbl_produto.id_produto=tbl_galeria.id_produto AND status_galeria = 'Ativo'

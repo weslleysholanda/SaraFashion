@@ -701,7 +701,7 @@ class ApiController extends Controller
     //Listar Produto
     public function listarProdutos()
     {
-        $produtos = $this->produtoModel->getProduto();
+        $produtos = $this->produtoModel->getProdutoApp();
 
         if (empty($produtos)) {
             http_response_code(404);
@@ -736,8 +736,8 @@ class ApiController extends Controller
             echo json_encode(['mensagem' => "Nenhuma promoção encontrada"]);
             exit;
         }
-    
-        echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+        echo json_encode($promocoes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
     public function listarCategorias()
@@ -774,6 +774,27 @@ class ApiController extends Controller
         echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
+    public function buscarProdutoUnico()
+    {
+        $link = $_GET['link'] ?? null;
+
+        if (!$link) {
+            http_response_code(400);
+            echo json_encode(['mensagem' => "Informe o link do produto"]);
+            exit;
+        }
+
+        $produto = $this->produtoModel->getProdutoLink($link);
+
+        if (!$produto) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => "Produto não encontrado"]);
+            exit;
+        }
+
+        echo json_encode($produto, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
     public function buscarPorCategoria()
     {
         $categoria = $_GET['categoria'] ?? null;
@@ -794,10 +815,6 @@ class ApiController extends Controller
 
         echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
-
-
-
-
 
     //Agendamento
     public function listartServicoAgendamento()
