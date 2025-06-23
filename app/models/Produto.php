@@ -215,7 +215,7 @@ class Produto extends Model
     public function getProdutosPopulares()
     {
 
-        $sql = "SELECT sum(quantidade_item_venda) AS total_vendido,nome_produto, preco_produto,preco_anterior, foto_galeria, alt_foto_galeria FROM tbl_item_venda 
+        $sql = "SELECT sum(quantidade_item_venda) AS total_vendido,tbl_produto.id_produto,tbl_produto.categoria_produto,nome_produto, preco_produto,preco_anterior, foto_galeria, alt_foto_galeria FROM tbl_item_venda 
             INNER JOIN tbl_produto ON tbl_item_venda.id_produto = tbl_produto.id_produto
             INNER JOIN tbl_venda ON tbl_item_venda.id_venda = tbl_venda.id_venda
             LEFT JOIN tbl_galeria ON tbl_produto.id_produto=tbl_galeria.id_produto AND status_galeria = 'Ativo'
@@ -232,16 +232,67 @@ class Produto extends Model
     {
 
         $sql = "SELECT 
-        descricao_promocao_produto, 
-        desconto_promocao_produto, 
-        foto_promocao_produto,
-        alt_foto_promocao_produto
-    FROM tbl_promocao_produto
-    WHERE status_promocao_produto = 'Ativo'
-    ";
+            descricao_promocao_produto, 
+            desconto_promocao_produto, 
+            foto_promocao_produto,
+            alt_foto_promocao_produto
+            FROM tbl_promocao_produto
+            WHERE status_promocao_produto = 'Ativo'
+        ";
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function listarCategorias()
+    {
+        $sql = "SELECT DISTINCT categoria_produto 
+                FROM tbl_produto 
+                WHERE status_produto = 'ativo'
+                ORDER BY categoria_produto ASC";
+        $sql = $this->db->query($sql);
+
+        if ($sql->rowCount() > 0) {
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        return [];
+    }
+
+    public function buscarPorCategoria($categoria)
+    {
+        $sql = "SELECT * FROM tbl_produto 
+            WHERE categoria_produto = :categoria 
+            AND status_produto = 'ativo'
+            ORDER BY nome_produto ASC";
+
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':categoria', $categoria);
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        return [];
+    }
+
+    public function buscarPorNome($nome)
+    {
+        $sql = "SELECT * FROM tbl_produto 
+                WHERE nome_produto LIKE :nome 
+                AND status_produto = 'ativo' 
+                ORDER BY nome_produto ASC";
+
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':nome', '%' . $nome . '%');
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        return [];
     }
 }

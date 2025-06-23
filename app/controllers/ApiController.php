@@ -5,11 +5,15 @@ class ApiController extends Controller
     private $clienteModel;
     private $servicoModel;
     private $produtoModel;
+    private $favoritoModel;
+    private $agendamentoModel;
     public function __construct()
     {
         $this->clienteModel = new Cliente();
         $this->servicoModel = new Servico();
         $this->produtoModel = new Produto();
+        $this->favoritoModel = new Favoritos();
+        $this->agendamentoModel = new Agendamento();
     }
     /**
      * Da autorização para o dominio do app para fazer requisições POST
@@ -201,6 +205,17 @@ class ApiController extends Controller
         echo json_encode($servico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
+    public function promocaoServico()
+    {
+        $servico = $this->servicoModel->getPromocaoServico();
+        if (empty($servico)) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => "Nenhuma promoção encontrada"]);
+            exit;
+        }
+        echo json_encode($servico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
 
     //Cadastrar Cliente
     public function preCadastro()
@@ -309,6 +324,7 @@ class ApiController extends Controller
         }
     }
     //fim cadastro cliente
+
 
     //Atualizar Cliente
     public function atualizarCliente($id)
@@ -539,6 +555,26 @@ class ApiController extends Controller
         echo json_encode(['sucesso' => 'Senha alterada com sucesso']);
     }
 
+    public function editarSenhaCliente($id)
+    {
+        $dados = json_decode(file_get_contents("php://input"), true);
+
+        if (empty($dados['nova_senha'])) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'A nova senha é obrigatória.']);
+            return;
+        }
+
+        $novaSenhaCriptografada = password_hash($dados['nova_senha'], PASSWORD_DEFAULT);
+
+        if ($this->clienteModel->atualizarSenha($id, $novaSenhaCriptografada)) {
+            echo json_encode(['mensagem' => 'Senha atualizada com sucesso.']);
+        } else {
+            http_response_code(500);
+            echo json_encode(['erro' => 'Erro ao atualizar a senha.']);
+        }
+    }
+
 
     public function uploadFotoCliente($id)
     {
@@ -610,6 +646,58 @@ class ApiController extends Controller
         return false;
     }
 
+    //Favoritos
+    public function toggleFavorito()
+    {
+        $this->liberarCORS();
+        $cliente = $this->autenticarToken();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido.']);
+            return;
+        }
+
+        $id_produto = $_POST['id_produto'] ?? null;
+
+        if (!$id_produto) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'ID do produto é obrigatório']);
+            return;
+        }
+
+        $favorito = $this->favoritoModel->verificarFavorito($cliente['id_cliente'], $id_produto);
+
+        if ($favorito) {
+            if ($favorito['status_favorito'] === 'ativo') {
+                $this->favoritoModel->desativarFavorito($cliente['id_cliente'], $id_produto);
+                echo json_encode(['status' => 'removido']);
+            } else {
+                $this->favoritoModel->ativarFavorito($cliente['id_cliente'], $id_produto);
+                echo json_encode(['status' => 'adicionado']);
+            }
+        } else {
+            $this->favoritoModel->inserirFavorito($cliente['id_cliente'], $id_produto);
+            echo json_encode(['status' => 'adicionado']);
+        }
+    }
+
+    public function listarFavoritos()
+    {
+        $this->liberarCORS();
+        $cliente = $this->autenticarToken();
+
+        $favoritos = $this->favoritoModel->listarFavoritos($cliente['id_cliente']);
+
+        if (empty($favoritos)) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => 'Nenhum favorito encontrado.']);
+            return;
+        }
+
+        echo json_encode($favoritos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
     //Listar Produto
     public function listarProdutos()
     {
@@ -623,7 +711,8 @@ class ApiController extends Controller
         echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-    public function produtosPopulares(){
+    public function produtosPopulares()
+    {
 
         try {
             $populares = $this->produtoModel->getProdutosPopulares();
@@ -631,7 +720,6 @@ class ApiController extends Controller
                 'status' => 'success',
                 'data' => $populares
             ]);
-
         } catch (Exception $e) {
             echo json_encode([
                 'status' => 'error',
@@ -649,7 +737,260 @@ class ApiController extends Controller
             exit;
         }
     
-        echo json_encode($promocoes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
+    public function listarCategorias()
+    {
+        $categorias = $this->produtoModel->listarCategorias();
+
+        if (empty($categorias)) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => "Nenhuma categoria encontrada"]);
+            exit;
+        }
+
+        echo json_encode($categorias, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
+
+    public function buscarProdutos()
+    {
+        $termo = $_GET['busca'] ?? null;
+
+        if (!$termo) {
+            http_response_code(400);
+            echo json_encode(['mensagem' => "Informe um termo para busca"]);
+            exit;
+        }
+
+        $produtos = $this->produtoModel->buscarPorNome($termo);
+
+        if (empty($produtos)) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => "Nenhum produto encontrado para esse termo"]);
+            exit;
+        }
+
+        echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+    public function buscarPorCategoria()
+    {
+        $categoria = $_GET['categoria'] ?? null;
+
+        if (!$categoria) {
+            http_response_code(400);
+            echo json_encode(['mensagem' => "Informe a categoria"]);
+            exit;
+        }
+
+        $produtos = $this->produtoModel->buscarPorCategoria($categoria);
+
+        if (empty($produtos)) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => "Nenhum produto encontrado para essa categoria"]);
+            exit;
+        }
+
+        echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+
+
+
+
+    //Agendamento
+    public function listartServicoAgendamento()
+    {
+        $servico = $this->servicoModel->getServicoAgendamento();
+
+        if (empty($servico)) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => "Nenhum registro encontrado"]);
+            exit;
+        }
+        echo json_encode($servico, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+    public function listarAgendamento()
+    {
+        $this->liberarCORS();
+        $cliente = $this->autenticarToken();
+
+        $listaAgendamento = $this->agendamentoModel->listarAgendamento($cliente['id_cliente']);
+
+        if (empty($listaAgendamento)) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => 'Nenhum agendamento encontrado.']);
+            return;
+        }
+
+        echo json_encode($listaAgendamento, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+
+    public function preSelecionarServicos()
+    {
+        $this->liberarCORS();
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido.']);
+            return;
+        }
+
+        $dados = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $servicos = $dados['servicos'] ?? [];
+
+        if (empty($servicos) || !is_array($servicos)) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Selecione pelo menos um serviço.']);
+            return;
+        }
+
+        $_SESSION['preAgendamento']['servicos'] = $servicos;
+
+        echo json_encode(['mensagem' => 'Serviços selecionados com sucesso.']);
+    }
+
+    public function preSelecionaDataHora()
+    {
+        $this->liberarCORS();
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido.']);
+            return;
+        }
+
+        $dados = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $dataHora = $dados['data_hora'] ?? '';
+
+        if (empty($dataHora)) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Data e hora do agendamento são obrigatórios.']);
+            return;
+        }
+
+        $_SESSION['preAgendamento']['data_hora'] = $dataHora;
+
+        echo json_encode(['mensagem' => 'Data e horário salvos com sucesso.']);
+    }
+
+    public function cadastrarAgendamento()
+    {
+        date_default_timezone_set('America/Sao_Paulo');
+        $this->liberarCORS();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido.']);
+            return;
+        }
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $cliente = $this->autenticarToken(); // Pega quem é o cliente pelo token
+
+        $input = json_decode(file_get_contents('php://input'), true);
+
+        $camposObrigatorios = ['id_servico', 'data_agendamento', 'status_agendamento'];
+
+        foreach ($camposObrigatorios as $campo) {
+            if (empty($input[$campo])) {
+                http_response_code(400);
+                echo json_encode(['erro' => "O campo '{$campo}' é obrigatório."]);
+                return;
+            }
+        }
+
+        $dados = [
+            'id_cliente' => intval($cliente['id_cliente']),
+            'id_servico' => intval($input['id_servico']),
+            'data_agendamento' => $input['data_agendamento'],
+            'status_agendamento' => $input['status_agendamento']
+        ];
+
+        $resultado = $this->agendamentoModel->adicionarAgendamento($dados);
+
+        if ($resultado) {
+            http_response_code(201);
+            echo json_encode(['mensagem' => 'Agendamento cadastrado com sucesso']);
+        } else {
+            http_response_code(500);
+            echo json_encode(['erro' => 'Erro ao cadastrar agendamento']);
+        }
+    }
+
+    public function cancelarAgendamento()
+    {
+        $this->liberarCORS();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'PATCH') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido.']);
+            return;
+        }
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $cliente = $this->autenticarToken();
+
+        $input = json_decode(file_get_contents('php://input'), true);
+
+        if (empty($input['id_agendamento'])) {
+            http_response_code(400);
+            echo json_encode(['erro' => "O campo 'id_agendamento' é obrigatório."]);
+            return;
+        }
+
+        $idAgendamento = intval($input['id_agendamento']);
+
+        // Usa o model existente para listar os agendamentos do cliente
+        $agendamentos = $this->agendamentoModel->ListarAgendamento($cliente['id_cliente']);
+        $agendamentoExiste = false;
+
+        foreach ($agendamentos as $agendamento) {
+            // aqui você precisa que o `id_agendamento` esteja vindo no resultado
+            if (isset($agendamento['id_agendamento']) && $agendamento['id_agendamento'] == $idAgendamento) {
+                $agendamentoExiste = true;
+                break;
+            }
+        }
+
+        if (!$agendamentoExiste) {
+            http_response_code(403);
+            echo json_encode(['erro' => 'Você não tem permissão para cancelar este agendamento.']);
+            return;
+        }
+
+        $resultado = $this->agendamentoModel->cancelarAgendamento($idAgendamento);
+
+        if ($resultado) {
+            http_response_code(200);
+            echo json_encode(['mensagem' => 'Agendamento cancelado com sucesso']);
+        } else {
+            http_response_code(500);
+            echo json_encode(['erro' => 'Erro ao cancelar o agendamento']);
+        }
+    }
+
+    //Historico de serviço 
+    public function listarHistoricoServico()
+    {
+        $this->liberarCORS();
+        $cliente = $this->autenticarToken();
+
+        $listaAgendamento = $this->agendamentoModel->listarHistoricoServico($cliente['id_cliente']);
+
+        if (empty($listaAgendamento)) {
+            http_response_code(404);
+            echo json_encode(['mensagem' => 'Nenhum serviço encontrado.']);
+            return;
+        }
+
+        echo json_encode($listaAgendamento, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+}
