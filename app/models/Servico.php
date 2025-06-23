@@ -150,4 +150,10 @@ class Servico extends Model
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getServicoAgendamento(){
+        $sql = "SELECT id_servico,nome_servico,descricao_servico,preco_base_servico,tempo_estimado_servico,status_servico FROM tbl_servico WHERE status_servico = 'Ativo' ORDER BY nome_servico ASC;";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

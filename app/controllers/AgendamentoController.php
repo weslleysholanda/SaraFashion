@@ -14,35 +14,35 @@ class AgendamentoController extends Controller
         $this->dashboardModel = new Dashboard();
     }
 
-    public function filtrarAgendamento(){
+    // public function filtrarAgendamento(){
 
-        $status = isset($_POST['status']) ? $_POST['status'] : 'Agendado';
-        $listarAgendamentos = $this->agendamentoModel->getAgendamentoByStatus($status);
-        echo json_encode($listarAgendamentos);
-    }
+    //     $status = isset($_POST['status']) ? $_POST['status'] : 'Agendado';
+    //     $listarAgendamentos = $this->agendamentoModel->getAgendamentoByStatus($status);
+    //     echo json_encode($listarAgendamentos);
+    // }
 
-    public function listar()
-    {
-        if (!isset($_SESSION['userTipo']) || $_SESSION['userTipo'] !== 'Funcionario') {
+    // public function listar()
+    // {
+    //     if (!isset($_SESSION['userTipo']) || $_SESSION['userTipo'] !== 'Funcionario') {
 
-            header('Location:' . BASE_URL);
-            exit;
-        }
+    //         header('Location:' . BASE_URL);
+    //         exit;
+    //     }
 
-        $dados = array();
-        $dados['conteudo'] = 'dash/agendamento/listar';
-        $dados['listarAgendamento'] = $this->agendamentoModel->ListarAgendamento();
+    //     $dados = array();
+    //     $dados['conteudo'] = 'dash/agendamento/listar';
+    //     $dados['listarAgendamento'] = $this->agendamentoModel->ListarAgendamento();
             
 
 
-        //metodos da classe DashboardController
-        $dados['usuario'] = $this->dashboardModel->getUsuarioLogado($_SESSION['userId']);
-        $dados['depoimento'] = $this->dashboardModel->getDepoimento();
-        $dados['cadastro'] = $this->dashboardModel->getTotalRegistros();
-        $dados['venda'] = $this->dashboardModel->getVendas();
+    //     //metodos da classe DashboardController
+    //     $dados['usuario'] = $this->dashboardModel->getUsuarioLogado($_SESSION['userId']);
+    //     $dados['depoimento'] = $this->dashboardModel->getDepoimento();
+    //     $dados['cadastro'] = $this->dashboardModel->getTotalRegistros();
+    //     $dados['venda'] = $this->dashboardModel->getVendas();
 
-        $this->carregarViews('dash/dashboard', $dados);
-    }
+    //     $this->carregarViews('dash/dashboard', $dados);
+    // }
 
     public function editar()
     {
