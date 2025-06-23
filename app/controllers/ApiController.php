@@ -736,8 +736,7 @@ class ApiController extends Controller
             echo json_encode(['mensagem' => "Nenhuma promoção encontrada"]);
             exit;
         }
-    
-        echo json_encode($produtos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        echo json_encode($promocoes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
     public function listarCategorias()
